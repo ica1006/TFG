@@ -5,8 +5,8 @@ Francisco Crespo Diez
 ## Universidad
 Universidad de Burgos - España
 ## Tutor por la Universidad de Burgos
-Doctor Alejandro Merino Gómez
-Doctor Daniel Sarabia Ortiz
+- Doctor Alejandro Merino Gómez.
+- Doctor Daniel Sarabia Ortiz.
 ## Instalación
 Recomiendo el uso de VS Code y Node.js instalado.
 1. Copiar repositorio: ```git clone https://github.com/FranBurgos/TFG.git```
