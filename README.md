@@ -1,17 +1,11 @@
-# TFG
-Trabajo de Fin de Grado
+# TFG - Desarrollo de una interfaz para planta piloto
+Trabajo de Fin de Grado - Desarrollo de una interfaz para planta piloto
 ## Autor
 Francisco Crespo Diez
 ## Universidad
 Universidad de Burgos - España
 ## Tutor por la Universidad de Burgos
-- Doctor Alejandro Merino Gómez.
-- Doctor Daniel Sarabia Ortiz.
-## Instalación
-Recomiendo el uso de VS Code y Node.js instalado.
-1. Copiar repositorio: ```git clone https://github.com/FranBurgos/TFG.git```
-2. Ir al directorio de la aplicación: ```cd TFG/WelcomeScreen```
-3. Ejecutar ```npm i``` para cargar todos los módulos necesarios.
-4. Ejecutar ```npm run electron .``` para ejecutar la aplicación sobre Electron.
+- Dr. Alejandro Merino Gómez.
+- Dr. Daniel Sarabia Ortiz.
 ## Descripción
-**WELCOME SCREEN** es una aplicación de escritorio desarrollada en Angular 6 y Electron 2.0. Su finalidad es un panel informativo que pueda devolver información acerca de cuentas vinculadas en Twitter, el tráfico y el tiempo de la zona, y en la que se puedan reproducir tanto vídeos de Youtube como vídeos propios.
+Durante la duración de este proyecto de fin de grado se busca desarrollar una interfaz hombre-máquina para monitorizar las variables y actuar sobre ellas en una planta piloto que contiene un control de temperatura y un control de caudal de aire.
