@@ -18,3 +18,4 @@ Segunda reunión en la que se han tratado los siguientes temas:
 4. Pasos siguientes:
     1. Crear una aplicación sencilla que se comunique con la placa a través del puerto serie.
     2. Definir un formato del archivo de configuración, donde se guardan los valores de las variables que se van a utilizar en la placa. La aplicación no tiene porqué trabajar siempre con las mismas variables, depende de cómo se configure la placa, por lo que deberá permitir introduccir las variables que el usuario considere y trabajar con ellas.
+5. Se decide utilizar Visual Studio 2015 como IDE por mejor usabilidad con C++ y Windows Form.
