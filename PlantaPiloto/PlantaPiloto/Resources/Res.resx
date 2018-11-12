@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnChart_txt" xml:space="preserve">
+    <value>Gráficos</value>
+  </data>
   <data name="btnClose_txt" xml:space="preserve">
     <value>Cerrar</value>
+  </data>
+  <data name="btnFile_txt" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="btnFinish_txt" xml:space="preserve">
+    <value>Fin</value>
   </data>
   <data name="btnOpen_txt" xml:space="preserve">
     <value>Abrir</value>
@@ -129,8 +138,23 @@
   <data name="btnSend_txt" xml:space="preserve">
     <value>Enviar</value>
   </data>
+  <data name="btnStart_txt" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="btnVar_txt" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="CreateConfig_txt" xml:space="preserve">
+    <value>Create Configuration</value>
+  </data>
   <data name="lblPorts_txt" xml:space="preserve">
     <value>Puertos</value>
+  </data>
+  <data name="lblProDesc_txt" xml:space="preserve">
+    <value>Descripción:</value>
+  </data>
+  <data name="lblProName_txt" xml:space="preserve">
+    <value>Proyecto:</value>
   </data>
   <data name="lblReceive_txt" xml:space="preserve">
     <value>Recibir</value>
@@ -150,6 +174,9 @@
   <data name="toolStripMenuItemConfig_txt" xml:space="preserve">
     <value>Configuración</value>
   </data>
+  <data name="toolStripMenuItemCreateConfig_txt" xml:space="preserve">
+    <value>Crear configuración</value>
+  </data>
   <data name="toolStripMenuItemEnglish_txt" xml:space="preserve">
     <value>Inglés</value>
   </data>
@@ -164,9 +191,6 @@
   </data>
   <data name="toolStripMenuItemLoadConfig_txt" xml:space="preserve">
     <value>Cargar configuración</value>
-  </data>
-  <data name="toolStripMenuItemMakeConfig_txt" xml:space="preserve">
-    <value>Crear configuración</value>
   </data>
   <data name="toolStripMenuItemModifyConfig_txt" xml:space="preserve">
     <value>Modificar configuración</value>

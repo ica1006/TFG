@@ -43,7 +43,7 @@
             this.txtReceive = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemMakeConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCreateConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLoadConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemModifyConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +56,13 @@
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemHelpHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnFinish = new System.Windows.Forms.Button();
+            this.btnChart = new System.Windows.Forms.Button();
+            this.btnVar = new System.Windows.Forms.Button();
+            this.btnFile = new System.Windows.Forms.Button();
+            this.lblProName = new System.Windows.Forms.Label();
+            this.lblProDesc = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,18 +178,18 @@
             // toolStripMenuItemConfig
             // 
             this.toolStripMenuItemConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemMakeConfig,
+            this.toolStripMenuItemCreateConfig,
             this.toolStripMenuItemLoadConfig,
             this.toolStripMenuItemModifyConfig});
             this.toolStripMenuItemConfig.Name = "toolStripMenuItemConfig";
             this.toolStripMenuItemConfig.Size = new System.Drawing.Size(135, 29);
             this.toolStripMenuItemConfig.Text = "Configuración";
             // 
-            // toolStripMenuItemMakeConfig
+            // toolStripMenuItemCreateConfig
             // 
-            this.toolStripMenuItemMakeConfig.Name = "toolStripMenuItemMakeConfig";
-            this.toolStripMenuItemMakeConfig.Size = new System.Drawing.Size(284, 30);
-            this.toolStripMenuItemMakeConfig.Text = "Crear configuración";
+            this.toolStripMenuItemCreateConfig.Name = "toolStripMenuItemCreateConfig";
+            this.toolStripMenuItemCreateConfig.Size = new System.Drawing.Size(284, 30);
+            this.toolStripMenuItemCreateConfig.Text = "Crear configuración";
             // 
             // toolStripMenuItemLoadConfig
             // 
@@ -229,14 +236,14 @@
             // toolStripMenuItemEnglish
             // 
             this.toolStripMenuItemEnglish.Name = "toolStripMenuItemEnglish";
-            this.toolStripMenuItemEnglish.Size = new System.Drawing.Size(252, 30);
+            this.toolStripMenuItemEnglish.Size = new System.Drawing.Size(158, 30);
             this.toolStripMenuItemEnglish.Text = "English";
             this.toolStripMenuItemEnglish.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // toolStripMenuItemSpanish
             // 
             this.toolStripMenuItemSpanish.Name = "toolStripMenuItemSpanish";
-            this.toolStripMenuItemSpanish.Size = new System.Drawing.Size(252, 30);
+            this.toolStripMenuItemSpanish.Size = new System.Drawing.Size(158, 30);
             this.toolStripMenuItemSpanish.Text = "Español";
             this.toolStripMenuItemSpanish.Click += new System.EventHandler(this.toolStripMenuItemSpanish_Click);
             // 
@@ -268,11 +275,81 @@
             this.toolStripMenuItemAbout.Size = new System.Drawing.Size(242, 30);
             this.toolStripMenuItemAbout.Text = "Acerca de";
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(26, 62);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(76, 37);
+            this.btnStart.TabIndex = 12;
+            this.btnStart.Text = "button1";
+            this.btnStart.UseVisualStyleBackColor = true;
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.Location = new System.Drawing.Point(108, 62);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Size = new System.Drawing.Size(76, 37);
+            this.btnFinish.TabIndex = 13;
+            this.btnFinish.Text = "button2";
+            this.btnFinish.UseVisualStyleBackColor = true;
+            // 
+            // btnChart
+            // 
+            this.btnChart.Location = new System.Drawing.Point(309, 62);
+            this.btnChart.Name = "btnChart";
+            this.btnChart.Size = new System.Drawing.Size(76, 37);
+            this.btnChart.TabIndex = 14;
+            this.btnChart.Text = "button1";
+            this.btnChart.UseVisualStyleBackColor = true;
+            // 
+            // btnVar
+            // 
+            this.btnVar.Location = new System.Drawing.Point(391, 62);
+            this.btnVar.Name = "btnVar";
+            this.btnVar.Size = new System.Drawing.Size(97, 37);
+            this.btnVar.TabIndex = 15;
+            this.btnVar.Text = "button2";
+            this.btnVar.UseVisualStyleBackColor = true;
+            // 
+            // btnFile
+            // 
+            this.btnFile.Location = new System.Drawing.Point(494, 62);
+            this.btnFile.Name = "btnFile";
+            this.btnFile.Size = new System.Drawing.Size(76, 37);
+            this.btnFile.TabIndex = 16;
+            this.btnFile.Text = "button3";
+            this.btnFile.UseVisualStyleBackColor = true;
+            // 
+            // lblProName
+            // 
+            this.lblProName.AutoSize = true;
+            this.lblProName.Location = new System.Drawing.Point(26, 115);
+            this.lblProName.Name = "lblProName";
+            this.lblProName.Size = new System.Drawing.Size(51, 20);
+            this.lblProName.TabIndex = 17;
+            this.lblProName.Text = "label1";
+            // 
+            // lblProDesc
+            // 
+            this.lblProDesc.AutoSize = true;
+            this.lblProDesc.Location = new System.Drawing.Point(26, 147);
+            this.lblProDesc.Name = "lblProDesc";
+            this.lblProDesc.Size = new System.Drawing.Size(51, 20);
+            this.lblProDesc.TabIndex = 18;
+            this.lblProDesc.Text = "label1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 565);
+            this.Controls.Add(this.lblProDesc);
+            this.Controls.Add(this.lblProName);
+            this.Controls.Add(this.btnFile);
+            this.Controls.Add(this.btnVar);
+            this.Controls.Add(this.btnChart);
+            this.Controls.Add(this.btnFinish);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtReceive);
             this.Controls.Add(this.lblReceive);
             this.Controls.Add(this.lblSend);
@@ -311,7 +388,7 @@
         private System.Windows.Forms.RichTextBox txtReceive;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfig;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMakeConfig;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemModifyConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCommunication;
@@ -324,6 +401,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLanguage;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEnglish;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSpanish;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.Button btnChart;
+        private System.Windows.Forms.Button btnVar;
+        private System.Windows.Forms.Button btnFile;
+        private System.Windows.Forms.Label lblProName;
+        private System.Windows.Forms.Label lblProDesc;
     }
 }
 

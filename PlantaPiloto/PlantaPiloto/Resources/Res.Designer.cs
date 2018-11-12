@@ -61,11 +61,38 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gráficos.
+        /// </summary>
+        public static string btnChart_txt {
+            get {
+                return ResourceManager.GetString("btnChart_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cerrar.
         /// </summary>
         public static string btnClose_txt {
             get {
                 return ResourceManager.GetString("btnClose_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivo.
+        /// </summary>
+        public static string btnFile_txt {
+            get {
+                return ResourceManager.GetString("btnFile_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fin.
+        /// </summary>
+        public static string btnFinish_txt {
+            get {
+                return ResourceManager.GetString("btnFinish_txt", resourceCulture);
             }
         }
         
@@ -97,11 +124,56 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inicio.
+        /// </summary>
+        public static string btnStart_txt {
+            get {
+                return ResourceManager.GetString("btnStart_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string btnVar_txt {
+            get {
+                return ResourceManager.GetString("btnVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Configuration.
+        /// </summary>
+        public static string CreateConfig_txt {
+            get {
+                return ResourceManager.GetString("CreateConfig_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puertos.
         /// </summary>
         public static string lblPorts_txt {
             get {
                 return ResourceManager.GetString("lblPorts_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción:.
+        /// </summary>
+        public static string lblProDesc_txt {
+            get {
+                return ResourceManager.GetString("lblProDesc_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proyecto:.
+        /// </summary>
+        public static string lblProName_txt {
+            get {
+                return ResourceManager.GetString("lblProName_txt", resourceCulture);
             }
         }
         
@@ -160,6 +232,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crear configuración.
+        /// </summary>
+        public static string toolStripMenuItemCreateConfig_txt {
+            get {
+                return ResourceManager.GetString("toolStripMenuItemCreateConfig_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inglés.
         /// </summary>
         public static string toolStripMenuItemEnglish_txt {
@@ -201,15 +282,6 @@ namespace PlantaPiloto.Language {
         public static string toolStripMenuItemLoadConfig_txt {
             get {
                 return ResourceManager.GetString("toolStripMenuItemLoadConfig_txt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Crear configuración.
-        /// </summary>
-        public static string toolStripMenuItemMakeConfig_txt {
-            get {
-                return ResourceManager.GetString("toolStripMenuItemMakeConfig_txt", resourceCulture);
             }
         }
         

@@ -155,7 +155,7 @@ namespace PlantaPiloto
             this.toolStripMenuItemHelpHelp.Text = res_man.GetString("toolStripMenuItemHelpHelp_txt", cul);
             this.toolStripMenuItemLanguage.Text = res_man.GetString("toolStripMenuItemLanguage_txt", cul);
             this.toolStripMenuItemLoadConfig.Text = res_man.GetString("toolStripMenuItemLoadConfig_txt", cul);
-            this.toolStripMenuItemMakeConfig.Text = res_man.GetString("toolStripMenuItemMakeConfig_txt", cul);
+            this.toolStripMenuItemCreateConfig.Text = res_man.GetString("toolStripMenuItemCreateConfig_txt", cul);
             this.toolStripMenuItemModifyConfig.Text = res_man.GetString("toolStripMenuItemModifyConfig_txt", cul);
             this.toolStripMenuItemOthers.Text = res_man.GetString("toolStripMenuItemOthers_txt", cul);
             this.toolStripMenuItemSerie.Text = res_man.GetString("toolStripMenuItemSerie_txt", cul);
@@ -167,6 +167,13 @@ namespace PlantaPiloto
             this.btnOpen.Text = res_man.GetString("btnOpen_txt", cul);
             this.btnReceive.Text = res_man.GetString("btnReceive_txt", cul);
             this.btnSend.Text = res_man.GetString("btnSend_txt", cul);
+            this.btnStart.Text = res_man.GetString("btnStart_txt", cul);
+            this.btnFinish.Text = res_man.GetString("btnFinish_txt", cul);
+            this.btnChart.Text = res_man.GetString("btnChart_txt", cul);
+            this.btnVar.Text = res_man.GetString("btnVar_txt", cul);
+            this.btnFile.Text = res_man.GetString("btnFile_txt", cul);
+            this.lblProDesc.Text = res_man.GetString("lblProDesc_txt", cul);
+            this.lblProName.Text = res_man.GetString("lblProName_txt", cul);
         }
 
         /// <summary>
