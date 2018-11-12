@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblPorts = new System.Windows.Forms.Label();
             this.cboPort = new System.Windows.Forms.ComboBox();
             this.btnOpen = new System.Windows.Forms.Button();
@@ -252,19 +253,19 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(242, 30);
             this.userManualToolStripMenuItem.Text = "Manual de usuario";
             // 
             // toolStripMenuItemHelpHelp
             // 
             this.toolStripMenuItemHelpHelp.Name = "toolStripMenuItemHelpHelp";
-            this.toolStripMenuItemHelpHelp.Size = new System.Drawing.Size(252, 30);
+            this.toolStripMenuItemHelpHelp.Size = new System.Drawing.Size(242, 30);
             this.toolStripMenuItemHelpHelp.Text = "Ayuda";
             // 
             // toolStripMenuItemAbout
             // 
             this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
-            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(252, 30);
+            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(242, 30);
             this.toolStripMenuItemAbout.Text = "Acerca de";
             // 
             // MainForm
@@ -283,6 +284,7 @@
             this.Controls.Add(this.cboPort);
             this.Controls.Add(this.lblPorts);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Interfaz Planta Piloto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
