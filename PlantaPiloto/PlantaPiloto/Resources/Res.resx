@@ -118,69 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnClose_txt" xml:space="preserve">
-    <value>Close</value>
+    <value>Cerrar</value>
   </data>
   <data name="btnOpen_txt" xml:space="preserve">
-    <value>Open</value>
+    <value>Abrir</value>
   </data>
   <data name="btnReceive_txt" xml:space="preserve">
-    <value>Receive</value>
+    <value>Recibir</value>
   </data>
   <data name="btnSend_txt" xml:space="preserve">
-    <value>Send</value>
+    <value>Enviar</value>
   </data>
   <data name="lblPorts_txt" xml:space="preserve">
-    <value>Ports</value>
+    <value>Puertos</value>
   </data>
   <data name="lblReceive_txt" xml:space="preserve">
-    <value>Receive</value>
+    <value>Recibir</value>
   </data>
   <data name="lblSend_txt" xml:space="preserve">
-    <value>Send</value>
+    <value>Enviar</value>
   </data>
   <data name="MainForm_txt" xml:space="preserve">
-    <value>Pilot Plant Interface</value>
+    <value>Interfaz Planta Piloto</value>
   </data>
   <data name="toolStripMenuItemAbout_txt" xml:space="preserve">
-    <value>About</value>
+    <value>Acerca de</value>
   </data>
   <data name="toolStripMenuItemCommunication_txt" xml:space="preserve">
-    <value>Communication</value>
+    <value>Comunicaciones</value>
   </data>
   <data name="toolStripMenuItemConfig_txt" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Configuración</value>
   </data>
   <data name="toolStripMenuItemEnglish_txt" xml:space="preserve">
-    <value>English</value>
+    <value>Inglés</value>
   </data>
   <data name="toolStripMenuItemHelpHelp_txt" xml:space="preserve">
-    <value>Help</value>
+    <value>Ayuda</value>
   </data>
   <data name="toolStripMenuItemHelp_txt" xml:space="preserve">
-    <value>Help</value>
+    <value>Ayuda</value>
   </data>
   <data name="toolStripMenuItemLanguage_txt" xml:space="preserve">
-    <value>Language</value>
+    <value>Idioma</value>
   </data>
   <data name="toolStripMenuItemLoadConfig_txt" xml:space="preserve">
-    <value>Load configuration</value>
+    <value>Cargar configuración</value>
   </data>
   <data name="toolStripMenuItemMakeConfig_txt" xml:space="preserve">
-    <value>Make configuration</value>
+    <value>Crear configuración</value>
   </data>
   <data name="toolStripMenuItemModifyConfig_txt" xml:space="preserve">
-    <value>Modify configuration</value>
+    <value>Modificar configuración</value>
   </data>
   <data name="toolStripMenuItemOthers_txt" xml:space="preserve">
-    <value>Others</value>
+    <value>Otros</value>
   </data>
   <data name="toolStripMenuItemSerie_txt" xml:space="preserve">
     <value>Serie</value>
   </data>
   <data name="toolStripMenuItemSpanish_txt" xml:space="preserve">
-    <value>Spanish</value>
+    <value>Español</value>
   </data>
   <data name="toolStripMenuItemUserManual_txt" xml:space="preserve">
-    <value>User manual</value>
+    <value>Manual de usuario</value>
   </data>
 </root>
