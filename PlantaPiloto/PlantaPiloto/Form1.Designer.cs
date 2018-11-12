@@ -136,7 +136,7 @@
             // lblReceive
             // 
             this.lblReceive.AutoSize = true;
-            this.lblReceive.Location = new System.Drawing.Point(723, 286);
+            this.lblReceive.Location = new System.Drawing.Point(723, 283);
             this.lblReceive.Name = "lblReceive";
             this.lblReceive.Size = new System.Drawing.Size(70, 20);
             this.lblReceive.TabIndex = 9;
