@@ -142,11 +142,56 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Configuration.
+        ///   Looks up a localized string similar to Configuración.
         /// </summary>
-        public static string CreateConfig_txt {
+        public static string ConfigForm_txt {
             get {
-                return ResourceManager.GetString("CreateConfig_txt", resourceCulture);
+                return ResourceManager.GetString("ConfigForm_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controles.
+        /// </summary>
+        public static string gBoxControls_txt {
+            get {
+                return ResourceManager.GetString("gBoxControls_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proyecto.
+        /// </summary>
+        public static string gBoxProyect_txt {
+            get {
+                return ResourceManager.GetString("gBoxProyect_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string lblConfigProDesc_txt {
+            get {
+                return ResourceManager.GetString("lblConfigProDesc_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre del proyecto.
+        /// </summary>
+        public static string lblConfigProName_txt {
+            get {
+                return ResourceManager.GetString("lblConfigProName_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuración.
+        /// </summary>
+        public static string lblConfigTitle_txt {
+            get {
+                return ResourceManager.GetString("lblConfigTitle_txt", resourceCulture);
             }
         }
         
@@ -201,6 +246,24 @@ namespace PlantaPiloto.Language {
         public static string MainForm_txt {
             get {
                 return ResourceManager.GetString("MainForm_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivos de configuración |*.txt.
+        /// </summary>
+        public static string showDialogFilter {
+            get {
+                return ResourceManager.GetString("showDialogFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seleccione archivo de configuración.
+        /// </summary>
+        public static string showDialogTitle {
+            get {
+                return ResourceManager.GetString("showDialogTitle", resourceCulture);
             }
         }
         

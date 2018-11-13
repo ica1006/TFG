@@ -204,4 +204,28 @@
   <data name="toolStripMenuItemUserManual_txt" xml:space="preserve">
     <value>User manual</value>
   </data>
+  <data name="ConfigForm_txt" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="gBoxControls_txt" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="gBoxProyect_txt" xml:space="preserve">
+    <value>Proyect</value>
+  </data>
+  <data name="lblConfigProDesc_txt" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblConfigProName_txt" xml:space="preserve">
+    <value>Proyect name</value>
+  </data>
+  <data name="lblConfigTitle_txt" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="showDialogFilter" xml:space="preserve">
+    <value>Configuration Files|*.txt</value>
+  </data>
+  <data name="showDialogTitle" xml:space="preserve">
+    <value>Select configuration file</value>
+  </data>
 </root>

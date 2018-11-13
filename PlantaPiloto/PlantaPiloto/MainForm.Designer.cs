@@ -1,4 +1,6 @@
-﻿namespace PlantaPiloto
+﻿using System.Windows.Forms;
+
+namespace PlantaPiloto
 {
     partial class MainForm
     {
@@ -56,14 +58,19 @@
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemHelpHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnFinish = new System.Windows.Forms.Button();
-            this.btnChart = new System.Windows.Forms.Button();
-            this.btnVar = new System.Windows.Forms.Button();
+            this.gBoxControls = new System.Windows.Forms.GroupBox();
             this.btnFile = new System.Windows.Forms.Button();
-            this.lblProName = new System.Windows.Forms.Label();
+            this.btnVar = new System.Windows.Forms.Button();
+            this.btnChart = new System.Windows.Forms.Button();
+            this.btnFinish = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.gBoxProyect = new System.Windows.Forms.GroupBox();
             this.lblProDesc = new System.Windows.Forms.Label();
+            this.lblProName = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
+            this.gBoxControls.SuspendLayout();
+            this.gBoxProyect.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPorts
@@ -190,12 +197,14 @@
             this.toolStripMenuItemCreateConfig.Name = "toolStripMenuItemCreateConfig";
             this.toolStripMenuItemCreateConfig.Size = new System.Drawing.Size(284, 30);
             this.toolStripMenuItemCreateConfig.Text = "Crear configuración";
+            this.toolStripMenuItemCreateConfig.Click += new System.EventHandler(this.toolStripMenuItemCreateConfig_Click);
             // 
             // toolStripMenuItemLoadConfig
             // 
             this.toolStripMenuItemLoadConfig.Name = "toolStripMenuItemLoadConfig";
             this.toolStripMenuItemLoadConfig.Size = new System.Drawing.Size(284, 30);
             this.toolStripMenuItemLoadConfig.Text = "Cargar configuración";
+            this.toolStripMenuItemLoadConfig.Click += new System.EventHandler(this.toolStripMenuItemLoadConfig_Click);
             // 
             // toolStripMenuItemModifyConfig
             // 
@@ -275,81 +284,105 @@
             this.toolStripMenuItemAbout.Size = new System.Drawing.Size(242, 30);
             this.toolStripMenuItemAbout.Text = "Acerca de";
             // 
-            // btnStart
+            // gBoxControls
             // 
-            this.btnStart.Location = new System.Drawing.Point(26, 62);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(76, 37);
-            this.btnStart.TabIndex = 12;
-            this.btnStart.Text = "button1";
-            this.btnStart.UseVisualStyleBackColor = true;
-            // 
-            // btnFinish
-            // 
-            this.btnFinish.Location = new System.Drawing.Point(108, 62);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(76, 37);
-            this.btnFinish.TabIndex = 13;
-            this.btnFinish.Text = "button2";
-            this.btnFinish.UseVisualStyleBackColor = true;
-            // 
-            // btnChart
-            // 
-            this.btnChart.Location = new System.Drawing.Point(309, 62);
-            this.btnChart.Name = "btnChart";
-            this.btnChart.Size = new System.Drawing.Size(76, 37);
-            this.btnChart.TabIndex = 14;
-            this.btnChart.Text = "button1";
-            this.btnChart.UseVisualStyleBackColor = true;
-            // 
-            // btnVar
-            // 
-            this.btnVar.Location = new System.Drawing.Point(391, 62);
-            this.btnVar.Name = "btnVar";
-            this.btnVar.Size = new System.Drawing.Size(97, 37);
-            this.btnVar.TabIndex = 15;
-            this.btnVar.Text = "button2";
-            this.btnVar.UseVisualStyleBackColor = true;
+            this.gBoxControls.Controls.Add(this.btnFile);
+            this.gBoxControls.Controls.Add(this.btnVar);
+            this.gBoxControls.Controls.Add(this.btnChart);
+            this.gBoxControls.Controls.Add(this.btnFinish);
+            this.gBoxControls.Controls.Add(this.btnStart);
+            this.gBoxControls.Location = new System.Drawing.Point(12, 51);
+            this.gBoxControls.Name = "gBoxControls";
+            this.gBoxControls.Size = new System.Drawing.Size(668, 100);
+            this.gBoxControls.TabIndex = 19;
+            this.gBoxControls.TabStop = false;
+            this.gBoxControls.Text = "groupBox1";
             // 
             // btnFile
             // 
-            this.btnFile.Location = new System.Drawing.Point(494, 62);
+            this.btnFile.Location = new System.Drawing.Point(486, 39);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(76, 37);
-            this.btnFile.TabIndex = 16;
+            this.btnFile.TabIndex = 21;
             this.btnFile.Text = "button3";
             this.btnFile.UseVisualStyleBackColor = true;
             // 
-            // lblProName
+            // btnVar
             // 
-            this.lblProName.AutoSize = true;
-            this.lblProName.Location = new System.Drawing.Point(26, 115);
-            this.lblProName.Name = "lblProName";
-            this.lblProName.Size = new System.Drawing.Size(51, 20);
-            this.lblProName.TabIndex = 17;
-            this.lblProName.Text = "label1";
+            this.btnVar.Location = new System.Drawing.Point(383, 39);
+            this.btnVar.Name = "btnVar";
+            this.btnVar.Size = new System.Drawing.Size(97, 37);
+            this.btnVar.TabIndex = 20;
+            this.btnVar.Text = "button2";
+            this.btnVar.UseVisualStyleBackColor = true;
+            // 
+            // btnChart
+            // 
+            this.btnChart.Location = new System.Drawing.Point(301, 39);
+            this.btnChart.Name = "btnChart";
+            this.btnChart.Size = new System.Drawing.Size(76, 37);
+            this.btnChart.TabIndex = 19;
+            this.btnChart.Text = "button1";
+            this.btnChart.UseVisualStyleBackColor = true;
+            // 
+            // btnFinish
+            // 
+            this.btnFinish.Location = new System.Drawing.Point(100, 39);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Size = new System.Drawing.Size(76, 37);
+            this.btnFinish.TabIndex = 18;
+            this.btnFinish.Text = "button2";
+            this.btnFinish.UseVisualStyleBackColor = true;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(18, 39);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(76, 37);
+            this.btnStart.TabIndex = 17;
+            this.btnStart.Text = "button1";
+            this.btnStart.UseVisualStyleBackColor = true;
+            // 
+            // gBoxProyect
+            // 
+            this.gBoxProyect.Controls.Add(this.lblProDesc);
+            this.gBoxProyect.Controls.Add(this.lblProName);
+            this.gBoxProyect.Location = new System.Drawing.Point(12, 157);
+            this.gBoxProyect.Name = "gBoxProyect";
+            this.gBoxProyect.Size = new System.Drawing.Size(668, 396);
+            this.gBoxProyect.TabIndex = 20;
+            this.gBoxProyect.TabStop = false;
+            this.gBoxProyect.Text = "groupBox2";
             // 
             // lblProDesc
             // 
             this.lblProDesc.AutoSize = true;
-            this.lblProDesc.Location = new System.Drawing.Point(26, 147);
+            this.lblProDesc.Location = new System.Drawing.Point(13, 67);
             this.lblProDesc.Name = "lblProDesc";
             this.lblProDesc.Size = new System.Drawing.Size(51, 20);
-            this.lblProDesc.TabIndex = 18;
+            this.lblProDesc.TabIndex = 20;
             this.lblProDesc.Text = "label1";
+            // 
+            // lblProName
+            // 
+            this.lblProName.AutoSize = true;
+            this.lblProName.Location = new System.Drawing.Point(13, 35);
+            this.lblProName.Name = "lblProName";
+            this.lblProName.Size = new System.Drawing.Size(51, 20);
+            this.lblProName.TabIndex = 19;
+            this.lblProName.Text = "label1";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 565);
-            this.Controls.Add(this.lblProDesc);
-            this.Controls.Add(this.lblProName);
-            this.Controls.Add(this.btnFile);
-            this.Controls.Add(this.btnVar);
-            this.Controls.Add(this.btnChart);
-            this.Controls.Add(this.btnFinish);
-            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.gBoxProyect);
+            this.Controls.Add(this.gBoxControls);
             this.Controls.Add(this.txtReceive);
             this.Controls.Add(this.lblReceive);
             this.Controls.Add(this.lblSend);
@@ -368,6 +401,9 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.gBoxControls.ResumeLayout(false);
+            this.gBoxProyect.ResumeLayout(false);
+            this.gBoxProyect.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,13 +437,16 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLanguage;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEnglish;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSpanish;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnFinish;
-        private System.Windows.Forms.Button btnChart;
-        private System.Windows.Forms.Button btnVar;
-        private System.Windows.Forms.Button btnFile;
-        private System.Windows.Forms.Label lblProName;
-        private System.Windows.Forms.Label lblProDesc;
+        private GroupBox gBoxControls;
+        private Button btnFile;
+        private Button btnVar;
+        private Button btnChart;
+        private Button btnFinish;
+        private Button btnStart;
+        private GroupBox gBoxProyect;
+        private Label lblProDesc;
+        private Label lblProName;
+        private OpenFileDialog openFileDialog1;
     }
 }
 

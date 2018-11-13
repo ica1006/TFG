@@ -144,8 +144,8 @@
   <data name="btnVar_txt" xml:space="preserve">
     <value>Variables</value>
   </data>
-  <data name="CreateConfig_txt" xml:space="preserve">
-    <value>Create Configuration</value>
+  <data name="ConfigForm_txt" xml:space="preserve">
+    <value>Configuración</value>
   </data>
   <data name="lblPorts_txt" xml:space="preserve">
     <value>Puertos</value>
@@ -206,5 +206,26 @@
   </data>
   <data name="toolStripMenuItemUserManual_txt" xml:space="preserve">
     <value>Manual de usuario</value>
+  </data>
+  <data name="gBoxControls_txt" xml:space="preserve">
+    <value>Controles</value>
+  </data>
+  <data name="gBoxProyect_txt" xml:space="preserve">
+    <value>Proyecto</value>
+  </data>
+  <data name="lblConfigProDesc_txt" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="lblConfigProName_txt" xml:space="preserve">
+    <value>Nombre del proyecto</value>
+  </data>
+  <data name="lblConfigTitle_txt" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="showDialogFilter" xml:space="preserve">
+    <value>Archivos de configuración |*.txt</value>
+  </data>
+  <data name="showDialogTitle" xml:space="preserve">
+    <value>Seleccione archivo de configuración</value>
   </data>
 </root>

@@ -134,7 +134,7 @@ namespace PlantaPiloto
         /// <summary>
         /// Método que se encarga de actualizar todas las etiquetas del form a la cultura correspondiente
         /// </summary>
-        void switch_language()
+        public void switch_language()
         {
             if (toolStripMenuItemSpanish.Checked == true)    //in vietnamese
             {
@@ -174,6 +174,8 @@ namespace PlantaPiloto
             this.btnFile.Text = res_man.GetString("btnFile_txt", cul);
             this.lblProDesc.Text = res_man.GetString("lblProDesc_txt", cul);
             this.lblProName.Text = res_man.GetString("lblProName_txt", cul);
+            this.gBoxControls.Text = res_man.GetString("gBoxControls_txt", cul);
+            this.gBoxProyect.Text = res_man.GetString("gBoxProyect_txt", cul);
         }
 
         /// <summary>
@@ -198,6 +200,41 @@ namespace PlantaPiloto
             toolStripMenuItemSpanish.Checked = true;
             toolStripMenuItemEnglish.Checked = false;
             switch_language();
+        }
+
+        /// <summary>
+        /// Método que devuelve el idioma seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public CultureInfo getCulture()
+        {
+            return this.cul;
+        }
+
+        /// <summary>
+        /// Método que abre la ventana para introducir una nueva configuración
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemCreateConfig_Click(object sender, EventArgs e)
+        {
+            ConfigForm _createConfig = new ConfigForm();
+            _createConfig.MdiParent = this.MdiParent;
+            _createConfig.SetCulture(this.getCulture());
+            _createConfig.Show();
+        }
+
+        private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = res_man.GetString("showDialogFilter", cul);
+            openFileDialog1.Title = res_man.GetString("showDialogTitle", cul);
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new
+                   System.IO.StreamReader(openFileDialog1.FileName);
+                MessageBox.Show(sr.ReadToEnd());
+                sr.Close();
+            }
         }
     }
 }
