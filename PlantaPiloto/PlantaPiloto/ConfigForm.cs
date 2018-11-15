@@ -20,6 +20,8 @@ namespace PlantaPiloto
         private CultureInfo cul;            // declare culture info
         private string path;
         private FileStream file;
+        private List<string> newVar;
+        private List<List<string>> vars;
 
         public ConfigForm()
         {
@@ -28,6 +30,8 @@ namespace PlantaPiloto
             res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             path = @"../../pruebaTFG.txt";
             file = new FileStream(path, FileMode.OpenOrCreate);
+            newVar = new List<string>();
+            vars = new List<List<string>>();
         }
 
         private void ConfigForm_Load(object sender, EventArgs e)
@@ -51,18 +55,48 @@ namespace PlantaPiloto
 
         private void button2_Click(object sender, EventArgs e)
         {
+            newVar.Clear();
+            if (txtVarDesc.TextLength != 0)
+            {
+                newVar.Add(txtVarDesc.Text);
+            }
+            if (txtVarName.TextLength != 0)
+            {
+                newVar.Add(txtVarName.Text);
+            }
+
+            //Comprobar el número de variables mínimas (no nulas) que hacen falta
+            if(newVar.Count != 0)
+                vars.Add(newVar);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             try
             {
-                using(TextWriter tw = new StreamWriter(file))
+                using (TextWriter tw = new StreamWriter(file))
                 {
                     //Hace falta añadir validaciones
-                    tw.WriteLine("Nombre del proyecto:" + this.txtProName.Text);
+                    tw.WriteLine(DateTime.Now);
+                    tw.WriteLine(this.txtProName.Text);
+                    tw.WriteLine(this.txtProDesc.Text);
+                    foreach(List<string> v in vars)
+                    {
+                        tw.WriteLine("****************************************");
+                        foreach(string s in v)
+                        {
+                            tw.WriteLine(s);
+                        }
+                    }
+                    tw.WriteLine("****************************************");
+                    tw.WriteLine("****************************************");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }      
+            }
+
         }
     }
 }

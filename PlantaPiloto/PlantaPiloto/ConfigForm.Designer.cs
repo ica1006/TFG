@@ -30,26 +30,27 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
             this.lblConfigTitle = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtProDesc = new System.Windows.Forms.RichTextBox();
             this.txtProName = new System.Windows.Forms.RichTextBox();
             this.lblConfigProDesc = new System.Windows.Forms.Label();
             this.lblConfigProName = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.txtVarName = new System.Windows.Forms.RichTextBox();
+            this.txtVarDesc = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cbVarType = new System.Windows.Forms.ComboBox();
             this.lblConfigTitle.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +68,15 @@
             this.lblConfigTitle.TabIndex = 6;
             this.lblConfigTitle.TabStop = false;
             this.lblConfigTitle.Text = "Config";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(685, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "archVectorial";
             // 
             // txtProDesc
             // 
@@ -112,11 +122,13 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox2);
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.cbVarType);
+            this.groupBox1.Controls.Add(this.txtVarName);
+            this.groupBox1.Controls.Add(this.txtVarDesc);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
@@ -134,82 +146,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "newVar";
             // 
-            // button2
+            // txtVarName
             // 
-            this.button2.Location = new System.Drawing.Point(923, 190);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 37);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.txtVarName.Location = new System.Drawing.Point(190, 30);
+            this.txtVarName.Multiline = false;
+            this.txtVarName.Name = "txtVarName";
+            this.txtVarName.Size = new System.Drawing.Size(180, 28);
+            this.txtVarName.TabIndex = 11;
+            this.txtVarName.Text = "";
             // 
-            // label1
+            // txtVarDesc
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(685, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "archVectorial";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 20);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "nombVar";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(685, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 20);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "descVar";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(391, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 20);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "unInterfazVar";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 20);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "unPlacaVar";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(685, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 20);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "accesoVar";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(391, 38);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 20);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "tipoVar";
+            this.txtVarDesc.Location = new System.Drawing.Point(818, 35);
+            this.txtVarDesc.Multiline = false;
+            this.txtVarDesc.Name = "txtVarDesc";
+            this.txtVarDesc.Size = new System.Drawing.Size(180, 28);
+            this.txtVarDesc.TabIndex = 11;
+            this.txtVarDesc.Text = "";
             // 
             // label8
             // 
@@ -238,23 +191,85 @@
             this.label10.TabIndex = 22;
             this.label10.Text = "tipoComVar";
             // 
-            // richTextBox1
+            // label7
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(190, 30);
-            this.richTextBox1.Multiline = false;
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(180, 28);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(391, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "tipoVar";
             // 
-            // richTextBox2
+            // label6
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(818, 30);
-            this.richTextBox2.Multiline = false;
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(180, 28);
-            this.richTextBox2.TabIndex = 11;
-            this.richTextBox2.Text = "";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(685, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "accesoVar";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 20);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "unPlacaVar";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(391, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 20);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "unInterfazVar";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(685, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 20);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "descVar";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 20);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "nombVar";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(923, 190);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 37);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // cbVarType
+            // 
+            this.cbVarType.FormattingEnabled = true;
+            this.cbVarType.Items.AddRange(new object[] {
+            "int",
+            "double",
+            "string"});
+            this.cbVarType.Location = new System.Drawing.Point(547, 34);
+            this.cbVarType.Name = "cbVarType";
+            this.cbVarType.Size = new System.Drawing.Size(121, 28);
+            this.cbVarType.TabIndex = 25;
             // 
             // ConfigForm
             // 
@@ -297,7 +312,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtVarName;
+        private System.Windows.Forms.RichTextBox txtVarDesc;
+        private System.Windows.Forms.ComboBox cbVarType;
     }
 }
