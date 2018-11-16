@@ -220,12 +220,54 @@
     <value>Proyect name</value>
   </data>
   <data name="lblConfigTitle_txt" xml:space="preserve">
-    <value>Configuration</value>
+    <value>Proyect details</value>
   </data>
   <data name="showDialogFilter" xml:space="preserve">
     <value>Configuration Files|*.txt</value>
   </data>
   <data name="showDialogTitle" xml:space="preserve">
     <value>Select configuration file</value>
+  </data>
+  <data name="btnAddVar_txt" xml:space="preserve">
+    <value>Save variable</value>
+  </data>
+  <data name="btnSaveConfig_txt" xml:space="preserve">
+    <value>Save configuration</value>
+  </data>
+  <data name="gbNewVar_txt" xml:space="preserve">
+    <value>New variable</value>
+  </data>
+  <data name="gbProyectDetails_txt" xml:space="preserve">
+    <value>Proyect details</value>
+  </data>
+  <data name="lblVarAccess_txt" xml:space="preserve">
+    <value>Access type</value>
+  </data>
+  <data name="lblVarBoardUnits_txt" xml:space="preserve">
+    <value>Board units</value>
+  </data>
+  <data name="lblVarCommunicationType_txt" xml:space="preserve">
+    <value>Communication type</value>
+  </data>
+  <data name="lblVarDesc_txt" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblVarInterfaceUnits_txt" xml:space="preserve">
+    <value>Interface units</value>
+  </data>
+  <data name="lblVarLinearAdjust_txt" xml:space="preserve">
+    <value>Linear adjustment (a*origen + b)</value>
+  </data>
+  <data name="lblVarName_txt" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="lblVarRange_txt" xml:space="preserve">
+    <value>Range (min - max)</value>
+  </data>
+  <data name="lblVarType_txt" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="lblVectFile_txt" xml:space="preserve">
+    <value>Vectorial image</value>
   </data>
 </root>

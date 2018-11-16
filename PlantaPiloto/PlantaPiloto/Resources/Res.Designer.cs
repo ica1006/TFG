@@ -61,6 +61,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardar variable.
+        /// </summary>
+        public static string btnAddVar_txt {
+            get {
+                return ResourceManager.GetString("btnAddVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gráficos.
         /// </summary>
         public static string btnChart_txt {
@@ -115,6 +124,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardar configuración.
+        /// </summary>
+        public static string btnSaveConfig_txt {
+            get {
+                return ResourceManager.GetString("btnSaveConfig_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enviar.
         /// </summary>
         public static string btnSend_txt {
@@ -151,6 +169,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nueva variable.
+        /// </summary>
+        public static string gbNewVar_txt {
+            get {
+                return ResourceManager.GetString("gbNewVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controles.
         /// </summary>
         public static string gBoxControls_txt {
@@ -165,6 +192,15 @@ namespace PlantaPiloto.Language {
         public static string gBoxProyect_txt {
             get {
                 return ResourceManager.GetString("gBoxProyect_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalles del proyecto.
+        /// </summary>
+        public static string gbProyectDetails_txt {
+            get {
+                return ResourceManager.GetString("gbProyectDetails_txt", resourceCulture);
             }
         }
         
@@ -187,7 +223,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configuración.
+        ///   Looks up a localized string similar to Detalles del proyecto.
         /// </summary>
         public static string lblConfigTitle_txt {
             get {
@@ -237,6 +273,96 @@ namespace PlantaPiloto.Language {
         public static string lblSend_txt {
             get {
                 return ResourceManager.GetString("lblSend_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de acceso.
+        /// </summary>
+        public static string lblVarAccess_txt {
+            get {
+                return ResourceManager.GetString("lblVarAccess_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unidades de la placa.
+        /// </summary>
+        public static string lblVarBoardUnits_txt {
+            get {
+                return ResourceManager.GetString("lblVarBoardUnits_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de comunicación.
+        /// </summary>
+        public static string lblVarCommunicationType_txt {
+            get {
+                return ResourceManager.GetString("lblVarCommunicationType_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        public static string lblVarDesc_txt {
+            get {
+                return ResourceManager.GetString("lblVarDesc_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unidades en la interfaz.
+        /// </summary>
+        public static string lblVarInterfaceUnits_txt {
+            get {
+                return ResourceManager.GetString("lblVarInterfaceUnits_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ajuste lineal (a*origen + b).
+        /// </summary>
+        public static string lblVarLinearAdjust_txt {
+            get {
+                return ResourceManager.GetString("lblVarLinearAdjust_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        public static string lblVarName_txt {
+            get {
+                return ResourceManager.GetString("lblVarName_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rango (min - max).
+        /// </summary>
+        public static string lblVarRange_txt {
+            get {
+                return ResourceManager.GetString("lblVarRange_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo.
+        /// </summary>
+        public static string lblVarType_txt {
+            get {
+                return ResourceManager.GetString("lblVarType_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagen vectorial.
+        /// </summary>
+        public static string lblVectFile_txt {
+            get {
+                return ResourceManager.GetString("lblVectFile_txt", resourceCulture);
             }
         }
         

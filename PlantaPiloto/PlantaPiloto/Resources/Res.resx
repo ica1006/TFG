@@ -220,12 +220,54 @@
     <value>Nombre del proyecto</value>
   </data>
   <data name="lblConfigTitle_txt" xml:space="preserve">
-    <value>Configuración</value>
+    <value>Detalles del proyecto</value>
   </data>
   <data name="showDialogFilter" xml:space="preserve">
     <value>Archivos de configuración |*.txt</value>
   </data>
   <data name="showDialogTitle" xml:space="preserve">
     <value>Seleccione archivo de configuración</value>
+  </data>
+  <data name="btnAddVar_txt" xml:space="preserve">
+    <value>Guardar variable</value>
+  </data>
+  <data name="btnSaveConfig_txt" xml:space="preserve">
+    <value>Guardar configuración</value>
+  </data>
+  <data name="gbNewVar_txt" xml:space="preserve">
+    <value>Nueva variable</value>
+  </data>
+  <data name="gbProyectDetails_txt" xml:space="preserve">
+    <value>Detalles del proyecto</value>
+  </data>
+  <data name="lblVarAccess_txt" xml:space="preserve">
+    <value>Tipo de acceso</value>
+  </data>
+  <data name="lblVarBoardUnits_txt" xml:space="preserve">
+    <value>Unidades de la placa</value>
+  </data>
+  <data name="lblVarCommunicationType_txt" xml:space="preserve">
+    <value>Tipo de comunicación</value>
+  </data>
+  <data name="lblVarDesc_txt" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="lblVarInterfaceUnits_txt" xml:space="preserve">
+    <value>Unidades en la interfaz</value>
+  </data>
+  <data name="lblVarLinearAdjust_txt" xml:space="preserve">
+    <value>Ajuste lineal (a*origen + b)</value>
+  </data>
+  <data name="lblVarName_txt" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lblVarRange_txt" xml:space="preserve">
+    <value>Rango (min - max)</value>
+  </data>
+  <data name="lblVarType_txt" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="lblVectFile_txt" xml:space="preserve">
+    <value>Imagen vectorial</value>
   </data>
 </root>

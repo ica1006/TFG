@@ -146,6 +146,8 @@ namespace PlantaPiloto
             }
 
             //Cambio de idioma de las cadenas
+            #region Actualización de cadenas
+
             this.Text = res_man.GetString("MainForm_txt", cul);
             this.toolStripMenuItemAbout.Text = res_man.GetString("toolStripMenuItemAbout_txt", cul);
             this.toolStripMenuItemCommunication.Text = res_man.GetString("toolStripMenuItemCommunication_txt", cul);
@@ -176,6 +178,8 @@ namespace PlantaPiloto
             this.lblProName.Text = res_man.GetString("lblProName_txt", cul);
             this.gBoxControls.Text = res_man.GetString("gBoxControls_txt", cul);
             this.gBoxProyect.Text = res_man.GetString("gBoxProyect_txt", cul);
+
+            #endregion
         }
 
         /// <summary>
