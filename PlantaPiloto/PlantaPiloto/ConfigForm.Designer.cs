@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
             this.gbProyectDetails = new System.Windows.Forms.GroupBox();
-            this.lblVectFile = new System.Windows.Forms.Label();
             this.txtProDesc = new System.Windows.Forms.RichTextBox();
             this.txtProName = new System.Windows.Forms.RichTextBox();
             this.lblConfigProDesc = new System.Windows.Forms.Label();
@@ -67,68 +66,65 @@
             // 
             // gbProyectDetails
             // 
-            this.gbProyectDetails.Controls.Add(this.lblVectFile);
             this.gbProyectDetails.Controls.Add(this.txtProDesc);
             this.gbProyectDetails.Controls.Add(this.txtProName);
             this.gbProyectDetails.Controls.Add(this.lblConfigProDesc);
             this.gbProyectDetails.Controls.Add(this.lblConfigProName);
-            this.gbProyectDetails.Location = new System.Drawing.Point(12, 12);
+            this.gbProyectDetails.Location = new System.Drawing.Point(8, 8);
+            this.gbProyectDetails.Margin = new System.Windows.Forms.Padding(2);
             this.gbProyectDetails.Name = "gbProyectDetails";
-            this.gbProyectDetails.Size = new System.Drawing.Size(1016, 88);
+            this.gbProyectDetails.Padding = new System.Windows.Forms.Padding(2);
+            this.gbProyectDetails.Size = new System.Drawing.Size(677, 57);
             this.gbProyectDetails.TabIndex = 6;
             this.gbProyectDetails.TabStop = false;
             this.gbProyectDetails.Text = "DatosProyecto";
             // 
-            // lblVectFile
-            // 
-            this.lblVectFile.AutoSize = true;
-            this.lblVectFile.Location = new System.Drawing.Point(685, 47);
-            this.lblVectFile.Name = "lblVectFile";
-            this.lblVectFile.Size = new System.Drawing.Size(102, 20);
-            this.lblVectFile.TabIndex = 10;
-            this.lblVectFile.Text = "archVectorial";
-            // 
             // txtProDesc
             // 
-            this.txtProDesc.Location = new System.Drawing.Point(489, 44);
+            this.txtProDesc.Location = new System.Drawing.Point(326, 27);
+            this.txtProDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtProDesc.Multiline = false;
             this.txtProDesc.Name = "txtProDesc";
-            this.txtProDesc.Size = new System.Drawing.Size(180, 28);
+            this.txtProDesc.Size = new System.Drawing.Size(121, 16);
             this.txtProDesc.TabIndex = 9;
             this.txtProDesc.Text = "";
             // 
             // txtProName
             // 
-            this.txtProName.Location = new System.Drawing.Point(190, 44);
+            this.txtProName.Location = new System.Drawing.Point(127, 29);
+            this.txtProName.Margin = new System.Windows.Forms.Padding(2);
             this.txtProName.Multiline = false;
             this.txtProName.Name = "txtProName";
-            this.txtProName.Size = new System.Drawing.Size(180, 28);
+            this.txtProName.Size = new System.Drawing.Size(121, 20);
             this.txtProName.TabIndex = 8;
             this.txtProName.Text = "";
             // 
             // lblConfigProDesc
             // 
             this.lblConfigProDesc.AutoSize = true;
-            this.lblConfigProDesc.Location = new System.Drawing.Point(391, 52);
+            this.lblConfigProDesc.Location = new System.Drawing.Point(261, 34);
+            this.lblConfigProDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblConfigProDesc.Name = "lblConfigProDesc";
-            this.lblConfigProDesc.Size = new System.Drawing.Size(43, 20);
+            this.lblConfigProDesc.Size = new System.Drawing.Size(30, 13);
             this.lblConfigProDesc.TabIndex = 7;
             this.lblConfigProDesc.Text = "desc";
             // 
             // lblConfigProName
             // 
             this.lblConfigProName.AutoSize = true;
-            this.lblConfigProName.Location = new System.Drawing.Point(32, 52);
+            this.lblConfigProName.Location = new System.Drawing.Point(21, 34);
+            this.lblConfigProName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblConfigProName.Name = "lblConfigProName";
-            this.lblConfigProName.Size = new System.Drawing.Size(49, 20);
+            this.lblConfigProName.Size = new System.Drawing.Size(33, 13);
             this.lblConfigProName.TabIndex = 6;
             this.lblConfigProName.Text = "nomb";
             // 
             // btnSaveConfig
             // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(850, 487);
+            this.btnSaveConfig.Location = new System.Drawing.Point(556, 317);
+            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(178, 36);
+            this.btnSaveConfig.Size = new System.Drawing.Size(130, 23);
             this.btnSaveConfig.TabIndex = 22;
             this.btnSaveConfig.Text = "Guardar configuración";
             this.btnSaveConfig.UseVisualStyleBackColor = true;
@@ -159,9 +155,11 @@
             this.gbNewVar.Controls.Add(this.lblVarDesc);
             this.gbNewVar.Controls.Add(this.lblVarName);
             this.gbNewVar.Controls.Add(this.btnAddVar);
-            this.gbNewVar.Location = new System.Drawing.Point(12, 106);
+            this.gbNewVar.Location = new System.Drawing.Point(8, 69);
+            this.gbNewVar.Margin = new System.Windows.Forms.Padding(2);
             this.gbNewVar.Name = "gbNewVar";
-            this.gbNewVar.Size = new System.Drawing.Size(1016, 363);
+            this.gbNewVar.Padding = new System.Windows.Forms.Padding(2);
+            this.gbNewVar.Size = new System.Drawing.Size(677, 236);
             this.gbNewVar.TabIndex = 16;
             this.gbNewVar.TabStop = false;
             this.gbNewVar.Text = "newVar";
@@ -169,18 +167,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(767, 217);
+            this.label2.Location = new System.Drawing.Point(511, 141);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 20);
+            this.label2.Size = new System.Drawing.Size(10, 13);
             this.label2.TabIndex = 35;
             this.label2.Text = "-";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(343, 215);
+            this.label1.Location = new System.Drawing.Point(229, 140);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 20);
+            this.label1.Size = new System.Drawing.Size(10, 13);
             this.label1.TabIndex = 34;
             this.label1.Text = "-";
             // 
@@ -191,62 +191,69 @@
             "int",
             "double",
             "string"});
-            this.cbVarCommunicationType.Location = new System.Drawing.Point(261, 276);
+            this.cbVarCommunicationType.Location = new System.Drawing.Point(174, 179);
+            this.cbVarCommunicationType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarCommunicationType.Name = "cbVarCommunicationType";
-            this.cbVarCommunicationType.Size = new System.Drawing.Size(179, 28);
+            this.cbVarCommunicationType.Size = new System.Drawing.Size(121, 21);
             this.cbVarCommunicationType.TabIndex = 20;
             // 
             // txtVarRangeHigh
             // 
-            this.txtVarRangeHigh.Location = new System.Drawing.Point(798, 212);
+            this.txtVarRangeHigh.Location = new System.Drawing.Point(532, 138);
+            this.txtVarRangeHigh.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarRangeHigh.Multiline = false;
             this.txtVarRangeHigh.Name = "txtVarRangeHigh";
-            this.txtVarRangeHigh.Size = new System.Drawing.Size(66, 28);
+            this.txtVarRangeHigh.Size = new System.Drawing.Size(45, 20);
             this.txtVarRangeHigh.TabIndex = 19;
             this.txtVarRangeHigh.Text = "";
             // 
             // txtVarRangeLow
             // 
-            this.txtVarRangeLow.Location = new System.Drawing.Point(684, 212);
+            this.txtVarRangeLow.Location = new System.Drawing.Point(456, 138);
+            this.txtVarRangeLow.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarRangeLow.Multiline = false;
             this.txtVarRangeLow.Name = "txtVarRangeLow";
-            this.txtVarRangeLow.Size = new System.Drawing.Size(66, 28);
+            this.txtVarRangeLow.Size = new System.Drawing.Size(45, 20);
             this.txtVarRangeLow.TabIndex = 18;
             this.txtVarRangeLow.Text = "";
             // 
-            // txtVarLinearAdjHigh
+            // txtVarLinearAdjB
             // 
-            this.txtVarLinearAdjB.Location = new System.Drawing.Point(375, 212);
+            this.txtVarLinearAdjB.Location = new System.Drawing.Point(250, 138);
+            this.txtVarLinearAdjB.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarLinearAdjB.Multiline = false;
-            this.txtVarLinearAdjB.Name = "txtVarLinearAdjHigh";
-            this.txtVarLinearAdjB.Size = new System.Drawing.Size(66, 28);
+            this.txtVarLinearAdjB.Name = "txtVarLinearAdjB";
+            this.txtVarLinearAdjB.Size = new System.Drawing.Size(45, 20);
             this.txtVarLinearAdjB.TabIndex = 17;
             this.txtVarLinearAdjB.Text = "0";
             // 
-            // txtVarLinearAdjLow
+            // txtVarLinearAdjA
             // 
-            this.txtVarLinearAdjA.Location = new System.Drawing.Point(261, 212);
+            this.txtVarLinearAdjA.Location = new System.Drawing.Point(174, 138);
+            this.txtVarLinearAdjA.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarLinearAdjA.Multiline = false;
-            this.txtVarLinearAdjA.Name = "txtVarLinearAdjLow";
-            this.txtVarLinearAdjA.Size = new System.Drawing.Size(66, 28);
+            this.txtVarLinearAdjA.Name = "txtVarLinearAdjA";
+            this.txtVarLinearAdjA.Size = new System.Drawing.Size(45, 20);
             this.txtVarLinearAdjA.TabIndex = 16;
             this.txtVarLinearAdjA.Text = "1";
             // 
             // txtVarInterfaceUnits
             // 
-            this.txtVarInterfaceUnits.Location = new System.Drawing.Point(684, 154);
+            this.txtVarInterfaceUnits.Location = new System.Drawing.Point(456, 100);
+            this.txtVarInterfaceUnits.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarInterfaceUnits.Multiline = false;
             this.txtVarInterfaceUnits.Name = "txtVarInterfaceUnits";
-            this.txtVarInterfaceUnits.Size = new System.Drawing.Size(180, 28);
+            this.txtVarInterfaceUnits.Size = new System.Drawing.Size(121, 20);
             this.txtVarInterfaceUnits.TabIndex = 15;
             this.txtVarInterfaceUnits.Text = "";
             // 
             // txtVarBoardUnits
             // 
-            this.txtVarBoardUnits.Location = new System.Drawing.Point(261, 154);
+            this.txtVarBoardUnits.Location = new System.Drawing.Point(174, 100);
+            this.txtVarBoardUnits.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarBoardUnits.Multiline = false;
             this.txtVarBoardUnits.Name = "txtVarBoardUnits";
-            this.txtVarBoardUnits.Size = new System.Drawing.Size(180, 28);
+            this.txtVarBoardUnits.Size = new System.Drawing.Size(121, 20);
             this.txtVarBoardUnits.TabIndex = 14;
             this.txtVarBoardUnits.Text = "";
             // 
@@ -257,9 +264,10 @@
             "int",
             "double",
             "string"});
-            this.cbVarAccess.Location = new System.Drawing.Point(684, 91);
+            this.cbVarAccess.Location = new System.Drawing.Point(456, 59);
+            this.cbVarAccess.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarAccess.Name = "cbVarAccess";
-            this.cbVarAccess.Size = new System.Drawing.Size(179, 28);
+            this.cbVarAccess.Size = new System.Drawing.Size(121, 21);
             this.cbVarAccess.TabIndex = 13;
             // 
             // cbVarType
@@ -269,117 +277,129 @@
             "int",
             "double",
             "string"});
-            this.cbVarType.Location = new System.Drawing.Point(683, 34);
+            this.cbVarType.Location = new System.Drawing.Point(455, 22);
+            this.cbVarType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarType.Name = "cbVarType";
-            this.cbVarType.Size = new System.Drawing.Size(179, 28);
+            this.cbVarType.Size = new System.Drawing.Size(121, 21);
             this.cbVarType.TabIndex = 11;
             this.cbVarType.SelectedValueChanged += new System.EventHandler(this.cbVarType_SelectedValueChanged);
-            this.cbVarType.SelectedIndex = 0;
             // 
             // txtVarName
             // 
-            this.txtVarName.Location = new System.Drawing.Point(261, 30);
+            this.txtVarName.Location = new System.Drawing.Point(174, 19);
+            this.txtVarName.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarName.Multiline = false;
             this.txtVarName.Name = "txtVarName";
-            this.txtVarName.Size = new System.Drawing.Size(180, 28);
+            this.txtVarName.Size = new System.Drawing.Size(121, 20);
             this.txtVarName.TabIndex = 10;
             this.txtVarName.Text = "";
             // 
             // txtVarDesc
             // 
-            this.txtVarDesc.Location = new System.Drawing.Point(261, 91);
+            this.txtVarDesc.Location = new System.Drawing.Point(174, 59);
+            this.txtVarDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarDesc.Multiline = false;
             this.txtVarDesc.Name = "txtVarDesc";
-            this.txtVarDesc.Size = new System.Drawing.Size(180, 28);
+            this.txtVarDesc.Size = new System.Drawing.Size(121, 20);
             this.txtVarDesc.TabIndex = 12;
             this.txtVarDesc.Text = "";
             // 
             // lblVarRange
             // 
             this.lblVarRange.AutoSize = true;
-            this.lblVarRange.Location = new System.Drawing.Point(503, 220);
+            this.lblVarRange.Location = new System.Drawing.Point(335, 143);
+            this.lblVarRange.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarRange.Name = "lblVarRange";
-            this.lblVarRange.Size = new System.Drawing.Size(75, 20);
+            this.lblVarRange.Size = new System.Drawing.Size(50, 13);
             this.lblVarRange.TabIndex = 24;
             this.lblVarRange.Text = "rangoVar";
             // 
             // lblVarLinearAdjust
             // 
             this.lblVarLinearAdjust.AutoSize = true;
-            this.lblVarLinearAdjust.Location = new System.Drawing.Point(32, 220);
+            this.lblVarLinearAdjust.Location = new System.Drawing.Point(21, 143);
+            this.lblVarLinearAdjust.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarLinearAdjust.Name = "lblVarLinearAdjust";
-            this.lblVarLinearAdjust.Size = new System.Drawing.Size(107, 20);
+            this.lblVarLinearAdjust.Size = new System.Drawing.Size(70, 13);
             this.lblVarLinearAdjust.TabIndex = 23;
             this.lblVarLinearAdjust.Text = "unInterfazVar";
             // 
             // lblVarCommunicationType
             // 
             this.lblVarCommunicationType.AutoSize = true;
-            this.lblVarCommunicationType.Location = new System.Drawing.Point(32, 284);
+            this.lblVarCommunicationType.Location = new System.Drawing.Point(21, 185);
+            this.lblVarCommunicationType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarCommunicationType.Name = "lblVarCommunicationType";
-            this.lblVarCommunicationType.Size = new System.Drawing.Size(93, 20);
+            this.lblVarCommunicationType.Size = new System.Drawing.Size(61, 13);
             this.lblVarCommunicationType.TabIndex = 22;
             this.lblVarCommunicationType.Text = "tipoComVar";
             // 
             // lblVarType
             // 
             this.lblVarType.AutoSize = true;
-            this.lblVarType.Location = new System.Drawing.Point(503, 38);
+            this.lblVarType.Location = new System.Drawing.Point(335, 25);
+            this.lblVarType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarType.Name = "lblVarType";
-            this.lblVarType.Size = new System.Drawing.Size(60, 20);
+            this.lblVarType.Size = new System.Drawing.Size(40, 13);
             this.lblVarType.TabIndex = 21;
             this.lblVarType.Text = "tipoVar";
             // 
             // lblVarAccess
             // 
             this.lblVarAccess.AutoSize = true;
-            this.lblVarAccess.Location = new System.Drawing.Point(503, 99);
+            this.lblVarAccess.Location = new System.Drawing.Point(335, 64);
+            this.lblVarAccess.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarAccess.Name = "lblVarAccess";
-            this.lblVarAccess.Size = new System.Drawing.Size(85, 20);
+            this.lblVarAccess.Size = new System.Drawing.Size(58, 13);
             this.lblVarAccess.TabIndex = 20;
             this.lblVarAccess.Text = "accesoVar";
             // 
             // lblVarBoardUnits
             // 
             this.lblVarBoardUnits.AutoSize = true;
-            this.lblVarBoardUnits.Location = new System.Drawing.Point(32, 162);
+            this.lblVarBoardUnits.Location = new System.Drawing.Point(21, 105);
+            this.lblVarBoardUnits.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarBoardUnits.Name = "lblVarBoardUnits";
-            this.lblVarBoardUnits.Size = new System.Drawing.Size(91, 20);
+            this.lblVarBoardUnits.Size = new System.Drawing.Size(62, 13);
             this.lblVarBoardUnits.TabIndex = 19;
             this.lblVarBoardUnits.Text = "unPlacaVar";
             // 
             // lblVarInterfaceUnits
             // 
             this.lblVarInterfaceUnits.AutoSize = true;
-            this.lblVarInterfaceUnits.Location = new System.Drawing.Point(503, 162);
+            this.lblVarInterfaceUnits.Location = new System.Drawing.Point(335, 105);
+            this.lblVarInterfaceUnits.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarInterfaceUnits.Name = "lblVarInterfaceUnits";
-            this.lblVarInterfaceUnits.Size = new System.Drawing.Size(107, 20);
+            this.lblVarInterfaceUnits.Size = new System.Drawing.Size(70, 13);
             this.lblVarInterfaceUnits.TabIndex = 18;
             this.lblVarInterfaceUnits.Text = "unInterfazVar";
             // 
             // lblVarDesc
             // 
             this.lblVarDesc.AutoSize = true;
-            this.lblVarDesc.Location = new System.Drawing.Point(32, 99);
+            this.lblVarDesc.Location = new System.Drawing.Point(21, 64);
+            this.lblVarDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarDesc.Name = "lblVarDesc";
-            this.lblVarDesc.Size = new System.Drawing.Size(68, 20);
+            this.lblVarDesc.Size = new System.Drawing.Size(46, 13);
             this.lblVarDesc.TabIndex = 17;
             this.lblVarDesc.Text = "descVar";
             // 
             // lblVarName
             // 
             this.lblVarName.AutoSize = true;
-            this.lblVarName.Location = new System.Drawing.Point(32, 38);
+            this.lblVarName.Location = new System.Drawing.Point(21, 25);
+            this.lblVarName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVarName.Name = "lblVarName";
-            this.lblVarName.Size = new System.Drawing.Size(74, 20);
+            this.lblVarName.Size = new System.Drawing.Size(49, 13);
             this.lblVarName.TabIndex = 16;
             this.lblVarName.Text = "nombVar";
             // 
             // btnAddVar
             // 
-            this.btnAddVar.Location = new System.Drawing.Point(865, 302);
+            this.btnAddVar.Location = new System.Drawing.Point(559, 196);
+            this.btnAddVar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddVar.Name = "btnAddVar";
-            this.btnAddVar.Size = new System.Drawing.Size(132, 37);
+            this.btnAddVar.Size = new System.Drawing.Size(106, 24);
             this.btnAddVar.TabIndex = 21;
             this.btnAddVar.Text = "Agregar variable";
             this.btnAddVar.UseVisualStyleBackColor = true;
@@ -391,13 +411,14 @@
             // 
             // ConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 537);
+            this.ClientSize = new System.Drawing.Size(693, 349);
             this.Controls.Add(this.gbNewVar);
             this.Controls.Add(this.btnSaveConfig);
             this.Controls.Add(this.gbProyectDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ConfigForm";
             this.Text = "MakeConfig";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
@@ -420,7 +441,6 @@
         private System.Windows.Forms.Button btnSaveConfig;
         private System.Windows.Forms.GroupBox gbNewVar;
         private System.Windows.Forms.Button btnAddVar;
-        private System.Windows.Forms.Label lblVectFile;
         private System.Windows.Forms.Label lblVarRange;
         private System.Windows.Forms.Label lblVarLinearAdjust;
         private System.Windows.Forms.Label lblVarCommunicationType;
@@ -444,5 +464,6 @@
         private System.Windows.Forms.ComboBox cbVarCommunicationType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLoadImg;
     }
 }

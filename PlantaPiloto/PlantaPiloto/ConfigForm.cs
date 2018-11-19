@@ -126,7 +126,14 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            file.Dispose();
+            try
+            {
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -151,6 +158,11 @@ namespace PlantaPiloto
                 txtVarRangeHigh.Enabled = true;
                 txtVarRangeLow.Enabled = true;
             }
+        }
+
+        private void btnLoadImg_Click(object sender, EventArgs e)
+        {
+            tf
         }
     }
 }
