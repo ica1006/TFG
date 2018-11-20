@@ -106,6 +106,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cargar imagen.
+        /// </summary>
+        public static string btnLoadImage_txt {
+            get {
+                return ResourceManager.GetString("btnLoadImage_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Abrir.
         /// </summary>
         public static string btnOpen_txt {
@@ -165,6 +174,60 @@ namespace PlantaPiloto.Language {
         public static string ConfigForm_txt {
             get {
                 return ResourceManager.GetString("ConfigForm_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Nombre de Proyecto válido.
+        /// </summary>
+        public static string ErrorNoProyectName {
+            get {
+                return ResourceManager.GetString("ErrorNoProyectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Tipo de Accesso de Variable válido.
+        /// </summary>
+        public static string ErrorNoVarAccess {
+            get {
+                return ResourceManager.GetString("ErrorNoVarAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Tipo de Conexión de Variable válida.
+        /// </summary>
+        public static string ErrorNoVarConnectionType {
+            get {
+                return ResourceManager.GetString("ErrorNoVarConnectionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Nombre de Variable válido.
+        /// </summary>
+        public static string ErrorNoVarName {
+            get {
+                return ResourceManager.GetString("ErrorNoVarName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Si la variable es de tipo int o float debe introducir un Rango para la variable.
+        /// </summary>
+        public static string ErrorNoVarRange {
+            get {
+                return ResourceManager.GetString("ErrorNoVarRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Tipo de Variable válido.
+        /// </summary>
+        public static string ErrorNoVarType {
+            get {
+                return ResourceManager.GetString("ErrorNoVarType", resourceCulture);
             }
         }
         

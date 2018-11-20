@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Resources;
+using System.IO;
 
 namespace PlantaPiloto
 {
     public partial class MainForm : Form
     {
-        ResourceManager res_man;    // declare Resource manager to access to specific cultureinfo
-        CultureInfo cul;            // declare culture info
+        ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
+        CultureInfo _cul;            // declare culture info
 
         public MainForm()
         {
@@ -24,7 +25,7 @@ namespace PlantaPiloto
 
             toolStripMenuItemSpanish.Checked = true;    
             toolStripMenuItemEnglish.Checked = false;//default language is spanish
-            res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
+            _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             switch_language();
         }
 
@@ -136,48 +137,48 @@ namespace PlantaPiloto
         /// </summary>
         public void switch_language()
         {
-            if (toolStripMenuItemSpanish.Checked == true)    //in vietnamese
+            if (toolStripMenuItemSpanish.Checked == true)    
             {
-                cul = CultureInfo.CreateSpecificCulture("es");    //create culture for spanish
+                _cul = CultureInfo.CreateSpecificCulture("es");    //create culture for spanish
             }
             else                                                //in english
             {
-                cul = CultureInfo.CreateSpecificCulture("en");     //create culture for english
+                _cul = CultureInfo.CreateSpecificCulture("en");     //create culture for english
             }
 
             //Cambio de idioma de las cadenas
             #region Actualización de cadenas
 
-            this.Text = res_man.GetString("MainForm_txt", cul);
-            this.toolStripMenuItemAbout.Text = res_man.GetString("toolStripMenuItemAbout_txt", cul);
-            this.toolStripMenuItemCommunication.Text = res_man.GetString("toolStripMenuItemCommunication_txt", cul);
-            this.toolStripMenuItemConfig.Text = res_man.GetString("toolStripMenuItemConfig_txt", cul);
-            this.toolStripMenuItemEnglish.Text = res_man.GetString("toolStripMenuItemEnglish_txt", cul);
-            this.toolStripMenuItemHelp.Text = res_man.GetString("toolStripMenuItemHelp_txt", cul);
-            this.toolStripMenuItemHelpHelp.Text = res_man.GetString("toolStripMenuItemHelpHelp_txt", cul);
-            this.toolStripMenuItemLanguage.Text = res_man.GetString("toolStripMenuItemLanguage_txt", cul);
-            this.toolStripMenuItemLoadConfig.Text = res_man.GetString("toolStripMenuItemLoadConfig_txt", cul);
-            this.toolStripMenuItemCreateConfig.Text = res_man.GetString("toolStripMenuItemCreateConfig_txt", cul);
-            this.toolStripMenuItemModifyConfig.Text = res_man.GetString("toolStripMenuItemModifyConfig_txt", cul);
-            this.toolStripMenuItemOthers.Text = res_man.GetString("toolStripMenuItemOthers_txt", cul);
-            this.toolStripMenuItemSerie.Text = res_man.GetString("toolStripMenuItemSerie_txt", cul);
-            this.toolStripMenuItemSpanish.Text = res_man.GetString("toolStripMenuItemSpanish_txt", cul);
-            this.lblPorts.Text = res_man.GetString("lblPorts_txt", cul);
-            this.lblReceive.Text = res_man.GetString("lblReceive_txt", cul);
-            this.lblSend.Text = res_man.GetString("lblSend_txt", cul);
-            this.btnClose.Text = res_man.GetString("btnClose_txt", cul);
-            this.btnOpen.Text = res_man.GetString("btnOpen_txt", cul);
-            this.btnReceive.Text = res_man.GetString("btnReceive_txt", cul);
-            this.btnSend.Text = res_man.GetString("btnSend_txt", cul);
-            this.btnStart.Text = res_man.GetString("btnStart_txt", cul);
-            this.btnFinish.Text = res_man.GetString("btnFinish_txt", cul);
-            this.btnChart.Text = res_man.GetString("btnChart_txt", cul);
-            this.btnVar.Text = res_man.GetString("btnVar_txt", cul);
-            this.btnFile.Text = res_man.GetString("btnFile_txt", cul);
-            this.lblProDesc.Text = res_man.GetString("lblProDesc_txt", cul);
-            this.lblProName.Text = res_man.GetString("lblProName_txt", cul);
-            this.gBoxControls.Text = res_man.GetString("gBoxControls_txt", cul);
-            this.gBoxProyect.Text = res_man.GetString("gBoxProyect_txt", cul);
+            this.Text = _res_man.GetString("MainForm_txt", _cul);
+            this.toolStripMenuItemAbout.Text = _res_man.GetString("toolStripMenuItemAbout_txt", _cul);
+            this.toolStripMenuItemCommunication.Text = _res_man.GetString("toolStripMenuItemCommunication_txt", _cul);
+            this.toolStripMenuItemConfig.Text = _res_man.GetString("toolStripMenuItemConfig_txt", _cul);
+            this.toolStripMenuItemEnglish.Text = _res_man.GetString("toolStripMenuItemEnglish_txt", _cul);
+            this.toolStripMenuItemHelp.Text = _res_man.GetString("toolStripMenuItemHelp_txt", _cul);
+            this.toolStripMenuItemHelpHelp.Text = _res_man.GetString("toolStripMenuItemHelpHelp_txt", _cul);
+            this.toolStripMenuItemLanguage.Text = _res_man.GetString("toolStripMenuItemLanguage_txt", _cul);
+            this.toolStripMenuItemLoadConfig.Text = _res_man.GetString("toolStripMenuItemLoadConfig_txt", _cul);
+            this.toolStripMenuItemCreateConfig.Text = _res_man.GetString("toolStripMenuItemCreateConfig_txt", _cul);
+            this.toolStripMenuItemModifyConfig.Text = _res_man.GetString("toolStripMenuItemModifyConfig_txt", _cul);
+            this.toolStripMenuItemOthers.Text = _res_man.GetString("toolStripMenuItemOthers_txt", _cul);
+            this.toolStripMenuItemSerie.Text = _res_man.GetString("toolStripMenuItemSerie_txt", _cul);
+            this.toolStripMenuItemSpanish.Text = _res_man.GetString("toolStripMenuItemSpanish_txt", _cul);
+            this.lblPorts.Text = _res_man.GetString("lblPorts_txt", _cul);
+            this.lblReceive.Text = _res_man.GetString("lblReceive_txt", _cul);
+            this.lblSend.Text = _res_man.GetString("lblSend_txt", _cul);
+            this.btnClose.Text = _res_man.GetString("btnClose_txt", _cul);
+            this.btnOpen.Text = _res_man.GetString("btnOpen_txt", _cul);
+            this.btnReceive.Text = _res_man.GetString("btnReceive_txt", _cul);
+            this.btnSend.Text = _res_man.GetString("btnSend_txt", _cul);
+            this.btnStart.Text = _res_man.GetString("btnStart_txt", _cul);
+            this.btnFinish.Text = _res_man.GetString("btnFinish_txt", _cul);
+            this.btnChart.Text = _res_man.GetString("btnChart_txt", _cul);
+            this.btnVar.Text = _res_man.GetString("btnVar_txt", _cul);
+            this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
+            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul);
+            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul);
+            this.gBoxControls.Text = _res_man.GetString("gBoxControls_txt", _cul);
+            this.gBoxProyect.Text = _res_man.GetString("gBoxProyect_txt", _cul);
 
             #endregion
         }
@@ -212,7 +213,7 @@ namespace PlantaPiloto
         /// <returns></returns>
         public CultureInfo getCulture()
         {
-            return this.cul;
+            return this._cul;
         }
 
         /// <summary>
@@ -230,12 +231,11 @@ namespace PlantaPiloto
 
         private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = res_man.GetString("showDialogFilter", cul);
-            openFileDialog1.Title = res_man.GetString("showDialogTitle", cul);
+            openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
+            openFileDialog1.Title = _res_man.GetString("showDialogTitle", _cul);
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                System.IO.StreamReader sr = new
-                   System.IO.StreamReader(openFileDialog1.FileName);
+                StreamReader sr = new StreamReader(openFileDialog1.FileName);
                 MessageBox.Show(sr.ReadToEnd());
                 sr.Close();
             }

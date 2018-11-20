@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
             this.gbProyectDetails = new System.Windows.Forms.GroupBox();
+            this.btnLoadImage = new System.Windows.Forms.Button();
+            this.lblVectFile = new System.Windows.Forms.Label();
             this.txtProDesc = new System.Windows.Forms.RichTextBox();
             this.txtProName = new System.Windows.Forms.RichTextBox();
             this.lblConfigProDesc = new System.Windows.Forms.Label();
@@ -66,6 +68,8 @@
             // 
             // gbProyectDetails
             // 
+            this.gbProyectDetails.Controls.Add(this.btnLoadImage);
+            this.gbProyectDetails.Controls.Add(this.lblVectFile);
             this.gbProyectDetails.Controls.Add(this.txtProDesc);
             this.gbProyectDetails.Controls.Add(this.txtProName);
             this.gbProyectDetails.Controls.Add(this.lblConfigProDesc);
@@ -79,13 +83,34 @@
             this.gbProyectDetails.TabStop = false;
             this.gbProyectDetails.Text = "DatosProyecto";
             // 
+            // btnLoadImage
+            // 
+            this.btnLoadImage.Location = new System.Drawing.Point(559, 25);
+            this.btnLoadImage.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLoadImage.Name = "btnLoadImage";
+            this.btnLoadImage.Size = new System.Drawing.Size(106, 24);
+            this.btnLoadImage.TabIndex = 22;
+            this.btnLoadImage.Text = "Cargar imagen";
+            this.btnLoadImage.UseVisualStyleBackColor = true;
+            this.btnLoadImage.Click += new System.EventHandler(this.btnLoadImage_Click);
+            // 
+            // lblVectFile
+            // 
+            this.lblVectFile.AutoSize = true;
+            this.lblVectFile.Location = new System.Drawing.Point(471, 34);
+            this.lblVectFile.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVectFile.Name = "lblVectFile";
+            this.lblVectFile.Size = new System.Drawing.Size(41, 13);
+            this.lblVectFile.TabIndex = 10;
+            this.lblVectFile.Text = "imagen";
+            // 
             // txtProDesc
             // 
-            this.txtProDesc.Location = new System.Drawing.Point(326, 27);
+            this.txtProDesc.Location = new System.Drawing.Point(326, 29);
             this.txtProDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtProDesc.Multiline = false;
             this.txtProDesc.Name = "txtProDesc";
-            this.txtProDesc.Size = new System.Drawing.Size(121, 16);
+            this.txtProDesc.Size = new System.Drawing.Size(121, 20);
             this.txtProDesc.TabIndex = 9;
             this.txtProDesc.Text = "";
             // 
@@ -464,6 +489,7 @@
         private System.Windows.Forms.ComboBox cbVarCommunicationType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnLoadImg;
+        private System.Windows.Forms.Label lblVectFile;
+        private System.Windows.Forms.Button btnLoadImage;
     }
 }

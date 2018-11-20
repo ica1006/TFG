@@ -270,4 +270,25 @@
   <data name="lblVectFile_txt" xml:space="preserve">
     <value>Imagen vectorial</value>
   </data>
+  <data name="btnLoadImage_txt" xml:space="preserve">
+    <value>Cargar imagen</value>
+  </data>
+  <data name="ErrorNoProyectName" xml:space="preserve">
+    <value>Debe introducir un Nombre de Proyecto válido</value>
+  </data>
+  <data name="ErrorNoVarAccess" xml:space="preserve">
+    <value>Debe introducir un Tipo de Accesso de Variable válido</value>
+  </data>
+  <data name="ErrorNoVarConnectionType" xml:space="preserve">
+    <value>Debe introducir un Tipo de Conexión de Variable válida</value>
+  </data>
+  <data name="ErrorNoVarName" xml:space="preserve">
+    <value>Debe introducir un Nombre de Variable válido</value>
+  </data>
+  <data name="ErrorNoVarRange" xml:space="preserve">
+    <value>Si la variable es de tipo int o float debe introducir un Rango para la variable</value>
+  </data>
+  <data name="ErrorNoVarType" xml:space="preserve">
+    <value>Debe introducir un Tipo de Variable válido</value>
+  </data>
 </root>

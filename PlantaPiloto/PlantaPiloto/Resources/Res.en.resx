@@ -270,4 +270,25 @@
   <data name="lblVectFile_txt" xml:space="preserve">
     <value>Vectorial image</value>
   </data>
+  <data name="btnLoadImage_txt" xml:space="preserve">
+    <value>Load image</value>
+  </data>
+  <data name="ErrorNoProyectName" xml:space="preserve">
+    <value>You must enter a valid Proyect Name</value>
+  </data>
+  <data name="ErrorNoVarAccess" xml:space="preserve">
+    <value>You must enter a valid Variable Access Type</value>
+  </data>
+  <data name="ErrorNoVarConnectionType" xml:space="preserve">
+    <value>You must enter a valid Variable Connection Type</value>
+  </data>
+  <data name="ErrorNoVarName" xml:space="preserve">
+    <value>You must enter a valid Variable Name</value>
+  </data>
+  <data name="ErrorNoVarRange" xml:space="preserve">
+    <value>You must enter a valid Variable Range for int or float variables</value>
+  </data>
+  <data name="ErrorNoVarType" xml:space="preserve">
+    <value>You must enter a valid Variable Type</value>
+  </data>
 </root>
