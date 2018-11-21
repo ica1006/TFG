@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace PlantaPiloto
             get { return _cul; }
             set
             {
-                _cul = value;
+                _cul = value; OnPropertyChanged("Cul");
             }
         }
 
@@ -32,7 +34,7 @@ namespace PlantaPiloto
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; OnPropertyChanged("Name"); }
         }
 
         private string _description;
@@ -40,7 +42,7 @@ namespace PlantaPiloto
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set { _description = value; OnPropertyChanged("Description"); }
         }
 
         private Image _imagePath;
@@ -48,7 +50,7 @@ namespace PlantaPiloto
         public Image ImagePath
         {
             get { return _imagePath; }
-            set { _imagePath = value; }
+            set { _imagePath = value; OnPropertyChanged("ImagePath"); }
         }
 
         private ObservableCollection<Variable> _variables;
@@ -56,7 +58,7 @@ namespace PlantaPiloto
         public ObservableCollection<Variable> Variables
         {
             get { return _variables; }
-            set { _variables = value; }
+            set { _variables = value; OnPropertyChanged("Variables"); }
         }
 
         private string _error;
@@ -64,7 +66,7 @@ namespace PlantaPiloto
         public string Error
         {
             get { return _error; }
-            set { _error = value; }
+            set { _error = value; OnPropertyChanged("Error"); }
         }
 
         #endregion
@@ -99,5 +101,32 @@ namespace PlantaPiloto
                 return true;
         }
         #endregion
+
+        #region Miembros de INotifyPropertyChanged
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+
+        protected void OnPropertyChanged(string name)
+
+        {
+
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+
+            {
+
+                handler(this, new PropertyChangedEventArgs(name));
+
+            }
+
+        }
+
+        #endregion
+
+
     }
 }

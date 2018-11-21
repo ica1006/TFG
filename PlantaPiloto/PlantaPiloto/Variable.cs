@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PlantaPiloto.Enums;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -21,7 +23,7 @@ namespace PlantaPiloto
             get { return _cul; }
             set
             {
-                _cul = value;
+                _cul = value; OnPropertyChanged("Cul");
             }
         }
 
@@ -30,15 +32,15 @@ namespace PlantaPiloto
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; OnPropertyChanged("Name"); }
         }
 
-        private string _type;
+        private EnumVarType _type;
 
-        public string Type
+        public EnumVarType Type
         {
             get { return _type; }
-            set { _type = value; }
+            set { _type = value; OnPropertyChanged("Type"); }
         }
 
         private string _description;
@@ -46,15 +48,15 @@ namespace PlantaPiloto
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set { _description = value; OnPropertyChanged("Description"); }
         }
 
-        private string _access;
+        private EnumVarAccess _access;
 
-        public string Access
+        public EnumVarAccess Access
         {
             get { return _access; }
-            set { _access = value; }
+            set { _access = value; OnPropertyChanged("Access"); }
         }
 
         private string _boardUnits;
@@ -62,7 +64,7 @@ namespace PlantaPiloto
         public string BoardUnits
         {
             get { return _boardUnits; }
-            set { _boardUnits = value; }
+            set { _boardUnits = value; OnPropertyChanged("BoardUnits"); }
         }
 
         private string _interfaceUnits;
@@ -70,7 +72,7 @@ namespace PlantaPiloto
         public string InterfaceUnits
         {
             get { return _interfaceUnits; }
-            set { _interfaceUnits = value; }
+            set { _interfaceUnits = value; OnPropertyChanged("InterfaceUnits"); }
         }
 
         private float? _linearAdjustA;
@@ -78,7 +80,7 @@ namespace PlantaPiloto
         public float? LinearAdjustA
         {
             get { return _linearAdjustA; }
-            set { _linearAdjustA = value; }
+            set { _linearAdjustA = value; OnPropertyChanged("LinearAdjustA"); }
         }
 
         private float? _linearAdjustB;
@@ -86,7 +88,7 @@ namespace PlantaPiloto
         public float? LinearAdjustB
         {
             get { return _linearAdjustB; }
-            set { _linearAdjustB = value; }
+            set { _linearAdjustB = value; OnPropertyChanged("LinearAdjustB"); }
         }
 
         private float? _rangeLow;
@@ -94,7 +96,7 @@ namespace PlantaPiloto
         public float? RangeLow
         {
             get { return _rangeLow; }
-            set { _rangeLow = value; }
+            set { _rangeLow = value; OnPropertyChanged("RangeLow"); }
         }
 
         private float? _rangeHigh;
@@ -102,15 +104,15 @@ namespace PlantaPiloto
         public float? RangeHigh
         {
             get { return _rangeHigh; }
-            set { _rangeHigh = value; }
+            set { _rangeHigh = value; OnPropertyChanged("RangeHigh"); }
         }
 
-        private string _connectionType;
+        private EnumVarCommunicationType _communicationType;
 
-        public string ConnectionType
+        public EnumVarCommunicationType CommunicationType
         {
-            get { return _connectionType; }
-            set { _connectionType = value; }
+            get { return _communicationType; }
+            set { _communicationType = value; OnPropertyChanged("ConnectionType"); }
         }
 
         private string _error;
@@ -118,9 +120,8 @@ namespace PlantaPiloto
         public string Error
         {
             get { return _error; }
-            set { _error = value; }
+            set { _error = value; OnPropertyChanged("Error"); }
         }
-
 
         #endregion
 
@@ -128,7 +129,7 @@ namespace PlantaPiloto
 
         public Variable() { }
 
-        public Variable(string name, string type, string desc, string access, string boardUn, string interfaceUn, float? linearAdjA, float? linearAdjB, float? rangeLow, float? rangeHigh, string conType, CultureInfo cul)
+        public Variable(string name, EnumVarType type, string desc, EnumVarAccess access, string boardUn, string interfaceUn, float? linearAdjA, float? linearAdjB, float? rangeLow, float? rangeHigh, EnumVarCommunicationType comType, CultureInfo cul)
         {
             Name = name;
             Type = type;
@@ -140,7 +141,7 @@ namespace PlantaPiloto
             LinearAdjustB = linearAdjB;
             RangeLow = rangeLow;
             RangeHigh = rangeHigh;
-            ConnectionType = conType;
+            CommunicationType = comType;
             Cul = cul;
         }
 
@@ -163,29 +164,15 @@ namespace PlantaPiloto
         /// <returns>Devuelve verdadero si la variable es válida</returns>
         public bool IsAValidVariable()
         {
-            if ( Name == null 
-                || Type == null
-                || Access == null
-                || ConnectionType == null
-                || ((Type == "int" || Type == "float") && (RangeLow == null || RangeHigh == null)))
+            //Falta: validación que sean números los rangos y los linear adjs. diferenciar por typo de variable (string o no)
+            if ( Name == "" 
+                || ((Type == EnumVarType.Integer || Type == EnumVarType.Float) && (RangeLow == null || RangeHigh == null)))
             {
-                if (Name == null)
+                if (Name == "")
                 {
                     Error = _res_man.GetString("ErrorNoVarName", _cul);
                 }
-                if (Type == null)
-                {
-                    Error = _res_man.GetString("ErrorNoVarType", _cul);
-                }
-                if (Access == null)
-                {
-                    Error = _res_man.GetString("ErrorNoVarAccess", _cul);
-                }
-                if (ConnectionType == null)
-                {
-                    Error = _res_man.GetString("ErrorNoVarConnectionType", _cul);
-                }
-                if ((Type == "int" || Type == "float") && (RangeLow == null || RangeHigh == null))
+                if ((Type == EnumVarType.Integer || Type == EnumVarType.Float) && (RangeLow == null || RangeHigh == null))
                 {
                     Error = _res_man.GetString("ErrorNoVarRange", _cul);
                 }
@@ -199,6 +186,30 @@ namespace PlantaPiloto
         }
         #endregion
 
+        #region Miembros de INotifyPropertyChanged
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+
+        protected void OnPropertyChanged(string name)
+
+        {
+
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+
+            {
+
+                handler(this, new PropertyChangedEventArgs(name));
+
+            }
+
+        }
+
+        #endregion
 
     }
 }

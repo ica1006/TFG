@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumVarAccess.cs" />
+    <Compile Include="Enums\EnumVarCommunicationType.cs" />
+    <Compile Include="Enums\EnumVarType.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

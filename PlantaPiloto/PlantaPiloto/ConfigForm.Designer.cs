@@ -1,4 +1,7 @@
-﻿namespace PlantaPiloto
+﻿using PlantaPiloto.Enums;
+using System;
+
+namespace PlantaPiloto
 {
     partial class ConfigForm
     {
@@ -211,11 +214,11 @@
             // 
             // cbVarCommunicationType
             // 
+            this.cbVarCommunicationType.DataSource = new PlantaPiloto.Enums.EnumVarCommunicationType[] {
+        PlantaPiloto.Enums.EnumVarCommunicationType.Serie,
+        PlantaPiloto.Enums.EnumVarCommunicationType.Otros};
+            this.cbVarCommunicationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarCommunicationType.FormattingEnabled = true;
-            this.cbVarCommunicationType.Items.AddRange(new object[] {
-            "int",
-            "double",
-            "string"});
             this.cbVarCommunicationType.Location = new System.Drawing.Point(174, 179);
             this.cbVarCommunicationType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarCommunicationType.Name = "cbVarCommunicationType";
@@ -284,11 +287,11 @@
             // 
             // cbVarAccess
             // 
+            this.cbVarAccess.DataSource = new PlantaPiloto.Enums.EnumVarAccess[] {
+        PlantaPiloto.Enums.EnumVarAccess.Lectura,
+        PlantaPiloto.Enums.EnumVarAccess.Escritura};
+            this.cbVarAccess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarAccess.FormattingEnabled = true;
-            this.cbVarAccess.Items.AddRange(new object[] {
-            "int",
-            "double",
-            "string"});
             this.cbVarAccess.Location = new System.Drawing.Point(456, 59);
             this.cbVarAccess.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarAccess.Name = "cbVarAccess";
@@ -297,11 +300,12 @@
             // 
             // cbVarType
             // 
+            this.cbVarType.DataSource = new PlantaPiloto.Enums.EnumVarType[] {
+        PlantaPiloto.Enums.EnumVarType.Integer,
+        PlantaPiloto.Enums.EnumVarType.Float,
+        PlantaPiloto.Enums.EnumVarType.String};
+            this.cbVarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarType.FormattingEnabled = true;
-            this.cbVarType.Items.AddRange(new object[] {
-            "int",
-            "double",
-            "string"});
             this.cbVarType.Location = new System.Drawing.Point(455, 22);
             this.cbVarType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarType.Name = "cbVarType";
