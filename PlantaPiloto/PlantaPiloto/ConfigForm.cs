@@ -71,25 +71,54 @@ namespace PlantaPiloto
 
         private void addNewVar_Click(object sender, EventArgs e)
         {
-            Variable _variable = new Variable();
-            _variable.Name = this.txtVarName.Text;
-            _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
-            _variable.Description = this.txtVarDesc.Text;
-            _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
-            _variable.BoardUnits = this.txtVarBoardUnits.Text;
-            _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
-            _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
-            _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
-            _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
-            _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
-            _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
-            _variable.Cul = _cul;
+            try
+            {
+                Variable _variable = new Variable();
+                _variable.Name = this.txtVarName.Text;
+                _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
+                _variable.Description = this.txtVarDesc.Text;
+                _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
+                _variable.BoardUnits = this.txtVarBoardUnits.Text;
+                _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
+                _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
+                _variable.Cul = _cul;
 
-            //Comprobar el número de variables mínimas (no nulas) que hacen falta
-            if (_variable.IsAValidVariable())
-                _proyect.Variables.Add(_variable);
+                //Comprobar el número de variables mínimas (no nulas) que hacen falta
+                if (_variable.IsAValidVariable())
+                    _proyect.Variables.Add(_variable);
+                else
+                    MessageBox.Show(_variable.Error, "Variable Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        internal bool ValidateVar()
+        {
+            //Falta: validación que sean números los rangos y los linear adjs. diferenciar por typo de variable (string o no)
+            if (this.txtVarName.Text == "")
+            {
+                if (this.txtVarName.Text == "")
+                {
+                    MessageBox.Show(_res_man.GetString("ErrorNoVarName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                return false;
+            }
             else
-                MessageBox.Show(_variable.Error, "Variable Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            {
+                return true;
+            }
         }
 
         private void saveConfigFile_Click(object sender, EventArgs e)

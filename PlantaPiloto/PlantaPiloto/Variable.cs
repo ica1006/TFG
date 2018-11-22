@@ -164,25 +164,6 @@ namespace PlantaPiloto
         /// <returns>Devuelve verdadero si la variable es válida</returns>
         public bool IsAValidVariable()
         {
-            //Falta: validación que sean números los rangos y los linear adjs. diferenciar por typo de variable (string o no)
-            if ( Name == "" 
-                || ((Type == EnumVarType.Integer || Type == EnumVarType.Float) && (RangeLow == null || RangeHigh == null)))
-            {
-                if (Name == "")
-                {
-                    Error = _res_man.GetString("ErrorNoVarName", _cul);
-                }
-                if ((Type == EnumVarType.Integer || Type == EnumVarType.Float) && (RangeLow == null || RangeHigh == null))
-                {
-                    Error = _res_man.GetString("ErrorNoVarRange", _cul);
-                }
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
         }
         #endregion
 
