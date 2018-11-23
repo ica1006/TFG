@@ -65,6 +65,8 @@ namespace PlantaPiloto
             this.lblVarName = new System.Windows.Forms.Label();
             this.btnAddVar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnExit = new System.Windows.Forms.Button();
             this.gbProyectDetails.SuspendLayout();
             this.gbNewVar.SuspendLayout();
             this.SuspendLayout();
@@ -149,7 +151,7 @@ namespace PlantaPiloto
             // 
             // btnSaveConfig
             // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(556, 317);
+            this.btnSaveConfig.Location = new System.Drawing.Point(462, 315);
             this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(130, 23);
@@ -432,11 +434,22 @@ namespace PlantaPiloto
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(597, 314);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 23;
+            this.btnExit.Text = "button1";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 349);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.gbNewVar);
             this.Controls.Add(this.btnSaveConfig);
             this.Controls.Add(this.gbProyectDetails);
@@ -489,5 +502,7 @@ namespace PlantaPiloto
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblVectFile;
         private System.Windows.Forms.Button btnLoadImage;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnExit;
     }
 }

@@ -88,6 +88,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cerrar.
+        /// </summary>
+        public static string btnExit_txt {
+            get {
+                return ResourceManager.GetString("btnExit_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo.
         /// </summary>
         public static string btnFile_txt {

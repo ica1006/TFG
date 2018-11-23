@@ -291,4 +291,7 @@
   <data name="ErrorNoVarType" xml:space="preserve">
     <value>Debe introducir un Tipo de Variable válido</value>
   </data>
+  <data name="btnExit_txt" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
 </root>

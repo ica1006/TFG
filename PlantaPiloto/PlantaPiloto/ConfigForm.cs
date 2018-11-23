@@ -66,6 +66,7 @@ namespace PlantaPiloto
             this.btnAddVar.Text = _res_man.GetString("btnAddVar_txt", _cul);
             this.btnSaveConfig.Text = _res_man.GetString("btnSaveConfig_txt", _cul);
             this.btnLoadImage.Text = _res_man.GetString("btnLoadImage_txt", _cul);
+            this.btnExit.Text = _res_man.GetString("btnExit_txt", _cul);
 
             #endregion
         }
@@ -162,7 +163,11 @@ namespace PlantaPiloto
                 return true;
         }
 
-
+        /// <summary>
+        /// Método que crea y guarda en un archivo txt un nuevo proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveConfigFile_Click(object sender, EventArgs e)
         {
             try
@@ -171,11 +176,12 @@ namespace PlantaPiloto
                 {
                     _proyect.Name = this.txtProName.Text;
                     _proyect.Description = this.txtProDesc.Text;
-                    _file = new FileStream(_path, FileMode.Create);
-
-                    using (TextWriter tw = new StreamWriter(_file))
+                    saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = "Prueba.txt";
+                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
+                    if(saveFileDialog1.ShowDialog() == DialogResult.OK) 
                     {
-                        //Hace falta añadir validaciones
+                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
                         tw.WriteLine(DateTime.Now);
                         tw.WriteLine(_proyect.Name);
                         tw.WriteLine(_proyect.Description);
@@ -200,15 +206,10 @@ namespace PlantaPiloto
                         }
                         tw.WriteLine("****************************************");
                         tw.WriteLine("****************************************");
+                        tw.Dispose();
+                        tw.Close();
                     }
                 }
-                else
-                {
-                    MessageBox.Show(_proyect.Error);
-                }
-
-
-                _file.Close();
             }
             catch (Exception ex)
             {
@@ -318,5 +319,23 @@ namespace PlantaPiloto
         }
 
         #endregion
+
+        /// <summary>
+        /// Evento que cierra el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
     }
 }
