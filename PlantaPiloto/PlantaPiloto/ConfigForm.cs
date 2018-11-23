@@ -19,8 +19,6 @@ namespace PlantaPiloto
         private MainForm _mainForm;
         private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
-        private string _path;
-        private FileStream _file;
         private Proyect _proyect;
 
         public ConfigForm()
@@ -208,6 +206,7 @@ namespace PlantaPiloto
                         tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
+                        this.CleanForm();
                     }
                 }
             }
@@ -216,6 +215,27 @@ namespace PlantaPiloto
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        /// <summary>
+        /// Método que limpia los campos del formulario
+        /// </summary>
+        internal void CleanForm()
+        {
+            foreach (Control c in this.gbProyectDetails.Controls)
+            {
+                if (c is TextBox || c is RichTextBox)
+                {
+                    c.Text = "";
+                }
+            }
+            foreach (Control c in this.gbNewVar.Controls)
+            {
+                if (c is TextBox || c is RichTextBox)
+                {
+                    c.Text = "";
+                }
+            }
         }
 
         /// <summary>
