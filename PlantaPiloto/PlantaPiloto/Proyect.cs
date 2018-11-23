@@ -90,16 +90,6 @@ namespace PlantaPiloto
 
         #region Methods
 
-        public bool IsAValidProyect()
-        {
-            if (Name == null)
-            {
-                Error = _res_man.GetString("ErrorNoProyectName", _cul);
-                return false;
-            }
-            else
-                return true;
-        }
         #endregion
 
         #region Miembros de INotifyPropertyChanged

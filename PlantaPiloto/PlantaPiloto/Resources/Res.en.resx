@@ -276,8 +276,8 @@
   <data name="ErrorNoProyectName" xml:space="preserve">
     <value>You must enter a valid Proyect Name</value>
   </data>
-  <data name="ErrorNoVarAccess" xml:space="preserve">
-    <value>You must enter a valid Variable Access Type</value>
+  <data name="ErrorVarRepeated" xml:space="preserve">
+    <value>You must enter a not repeated Variable Name</value>
   </data>
   <data name="ErrorNoVarConnectionType" xml:space="preserve">
     <value>You must enter a valid Variable Connection Type</value>

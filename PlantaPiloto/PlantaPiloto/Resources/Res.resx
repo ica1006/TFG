@@ -276,8 +276,8 @@
   <data name="ErrorNoProyectName" xml:space="preserve">
     <value>Debe introducir un Nombre de Proyecto válido</value>
   </data>
-  <data name="ErrorNoVarAccess" xml:space="preserve">
-    <value>Debe introducir un Tipo de Accesso de Variable válido</value>
+  <data name="ErrorVarRepeated" xml:space="preserve">
+    <value>Debe introducir un Nombre de Variable distinto a las anteriores.</value>
   </data>
   <data name="ErrorNoVarConnectionType" xml:space="preserve">
     <value>Debe introducir un Tipo de Conexión de Variable válida</value>

@@ -187,15 +187,6 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Debe introducir un Tipo de Accesso de Variable válido.
-        /// </summary>
-        public static string ErrorNoVarAccess {
-            get {
-                return ResourceManager.GetString("ErrorNoVarAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Debe introducir un Tipo de Conexión de Variable válida.
         /// </summary>
         public static string ErrorNoVarConnectionType {
@@ -228,6 +219,15 @@ namespace PlantaPiloto.Language {
         public static string ErrorNoVarType {
             get {
                 return ResourceManager.GetString("ErrorNoVarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un Nombre de Variable distinto a las anteriores..
+        /// </summary>
+        public static string ErrorVarRepeated {
+            get {
+                return ResourceManager.GetString("ErrorVarRepeated", resourceCulture);
             }
         }
         

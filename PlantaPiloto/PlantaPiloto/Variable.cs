@@ -158,13 +158,6 @@ namespace PlantaPiloto
             return this.LinearAdjustA.Value*origin + this.LinearAdjustB.Value;
         }
 
-        /// <summary>
-        /// Método que válida los campos de la variable
-        /// </summary>
-        /// <returns>Devuelve verdadero si la variable es válida</returns>
-        public bool IsAValidVariable()
-        {
-        }
         #endregion
 
         #region Miembros de INotifyPropertyChanged

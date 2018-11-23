@@ -34,9 +34,15 @@ namespace PlantaPiloto
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
+            cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+            cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+            cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
             this.switch_language();
         }
 
+        /// <summary>
+        /// Método que actualiza las cadenas según idioma
+        /// </summary>
         public void switch_language()
         {
             //Cambio de idioma de las cadenas
@@ -69,67 +75,102 @@ namespace PlantaPiloto
             _cul = cultureInfo;
         }
 
+        /// <summary>
+        /// Método que guarda una nueva variable y la añade a la lista de variables del proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewVar_Click(object sender, EventArgs e)
         {
             try
             {
-                Variable _variable = new Variable();
-                _variable.Name = this.txtVarName.Text;
-                _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
-                _variable.Description = this.txtVarDesc.Text;
-                _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
-                _variable.BoardUnits = this.txtVarBoardUnits.Text;
-                _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
-                _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
-                _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
-                _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
-                _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
-                _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
-                _variable.Cul = _cul;
+                if (ValidateVar())
+                {
+                    Variable _variable = new Variable();
+                    _variable.Name = this.txtVarName.Text;
+                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
+                    _variable.Description = this.txtVarDesc.Text;
+                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
+                    if (_variable.Type != EnumVarType.String)
+                    {
+                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
+                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
+                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
+                    }
+                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
+                    _variable.Cul = _cul;
 
-                //Comprobar el número de variables mínimas (no nulas) que hacen falta
-                if (_variable.IsAValidVariable())
                     _proyect.Variables.Add(_variable);
-                else
-                    MessageBox.Show(_variable.Error, "Variable Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Método que valida que la variable debe tener un nombre y ha de ser único
+        /// </summary>
+        /// <returns>Devuelve falso si las condiciones no se cumplen</returns>
         internal bool ValidateVar()
         {
-            //Falta: validación que sean números los rangos y los linear adjs. diferenciar por typo de variable (string o no)
-            if (this.txtVarName.Text == "")
+            try
             {
-                if (this.txtVarName.Text == "")
+                if (this.txtVarName.Text == ""
+                    || this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text))
                 {
-                    MessageBox.Show(_res_man.GetString("ErrorNoVarName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (this.txtVarName.Text == "")
+                    {
+                        MessageBox.Show(_res_man.GetString("ErrorNoVarName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    if (this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text))
+                    {
+                        MessageBox.Show(_res_man.GetString("ErrorVarRepeated", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    return false;
                 }
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
 
+        /// <summary>
+        /// Método que valida que el nombre del proyecto no esté vacío
+        /// </summary>
+        /// <returns>Falso si la condición es falsa</returns>
+        internal bool ValidateProyect()
+        {
+            if (this.txtProName.Text == null)
+            {
+                MessageBox.Show(_res_man.GetString("ErrorNoProyectName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else
-            {
                 return true;
-            }
         }
+
 
         private void saveConfigFile_Click(object sender, EventArgs e)
         {
             try
             {
-                _proyect.Name = this.txtProName.Text;
-                _proyect.Description = this.txtProDesc.Text;
-
-                if (_proyect.IsAValidProyect())
+                if (ValidateProyect())
                 {
+                    _proyect.Name = this.txtProName.Text;
+                    _proyect.Description = this.txtProDesc.Text;
                     _file = new FileStream(_path, FileMode.Create);
 
                     using (TextWriter tw = new StreamWriter(_file))
@@ -225,5 +266,57 @@ namespace PlantaPiloto
         {
             //_proyect.ImagePath = Image.FromFile();
         }
+
+        #region Validación de entrada de dígitos
+
+        /// <summary>
+        /// Método que controla que el caracter introducido sea un número, "," o ".".
+        /// </summary>
+        /// <param name="sender">Elemento que en el que ocurre la acción</param>
+        /// <param name="e">Evento que desencadena la acción</param>
+        internal void ValidateNumberInput(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                // Verify that the pressed key isn't CTRL or any non-numeric digit
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+                {
+                    e.Handled = true;
+                }
+
+                // If you want, you can allow decimal (float) numbers
+                if ((e.KeyChar == '.') && ((sender as RichTextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        private void txtVarLinearAdjA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumberInput(sender, e);
+        }
+
+        private void txtVarLinearAdjB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumberInput(sender, e);
+        }
+
+        private void txtVarRangeLow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumberInput(sender, e);
+        }
+
+        private void txtVarRangeHigh_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidateNumberInput(sender, e);
+        }
+
+        #endregion
     }
 }
