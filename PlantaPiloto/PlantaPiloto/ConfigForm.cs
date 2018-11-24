@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -43,24 +44,50 @@ namespace PlantaPiloto
         /// <summary>
         /// Método que limpia los campos del formulario
         /// </summary>
-        internal void CleanForm()
+        internal void CleanForm(int eagerLoading)
         {
-            foreach (Control c in this.gbProyectDetails.Controls)
+            switch (eagerLoading)
             {
-                if (c is TextBox || c is RichTextBox)
-                {
-                    c.Text = "";
-                }
+                case 0:
+                    foreach (Control c in this.gbNewVar.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox)
+                        {
+                            c.Text = "";
+                        }
+                    }
+                    _variable = new Variable();
+                    break;
+                case 1:
+                    foreach (Control c in this.gbNewVar.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox)
+                        {
+                            c.Text = "";
+                        }
+                    }
+                    _variable = new Variable();
+
+                    foreach (Control c in this.gbProyectDetails.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox)
+                        {
+                            c.Text = "";
+                        }
+                    }
+                    _proyect = new Proyect();
+                    break;
+                default:
+                    foreach (Control c in this.gbNewVar.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox)
+                        {
+                            c.Text = "";
+                        }
+                    }
+                    _variable = new Variable();
+                    break;
             }
-            foreach (Control c in this.gbNewVar.Controls)
-            {
-                if (c is TextBox || c is RichTextBox)
-                {
-                    c.Text = "";
-                }
-            }
-            _proyect = new Proyect();
-            _variable = new Variable();
         }
 
         /// <summary>
@@ -151,6 +178,7 @@ namespace PlantaPiloto
                     _variable.Cul = _cul;
 
                     _proyect.Variables.Add(_variable);
+                    this.CleanForm(0);
                 }
             }
             catch (FormatException ex)
@@ -179,7 +207,7 @@ namespace PlantaPiloto
                     saveFileDialog1 = new SaveFileDialog();
                     saveFileDialog1.FileName = "Prueba.txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
-                    if(saveFileDialog1.ShowDialog() == DialogResult.OK) 
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
                         tw.WriteLine(DateTime.Now);
@@ -209,13 +237,52 @@ namespace PlantaPiloto
                         tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
-                        this.CleanForm();
+                        this.createTableDB(_proyect);
+                        this.CleanForm(1);
+                        this.Close();
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        /// <summary>
+        /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
+        /// </summary>
+        /// <param name="pr">Proyecto del que toma los datos</param>
+        private void createTableDB(Proyect proyect)
+        {
+            using (SqlConnection con = new SqlConnection(@"Server = DESKTOP-7PVBSV9\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            {
+                try
+                {
+                    // Open the SqlConnection.
+                    con.Open();
+
+                    // Create table string
+                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL";
+                    foreach (Variable v in proyect.Variables)
+                    {
+                        sqlStr += ", [" + v.Name + "] ";
+                        if (v.Type == EnumVarType.String)
+                            sqlStr += "[nchar](20) NULL";
+                        else
+                            sqlStr += "[float] NULL";
+                    }
+                    sqlStr += ");";
+
+                    // The following code uses an SqlCommand based on the SqlConnection.
+                    using (SqlCommand command = new SqlCommand(sqlStr, con))
+                        command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
 
         }
@@ -246,6 +313,7 @@ namespace PlantaPiloto
         {
             try
             {
+                this.CleanForm(1);
                 this.Close();
             }
             catch (Exception ex)
@@ -294,9 +362,14 @@ namespace PlantaPiloto
         /// <returns>Falso si la condición es falsa</returns>
         internal bool ValidateProyect()
         {
-            if (this.txtProName.Text == null)
+            if (this.txtProName.Text == "")
             {
                 MessageBox.Show(_res_man.GetString("ErrorNoProyectName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (this._proyect.Variables.Count == 0)
+            {
+                MessageBox.Show(_res_man.GetString("ErrorNoProVars", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else

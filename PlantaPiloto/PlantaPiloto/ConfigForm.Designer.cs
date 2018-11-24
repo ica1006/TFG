@@ -151,10 +151,10 @@ namespace PlantaPiloto
             // 
             // btnSaveConfig
             // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(462, 315);
+            this.btnSaveConfig.Location = new System.Drawing.Point(522, 315);
             this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(130, 23);
+            this.btnSaveConfig.Size = new System.Drawing.Size(83, 23);
             this.btnSaveConfig.TabIndex = 22;
             this.btnSaveConfig.Text = "Guardar configuración";
             this.btnSaveConfig.UseVisualStyleBackColor = true;
@@ -436,7 +436,7 @@ namespace PlantaPiloto
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(597, 314);
+            this.btnExit.Location = new System.Drawing.Point(610, 315);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 23;

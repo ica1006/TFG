@@ -88,7 +88,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cerrar.
+        ///   Looks up a localized string similar to Cancelar.
         /// </summary>
         public static string btnExit_txt {
             get {
@@ -142,7 +142,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guardar configuración.
+        ///   Looks up a localized string similar to Aceptar.
         /// </summary>
         public static string btnSaveConfig_txt {
             get {
@@ -187,6 +187,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El proyecto debe tener al menos una variable..
+        /// </summary>
+        public static string ErrorNoProVars {
+            get {
+                return ResourceManager.GetString("ErrorNoProVars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debe introducir un Nombre de Proyecto válido.
         /// </summary>
         public static string ErrorNoProyectName {
@@ -210,15 +219,6 @@ namespace PlantaPiloto.Language {
         public static string ErrorNoVarName {
             get {
                 return ResourceManager.GetString("ErrorNoVarName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Si la variable es de tipo int o float debe introducir un Rango para la variable.
-        /// </summary>
-        public static string ErrorNoVarRange {
-            get {
-                return ResourceManager.GetString("ErrorNoVarRange", resourceCulture);
             }
         }
         

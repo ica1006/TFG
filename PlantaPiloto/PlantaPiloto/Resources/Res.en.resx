@@ -232,7 +232,7 @@
     <value>Save variable</value>
   </data>
   <data name="btnSaveConfig_txt" xml:space="preserve">
-    <value>Save configuration</value>
+    <value>Accept</value>
   </data>
   <data name="gbNewVar_txt" xml:space="preserve">
     <value>New variable</value>
@@ -285,13 +285,13 @@
   <data name="ErrorNoVarName" xml:space="preserve">
     <value>You must enter a valid Variable Name</value>
   </data>
-  <data name="ErrorNoVarRange" xml:space="preserve">
-    <value>You must enter a valid Variable Range for int or float variables</value>
+  <data name="ErrorNoProVars" xml:space="preserve">
+    <value>Proyect must have at least one variable.</value>
   </data>
   <data name="ErrorNoVarType" xml:space="preserve">
     <value>You must enter a valid Variable Type</value>
   </data>
   <data name="btnExit_txt" xml:space="preserve">
-    <value>Close</value>
+    <value>Cancel</value>
   </data>
 </root>
