@@ -20,13 +20,15 @@ namespace PlantaPiloto
         private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
+        private Variable _variable;
+
+        #region Form Methods
 
         public ConfigForm()
         {
             InitializeComponent();
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _path = @"../../pruebaTFG.txt";
             _proyect = new Proyect();
         }
 
@@ -37,6 +39,48 @@ namespace PlantaPiloto
             cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
             this.switch_language();
         }
+
+        /// <summary>
+        /// Método que limpia los campos del formulario
+        /// </summary>
+        internal void CleanForm()
+        {
+            foreach (Control c in this.gbProyectDetails.Controls)
+            {
+                if (c is TextBox || c is RichTextBox)
+                {
+                    c.Text = "";
+                }
+            }
+            foreach (Control c in this.gbNewVar.Controls)
+            {
+                if (c is TextBox || c is RichTextBox)
+                {
+                    c.Text = "";
+                }
+            }
+            _proyect = new Proyect();
+            _variable = new Variable();
+        }
+
+        /// <summary>
+        /// Método que se ejecuta al cerrar el formulario, antes de que este se cierre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Método que actualiza las cadenas según idioma
@@ -69,6 +113,10 @@ namespace PlantaPiloto
             #endregion
         }
 
+        /// <summary>
+        /// Método que establece al form el idioma del MainForm
+        /// </summary>
+        /// <param name="cultureInfo"></param>
         internal void SetCulture(CultureInfo cultureInfo)
         {
             _cul = cultureInfo;
@@ -85,7 +133,7 @@ namespace PlantaPiloto
             {
                 if (ValidateVar())
                 {
-                    Variable _variable = new Variable();
+                    _variable = new Variable();
                     _variable.Name = this.txtVarName.Text;
                     _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
                     _variable.Description = this.txtVarDesc.Text;
@@ -114,6 +162,100 @@ namespace PlantaPiloto
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Método que crea y guarda en un archivo txt un nuevo proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveConfigFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidateProyect())
+                {
+                    _proyect.Name = this.txtProName.Text;
+                    _proyect.Description = this.txtProDesc.Text;
+                    saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = "Prueba.txt";
+                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
+                    if(saveFileDialog1.ShowDialog() == DialogResult.OK) 
+                    {
+                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                        tw.WriteLine(DateTime.Now);
+                        tw.WriteLine(_proyect.Name);
+                        tw.WriteLine(_proyect.Description);
+                        tw.WriteLine(_proyect.ImagePath);
+                        foreach (Variable v in _proyect.Variables)
+                        {
+                            tw.WriteLine("****************************************");
+                            tw.WriteLine(v.Name);
+                            tw.WriteLine(v.Type);
+                            tw.WriteLine(v.Description);
+                            tw.WriteLine(v.Access);
+                            if (v.Type != EnumVarType.String)
+                            {
+                                tw.WriteLine(v.BoardUnits);
+                                tw.WriteLine(v.InterfaceUnits);
+                                tw.WriteLine(v.LinearAdjustA);
+                                tw.WriteLine(v.LinearAdjustB);
+                                tw.WriteLine(v.RangeLow);
+                                tw.WriteLine(v.RangeHigh);
+                            }
+                            tw.WriteLine(v.CommunicationType);
+
+                        }
+                        tw.WriteLine("****************************************");
+                        tw.WriteLine("****************************************");
+                        tw.Dispose();
+                        tw.Close();
+                        this.CleanForm();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        /// <summary>
+        /// Evento que carga la ruta de una imagen e informa que esta ha sido cargada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadImage_Click(object sender, EventArgs e)
+        {
+            openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = _res_man.GetString("", _cul);
+            openFileDialog1.Filter = _res_man.GetString("", _cul);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                _proyect.ImagePath = openFileDialog1.FileName;
+                this.btnLoadImage.BackColor = Color.LightGreen;
+            }
+        }
+
+        /// <summary>
+        /// Evento que cierra el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        #region Validaciones
 
         /// <summary>
         /// Método que valida que la variable debe tener un nombre y ha de ser único
@@ -162,98 +304,34 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Método que crea y guarda en un archivo txt un nuevo proyecto
+        /// Método que controla que el caracter introducido sea un número, "," o ".".
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void saveConfigFile_Click(object sender, EventArgs e)
+        /// <param name="sender">Elemento que en el que ocurre la acción</param>
+        /// <param name="e">Evento que desencadena la acción</param>
+        internal void ValidateNumberInput(object sender, KeyPressEventArgs e)
         {
             try
             {
-                if (ValidateProyect())
+                // Verify that the pressed key isn't CTRL or any non-numeric digit
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
                 {
-                    _proyect.Name = this.txtProName.Text;
-                    _proyect.Description = this.txtProDesc.Text;
-                    saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = "Prueba.txt";
-                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
-                    if(saveFileDialog1.ShowDialog() == DialogResult.OK) 
-                    {
-                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        tw.WriteLine(DateTime.Now);
-                        tw.WriteLine(_proyect.Name);
-                        tw.WriteLine(_proyect.Description);
-                        foreach (Variable v in _proyect.Variables)
-                        {
-                            tw.WriteLine("****************************************");
-                            tw.WriteLine(v.Name);
-                            tw.WriteLine(v.Type);
-                            tw.WriteLine(v.Description);
-                            tw.WriteLine(v.Access);
-                            if (v.Type != EnumVarType.String)
-                            {
-                                tw.WriteLine(v.BoardUnits);
-                                tw.WriteLine(v.InterfaceUnits);
-                                tw.WriteLine(v.LinearAdjustA);
-                                tw.WriteLine(v.LinearAdjustB);
-                                tw.WriteLine(v.RangeLow);
-                                tw.WriteLine(v.RangeHigh);
-                            }
-                            tw.WriteLine(v.CommunicationType);
+                    e.Handled = true;
+                }
 
-                        }
-                        tw.WriteLine("****************************************");
-                        tw.WriteLine("****************************************");
-                        tw.Dispose();
-                        tw.Close();
-                        this.CleanForm();
-                    }
+                // If you want, you can allow decimal (float) numbers
+                if ((e.KeyChar == '.') && ((sender as RichTextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        /// <summary>
-        /// Método que limpia los campos del formulario
-        /// </summary>
-        internal void CleanForm()
-        {
-            foreach (Control c in this.gbProyectDetails.Controls)
-            {
-                if (c is TextBox || c is RichTextBox)
-                {
-                    c.Text = "";
-                }
-            }
-            foreach (Control c in this.gbNewVar.Controls)
-            {
-                if (c is TextBox || c is RichTextBox)
-                {
-                    c.Text = "";
-                }
-            }
-        }
-
-        /// <summary>
-        /// Método que se ejecuta al cerrar el formulario, antes de que este se cierre
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-            }
-            catch (Exception)
-            {
-
                 throw;
             }
         }
+
+        #region Eventos 
 
         /// <summary>
         /// Método que cambia la disponibilidad de los textbox de ajuste lineal y rango cuando la 
@@ -283,41 +361,6 @@ namespace PlantaPiloto
             }
         }
 
-        private void btnLoadImage_Click(object sender, EventArgs e)
-        {
-            //_proyect.ImagePath = Image.FromFile();
-        }
-
-        #region Validación de entrada de dígitos
-
-        /// <summary>
-        /// Método que controla que el caracter introducido sea un número, "," o ".".
-        /// </summary>
-        /// <param name="sender">Elemento que en el que ocurre la acción</param>
-        /// <param name="e">Evento que desencadena la acción</param>
-        internal void ValidateNumberInput(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                // Verify that the pressed key isn't CTRL or any non-numeric digit
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-                {
-                    e.Handled = true;
-                }
-
-                // If you want, you can allow decimal (float) numbers
-                if ((e.KeyChar == '.') && ((sender as RichTextBox).Text.IndexOf('.') > -1))
-                {
-                    e.Handled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
-        }
-
         private void txtVarLinearAdjA_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);
@@ -340,22 +383,6 @@ namespace PlantaPiloto
 
         #endregion
 
-        /// <summary>
-        /// Evento que cierra el formulario
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
-        }
+        #endregion
     }
 }

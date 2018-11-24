@@ -45,9 +45,9 @@ namespace PlantaPiloto
             set { _description = value; OnPropertyChanged("Description"); }
         }
 
-        private Image _imagePath;
+        private string _imagePath;
 
-        public Image ImagePath
+        public string ImagePath
         {
             get { return _imagePath; }
             set { _imagePath = value; OnPropertyChanged("ImagePath"); }
@@ -78,7 +78,7 @@ namespace PlantaPiloto
             Variables = new ObservableCollection<Variable>();
         }
 
-        public Proyect(string name, string desc, Image imgPath)
+        public Proyect(string name, string desc, string imgPath)
         {
             Name = name;
             Description = desc;
