@@ -256,7 +256,7 @@ namespace PlantaPiloto
         /// <param name="pr">Proyecto del que toma los datos</param>
         private void createTableDB(Proyect proyect)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = DESKTOP-7PVBSV9\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
                 try
                 {
