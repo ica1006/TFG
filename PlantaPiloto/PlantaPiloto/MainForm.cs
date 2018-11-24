@@ -18,15 +18,19 @@ namespace PlantaPiloto
     {
         ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         CultureInfo _cul;            // declare culture info
+        private Proyect _proyect;
+        private Variable _variable;
 
         public MainForm()
         {
             InitializeComponent();
 
-            toolStripMenuItemSpanish.Checked = true;    
+            toolStripMenuItemSpanish.Checked = true;
             toolStripMenuItemEnglish.Checked = false;//default language is spanish
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            switch_language();
+            _proyect = new Proyect();
+            _variable = new Variable();
+            Switch_language();
         }
 
         /// <summary>
@@ -135,9 +139,9 @@ namespace PlantaPiloto
         /// <summary>
         /// Método que se encarga de actualizar todas las etiquetas del form a la cultura correspondiente
         /// </summary>
-        public void switch_language()
+        public void Switch_language()
         {
-            if (toolStripMenuItemSpanish.Checked == true)    
+            if (toolStripMenuItemSpanish.Checked == true)
             {
                 _cul = CultureInfo.CreateSpecificCulture("es");    //create culture for spanish
             }
@@ -182,7 +186,7 @@ namespace PlantaPiloto
 
             #endregion
         }
-
+        
         /// <summary>
         /// Método que cambia el idioma a inglés
         /// </summary>
@@ -192,7 +196,7 @@ namespace PlantaPiloto
         {
             toolStripMenuItemSpanish.Checked = false;
             toolStripMenuItemEnglish.Checked = true;
-            switch_language();
+            Switch_language();
         }
 
         /// <summary>
@@ -204,7 +208,7 @@ namespace PlantaPiloto
         {
             toolStripMenuItemSpanish.Checked = true;
             toolStripMenuItemEnglish.Checked = false;
-            switch_language();
+            Switch_language();
         }
 
         /// <summary>
@@ -236,9 +240,21 @@ namespace PlantaPiloto
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                StreamReader sr = new StreamReader(openFileDialog1.FileName);
-                MessageBox.Show(sr.ReadToEnd());
-                sr.Close();
+                try
+                {
+                    StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                    sr.ReadLine();
+                    _proyect.Name = sr.ReadLine();
+                    _proyect.Description = sr.ReadLine();
+                    _proyect.ImagePath = sr.ReadLine();
+                    //guardar variables en bucle¿?
+                    sr.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul), _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw;
+                }
             }
         }
     }

@@ -187,6 +187,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archivo no válido.
+        /// </summary>
+        public static string ErrorFileNoValid {
+            get {
+                return ResourceManager.GetString("ErrorFileNoValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El proyecto debe tener al menos una variable..
         /// </summary>
         public static string ErrorNoProVars {

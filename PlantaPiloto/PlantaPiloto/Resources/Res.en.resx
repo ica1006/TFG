@@ -300,4 +300,7 @@
   <data name="showLoadImageDialogTitle" xml:space="preserve">
     <value>Select an image</value>
   </data>
+  <data name="ErrorFileNoValid" xml:space="preserve">
+    <value>Invalid file</value>
+  </data>
 </root>

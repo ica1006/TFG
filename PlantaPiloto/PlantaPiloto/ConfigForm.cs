@@ -38,7 +38,7 @@ namespace PlantaPiloto
             cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
             cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
             cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-            this.switch_language();
+            this.Switch_language();
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace PlantaPiloto
         /// <summary>
         /// Método que actualiza las cadenas según idioma
         /// </summary>
-        public void switch_language()
+        public void Switch_language()
         {
             //Cambio de idioma de las cadenas
             #region Actualización de cadenas
@@ -237,7 +237,7 @@ namespace PlantaPiloto
                         tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
-                        this.createTableDB(_proyect);
+                        this.CreateTableDB(_proyect);
                         this.CleanForm(1);
                         this.Close();
                     }
@@ -254,7 +254,7 @@ namespace PlantaPiloto
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
         /// </summary>
         /// <param name="pr">Proyecto del que toma los datos</param>
-        private void createTableDB(Proyect proyect)
+        private void CreateTableDB(Proyect proyect)
         {
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
