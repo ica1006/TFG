@@ -233,6 +233,7 @@ namespace PlantaPiloto
         {
             openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
             openFileDialog1.Title = _res_man.GetString("showDialogTitle", _cul);
+            openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName);

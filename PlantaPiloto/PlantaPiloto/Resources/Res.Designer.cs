@@ -466,6 +466,24 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imágenes (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF.
+        /// </summary>
+        public static string showLoadImageDialogFilter {
+            get {
+                return ResourceManager.GetString("showLoadImageDialogFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seleccione una imagen para cargar.
+        /// </summary>
+        public static string showLoadImageDialogTitle {
+            get {
+                return ResourceManager.GetString("showLoadImageDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Acerca de.
         /// </summary>
         public static string toolStripMenuItemAbout_txt {

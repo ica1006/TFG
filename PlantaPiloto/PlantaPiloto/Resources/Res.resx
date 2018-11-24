@@ -294,4 +294,10 @@
   <data name="btnExit_txt" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="showLoadImageDialogFilter" xml:space="preserve">
+    <value>Imágenes (*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF</value>
+  </data>
+  <data name="showLoadImageDialogTitle" xml:space="preserve">
+    <value>Seleccione una imagen para cargar</value>
+  </data>
 </root>

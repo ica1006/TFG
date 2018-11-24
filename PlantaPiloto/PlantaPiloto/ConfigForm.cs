@@ -205,7 +205,7 @@ namespace PlantaPiloto
                     _proyect.Name = this.txtProName.Text;
                     _proyect.Description = this.txtProDesc.Text;
                     saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = "Prueba.txt";
+                    saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
@@ -295,8 +295,8 @@ namespace PlantaPiloto
         private void btnLoadImage_Click(object sender, EventArgs e)
         {
             openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Title = _res_man.GetString("", _cul);
-            openFileDialog1.Filter = _res_man.GetString("", _cul);
+            openFileDialog1.Title = _res_man.GetString("showLoadImageDialogTitle", _cul);
+            openFileDialog1.Filter = _res_man.GetString("showLoadImageDialogFilter", _cul);
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 _proyect.ImagePath = openFileDialog1.FileName;
