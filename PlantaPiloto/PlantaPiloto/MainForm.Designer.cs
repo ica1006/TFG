@@ -65,12 +65,16 @@ namespace PlantaPiloto
             this.btnFinish = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.gBoxProyect = new System.Windows.Forms.GroupBox();
+            this.pbProImg = new System.Windows.Forms.PictureBox();
             this.lblProDesc = new System.Windows.Forms.Label();
             this.lblProName = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gbProVars = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProImg)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPorts
@@ -345,6 +349,8 @@ namespace PlantaPiloto
             // 
             // gBoxProyect
             // 
+            this.gBoxProyect.Controls.Add(this.gbProVars);
+            this.gBoxProyect.Controls.Add(this.pbProImg);
             this.gBoxProyect.Controls.Add(this.lblProDesc);
             this.gBoxProyect.Controls.Add(this.lblProName);
             this.gBoxProyect.Location = new System.Drawing.Point(12, 157);
@@ -354,10 +360,20 @@ namespace PlantaPiloto
             this.gBoxProyect.TabStop = false;
             this.gBoxProyect.Text = "groupBox2";
             // 
+            // pbProImg
+            // 
+            this.pbProImg.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbProImg.InitialImage")));
+            this.pbProImg.Location = new System.Drawing.Point(18, 73);
+            this.pbProImg.Name = "pbProImg";
+            this.pbProImg.Size = new System.Drawing.Size(256, 256);
+            this.pbProImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProImg.TabIndex = 21;
+            this.pbProImg.TabStop = false;
+            // 
             // lblProDesc
             // 
             this.lblProDesc.AutoSize = true;
-            this.lblProDesc.Location = new System.Drawing.Point(13, 67);
+            this.lblProDesc.Location = new System.Drawing.Point(297, 35);
             this.lblProDesc.Name = "lblProDesc";
             this.lblProDesc.Size = new System.Drawing.Size(51, 20);
             this.lblProDesc.TabIndex = 20;
@@ -375,6 +391,15 @@ namespace PlantaPiloto
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // gbProVars
+            // 
+            this.gbProVars.Location = new System.Drawing.Point(301, 73);
+            this.gbProVars.Name = "gbProVars";
+            this.gbProVars.Size = new System.Drawing.Size(347, 305);
+            this.gbProVars.TabIndex = 22;
+            this.gbProVars.TabStop = false;
+            this.gbProVars.Text = "groupBox1";
             // 
             // MainForm
             // 
@@ -404,6 +429,7 @@ namespace PlantaPiloto
             this.gBoxControls.ResumeLayout(false);
             this.gBoxProyect.ResumeLayout(false);
             this.gBoxProyect.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,6 +473,9 @@ namespace PlantaPiloto
         private Label lblProDesc;
         private Label lblProName;
         private OpenFileDialog openFileDialog1;
+        private PictureBox pbProImg;
+        private GroupBox gbProVars;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

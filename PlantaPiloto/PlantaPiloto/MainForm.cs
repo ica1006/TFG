@@ -234,6 +234,11 @@ namespace PlantaPiloto
             _createConfig.Show();
         }
 
+        /// <summary>
+        /// Evento que lee un archivo en el que está guardada una configuración y la carga al programa.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
@@ -244,6 +249,7 @@ namespace PlantaPiloto
                 try
                 {
                     StreamReader sr = new StreamReader(openFileDialog1.FileName);
+                    _proyect = new Proyect();
                     sr.ReadLine();
                     _proyect.Name = sr.ReadLine();
                     _proyect.Description = sr.ReadLine();
@@ -274,6 +280,7 @@ namespace PlantaPiloto
                         }
                     } while (true);
                     sr.Close();
+                    this.LoadProyect();
                 }
                 catch (Exception ex)
                 {
@@ -281,6 +288,25 @@ namespace PlantaPiloto
                         _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Método que carga el proyecto recibido en la aplicación
+        /// </summary>
+        private void LoadProyect()
+        {
+            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
+            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
+            this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+            ConfigForm c = new ConfigForm();
+            
+            foreach (Variable v in _proyect.Variables)
+            {
+                Label lblVar = new Label();
+                lblVar.Name = "lblVar" + v.Name;
+                lblVar.Text = v.Name;
+                gbProVars.Controls.Add(lblVar);
             }
         }
     }
