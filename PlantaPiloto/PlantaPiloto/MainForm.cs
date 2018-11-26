@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Resources;
 using System.IO;
+using PlantaPiloto.Enums;
 
 namespace PlantaPiloto
 {
@@ -186,7 +187,7 @@ namespace PlantaPiloto
 
             #endregion
         }
-        
+
         /// <summary>
         /// Método que cambia el idioma a inglés
         /// </summary>
@@ -247,12 +248,37 @@ namespace PlantaPiloto
                     _proyect.Name = sr.ReadLine();
                     _proyect.Description = sr.ReadLine();
                     _proyect.ImagePath = sr.ReadLine();
-                    //guardar variables en bucle¿?
+                    do
+                    {
+                        if (sr.ReadLine() == "****************************************")
+                        {
+                            _variable = new Variable();
+                            string fL = sr.ReadLine();
+                            if (fL == "****************************************")
+                                break;
+                            _variable.Name = fL;
+                            _variable.Type = (EnumVarType)Enum.Parse(typeof(EnumVarType), sr.ReadLine());
+                            _variable.Description = sr.ReadLine();
+                            _variable.Access = (EnumVarAccess)Enum.Parse(typeof(EnumVarAccess), sr.ReadLine());
+                            if (_variable.Type != EnumVarType.String)
+                            {
+                                _variable.BoardUnits = sr.ReadLine();
+                                _variable.InterfaceUnits = sr.ReadLine();
+                                _variable.LinearAdjustA = float.Parse(sr.ReadLine());
+                                _variable.LinearAdjustB = float.Parse(sr.ReadLine());
+                                _variable.RangeLow = float.Parse(sr.ReadLine());
+                                _variable.RangeHigh = float.Parse(sr.ReadLine());
+                            }
+                            _variable.CommunicationType = (EnumVarCommunicationType)Enum.Parse(typeof(EnumVarCommunicationType), sr.ReadLine());
+                            _proyect.Variables.Add(_variable);
+                        }
+                    } while (true);
                     sr.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul), _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul) + "\n" + ex.Message.ToString(),
+                        _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
             }
