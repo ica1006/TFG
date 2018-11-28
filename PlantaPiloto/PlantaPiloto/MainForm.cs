@@ -21,6 +21,7 @@ namespace PlantaPiloto
         CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
+        private DB_services _db_services;
 
         public MainForm()
         {
@@ -31,6 +32,7 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
             _variable = new Variable();
+            _db_services = new DB_services();
             Switch_language();
         }
 
@@ -296,6 +298,10 @@ namespace PlantaPiloto
         /// </summary>
         private void LoadProyect()
         {
+            //Creamos la tabla en la BD para el proyecto
+            _db_services.CreateTableDB(_proyect);
+
+            //Mostramos datos
             this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
             this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
             this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
@@ -313,6 +319,11 @@ namespace PlantaPiloto
             //    gbProVars.Controls.Add(lblVar);
             //}
             
+        }
+
+        private void toolStripMenuItemModifyConfig_Click(object sender, EventArgs e)
+        {
+            _db_services.GetColumnNames(_proyect);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace PlantaPiloto
 {
-    class Proyect
+    public class Proyect
     {
         #region Properties
 

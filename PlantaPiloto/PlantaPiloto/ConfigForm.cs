@@ -22,6 +22,7 @@ namespace PlantaPiloto
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
+        private DB_services _db_services;
 
         #region Form Methods
 
@@ -31,6 +32,7 @@ namespace PlantaPiloto
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
+            _db_services = new DB_services();
         }
 
         private void ConfigForm_Load(object sender, EventArgs e)
@@ -237,7 +239,7 @@ namespace PlantaPiloto
                         tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
-                        this.CreateTableDB(_proyect);
+                        _db_services.CreateTableDB(_proyect);
                         this.CleanForm(1);
                         this.Close();
                     }
@@ -247,53 +249,6 @@ namespace PlantaPiloto
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-
-        /// <summary>
-        /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
-        /// </summary>
-        /// <param name="pr">Proyecto del que toma los datos</param>
-        private void CreateTableDB(Proyect proyect)
-        {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
-            {
-                try
-                {
-                    // Open the SqlConnection.
-                    con.Open();
-                    // Delete table if exists
-
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
-                        " AND TABLE_NAME = '" + _proyect.Name + "'";
-                    SqlCommand cmd = new SqlCommand(sCmd, con);
-                    // Comprobamos si está
-                    // Devuelve 1 si ya existe o 0 si no existe
-                    if ((int)cmd.ExecuteScalar() == 1)
-                        using (SqlCommand command = new SqlCommand("DROP TABLE dbo." + _proyect.Name, con))
-                            command.ExecuteNonQuery();
-                    // Create table string
-                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL";
-                    foreach (Variable v in proyect.Variables)
-                    {
-                        sqlStr += ", [" + v.Name + "] ";
-                        if (v.Type == EnumVarType.String)
-                            sqlStr += "[nchar](20) NULL";
-                        else
-                            sqlStr += "[float] NULL";
-                    }
-                    sqlStr += ");";
-
-                    // The following code uses an SqlCommand based on the SqlConnection.
-                    using (SqlCommand command = new SqlCommand(sqlStr, con))
-                        command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
         }
 
         /// <summary>
