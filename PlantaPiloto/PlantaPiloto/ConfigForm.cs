@@ -262,9 +262,11 @@ namespace PlantaPiloto
                 {
                     // Open the SqlConnection.
                     con.Open();
-
-                    // Create table string
-                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL";
+                    // Delete table if exists
+                    using (SqlCommand command = new SqlCommand("DROP TABLE dbo." + _proyect.Name, con))
+                        command.ExecuteNonQuery();
+                        // Create table string
+                        string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL";
                     foreach (Variable v in proyect.Variables)
                     {
                         sqlStr += ", [" + v.Name + "] ";

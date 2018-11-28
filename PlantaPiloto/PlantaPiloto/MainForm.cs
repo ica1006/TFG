@@ -299,15 +299,20 @@ namespace PlantaPiloto
             this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
             this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
             this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
-            ConfigForm c = new ConfigForm();
+            //ConfigForm c = new ConfigForm();
+            //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
+            //var iniDrawY = gbProVars.Location.Y + 20;
+
+            //foreach (Variable v in _proyect.Variables)
+            //{
+            //    Label lblVar = new Label();
+            //    lblVar.Name = "lblVar" + v.Name;
+            //    lblVar.Text = v.Name;
+            //    iniDrawY += 20;
+            //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
+            //    gbProVars.Controls.Add(lblVar);
+            //}
             
-            foreach (Variable v in _proyect.Variables)
-            {
-                Label lblVar = new Label();
-                lblVar.Name = "lblVar" + v.Name;
-                lblVar.Text = v.Name;
-                gbProVars.Controls.Add(lblVar);
-            }
         }
     }
 }
