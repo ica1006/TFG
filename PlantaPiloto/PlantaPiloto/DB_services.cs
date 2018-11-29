@@ -115,5 +115,72 @@ namespace PlantaPiloto
                 }
             }
         }
+
+        /// <summary>
+        /// Método que añade una nueva fila a la BD
+        /// </summary>
+        /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
+        public void SaveRow(Proyect proyect)
+        {
+            List<string> columns = new List<string>();
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            {
+                try
+                {
+                    // Open the SqlConnection.
+                    con.Open();
+                    // Cadena para comprobar si la tabla existe
+                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
+                        " AND TABLE_NAME = '" + proyect.Name + "'";
+                    SqlCommand cmd = new SqlCommand(sCmd, con);
+                    // Cadena para insertar una nueva fila
+                    string insertCmd = "INSERT INTO [dbo].[" + proyect.Name + "](";
+                    foreach (Variable v in proyect.Variables)
+                    {
+                        insertCmd += "[" + v.Name + "],";
+                    }
+                    insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
+                    insertCmd += ") VALUES (";
+                    foreach (Variable v in proyect.Variables)
+                    {
+                        insertCmd += v.Type == EnumVarType.String ? v.Value.ToString() + ",": float.Parse(v.Value.ToString()) + ",";
+                    }
+                    insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
+                    insertCmd += ")";
+                    // Comprobamos si está
+                    // Devuelve 1 si ya existe o 0 si no existe
+                    if ((int)cmd.ExecuteScalar() == 1)
+                    {
+                        using (SqlCommand command = new SqlCommand(insertCmd, con))
+                        {
+                            SqlDataReader columnsDataReader = command.ExecuteReader();
+                            while (columnsDataReader.Read())
+                            {
+                                columns.Add(String.Format("{0}", columnsDataReader[0]));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.CreateTableDB(proyect);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        con.Close();
+                        con.Dispose();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+        }
     }
 }

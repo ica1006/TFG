@@ -29,6 +29,9 @@ namespace PlantaPiloto
 
         private string _name;
 
+        /// <summary>
+        /// Nombre de la variable
+        /// </summary>
         public string Name
         {
             get { return _name; }
@@ -37,6 +40,9 @@ namespace PlantaPiloto
 
         private EnumVarType _type;
 
+        /// <summary>
+        /// Tipo de variable
+        /// </summary>
         public EnumVarType Type
         {
             get { return _type; }
@@ -45,6 +51,9 @@ namespace PlantaPiloto
 
         private string _description;
 
+        /// <summary>
+        /// Descripción de la variable
+        /// </summary>
         public string Description
         {
             get { return _description; }
@@ -53,6 +62,9 @@ namespace PlantaPiloto
 
         private EnumVarAccess _access;
 
+        /// <summary>
+        /// Tipo de acceso a la variable
+        /// </summary>
         public EnumVarAccess Access
         {
             get { return _access; }
@@ -61,6 +73,9 @@ namespace PlantaPiloto
 
         private string _boardUnits;
 
+        /// <summary>
+        /// Unidades en las que se trabaja en la placa
+        /// </summary>
         public string BoardUnits
         {
             get { return _boardUnits; }
@@ -69,6 +84,9 @@ namespace PlantaPiloto
 
         private string _interfaceUnits;
 
+        /// <summary>
+        /// Unidades en las que se trabaja en la interfaz
+        /// </summary>
         public string InterfaceUnits
         {
             get { return _interfaceUnits; }
@@ -77,6 +95,9 @@ namespace PlantaPiloto
 
         private float? _linearAdjustA;
 
+        /// <summary>
+        /// Argumento "a" de la fórmula de ajuste linear entre las unidades de la placa y las de la interfaz
+        /// </summary>
         public float? LinearAdjustA
         {
             get { return _linearAdjustA; }
@@ -85,6 +106,9 @@ namespace PlantaPiloto
 
         private float? _linearAdjustB;
 
+        /// <summary>
+        /// Argumento "b"de la fórmula de ajuste linear entre las unidades de la placa y las de la interfaz
+        /// </summary>
         public float? LinearAdjustB
         {
             get { return _linearAdjustB; }
@@ -93,6 +117,9 @@ namespace PlantaPiloto
 
         private float? _rangeLow;
 
+        /// <summary>
+        /// Valor mínimo que puede alcanzar la variable
+        /// </summary>
         public float? RangeLow
         {
             get { return _rangeLow; }
@@ -101,6 +128,9 @@ namespace PlantaPiloto
 
         private float? _rangeHigh;
 
+        /// <summary>
+        /// Valor máximo que puede alcanzar la variable
+        /// </summary>
         public float? RangeHigh
         {
             get { return _rangeHigh; }
@@ -109,18 +139,24 @@ namespace PlantaPiloto
 
         private EnumVarCommunicationType _communicationType;
 
+        /// <summary>
+        /// Tipo de conexión que utiliza la variable
+        /// </summary>
         public EnumVarCommunicationType CommunicationType
         {
             get { return _communicationType; }
             set { _communicationType = value; OnPropertyChanged("ConnectionType"); }
         }
 
-        private string _error;
+        private object _value;
 
-        public string Error
+        /// <summary>
+        /// Valor de la variable
+        /// </summary>
+        public object Value
         {
-            get { return _error; }
-            set { _error = value; OnPropertyChanged("Error"); }
+            get { return _value; }
+            set { _value = value; OnPropertyChanged("Value"); }
         }
 
         #endregion
@@ -162,25 +198,16 @@ namespace PlantaPiloto
 
         #region Miembros de INotifyPropertyChanged
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-
+        /// <summary>
+        /// Método que actualiza la propiedad cuando esta cambia
+        /// </summary>
+        /// <param name="name">Propiedad a actualizar</param>
         protected void OnPropertyChanged(string name)
-
         {
-
             PropertyChangedEventHandler handler = PropertyChanged;
-
             if (handler != null)
-
-            {
-
                 handler(this, new PropertyChangedEventArgs(name));
-
-            }
-
         }
 
         #endregion

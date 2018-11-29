@@ -303,4 +303,7 @@
   <data name="ErrorFileNoValid" xml:space="preserve">
     <value>Invalid file</value>
   </data>
+  <data name="ErrorSerialPortConnectionKey" xml:space="preserve">
+    <value>Connection error</value>
+  </data>
 </root>

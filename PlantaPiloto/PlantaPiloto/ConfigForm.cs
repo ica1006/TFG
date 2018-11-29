@@ -239,7 +239,7 @@ namespace PlantaPiloto
                         tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
-                        _db_services.CreateTableDB(_proyect);
+                        _mainForm.LoadProyect(_proyect);
                         this.CleanForm(1);
                         this.Close();
                     }

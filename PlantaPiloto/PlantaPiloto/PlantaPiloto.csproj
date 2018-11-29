@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Res.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="SP_services.cs" />
     <Compile Include="TFG_DBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

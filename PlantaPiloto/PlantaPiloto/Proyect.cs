@@ -94,29 +94,18 @@ namespace PlantaPiloto
 
         #region Miembros de INotifyPropertyChanged
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-
+        /// <summary>
+        /// Método que actualiza la propiedad cuando esta cambia
+        /// </summary>
+        /// <param name="name">Propiedad a actualizar</param>
         protected void OnPropertyChanged(string name)
-
         {
-
             PropertyChangedEventHandler handler = PropertyChanged;
-
             if (handler != null)
-
-            {
-
                 handler(this, new PropertyChangedEventArgs(name));
-
-            }
-
         }
 
         #endregion
-
-
     }
 }

@@ -241,6 +241,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error en la conexión.
+        /// </summary>
+        public static string ErrorSerialPortConnectionKey {
+            get {
+                return ResourceManager.GetString("ErrorSerialPortConnectionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debe introducir un Nombre de Variable distinto a las anteriores..
         /// </summary>
         public static string ErrorVarRepeated {

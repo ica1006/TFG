@@ -22,6 +22,7 @@ namespace PlantaPiloto
         private Proyect _proyect;
         private Variable _variable;
         private DB_services _db_services;
+        private SP_services _sp_services;
 
         public MainForm()
         {
@@ -43,7 +44,8 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[] ports = SerialPort.GetPortNames();
+            _sp_services = new SP_services();
+            string[] ports = _sp_services.Ports;
             cboPort.Items.AddRange(ports);
             //cboPort.SelectedIndex = 0;
             btnClose.Enabled = false;
@@ -56,16 +58,19 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            btnOpen.Enabled = false;
-            btnClose.Enabled = true;
             try
             {
-                serialPort2.PortName = cboPort.Text;
-                serialPort2.Open();
+                _sp_services = new SP_services(_proyect, _cul);
+                _sp_services.SerialPort.PortName = cboPort.Text;
+                _sp_services.OpenConnection();
+                btnOpen.Enabled = false;
+                btnClose.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnOpen.Enabled = true;
+                btnClose.Enabled = false;
+                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -78,9 +83,9 @@ namespace PlantaPiloto
         {
             try
             {
-                if (serialPort2.IsOpen)
+                if (_sp_services.SerialPort.IsOpen)
                 {
-                    serialPort2.WriteLine(txtMessage.Text);
+                    _sp_services.SerialPort.WriteLine(txtMessage.Text);
                     txtMessage.Clear();
                 }
             }
@@ -101,7 +106,7 @@ namespace PlantaPiloto
             btnClose.Enabled = false;
             try
             {
-                serialPort2.Close();
+                _sp_services.SerialPort.Close();
             }
             catch (Exception ex)
             {
@@ -120,9 +125,9 @@ namespace PlantaPiloto
             try
             {
                 txtReceive.Clear();
-                if (serialPort2.IsOpen)
+                if (_sp_services.SerialPort.IsOpen)
                 {
-                    txtReceive.Text = serialPort2.ReadExisting() + Environment.NewLine;
+                    txtReceive.Text = _sp_services.SerialPort.ReadExisting() + Environment.NewLine;
                 }
             }
             catch (Exception ex)
@@ -133,9 +138,9 @@ namespace PlantaPiloto
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (serialPort2.IsOpen)
+            if (_sp_services.SerialPort.IsOpen)
             {
-                serialPort2.Close();
+                _sp_services.SerialPort.Close();
             }
         }
 
@@ -319,6 +324,16 @@ namespace PlantaPiloto
             //    gbProVars.Controls.Add(lblVar);
             //}
             
+        }
+
+        /// <summary>
+        /// Sobrecarga del método LoadProyect() para poder recibir un proyecto como parámetro
+        /// </summary>
+        /// <param name="pr">Proyecto para cargar en MainForm</param>
+        public void LoadProyect(Proyect pr)
+        {
+            _proyect = pr;
+            this.LoadProyect();
         }
 
         private void toolStripMenuItemModifyConfig_Click(object sender, EventArgs e)
