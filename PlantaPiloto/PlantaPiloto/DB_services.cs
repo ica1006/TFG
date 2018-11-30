@@ -39,11 +39,11 @@ namespace PlantaPiloto
                     {
                         sqlStr += ", [" + v.Name + "] ";
                         if (v.Type == EnumVarType.String)
-                            sqlStr += "[nchar](20) NULL";
+                            sqlStr += "[nvarchar](20) NULL";
                         else
                             sqlStr += "[float] NULL";
                     }
-                    sqlStr += ");";
+                    sqlStr += ")";
 
                     // The following code uses an SqlCommand based on the SqlConnection.
                     using (SqlCommand command = new SqlCommand(sqlStr, con))
@@ -143,7 +143,7 @@ namespace PlantaPiloto
                     insertCmd += ") VALUES (";
                     foreach (Variable v in proyect.Variables)
                     {
-                        insertCmd += v.Type == EnumVarType.String ? v.Value.ToString() + ",": float.Parse(v.Value.ToString()) + ",";
+                        insertCmd += v.Type == EnumVarType.String ? "'"+v.Value.ToString() + "',": float.Parse(v.Value.ToString()) + ",";
                     }
                     insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
                     insertCmd += ")";
@@ -152,13 +152,7 @@ namespace PlantaPiloto
                     if ((int)cmd.ExecuteScalar() == 1)
                     {
                         using (SqlCommand command = new SqlCommand(insertCmd, con))
-                        {
-                            SqlDataReader columnsDataReader = command.ExecuteReader();
-                            while (columnsDataReader.Read())
-                            {
-                                columns.Add(String.Format("{0}", columnsDataReader[0]));
-                            }
-                        }
+                            command.ExecuteNonQuery();
                     }
                     else
                     {
