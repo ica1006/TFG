@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -62,6 +63,7 @@ namespace PlantaPiloto
         public Proyect _proyect { get; set; }
 
         public DB_services _db_services { get; set; }
+
         #endregion
 
         #region Constructor
@@ -93,21 +95,23 @@ namespace PlantaPiloto
             try
             {
                 // Set the read/write timeouts
-                _serialPort.ReadTimeout = 2000;
-                _serialPort.WriteTimeout = 2000;
+                _serialPort.ReadTimeout = 500;
+                _serialPort.WriteTimeout = 500;
                 _serialPort.Open();
 
                 _serialPort.ReadLine();
                 while (_serialPort.IsOpen)
                 {
-                    //Lectura del puerto serie
+                    // Lectura del puerto serie
                     string[] spLine = _serialPort.ReadLine().Split(';');
-                    //Asignación del valor a la variable
+                    // Asignación del valor a la variable
                     if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
                         _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
-                    //Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
+                    // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
+                    // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
                     if (_proyect.Variables.Count(p => p.Value == null) == 0)
                         _db_services.SaveRow(_proyect);
+                        
                 }
             }
             catch (Exception ex)
@@ -115,6 +119,7 @@ namespace PlantaPiloto
                 MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         #endregion
 
         #region Miembros de INotifyPropertyChanged

@@ -136,28 +136,20 @@ namespace PlantaPiloto
                     // Cadena para insertar una nueva fila
                     string insertCmd = "INSERT INTO [dbo].[" + proyect.Name + "](";
                     foreach (Variable v in proyect.Variables)
-                    {
                         insertCmd += "[" + v.Name + "],";
-                    }
                     insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
                     insertCmd += ") VALUES (";
                     foreach (Variable v in proyect.Variables)
-                    {
-                        insertCmd += v.Type == EnumVarType.String ? "'"+v.Value.ToString() + "',": float.Parse(v.Value.ToString()) + ",";
-                    }
+                        insertCmd += v.Type == EnumVarType.String ? "'"+v.Value.ToString() + "',": v.Value + ",";
                     insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
                     insertCmd += ")";
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
                     if ((int)cmd.ExecuteScalar() == 1)
-                    {
                         using (SqlCommand command = new SqlCommand(insertCmd, con))
                             command.ExecuteNonQuery();
-                    }
                     else
-                    {
                         this.CreateTableDB(proyect);
-                    }
                 }
                 catch (Exception ex)
                 {

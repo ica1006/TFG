@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Resources;
 using System.IO;
 using PlantaPiloto.Enums;
+using System.Threading;
 
 namespace PlantaPiloto
 {
@@ -23,6 +24,9 @@ namespace PlantaPiloto
         private Variable _variable;
         private DB_services _db_services;
         private SP_services _sp_services;
+        private Thread _threadSaveRow;
+
+        #region Constructor
 
         public MainForm()
         {
@@ -35,114 +39,38 @@ namespace PlantaPiloto
             _variable = new Variable();
             _db_services = new DB_services();
             Switch_language();
+            _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
         }
 
-        /// <summary>
-        /// Método que carga el formulario
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        #endregion
+
+        #region Form Events
+
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             _sp_services = new SP_services();
-            string[] ports = _sp_services.Ports;
-            cboPort.Items.AddRange(ports);
-            //cboPort.SelectedIndex = 0;
+            this.LoadPorts();
+            btnOpen.Enabled = false;
             btnClose.Enabled = false;
         }
 
         /// <summary>
-        /// Método encargado de abrir una conexión con el puerto serie elegido en el comboBox
+        /// Evento que se ejecuta al cerrarse (justo antes) el formulario
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOpen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _sp_services = new SP_services(_proyect, _cul);
-                _sp_services.SerialPort.PortName = cboPort.Text;
-                _sp_services.OpenConnection();
-                btnOpen.Enabled = false;
-                btnClose.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                btnOpen.Enabled = true;
-                btnClose.Enabled = false;
-                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método encargado de enviar un mensaje a través del puerto serie con el que se tiene conexión
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_sp_services.SerialPort.IsOpen)
-                {
-                    _sp_services.SerialPort.WriteLine(txtMessage.Text);
-                    txtMessage.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que cierra la conexión con el puerto serie 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            btnOpen.Enabled = true;
-            btnClose.Enabled = false;
-            try
-            {
-                _sp_services.SerialPort.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que recibe por el puerto serie y lo muestra en el txtBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReceive_Click(object sender, EventArgs e)
-        {
-            ;
-            try
-            {
-                txtReceive.Clear();
-                if (_sp_services.SerialPort.IsOpen)
-                {
-                    txtReceive.Text = _sp_services.SerialPort.ReadExisting() + Environment.NewLine;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_sp_services.SerialPort.IsOpen)
-            {
                 _sp_services.SerialPort.Close();
-            }
+            if (_threadSaveRow.IsAlive)
+                _threadSaveRow.Abort();
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Método que se encarga de actualizar todas las etiquetas del form a la cultura correspondiente
@@ -196,6 +124,153 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Método que devuelve el idioma seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public CultureInfo getCulture()
+        {
+            return this._cul;
+        }
+
+        /// <summary>
+        /// Método que carga el proyecto recibido en la aplicación
+        /// </summary>
+        private void LoadProyect()
+        {
+            //Creamos la tabla en la BD para el proyecto
+            _db_services.CreateTableDB(_proyect);
+
+            //Mostramos datos
+            this.btnOpen.Enabled = true;
+            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
+            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
+            this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+            //ConfigForm c = new ConfigForm();
+            //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
+            //var iniDrawY = gbProVars.Location.Y + 20;
+
+            //foreach (Variable v in _proyect.Variables)
+            //{
+            //    Label lblVar = new Label();
+            //    lblVar.Name = "lblVar" + v.Name;
+            //    lblVar.Text = v.Name;
+            //    iniDrawY += 20;
+            //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
+            //    gbProVars.Controls.Add(lblVar);
+            //}
+
+        }
+
+        /// <summary>
+        /// Sobrecarga del método LoadProyect() para poder recibir un proyecto como parámetro
+        /// </summary>
+        /// <param name="pr">Proyecto para cargar en MainForm</param>
+        public void LoadProyect(Proyect pr)
+        {
+            _proyect = pr;
+            this.LoadProyect();
+        }
+
+        /// <summary>
+        /// Método que carga los puertos serie activos en el equipo en el ComboBox
+        /// </summary>
+        public void LoadPorts()
+        {
+            string[] ports = _sp_services.Ports;
+            cboPort.Items.AddRange(ports);
+            if (cboPort.Items.Count > 0)
+                cboPort.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Método encargado de abrir una conexión con el puerto serie elegido en el comboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _sp_services = new SP_services(_proyect, _cul);
+                _sp_services.SerialPort.PortName = cboPort.Text;
+                _threadSaveRow.Start();
+                btnOpen.Enabled = false;
+                btnClose.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                btnOpen.Enabled = true;
+                btnClose.Enabled = false;
+                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método encargado de enviar un mensaje a través del puerto serie con el que se tiene conexión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_sp_services.SerialPort.IsOpen)
+                {
+
+                    _sp_services.SerialPort.WriteLine(txtMessage.Text);
+                    txtMessage.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que cierra la conexión con el puerto serie 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            btnOpen.Enabled = true;
+            btnClose.Enabled = false;
+            try
+            {
+                _sp_services.SerialPort.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que recibe por el puerto serie y lo muestra en el txtBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReceive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReceive.Clear();
+                if (_sp_services.SerialPort.IsOpen)
+                {
+                    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
         /// Método que cambia el idioma a inglés
         /// </summary>
         /// <param name="sender"></param>
@@ -217,15 +292,6 @@ namespace PlantaPiloto
             toolStripMenuItemSpanish.Checked = true;
             toolStripMenuItemEnglish.Checked = false;
             Switch_language();
-        }
-
-        /// <summary>
-        /// Método que devuelve el idioma seleccionado
-        /// </summary>
-        /// <returns></returns>
-        public CultureInfo getCulture()
-        {
-            return this._cul;
         }
 
         /// <summary>
@@ -298,47 +364,11 @@ namespace PlantaPiloto
             }
         }
 
-        /// <summary>
-        /// Método que carga el proyecto recibido en la aplicación
-        /// </summary>
-        private void LoadProyect()
-        {
-            //Creamos la tabla en la BD para el proyecto
-            _db_services.CreateTableDB(_proyect);
-
-            //Mostramos datos
-            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
-            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
-            this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
-            //ConfigForm c = new ConfigForm();
-            //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
-            //var iniDrawY = gbProVars.Location.Y + 20;
-
-            //foreach (Variable v in _proyect.Variables)
-            //{
-            //    Label lblVar = new Label();
-            //    lblVar.Name = "lblVar" + v.Name;
-            //    lblVar.Text = v.Name;
-            //    iniDrawY += 20;
-            //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
-            //    gbProVars.Controls.Add(lblVar);
-            //}
-            
-        }
-
-        /// <summary>
-        /// Sobrecarga del método LoadProyect() para poder recibir un proyecto como parámetro
-        /// </summary>
-        /// <param name="pr">Proyecto para cargar en MainForm</param>
-        public void LoadProyect(Proyect pr)
-        {
-            _proyect = pr;
-            this.LoadProyect();
-        }
-
         private void toolStripMenuItemModifyConfig_Click(object sender, EventArgs e)
         {
             _db_services.GetColumnNames(_proyect);
         }
+
+        #endregion
     }
 }
