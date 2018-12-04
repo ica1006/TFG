@@ -27,3 +27,11 @@ Durante la tercera reunión se estuvo revisando los avances hechos hasta el mome
 4. Estudio de posibilidades de BBDD y adición al proyecto.
 5. Estudio de librerías para dibujar gráficas y adición al proyecto.
 6. Posibilidad de añadir variables PDI.
+### 4 de Diciembre de 2018
+En la cuarta reunión se ha expuesto el trabajo realizado hasta el momento y los tutores han comentado ciertas carencias que tenía la aplicación:
+1. Limpieza de _proyect al guardar nueva fila en la BD.
+2. Adición de una nueva columna a la BD con el tiempo que devuelve la placa.
+3. Cambiar la configuración del tamaño del buffer del puerto serie, tanto de lectura como de escritura.
+4. El botón "Gráfico" muestra una ventana en el que se seleccionan las variables que se quieren mostrar graficadas y abre tantas ventanas como variables seleccionadas.
+5. Pasar SonarQube.
+6. Botón "Archivo" guarda en un archivo de texto las variables seleccionadas previamente.

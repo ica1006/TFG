@@ -98,8 +98,8 @@ namespace PlantaPiloto
                 _serialPort.ReadTimeout = 500;
                 _serialPort.WriteTimeout = 500;
                 _serialPort.Open();
-
-                _serialPort.ReadLine();
+                
+                var a = _serialPort.ReadLine();
                 while (_serialPort.IsOpen)
                 {
                     // Lectura del puerto serie
