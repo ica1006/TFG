@@ -34,15 +34,7 @@ namespace PlantaPiloto
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblPorts = new System.Windows.Forms.Label();
             this.cboPort = new System.Windows.Forms.ComboBox();
-            this.btnOpen = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.txtMessage = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.btnReceive = new System.Windows.Forms.Button();
-            this.lblSend = new System.Windows.Forms.Label();
-            this.lblReceive = new System.Windows.Forms.Label();
             this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
-            this.txtReceive = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCreateConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,12 +51,14 @@ namespace PlantaPiloto
             this.toolStripMenuItemHelpHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.gBoxControls = new System.Windows.Forms.GroupBox();
+            this.btnRefreshPorts = new System.Windows.Forms.Button();
             this.btnFile = new System.Windows.Forms.Button();
             this.btnVar = new System.Windows.Forms.Button();
             this.btnChart = new System.Windows.Forms.Button();
             this.btnFinish = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.gBoxProyect = new System.Windows.Forms.GroupBox();
+            this.lblRWVariables = new System.Windows.Forms.Label();
             this.dgvProVars = new System.Windows.Forms.DataGridView();
             this.pbProImg = new System.Windows.Forms.PictureBox();
             this.lblProDesc = new System.Windows.Forms.Label();
@@ -85,7 +79,7 @@ namespace PlantaPiloto
             // lblPorts
             // 
             this.lblPorts.AutoSize = true;
-            this.lblPorts.Location = new System.Drawing.Point(742, 51);
+            this.lblPorts.Location = new System.Drawing.Point(15, 43);
             this.lblPorts.Name = "lblPorts";
             this.lblPorts.Size = new System.Drawing.Size(50, 20);
             this.lblPorts.TabIndex = 0;
@@ -95,88 +89,14 @@ namespace PlantaPiloto
             // 
             this.cboPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(814, 48);
+            this.cboPort.Location = new System.Drawing.Point(84, 41);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(121, 28);
             this.cboPort.TabIndex = 1;
             // 
-            // btnOpen
-            // 
-            this.btnOpen.Location = new System.Drawing.Point(1005, 51);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 35);
-            this.btnOpen.TabIndex = 2;
-            this.btnOpen.Text = "Open";
-            this.btnOpen.UseVisualStyleBackColor = true;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(1106, 52);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 34);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Location = new System.Drawing.Point(812, 92);
-            this.txtMessage.Multiline = true;
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(368, 112);
-            this.txtMessage.TabIndex = 4;
-            // 
-            // btnSend
-            // 
-            this.btnSend.Location = new System.Drawing.Point(1106, 209);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 34);
-            this.btnSend.TabIndex = 5;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
-            // btnReceive
-            // 
-            this.btnReceive.Location = new System.Drawing.Point(1090, 486);
-            this.btnReceive.Name = "btnReceive";
-            this.btnReceive.Size = new System.Drawing.Size(92, 35);
-            this.btnReceive.TabIndex = 7;
-            this.btnReceive.Text = "Receive";
-            this.btnReceive.UseVisualStyleBackColor = true;
-            this.btnReceive.Click += new System.EventHandler(this.btnReceive_Click);
-            // 
-            // lblSend
-            // 
-            this.lblSend.AutoSize = true;
-            this.lblSend.Location = new System.Drawing.Point(742, 92);
-            this.lblSend.Name = "lblSend";
-            this.lblSend.Size = new System.Drawing.Size(51, 20);
-            this.lblSend.TabIndex = 8;
-            this.lblSend.Text = "Send:";
-            // 
-            // lblReceive
-            // 
-            this.lblReceive.AutoSize = true;
-            this.lblReceive.Location = new System.Drawing.Point(723, 283);
-            this.lblReceive.Name = "lblReceive";
-            this.lblReceive.Size = new System.Drawing.Size(70, 20);
-            this.lblReceive.TabIndex = 9;
-            this.lblReceive.Text = "Receive:";
-            // 
             // serialPort2
             // 
             this.serialPort2.PortName = "COM3";
-            // 
-            // txtReceive
-            // 
-            this.txtReceive.Location = new System.Drawing.Point(812, 283);
-            this.txtReceive.Name = "txtReceive";
-            this.txtReceive.Size = new System.Drawing.Size(368, 196);
-            this.txtReceive.TabIndex = 10;
-            this.txtReceive.Text = "";
             // 
             // menuStrip1
             // 
@@ -188,7 +108,7 @@ namespace PlantaPiloto
             this.toolStripMenuItemHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1204, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(928, 33);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -297,75 +217,102 @@ namespace PlantaPiloto
             // 
             // gBoxControls
             // 
+            this.gBoxControls.Controls.Add(this.btnRefreshPorts);
             this.gBoxControls.Controls.Add(this.btnFile);
             this.gBoxControls.Controls.Add(this.btnVar);
             this.gBoxControls.Controls.Add(this.btnChart);
             this.gBoxControls.Controls.Add(this.btnFinish);
             this.gBoxControls.Controls.Add(this.btnStart);
+            this.gBoxControls.Controls.Add(this.cboPort);
+            this.gBoxControls.Controls.Add(this.lblPorts);
             this.gBoxControls.Location = new System.Drawing.Point(12, 51);
             this.gBoxControls.Name = "gBoxControls";
-            this.gBoxControls.Size = new System.Drawing.Size(668, 100);
+            this.gBoxControls.Size = new System.Drawing.Size(902, 100);
             this.gBoxControls.TabIndex = 19;
             this.gBoxControls.TabStop = false;
             this.gBoxControls.Text = "groupBox1";
             // 
+            // btnRefreshPorts
+            // 
+            this.btnRefreshPorts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshPorts.Location = new System.Drawing.Point(216, 40);
+            this.btnRefreshPorts.Name = "btnRefreshPorts";
+            this.btnRefreshPorts.Size = new System.Drawing.Size(94, 37);
+            this.btnRefreshPorts.TabIndex = 22;
+            this.btnRefreshPorts.Text = "Actualizar";
+            this.btnRefreshPorts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRefreshPorts.UseVisualStyleBackColor = true;
+            this.btnRefreshPorts.Click += new System.EventHandler(this.btnRefreshPorts_Click);
+            // 
             // btnFile
             // 
-            this.btnFile.Location = new System.Drawing.Point(486, 38);
+            this.btnFile.Location = new System.Drawing.Point(798, 40);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(76, 37);
             this.btnFile.TabIndex = 21;
-            this.btnFile.Text = "button3";
+            this.btnFile.Text = "Archivo";
             this.btnFile.UseVisualStyleBackColor = true;
             // 
             // btnVar
             // 
-            this.btnVar.Location = new System.Drawing.Point(382, 38);
+            this.btnVar.Location = new System.Drawing.Point(694, 40);
             this.btnVar.Name = "btnVar";
             this.btnVar.Size = new System.Drawing.Size(98, 37);
             this.btnVar.TabIndex = 20;
-            this.btnVar.Text = "button2";
+            this.btnVar.Text = "Variables";
             this.btnVar.UseVisualStyleBackColor = true;
             // 
             // btnChart
             // 
-            this.btnChart.Location = new System.Drawing.Point(302, 38);
+            this.btnChart.Location = new System.Drawing.Point(614, 40);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(76, 37);
             this.btnChart.TabIndex = 19;
-            this.btnChart.Text = "button1";
+            this.btnChart.Text = "Graficar";
             this.btnChart.UseVisualStyleBackColor = true;
             // 
             // btnFinish
             // 
-            this.btnFinish.Location = new System.Drawing.Point(100, 38);
+            this.btnFinish.Location = new System.Drawing.Point(415, 40);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(76, 37);
             this.btnFinish.TabIndex = 18;
-            this.btnFinish.Text = "button2";
+            this.btnFinish.Text = "Fin";
             this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(18, 38);
+            this.btnStart.Location = new System.Drawing.Point(333, 40);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(76, 37);
             this.btnStart.TabIndex = 17;
-            this.btnStart.Text = "button1";
+            this.btnStart.Text = "Inicio";
             this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // gBoxProyect
             // 
+            this.gBoxProyect.Controls.Add(this.lblRWVariables);
             this.gBoxProyect.Controls.Add(this.dgvProVars);
             this.gBoxProyect.Controls.Add(this.pbProImg);
             this.gBoxProyect.Controls.Add(this.lblProDesc);
             this.gBoxProyect.Controls.Add(this.lblProName);
             this.gBoxProyect.Location = new System.Drawing.Point(12, 157);
             this.gBoxProyect.Name = "gBoxProyect";
-            this.gBoxProyect.Size = new System.Drawing.Size(668, 395);
+            this.gBoxProyect.Size = new System.Drawing.Size(902, 503);
             this.gBoxProyect.TabIndex = 20;
             this.gBoxProyect.TabStop = false;
             this.gBoxProyect.Text = "groupBox2";
+            // 
+            // lblRWVariables
+            // 
+            this.lblRWVariables.AutoSize = true;
+            this.lblRWVariables.Location = new System.Drawing.Point(329, 35);
+            this.lblRWVariables.Name = "lblRWVariables";
+            this.lblRWVariables.Size = new System.Drawing.Size(106, 20);
+            this.lblRWVariables.TabIndex = 23;
+            this.lblRWVariables.Text = "VariablesR/W";
             // 
             // dgvProVars
             // 
@@ -373,38 +320,37 @@ namespace PlantaPiloto
             this.dgvProVars.AllowUserToDeleteRows = false;
             this.dgvProVars.AllowUserToOrderColumns = true;
             this.dgvProVars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProVars.Location = new System.Drawing.Point(302, 72);
+            this.dgvProVars.Location = new System.Drawing.Point(333, 63);
             this.dgvProVars.Name = "dgvProVars";
             this.dgvProVars.ReadOnly = true;
             this.dgvProVars.RowTemplate.Height = 28;
-            this.dgvProVars.Size = new System.Drawing.Size(344, 249);
+            this.dgvProVars.Size = new System.Drawing.Size(541, 420);
             this.dgvProVars.TabIndex = 22;
             // 
             // pbProImg
             // 
             this.pbProImg.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbProImg.InitialImage")));
-            this.pbProImg.Location = new System.Drawing.Point(18, 72);
+            this.pbProImg.Location = new System.Drawing.Point(19, 203);
             this.pbProImg.Name = "pbProImg";
-            this.pbProImg.Size = new System.Drawing.Size(256, 255);
+            this.pbProImg.Size = new System.Drawing.Size(286, 280);
             this.pbProImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProImg.TabIndex = 21;
             this.pbProImg.TabStop = false;
             // 
             // lblProDesc
             // 
-            this.lblProDesc.AutoSize = true;
-            this.lblProDesc.Location = new System.Drawing.Point(297, 35);
+            this.lblProDesc.Location = new System.Drawing.Point(15, 74);
+            this.lblProDesc.MaximumSize = new System.Drawing.Size(545, 217);
             this.lblProDesc.Name = "lblProDesc";
-            this.lblProDesc.Size = new System.Drawing.Size(51, 20);
+            this.lblProDesc.Size = new System.Drawing.Size(290, 104);
             this.lblProDesc.TabIndex = 20;
             this.lblProDesc.Text = "label1";
             // 
             // lblProName
             // 
-            this.lblProName.AutoSize = true;
-            this.lblProName.Location = new System.Drawing.Point(14, 35);
+            this.lblProName.Location = new System.Drawing.Point(15, 36);
             this.lblProName.Name = "lblProName";
-            this.lblProName.Size = new System.Drawing.Size(51, 20);
+            this.lblProName.Size = new System.Drawing.Size(290, 38);
             this.lblProName.TabIndex = 19;
             this.lblProName.Text = "label1";
             // 
@@ -426,19 +372,9 @@ namespace PlantaPiloto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 565);
+            this.ClientSize = new System.Drawing.Size(928, 671);
             this.Controls.Add(this.gBoxProyect);
             this.Controls.Add(this.gBoxControls);
-            this.Controls.Add(this.txtReceive);
-            this.Controls.Add(this.lblReceive);
-            this.Controls.Add(this.lblSend);
-            this.Controls.Add(this.btnReceive);
-            this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.cboPort);
-            this.Controls.Add(this.lblPorts);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -448,6 +384,7 @@ namespace PlantaPiloto
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.gBoxControls.ResumeLayout(false);
+            this.gBoxControls.PerformLayout();
             this.gBoxProyect.ResumeLayout(false);
             this.gBoxProyect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProVars)).EndInit();
@@ -463,15 +400,7 @@ namespace PlantaPiloto
 
         private System.Windows.Forms.Label lblPorts;
         private System.Windows.Forms.ComboBox cboPort;
-        private System.Windows.Forms.Button btnOpen;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.Button btnReceive;
-        private System.Windows.Forms.Label lblSend;
-        private System.Windows.Forms.Label lblReceive;
         private System.IO.Ports.SerialPort serialPort2;
-        private System.Windows.Forms.RichTextBox txtReceive;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateConfig;
@@ -502,6 +431,8 @@ namespace PlantaPiloto
         private DataGridView dgvProVars;
         private BindingSource tFGDBDataSetBindingSource;
         private TFG_DBDataSet tFG_DBDataSet;
+        private Button btnRefreshPorts;
+        private Label lblRWVariables;
     }
 }
 

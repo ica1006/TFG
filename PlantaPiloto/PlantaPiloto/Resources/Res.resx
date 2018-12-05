@@ -306,4 +306,10 @@
   <data name="ErrorSerialPortConnectionKey" xml:space="preserve">
     <value>Error en la conexión</value>
   </data>
+  <data name="lblRWVariables_txt" xml:space="preserve">
+    <value>Variables modificables</value>
+  </data>
+  <data name="btnRefreshPorts_txt" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
 </root>

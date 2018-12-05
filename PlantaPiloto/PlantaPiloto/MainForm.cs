@@ -46,13 +46,12 @@ namespace PlantaPiloto
 
         #region Form Events
 
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             _sp_services = new SP_services();
             this.LoadPorts();
-            btnOpen.Enabled = false;
-            btnClose.Enabled = false;
+            this.ViewNoProyect();
         }
 
         /// <summary>
@@ -104,19 +103,15 @@ namespace PlantaPiloto
             this.toolStripMenuItemSerie.Text = _res_man.GetString("toolStripMenuItemSerie_txt", _cul);
             this.toolStripMenuItemSpanish.Text = _res_man.GetString("toolStripMenuItemSpanish_txt", _cul);
             this.lblPorts.Text = _res_man.GetString("lblPorts_txt", _cul);
-            this.lblReceive.Text = _res_man.GetString("lblReceive_txt", _cul);
-            this.lblSend.Text = _res_man.GetString("lblSend_txt", _cul);
-            this.btnClose.Text = _res_man.GetString("btnClose_txt", _cul);
-            this.btnOpen.Text = _res_man.GetString("btnOpen_txt", _cul);
-            this.btnReceive.Text = _res_man.GetString("btnReceive_txt", _cul);
-            this.btnSend.Text = _res_man.GetString("btnSend_txt", _cul);
+            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul);
+            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul);
+            this.lblRWVariables.Text = _res_man.GetString("lblRWVariables_txt", _cul);
             this.btnStart.Text = _res_man.GetString("btnStart_txt", _cul);
             this.btnFinish.Text = _res_man.GetString("btnFinish_txt", _cul);
             this.btnChart.Text = _res_man.GetString("btnChart_txt", _cul);
             this.btnVar.Text = _res_man.GetString("btnVar_txt", _cul);
             this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
-            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul);
-            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul);
+            this.btnRefreshPorts.Text = _res_man.GetString("btnRefreshPorts_txt", _cul);
             this.gBoxControls.Text = _res_man.GetString("gBoxControls_txt", _cul);
             this.gBoxProyect.Text = _res_man.GetString("gBoxProyect_txt", _cul);
 
@@ -141,7 +136,7 @@ namespace PlantaPiloto
             _db_services.CreateTableDB(_proyect);
 
             //Mostramos datos
-            this.btnOpen.Enabled = true;
+            this.ViewConnectionClose();
             this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
             this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
             this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
@@ -176,11 +171,117 @@ namespace PlantaPiloto
         /// </summary>
         public void LoadPorts()
         {
+            _sp_services = new SP_services();
             string[] ports = _sp_services.Ports;
+            cboPort.Items.Clear();
             cboPort.Items.AddRange(ports);
             if (cboPort.Items.Count > 0)
+            {
                 cboPort.SelectedIndex = 0;
+                if (_proyect.Name != null)
+                    this.ViewConnectionClose();
+            }
+            else
+            {
+                if (_proyect.Name != null)
+                    this.ViewNoConnection();
+                else
+                    this.ViewNoProyect();
+            }
         }
+
+        #region Métodos modificadores del estado de los elementos de la vista
+
+        /// <summary>
+        /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
+        /// la aplicación no tiene cargado un proyecto.
+        /// </summary>
+        private void ViewNoProyect()
+        {
+            btnStart.Enabled = false;
+            btnFinish.Enabled = false;
+            btnChart.Enabled = false;
+            btnVar.Enabled = false;
+            btnFile.Enabled = false;
+            btnRefreshPorts.Enabled = true;
+            lblProName.Visible = false;
+            lblProDesc.Visible = false;
+            lblRWVariables.Visible = false;
+            dgvProVars.Visible = false;
+        }
+        
+        /// <summary>
+        /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
+        /// la aplicación no tiene cargado un proyecto.
+        /// </summary>
+        private void ViewNoConnection()
+        {
+            btnStart.Enabled = false;
+            btnFinish.Enabled = false;
+            btnChart.Enabled = false;
+            btnVar.Enabled = false;
+            btnFile.Enabled = false;
+            btnRefreshPorts.Enabled = true;
+            lblProName.Visible = true;
+            lblProDesc.Visible = true;
+            lblRWVariables.Visible = true;
+            dgvProVars.Visible = true;
+        }
+
+        /// <summary>
+        /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
+        /// la aplicación tiene cargado un proyecto y la conexión con el puerto serie abierta.
+        /// </summary>
+        private void ViewConnectionOpen()
+        {
+            btnStart.Enabled = false;
+            btnFinish.Enabled = true;
+            btnChart.Enabled = true;
+            btnVar.Enabled = true;
+            btnFile.Enabled = true;
+            btnRefreshPorts.Enabled = false;
+            lblProName.Visible = true;
+            lblRWVariables.Visible = true;
+            lblProDesc.Visible = true;
+            dgvProVars.Visible = true;
+        }
+
+        /// <summary>
+        /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
+        /// la aplicación tiene cargado un proyecto y la conexión con el puerto serie cerrada.
+        /// </summary>
+        private void ViewConnectionClose()
+        {
+            if (cboPort.Items.Count != 0)
+            {
+                btnStart.Enabled = true;
+                btnFinish.Enabled = false;
+                btnChart.Enabled = true;
+                btnVar.Enabled = true;
+                btnFile.Enabled = true;
+                btnRefreshPorts.Enabled = true;
+                lblProName.Visible = true;
+                lblProDesc.Visible = true;
+                lblRWVariables.Visible = true;
+                dgvProVars.Visible = true;
+            }
+            else
+            {
+                btnStart.Enabled = false;
+                btnFinish.Enabled = false;
+                btnChart.Enabled = true;
+                btnVar.Enabled = true;
+                btnFile.Enabled = true;
+                btnRefreshPorts.Enabled = true;
+                lblProName.Visible = true;
+                lblProDesc.Visible = true;
+                lblRWVariables.Visible = true;
+                dgvProVars.Visible = true;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Events
@@ -190,20 +291,20 @@ namespace PlantaPiloto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOpen_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             try
             {
                 _sp_services = new SP_services(_proyect, _cul);
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow.Start();
-                btnOpen.Enabled = false;
-                btnClose.Enabled = true;
+                btnStart.Enabled = false;
+                btnFinish.Enabled = true;
             }
             catch (Exception ex)
             {
-                btnOpen.Enabled = true;
-                btnClose.Enabled = false;
+                btnStart.Enabled = true;
+                btnFinish.Enabled = false;
                 MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -220,8 +321,8 @@ namespace PlantaPiloto
                 if (_sp_services.SerialPort.IsOpen)
                 {
 
-                    _sp_services.SerialPort.WriteLine(txtMessage.Text);
-                    txtMessage.Clear();
+                    //_sp_services.SerialPort.WriteLine(txtMessage.Text);
+                    //txtMessage.Clear();
                 }
             }
             catch (Exception ex)
@@ -235,13 +336,13 @@ namespace PlantaPiloto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnFinish_Click(object sender, EventArgs e)
         {
-            btnOpen.Enabled = true;
-            btnClose.Enabled = false;
             try
             {
                 _sp_services.SerialPort.Close();
+                btnStart.Enabled = true;
+                btnFinish.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -258,11 +359,11 @@ namespace PlantaPiloto
         {
             try
             {
-                txtReceive.Clear();
-                if (_sp_services.SerialPort.IsOpen)
-                {
-                    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
-                }
+                //txtReceive.Clear();
+                //if (_sp_services.SerialPort.IsOpen)
+                //{
+                //    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
+                //}
             }
             catch (Exception ex)
             {
@@ -317,7 +418,7 @@ namespace PlantaPiloto
             openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
             openFileDialog1.Title = _res_man.GetString("showDialogTitle", _cul);
             openFileDialog1.FileName = "";
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -369,6 +470,18 @@ namespace PlantaPiloto
             _db_services.GetColumnNames(_proyect);
         }
 
+        /// <summary>
+        /// Evento que recoge la llamada para actualizar la lista de puertos serie activos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRefreshPorts_Click(object sender, EventArgs e)
+        {
+            this.LoadPorts();
+        }
+
+
         #endregion
+
     }
 }

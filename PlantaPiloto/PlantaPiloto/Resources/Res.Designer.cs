@@ -142,6 +142,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actualizar.
+        /// </summary>
+        public static string btnRefreshPorts_txt {
+            get {
+                return ResourceManager.GetString("btnRefreshPorts_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aceptar.
         /// </summary>
         public static string btnSaveConfig_txt {
@@ -354,6 +363,15 @@ namespace PlantaPiloto.Language {
         public static string lblReceive_txt {
             get {
                 return ResourceManager.GetString("lblReceive_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables modificables.
+        /// </summary>
+        public static string lblRWVariables_txt {
+            get {
+                return ResourceManager.GetString("lblRWVariables_txt", resourceCulture);
             }
         }
         
