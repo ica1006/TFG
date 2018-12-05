@@ -204,12 +204,13 @@ namespace PlantaPiloto
             btnVar.Enabled = false;
             btnFile.Enabled = false;
             btnRefreshPorts.Enabled = true;
+            cboPort.Enabled = true;
             lblProName.Visible = false;
             lblProDesc.Visible = false;
             lblRWVariables.Visible = false;
             dgvProVars.Visible = false;
         }
-        
+
         /// <summary>
         /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
         /// la aplicación no tiene cargado un proyecto.
@@ -222,6 +223,7 @@ namespace PlantaPiloto
             btnVar.Enabled = false;
             btnFile.Enabled = false;
             btnRefreshPorts.Enabled = true;
+            cboPort.Enabled = true;
             lblProName.Visible = true;
             lblProDesc.Visible = true;
             lblRWVariables.Visible = true;
@@ -240,6 +242,7 @@ namespace PlantaPiloto
             btnVar.Enabled = true;
             btnFile.Enabled = true;
             btnRefreshPorts.Enabled = false;
+            cboPort.Enabled = false;
             lblProName.Visible = true;
             lblRWVariables.Visible = true;
             lblProDesc.Visible = true;
@@ -260,6 +263,7 @@ namespace PlantaPiloto
                 btnVar.Enabled = true;
                 btnFile.Enabled = true;
                 btnRefreshPorts.Enabled = true;
+                cboPort.Enabled = true;
                 lblProName.Visible = true;
                 lblProDesc.Visible = true;
                 lblRWVariables.Visible = true;
@@ -273,6 +277,7 @@ namespace PlantaPiloto
                 btnVar.Enabled = true;
                 btnFile.Enabled = true;
                 btnRefreshPorts.Enabled = true;
+                cboPort.Enabled = true;
                 lblProName.Visible = true;
                 lblProDesc.Visible = true;
                 lblRWVariables.Visible = true;
@@ -298,13 +303,11 @@ namespace PlantaPiloto
                 _sp_services = new SP_services(_proyect, _cul);
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow.Start();
-                btnStart.Enabled = false;
-                btnFinish.Enabled = true;
+                this.ViewConnectionOpen();
             }
             catch (Exception ex)
             {
-                btnStart.Enabled = true;
-                btnFinish.Enabled = false;
+                this.ViewConnectionClose();
                 MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

@@ -110,8 +110,13 @@ namespace PlantaPiloto
                     // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
                     // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
                     if (_proyect.Variables.Count(p => p.Value == null) == 0)
+                    {
                         _db_services.SaveRow(_proyect);
-                        
+                        foreach (Variable v in _proyect.Variables)
+                        {
+                            v.Value = null;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
