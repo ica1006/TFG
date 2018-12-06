@@ -196,6 +196,42 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardar.
+        /// </summary>
+        public static string dgvColumnSave {
+            get {
+                return ResourceManager.GetString("dgvColumnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable.
+        /// </summary>
+        public static string dgvColumnVarName {
+            get {
+                return ResourceManager.GetString("dgvColumnVarName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nuevo valor.
+        /// </summary>
+        public static string dgvColumnVarNewValue {
+            get {
+                return ResourceManager.GetString("dgvColumnVarNewValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valor actual.
+        /// </summary>
+        public static string dgvColumnVarOldValue {
+            get {
+                return ResourceManager.GetString("dgvColumnVarOldValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo no válido.
         /// </summary>
         public static string ErrorFileNoValid {

@@ -13,6 +13,7 @@ using System.Resources;
 using System.IO;
 using PlantaPiloto.Enums;
 using System.Threading;
+using System.Timers;
 
 namespace PlantaPiloto
 {
@@ -25,6 +26,9 @@ namespace PlantaPiloto
         private DB_services _db_services;
         private SP_services _sp_services;
         private Thread _threadSaveRow;
+        private System.Timers.Timer _timerRefreshDataGrid;
+        private Proyect rowsSP;
+        delegate void StringArgReturningVoidDelegate(Proyect rows);
 
         #region Constructor
 
@@ -40,6 +44,9 @@ namespace PlantaPiloto
             _db_services = new DB_services();
             Switch_language();
             _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
+            _timerRefreshDataGrid = new System.Timers.Timer(2000);
+            _timerRefreshDataGrid.Enabled = false;
+            _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
         }
 
         #endregion
@@ -114,6 +121,9 @@ namespace PlantaPiloto
             this.btnRefreshPorts.Text = _res_man.GetString("btnRefreshPorts_txt", _cul);
             this.gBoxControls.Text = _res_man.GetString("gBoxControls_txt", _cul);
             this.gBoxProyect.Text = _res_man.GetString("gBoxProyect_txt", _cul);
+            this.dgvProVars.Columns[0].Name = _res_man.GetString("dgvColumnVarName", _cul);
+            this.dgvProVars.Columns[1].Name = _res_man.GetString("dgvColumnVarOldValue", _cul);
+            this.dgvProVars.Columns[2].Name = _res_man.GetString("dgvColumnVarNewValue", _cul);
 
             #endregion
         }
@@ -132,27 +142,43 @@ namespace PlantaPiloto
         /// </summary>
         private void LoadProyect()
         {
-            //Creamos la tabla en la BD para el proyecto
-            _db_services.CreateTableDB(_proyect);
+            try
+            {
+                if (_proyect.Name != null)
+                {
+                    //Creamos la tabla en la BD para el proyecto
+                    _db_services.CreateTableDB(_proyect);
 
-            //Mostramos datos
-            this.ViewConnectionClose();
-            this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
-            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
-            this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
-            //ConfigForm c = new ConfigForm();
-            //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
-            //var iniDrawY = gbProVars.Location.Y + 20;
+                    //Mostramos datos
+                    this.ViewConnectionClose();
+                    this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
+                    this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
+                    this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+                    //Se muestran sólo las variables que son de escritura
+                    this.dgvProVars.Rows.Add(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count());
+                    for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
+                        this.dgvProVars[0,i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
 
-            //foreach (Variable v in _proyect.Variables)
-            //{
-            //    Label lblVar = new Label();
-            //    lblVar.Name = "lblVar" + v.Name;
-            //    lblVar.Text = v.Name;
-            //    iniDrawY += 20;
-            //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
-            //    gbProVars.Controls.Add(lblVar);
-            //}
+                    //ConfigForm c = new ConfigForm();
+                    //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
+                    //var iniDrawY = gbProVars.Location.Y + 20;
+
+                    //foreach (Variable v in _proyect.Variables)
+                    //{
+                    //    Label lblVar = new Label();
+                    //    lblVar.Name = "lblVar" + v.Name;
+                    //    lblVar.Text = v.Name;
+                    //    iniDrawY += 20;
+                    //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
+                    //    gbProVars.Controls.Add(lblVar);
+                    //}
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -285,6 +311,54 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que rellena el data grid view con las variables modificables del proyecto
+        /// </summary>
+        private void TimerElapsedEvent(object source, ElapsedEventArgs e)
+        {
+            try
+            {
+                ////_threadGetLastRow.Start();
+                //_db_services = new DB_services();
+                //rowsDB = _db_services.GetLastRowValue(_proyect);
+                rowsSP = _sp_services.LastRow;
+                this.FillDataGridView(rowsSP);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que actualiza la columna del dataGrid que contiene los valores actuales que recibe de la placa
+        /// </summary>
+        /// <param name="rows">Proyecto que guarda todas las variables con su último valor</param>
+        private void FillDataGridView(Proyect rows)
+        {
+            try
+            {
+                if (this.dgvProVars.InvokeRequired)
+                {
+                    StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(FillDataGridView);
+                    this.Invoke(d, new object[] { rows });
+                }
+                else
+                {             
+                    //REHACER - LOS FOR EN ORDEN INVERSO
+                    for (int i = 0; i < rows.Variables.Count; i++)
+                        for( int j = 0; j < dgvProVars.Rows.Count; j++)
+                            if(dgvProVars[0,j].Value.ToString() == rows.Variables[i].Name)
+                                dgvProVars[1, j].Value = rows.Variables[i].Value;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #endregion
@@ -304,6 +378,7 @@ namespace PlantaPiloto
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow.Start();
                 this.ViewConnectionOpen();
+                this._timerRefreshDataGrid.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -344,8 +419,7 @@ namespace PlantaPiloto
             try
             {
                 _sp_services.SerialPort.Close();
-                btnStart.Enabled = true;
-                btnFinish.Enabled = false;
+                _timerRefreshDataGrid.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -470,7 +544,6 @@ namespace PlantaPiloto
 
         private void toolStripMenuItemModifyConfig_Click(object sender, EventArgs e)
         {
-            _db_services.GetColumnNames(_proyect);
         }
 
         /// <summary>

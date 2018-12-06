@@ -60,6 +60,16 @@ namespace PlantaPiloto
             set { _cul = value; OnPropertyChanged("Cul"); }
         }
 
+        private Proyect _lastRow;
+        /// <summary>
+        /// Propiedad que almacena el valor de la última iteración recibida
+        /// </summary>
+        public Proyect LastRow
+        {
+            get { return _lastRow; }
+            set { _lastRow = value; OnPropertyChanged("LastRow"); }
+        }
+
         public Proyect _proyect { get; set; }
 
         public DB_services _db_services { get; set; }
@@ -73,6 +83,7 @@ namespace PlantaPiloto
             _ports = SerialPort.GetPortNames();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services();
+            _lastRow = new Proyect();
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
@@ -83,6 +94,7 @@ namespace PlantaPiloto
             _proyect = pr;
             _cul = cul;
             _db_services = new DB_services();
+            _lastRow = new Proyect();
         }
         #endregion
 
@@ -106,14 +118,20 @@ namespace PlantaPiloto
                     string[] spLine = _serialPort.ReadLine().Split(';');
                     // Asignación del valor a la variable
                     if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
+                    {
+                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Time = Int32.Parse(spLine[0]);
                         _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
+                    }
                     // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
                     // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
                     if (_proyect.Variables.Count(p => p.Value == null) == 0)
                     {
                         _db_services.SaveRow(_proyect);
+                        _lastRow = new Proyect();
                         foreach (Variable v in _proyect.Variables)
                         {
+                            _lastRow = _proyect;
+                            v.Time = null;
                             v.Value = null;
                         }
                     }

@@ -34,7 +34,7 @@ namespace PlantaPiloto
                             command.ExecuteNonQuery();
 
                     // Create table string
-                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL";
+                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [int] NOT NULL";
                     foreach (Variable v in proyect.Variables)
                     {
                         sqlStr += ", [" + v.Name + "] ";
@@ -72,9 +72,9 @@ namespace PlantaPiloto
         /// Método que obtiene el nombre de las columnas del proyecto que se pasa por parámetro
         /// </summary>
         /// <param name="proyect">Proyecto del que se quieren conocer los nombres de las columnas</param>
-        public void GetColumnNames(Proyect proyect)
+        public string[] GetLastRowValue(Proyect proyect)
         {
-            List<string> columns = new List<string>();
+            string[] row = null;
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
                 try
@@ -88,19 +88,22 @@ namespace PlantaPiloto
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
                     if ((int)cmd.ExecuteScalar() == 1)
-                        using (SqlCommand command = new SqlCommand("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS " +
-                            "WHERE TABLE_CATALOG = 'TFG_DB' AND TABLE_NAME = '" + proyect.Name + "'", con))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
                             while (columnsDataReader.Read())
                             {
-                                columns.Add(String.Format("{0}", columnsDataReader[0]));
+                                row = new string[columnsDataReader.FieldCount];
+                                for (int i = 0; i < columnsDataReader.FieldCount; i++)
+                                    row[i] = String.Format("{0}", columnsDataReader[i]);
                             }
                         }
+                    return row;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    return row;
                 }
                 finally
                 {
@@ -134,14 +137,12 @@ namespace PlantaPiloto
                         " AND TABLE_NAME = '" + proyect.Name + "'";
                     SqlCommand cmd = new SqlCommand(sCmd, con);
                     // Cadena para insertar una nueva fila
-                    string insertCmd = "INSERT INTO [dbo].[" + proyect.Name + "](";
+                    string insertCmd = "INSERT INTO [dbo].[" + proyect.Name + "]([Time]";
                     foreach (Variable v in proyect.Variables)
-                        insertCmd += "[" + v.Name + "],";
-                    insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
-                    insertCmd += ") VALUES (";
+                        insertCmd += ",[" + v.Name + "]";
+                    insertCmd += ") VALUES (" + proyect.Variables[0].Time;
                     foreach (Variable v in proyect.Variables)
-                        insertCmd += v.Type == EnumVarType.String ? "'"+v.Value.ToString() + "',": v.Value + ",";
-                    insertCmd = insertCmd.Substring(0, insertCmd.Length - 1);
+                        insertCmd += v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value ;
                     insertCmd += ")";
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe

@@ -312,4 +312,16 @@
   <data name="btnRefreshPorts_txt" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="dgvColumnVarName" xml:space="preserve">
+    <value>Variable</value>
+  </data>
+  <data name="dgvColumnVarOldValue" xml:space="preserve">
+    <value>Current value</value>
+  </data>
+  <data name="dgvColumnVarNewValue" xml:space="preserve">
+    <value>New value</value>
+  </data>
+  <data name="dgvColumnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

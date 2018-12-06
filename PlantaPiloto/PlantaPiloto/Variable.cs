@@ -159,6 +159,18 @@ namespace PlantaPiloto
             set { _value = value; OnPropertyChanged("Value"); }
         }
 
+        private int? _time;
+
+        /// <summary>
+        /// Propiedad que almacena el momento en el que se definió la variable
+        /// </summary>
+        public int? Time
+        {
+            get { return _time; }
+            set { _time = value; OnPropertyChanged("Time"); }
+        }
+
+
         #endregion
 
         #region Constructor 

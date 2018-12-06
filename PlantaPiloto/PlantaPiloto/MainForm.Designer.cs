@@ -326,6 +326,7 @@ namespace PlantaPiloto
             this.dgvProVars.RowTemplate.Height = 28;
             this.dgvProVars.Size = new System.Drawing.Size(541, 420);
             this.dgvProVars.TabIndex = 22;
+            this.dgvProVars.ColumnCount = 3;
             // 
             // pbProImg
             // 
