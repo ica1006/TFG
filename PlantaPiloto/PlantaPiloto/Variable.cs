@@ -148,12 +148,12 @@ namespace PlantaPiloto
             set { _communicationType = value; OnPropertyChanged("ConnectionType"); }
         }
 
-        private object _value;
+        private string _value;
 
         /// <summary>
         /// Valor de la variable
         /// </summary>
-        public object Value
+        public string Value
         {
             get { return _value; }
             set { _value = value; OnPropertyChanged("Value"); }

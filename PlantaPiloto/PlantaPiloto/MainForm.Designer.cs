@@ -67,6 +67,9 @@ namespace PlantaPiloto
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tFG_DBDataSet = new PlantaPiloto.TFG_DBDataSet();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
@@ -320,13 +323,16 @@ namespace PlantaPiloto
             this.dgvProVars.AllowUserToDeleteRows = false;
             this.dgvProVars.AllowUserToOrderColumns = true;
             this.dgvProVars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProVars.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
             this.dgvProVars.Location = new System.Drawing.Point(333, 63);
             this.dgvProVars.Name = "dgvProVars";
-            this.dgvProVars.ReadOnly = true;
             this.dgvProVars.RowTemplate.Height = 28;
             this.dgvProVars.Size = new System.Drawing.Size(541, 420);
             this.dgvProVars.TabIndex = 22;
-            this.dgvProVars.ColumnCount = 3;
+            this.dgvProVars.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProVars_CellValueChanged);
             // 
             // pbProImg
             // 
@@ -368,6 +374,18 @@ namespace PlantaPiloto
             // 
             this.tFGDBDataSetBindingSource.DataSource = this.tFG_DBDataSet;
             this.tFGDBDataSetBindingSource.Position = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // MainForm
             // 
@@ -434,6 +452,9 @@ namespace PlantaPiloto
         private TFG_DBDataSet tFG_DBDataSet;
         private Button btnRefreshPorts;
         private Label lblRWVariables;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
 

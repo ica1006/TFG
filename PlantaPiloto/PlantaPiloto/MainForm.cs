@@ -155,9 +155,10 @@ namespace PlantaPiloto
                     this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
                     this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
                     //Se muestran sólo las variables que son de escritura
+                    this.dgvProVars.Rows.Clear();
                     this.dgvProVars.Rows.Add(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count());
                     for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
-                        this.dgvProVars[0,i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
+                        this.dgvProVars[0, i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
 
                     //ConfigForm c = new ConfigForm();
                     //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
@@ -210,9 +211,75 @@ namespace PlantaPiloto
             else
             {
                 if (_proyect.Name != null)
-                    this.ViewNoConnection();
+                    this.ViewConnectionClose();
                 else
                     this.ViewNoProyect();
+            }
+        }
+
+        /// <summary>
+        /// Método que rellena el data grid view con las variables modificables del proyecto
+        /// </summary>
+        private void TimerElapsedEvent(object source, ElapsedEventArgs e)
+        {
+            try
+            {
+                ////_threadGetLastRow.Start();
+                //_db_services = new DB_services();
+                //rowsDB = _db_services.GetLastRowValue(_proyect);
+                rowsSP = _sp_services.LastRow;
+                if (rowsSP.Variables.Where(p => p.Value == null).Count() == 0)
+                    this.FillDataGridView(rowsSP);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que actualiza la columna del dataGrid que contiene los valores actuales que recibe de la placa
+        /// </summary>
+        /// <param name="rows">Proyecto que guarda todas las variables con su último valor</param>
+        private void FillDataGridView(Proyect rows)
+        {
+            try
+            {
+                if (this.dgvProVars.InvokeRequired)
+                {
+                    //Para evitar concurrencia se llama a un delegado puesto que los datos se han obtenido en otro hilo
+                    StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(FillDataGridView);
+                    this.Invoke(d, new object[] { rows });
+                }
+                else
+                {
+                    for (int j = 0; j < dgvProVars.Rows.Count; j++)
+                        for (int i = 0; i < rows.Variables.Count; i++)
+                            if (dgvProVars[0, j].Value.ToString() == rows.Variables[i].Name)
+                                dgvProVars[1, j].Value = rows.Variables[i].Value;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que envía el valor de una nueva variable al puerto serie
+        /// </summary>
+        /// <param name="cell">Celda que contiene el nuevo valor de la variable</param>
+        private void SendVarSP(DataGridViewCellEventArgs cell)
+        {
+            try
+            {
+                _sp_services.SerialPort.WriteLine(dgvProVars[0, cell.RowIndex].Value.ToString() + ";"
+                    + dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -308,54 +375,6 @@ namespace PlantaPiloto
                 lblProDesc.Visible = true;
                 lblRWVariables.Visible = true;
                 dgvProVars.Visible = true;
-            }
-        }
-
-        /// <summary>
-        /// Método que rellena el data grid view con las variables modificables del proyecto
-        /// </summary>
-        private void TimerElapsedEvent(object source, ElapsedEventArgs e)
-        {
-            try
-            {
-                ////_threadGetLastRow.Start();
-                //_db_services = new DB_services();
-                //rowsDB = _db_services.GetLastRowValue(_proyect);
-                rowsSP = _sp_services.LastRow;
-                this.FillDataGridView(rowsSP);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que actualiza la columna del dataGrid que contiene los valores actuales que recibe de la placa
-        /// </summary>
-        /// <param name="rows">Proyecto que guarda todas las variables con su último valor</param>
-        private void FillDataGridView(Proyect rows)
-        {
-            try
-            {
-                if (this.dgvProVars.InvokeRequired)
-                {
-                    StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(FillDataGridView);
-                    this.Invoke(d, new object[] { rows });
-                }
-                else
-                {             
-                    //REHACER - LOS FOR EN ORDEN INVERSO
-                    for (int i = 0; i < rows.Variables.Count; i++)
-                        for( int j = 0; j < dgvProVars.Rows.Count; j++)
-                            if(dgvProVars[0,j].Value.ToString() == rows.Variables[i].Name)
-                                dgvProVars[1, j].Value = rows.Variables[i].Value;
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -556,8 +575,28 @@ namespace PlantaPiloto
             this.LoadPorts();
         }
 
+        /// <summary>
+        /// Evento que actúa al cambiar el valor de una celda
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvProVars_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if(e.ColumnIndex == 2 && dgvProVars[e.ColumnIndex,e.RowIndex].Value.ToString() != "")
+                {
+                    var c = dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString();
+                    this.SendVarSP(e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         #endregion
-
     }
 }

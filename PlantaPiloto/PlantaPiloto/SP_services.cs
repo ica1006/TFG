@@ -130,7 +130,8 @@ namespace PlantaPiloto
                         _lastRow = new Proyect();
                         foreach (Variable v in _proyect.Variables)
                         {
-                            _lastRow = _proyect;
+                            _lastRow.Variables.Add(new Variable() {
+                                Name = v.Name, Access = v.Access, Time = v.Time, Value = v.Value});
                             v.Time = null;
                             v.Value = null;
                         }
