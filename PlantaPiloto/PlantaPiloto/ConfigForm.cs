@@ -341,7 +341,7 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Método que controla que el caracter introducido sea un número, "," o ".".
+        /// Método que controla que el caracter introducido sea un número o ".".
         /// </summary>
         /// <param name="sender">Elemento que en el que ocurre la acción</param>
         /// <param name="e">Evento que desencadena la acción</param>

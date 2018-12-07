@@ -47,6 +47,8 @@ namespace PlantaPiloto
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
             _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
+            dgvProVars.Columns[0].ReadOnly = true;
+            dgvProVars.Columns[1].ReadOnly = true;
         }
 
         #endregion
@@ -274,8 +276,18 @@ namespace PlantaPiloto
         {
             try
             {
-                _sp_services.SerialPort.WriteLine(dgvProVars[0, cell.RowIndex].Value.ToString() + ";"
-                    + dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString());
+                if (_proyect.Variables.FirstOrDefault(p => p.Name == dgvProVars[0, cell.RowIndex].Value.ToString()).Type != EnumVarType.String)
+                {
+                    float val;
+                    if (float.TryParse(dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString(), out val))
+                    {
+                        _sp_services.SerialPort.WriteLine(dgvProVars[0, cell.RowIndex].Value.ToString() + ";"
+                            + dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString());
+                    }
+                }
+                else
+                    _sp_services.SerialPort.WriteLine(dgvProVars[0, cell.RowIndex].Value.ToString() + ";"
+                                    + dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -584,7 +596,7 @@ namespace PlantaPiloto
         {
             try
             {
-                if(e.ColumnIndex == 2 && dgvProVars[e.ColumnIndex,e.RowIndex].Value.ToString() != "")
+                if (e.ColumnIndex == 2 && dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString() != "")
                 {
                     var c = dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString();
                     this.SendVarSP(e);
