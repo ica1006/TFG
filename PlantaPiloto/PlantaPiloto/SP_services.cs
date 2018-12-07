@@ -117,10 +117,14 @@ namespace PlantaPiloto
                     // Lectura del puerto serie
                     string[] spLine = _serialPort.ReadLine().Split(';');
                     // Asignación del valor a la variable
+
+
+                    //CAMBIAR ASIGNACIÓN DE VALORES DEPENDIENDO SI SON DE LECTURA O ESCRITURA
+                    //VARIABLES DE ESCRITURA NO DEVUELVEN VALOR, HAY QUE ASIGNARLES EL VALOR DE VAR_ECO
                     if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
                     {
-                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Time = Int32.Parse(spLine[0]);
-                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
+                        _proyect.Variables.FirstOrDefault(p => p.Name  == spLine[1]).Time = Int32.Parse(spLine[0]);
+                        _proyect.Variables.FirstOrDefault(p => p.Name  == spLine[1]).Value = spLine[2];
                     }
                     // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
                     // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
