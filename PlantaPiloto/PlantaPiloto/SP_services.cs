@@ -107,8 +107,7 @@ namespace PlantaPiloto
             try
             {
                 // Set the read/write timeouts
-                _serialPort.ReadTimeout = 500;
-                _serialPort.WriteTimeout = 500;
+                _serialPort.ReadBufferSize = 8192;
                 _serialPort.Open();
                 
                 var a = _serialPort.ReadLine();

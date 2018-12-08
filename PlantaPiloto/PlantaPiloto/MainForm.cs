@@ -578,6 +578,18 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Evento que atiende al botón de gráfica. Abre una ventana donde se seleccionan las variables a mostrar en gráficas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
+            _varSelection.MdiParent = this.MdiParent;
+            _varSelection.Show();
+        }
+
+        /// <summary>
         /// Evento que recoge la llamada para actualizar la lista de puertos serie activos
         /// </summary>
         /// <param name="sender"></param>

@@ -680,5 +680,14 @@ namespace PlantaPiloto.Language {
                 return ResourceManager.GetString("toolStripMenuItemUserManual_txt", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selección de Variables.
+        /// </summary>
+        public static string VarSelectionForm_txt {
+            get {
+                return ResourceManager.GetString("VarSelectionForm_txt", resourceCulture);
+            }
+        }
     }
 }

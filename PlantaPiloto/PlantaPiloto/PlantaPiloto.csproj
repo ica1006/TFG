@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB_services.cs" />
+    <Compile Include="Enums\EnumVarSelection.cs" />
     <Compile Include="Enums\EnumVarAccess.cs" />
     <Compile Include="Enums\EnumVarCommunicationType.cs" />
     <Compile Include="Enums\EnumVarType.cs" />
@@ -82,6 +83,12 @@
       <DependentUpon>TFG_DBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Variable.cs" />
+    <Compile Include="VarSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VarSelection.Designer.cs">
+      <DependentUpon>VarSelection.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +113,9 @@
       <CustomToolNamespace>PlantaPiloto.Language</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VarSelection.resx">
+      <DependentUpon>VarSelection.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

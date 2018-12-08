@@ -94,7 +94,7 @@ namespace PlantaPiloto
             this.cboPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPort.FormattingEnabled = true;
             this.cboPort.Location = new System.Drawing.Point(56, 27);
-            this.cboPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(2);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(82, 21);
             this.cboPort.TabIndex = 1;
@@ -232,9 +232,9 @@ namespace PlantaPiloto
             this.gBoxControls.Controls.Add(this.cboPort);
             this.gBoxControls.Controls.Add(this.lblPorts);
             this.gBoxControls.Location = new System.Drawing.Point(8, 33);
-            this.gBoxControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxControls.Margin = new System.Windows.Forms.Padding(2);
             this.gBoxControls.Name = "gBoxControls";
-            this.gBoxControls.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxControls.Padding = new System.Windows.Forms.Padding(2);
             this.gBoxControls.Size = new System.Drawing.Size(601, 65);
             this.gBoxControls.TabIndex = 19;
             this.gBoxControls.TabStop = false;
@@ -244,7 +244,7 @@ namespace PlantaPiloto
             // 
             this.btnRefreshPorts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefreshPorts.Location = new System.Drawing.Point(144, 26);
-            this.btnRefreshPorts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRefreshPorts.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefreshPorts.Name = "btnRefreshPorts";
             this.btnRefreshPorts.Size = new System.Drawing.Size(63, 24);
             this.btnRefreshPorts.TabIndex = 22;
@@ -256,7 +256,7 @@ namespace PlantaPiloto
             // btnFile
             // 
             this.btnFile.Location = new System.Drawing.Point(532, 26);
-            this.btnFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFile.Margin = new System.Windows.Forms.Padding(2);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(51, 24);
             this.btnFile.TabIndex = 21;
@@ -266,7 +266,7 @@ namespace PlantaPiloto
             // btnVar
             // 
             this.btnVar.Location = new System.Drawing.Point(463, 26);
-            this.btnVar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVar.Margin = new System.Windows.Forms.Padding(2);
             this.btnVar.Name = "btnVar";
             this.btnVar.Size = new System.Drawing.Size(65, 24);
             this.btnVar.TabIndex = 20;
@@ -276,17 +276,18 @@ namespace PlantaPiloto
             // btnChart
             // 
             this.btnChart.Location = new System.Drawing.Point(409, 26);
-            this.btnChart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChart.Margin = new System.Windows.Forms.Padding(2);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(51, 24);
             this.btnChart.TabIndex = 19;
             this.btnChart.Text = "Graficar";
             this.btnChart.UseVisualStyleBackColor = true;
+            this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
             // 
             // btnFinish
             // 
             this.btnFinish.Location = new System.Drawing.Point(277, 26);
-            this.btnFinish.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(2);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(51, 24);
             this.btnFinish.TabIndex = 18;
@@ -297,7 +298,7 @@ namespace PlantaPiloto
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(222, 26);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(51, 24);
             this.btnStart.TabIndex = 17;
@@ -313,9 +314,9 @@ namespace PlantaPiloto
             this.gBoxProyect.Controls.Add(this.lblProDesc);
             this.gBoxProyect.Controls.Add(this.lblProName);
             this.gBoxProyect.Location = new System.Drawing.Point(8, 102);
-            this.gBoxProyect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxProyect.Margin = new System.Windows.Forms.Padding(2);
             this.gBoxProyect.Name = "gBoxProyect";
-            this.gBoxProyect.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxProyect.Padding = new System.Windows.Forms.Padding(2);
             this.gBoxProyect.Size = new System.Drawing.Size(601, 327);
             this.gBoxProyect.TabIndex = 20;
             this.gBoxProyect.TabStop = false;
@@ -342,7 +343,7 @@ namespace PlantaPiloto
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.dgvProVars.Location = new System.Drawing.Point(222, 41);
-            this.dgvProVars.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvProVars.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProVars.Name = "dgvProVars";
             this.dgvProVars.RowTemplate.Height = 28;
             this.dgvProVars.Size = new System.Drawing.Size(361, 273);
@@ -365,7 +366,7 @@ namespace PlantaPiloto
             // 
             this.pbProImg.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbProImg.InitialImage")));
             this.pbProImg.Location = new System.Drawing.Point(13, 132);
-            this.pbProImg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbProImg.Margin = new System.Windows.Forms.Padding(2);
             this.pbProImg.Name = "pbProImg";
             this.pbProImg.Size = new System.Drawing.Size(191, 182);
             this.pbProImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -414,7 +415,7 @@ namespace PlantaPiloto
             this.Controls.Add(this.gBoxControls);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Interfaz Planta Piloto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

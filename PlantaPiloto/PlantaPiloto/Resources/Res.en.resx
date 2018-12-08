@@ -324,4 +324,7 @@
   <data name="dgvColumnSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="VarSelectionForm_txt" xml:space="preserve">
+    <value>Variables Selection</value>
+  </data>
 </root>
