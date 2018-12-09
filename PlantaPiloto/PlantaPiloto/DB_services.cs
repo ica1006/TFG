@@ -169,5 +169,50 @@ namespace PlantaPiloto
                 }
             }
         }
+
+        public List<object> GetVarValue(Proyect proyect, Variable var)
+        {
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            {
+                List<object> result = new List<object>();
+                try
+                {
+                    // Open the SqlConnection.
+                    con.Open();
+                    // Delete table if exists
+                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
+                        " AND TABLE_NAME = '" + proyect.Name + "'";
+                    SqlCommand cmd = new SqlCommand(sCmd, con);
+                    // Comprobamos si está
+                    // Devuelve 1 si ya existe o 0 si no existe
+                    if ((int)cmd.ExecuteScalar() == 1)
+                        using (SqlCommand command = new SqlCommand("SELECT TOP 100 [" + var.Name     + "] FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        {
+                            SqlDataReader varDataReader = command.ExecuteReader();
+                            while (varDataReader.Read())
+                            {
+                                result.Add(varDataReader[0]);
+                            }
+                        }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return result;
+                }
+                finally
+                {
+                    try
+                    {
+                        con.Close();
+                        con.Dispose();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+        }
     }
 }

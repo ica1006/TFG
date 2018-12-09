@@ -61,11 +61,38 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crear gráficas.
+        /// </summary>
+        public static string btnAcceptChart_txt {
+            get {
+                return ResourceManager.GetString("btnAcceptChart_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear archivo.
+        /// </summary>
+        public static string btnAcceptFile_txt {
+            get {
+                return ResourceManager.GetString("btnAcceptFile_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar variable.
         /// </summary>
         public static string btnAddVar_txt {
             get {
                 return ResourceManager.GetString("btnAddVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string btnCancel_txt {
+            get {
+                return ResourceManager.GetString("btnCancel_txt", resourceCulture);
             }
         }
         
@@ -183,6 +210,15 @@ namespace PlantaPiloto.Language {
         public static string btnVar_txt {
             get {
                 return ResourceManager.GetString("btnVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gráfico.
+        /// </summary>
+        public static string ChartForm_txt {
+            get {
+                return ResourceManager.GetString("ChartForm_txt", resourceCulture);
             }
         }
         
@@ -336,6 +372,15 @@ namespace PlantaPiloto.Language {
         public static string gbProyectDetails_txt {
             get {
                 return ResourceManager.GetString("gbProyectDetails_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seleccione las variables con las que quiere trabajar.
+        /// </summary>
+        public static string gbVarSelection_txt {
+            get {
+                return ResourceManager.GetString("gbVarSelection_txt", resourceCulture);
             }
         }
         

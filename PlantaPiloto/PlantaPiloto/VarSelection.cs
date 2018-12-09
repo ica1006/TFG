@@ -50,6 +50,22 @@ namespace PlantaPiloto
         #region Methods
 
         /// <summary>
+        /// Método que se ejecuta al cargar el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VarSelection_Load(object sender, EventArgs e)
+        {
+            this.Switch_language();
+
+            //Carga de variables en el dataGridView
+            foreach(Variable v in _proyect.Variables)
+            {
+                dgvVarSelection.Rows.Add(new object[]{ v.Name, false});
+            }
+        }
+
+        /// <summary>
         /// Método que actualiza las cadenas según idioma
         /// </summary>
         public void Switch_language()
@@ -58,25 +74,12 @@ namespace PlantaPiloto
             #region Actualización de cadenas
 
             this.Text = _res_man.GetString("VarSelectionForm_txt", _cul);
-            this.gbVarSelection.Text = _res_man.GetString("gbVarSelection_txt, _cul");
-            this.lblConfigProName.Text = _res_man.GetString("lblConfigProName_txt", _cul);
-            this.lblConfigProDesc.Text = _res_man.GetString("lblConfigProDesc_txt", _cul);
-            this.lblVarAccess.Text = _res_man.GetString("lblVarAccess_txt", _cul);
-            this.lblVarBoardUnits.Text = _res_man.GetString("lblVarBoardUnits_txt", _cul);
-            this.lblVarCommunicationType.Text = _res_man.GetString("lblVarCommunicationType_txt", _cul);
-            this.lblVarDesc.Text = _res_man.GetString("lblVarDesc_txt", _cul);
-            this.lblVarInterfaceUnits.Text = _res_man.GetString("lblVarInterfaceUnits_txt", _cul);
-            this.lblVarLinearAdjust.Text = _res_man.GetString("lblVarLinearAdjust_txt", _cul);
-            this.lblVarName.Text = _res_man.GetString("lblVarName_txt", _cul);
-            this.lblVarRange.Text = _res_man.GetString("lblVarRange_txt", _cul);
-            this.lblVarType.Text = _res_man.GetString("lblVarType_txt", _cul);
-            this.lblVectFile.Text = _res_man.GetString("lblVectFile_txt", _cul);
-            this.gbNewVar.Text = _res_man.GetString("gbNewVar_txt", _cul);
-            this.gbProyectDetails.Text = _res_man.GetString("gbProyectDetails_txt", _cul);
-            this.btnAddVar.Text = _res_man.GetString("btnAddVar_txt", _cul);
-            this.btnSaveConfig.Text = _res_man.GetString("btnSaveConfig_txt", _cul);
-            this.btnLoadImage.Text = _res_man.GetString("btnLoadImage_txt", _cul);
-            this.btnExit.Text = _res_man.GetString("btnExit_txt", _cul);
+            this.gbVarSelection.Text = _res_man.GetString("gbVarSelection_txt", _cul);
+            this.btnCancel.Text = _res_man.GetString("btnCancel_txt", _cul);
+            if(this._purpose == EnumVarSelection.Chart)
+                this.btnAccept.Text = _res_man.GetString("btnAcceptChart_txt", _cul);
+            else
+                this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
 
             #endregion
         }
@@ -85,8 +88,45 @@ namespace PlantaPiloto
 
         #region Events
 
+        /// <summary>
+        /// Evento que responde al botón de aceptar de la ventana y según el propósito de la misma
+        /// carga las variables en una ventana graficadas o las guarda en un archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Variable> _varSelected = new List<Variable>();
+                foreach (DataGridViewRow row in dgvVarSelection.Rows)
+                {
+                    if (row.Cells[1].Value.Equals(true))
+                        _varSelected.Add(_proyect.Variables.FirstOrDefault(p => p.Name == row.Cells[0].Value.ToString()));
+                }
 
+                if (_varSelected.Count != 0)
+                {
+                    switch (_purpose)
+                    {
+                        case EnumVarSelection.Chart:
+                            ChartForm _chartForm = new ChartForm(_proyect, _varSelected, _cul);
+                            _chartForm.MdiParent = this.MdiParent;
+                            _chartForm.Show();
+                            break;
+                        case EnumVarSelection.File:
+                            MessageBox.Show("gráficas");
+                            break;
+                    }
 
-        #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            #endregion
+        }
     }
 }

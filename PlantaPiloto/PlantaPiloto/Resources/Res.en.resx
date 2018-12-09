@@ -327,4 +327,19 @@
   <data name="VarSelectionForm_txt" xml:space="preserve">
     <value>Variables Selection</value>
   </data>
+  <data name="gbVarSelection_txt" xml:space="preserve">
+    <value>Select the variables you want to work with</value>
+  </data>
+  <data name="btnAcceptChart_txt" xml:space="preserve">
+    <value>Create charts</value>
+  </data>
+  <data name="btnCancel_txt" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnAcceptFile_txt" xml:space="preserve">
+    <value>Create file</value>
+  </data>
+  <data name="ChartForm_txt" xml:space="preserve">
+    <value>Chart</value>
+  </data>
 </root>
