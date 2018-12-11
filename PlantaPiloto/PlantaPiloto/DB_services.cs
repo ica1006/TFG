@@ -142,7 +142,7 @@ namespace PlantaPiloto
                         insertCmd += ",[" + v.Name + "]";
                     insertCmd += ") VALUES (" + proyect.Variables[0].Time;
                     foreach (Variable v in proyect.Variables)
-                        insertCmd += v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value ;
+                        insertCmd += v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value;
                     insertCmd += ")";
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
@@ -170,11 +170,11 @@ namespace PlantaPiloto
             }
         }
 
-        public List<object> GetVarValue(Proyect proyect, Variable var)
+        public List<Variable> GetVarValue(Proyect proyect, Variable var)
         {
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
-                List<object> result = new List<object>();
+                List<Variable> result = new List<Variable>();
                 try
                 {
                     // Open the SqlConnection.
@@ -186,12 +186,25 @@ namespace PlantaPiloto
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
                     if ((int)cmd.ExecuteScalar() == 1)
-                        using (SqlCommand command = new SqlCommand("SELECT TOP 100 [" + var.Name     + "] FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP 100 [Time], [" + var.Name + "] " +
+                            "FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
                             {
-                                result.Add(varDataReader[0]);
+                                string a;
+                                Variable v = new Variable()
+                                {
+                                    Name = var.Name,
+                                    Type = var.Type,
+                                    Access = var.Access,
+                                    CommunicationType = var.CommunicationType,
+                                    Time = varDataReader.GetInt32(0),
+                                    // EVALUAR TIPO DE VARIABLE Y ASIGNAR GETDOUBLE, GETINT DEPENDIENDO
+                                    Value = varDataReader.GetDouble(1).ToString()
+                                    //Value = varDataReader[1].ToString()
+                                };
+                                result.Add(v);
                             }
                         }
                     return result;

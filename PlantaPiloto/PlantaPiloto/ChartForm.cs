@@ -10,6 +10,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PlantaPiloto
 {
@@ -20,7 +21,8 @@ namespace PlantaPiloto
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private List<Variable> _variables;
-        private List<List<object>> _sqlData;
+        private List<List<Variable>> _sqlData;
+        private List<int> _sqlTime;
         private EnumVarSelection _purpose;
         private DB_services _db_services;
 
@@ -34,7 +36,8 @@ namespace PlantaPiloto
             _variables = new List<Variable>();
             _db_services = new DB_services();
             _proyect = new Proyect();
-            _sqlData = new List<List<object>>();
+            _sqlData = new List<List<Variable>>();
+            _sqlTime = new List<int>();
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -43,7 +46,8 @@ namespace PlantaPiloto
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services();
-            _sqlData = new List<List<object>>();
+            _sqlData = new List<List<Variable>>();
+            _sqlTime = new List<int>();
             _variables = variables;
             _cul = cultureInfo;
             _proyect = proyect;
@@ -62,6 +66,9 @@ namespace PlantaPiloto
         {
             Switch_language();
 
+            //Rellenamos el gráfico
+            chartVar.Series.Clear();
+
             //Se recogen los valores de las variables seleccionadas
             foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
             {
@@ -69,12 +76,19 @@ namespace PlantaPiloto
                 chartVar.Series.Add(v.Name);
             }
 
-            //Rellenamos el gráfico
-            chartVar.Series.Clear();
-
             for (int i = 0; i < _sqlData.Count(); i++)
             {
-                chartVar.Series[i].XValueMember = _sqlData[i];
+                Series series = this.chartVar.Series.Add(_sqlData[i].ToString());
+                series.Points.Add(Double.Parse(_sqlData[i].ToString()));
+                //chartVar.Series[i].XValueMember = _sqlTime[0].ToString();
+                //chartVar.Series[i].XValueType = ChartValueType.Int32;
+                //chartVar.Series[i].YValueMembers = _sqlData[i].ToString();
+                //chartVar.Series[i].YValueType = ChartValueType.Double;
+                //chartVar.Series[i].Points.AddXY(i, i);
+                ////chartVar.Series[i].Points.AddXY(Int32.Parse(_sqlTime[i].ToString()), Double.Parse(_sqlData[i].ToString()));
+                //chartVar.Series[i].ChartType = SeriesChartType.Spline;
+                //chartVar.Series[i].BorderWidth = 3;
+                //chartVar.ChartAreas[i].AxisX.Interval = 1;
             }
         }
 
