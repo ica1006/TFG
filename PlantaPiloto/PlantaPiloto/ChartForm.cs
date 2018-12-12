@@ -9,6 +9,7 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -22,9 +23,11 @@ namespace PlantaPiloto
         private Proyect _proyect;
         private List<Variable> _variables;
         private List<List<Variable>> _sqlData;
-        private List<int> _sqlTime;
+        private List<double> _sqlTime;
         private EnumVarSelection _purpose;
         private DB_services _db_services;
+        private System.Timers.Timer _timer;
+        delegate void StringArgReturningVoidDelegate();
 
         #region Constructor
 
@@ -37,7 +40,10 @@ namespace PlantaPiloto
             _db_services = new DB_services();
             _proyect = new Proyect();
             _sqlData = new List<List<Variable>>();
-            _sqlTime = new List<int>();
+            _sqlTime = new List<double>();
+            _timer = new System.Timers.Timer(5000);
+            _timer.Enabled = false;
+            _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -47,7 +53,10 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services();
             _sqlData = new List<List<Variable>>();
-            _sqlTime = new List<int>();
+            _sqlTime = new List<double>();
+            _timer = new System.Timers.Timer(5000); ;
+            _timer.Enabled = false;
+            _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _variables = variables;
             _cul = cultureInfo;
             _proyect = proyect;
@@ -67,28 +76,80 @@ namespace PlantaPiloto
             Switch_language();
 
             //Rellenamos el gráfico
-            chartVar.Series.Clear();
+            this.LoadCharts();
 
-            //Se recogen los valores de las variables seleccionadas
-            foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+            //Iniciamos el timer
+            this._timer.Enabled = true;
+        }
+
+        /// <summary>
+        /// Método que crea las series para el gráfico a partir de las variables seleccionadas
+        /// </summary>
+        private void LoadCharts()
+        {
+            try
             {
-                _sqlData.Add(_db_services.GetVarValue(_proyect, v));
-                chartVar.Series.Add(v.Name);
+                chartVar.Series.Clear();
+                //Se recogen los valores de las variables seleccionadas
+                foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+                {
+                    _sqlData.Add(_db_services.GetVarValue(_proyect, v));
+                }
+                //_sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First()).Select(p => p.Time.Value).ToList();
+                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts")).First().Value);
+                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First())
+                    .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
+                for (int i = 0; i < _sqlData.Count(); i++)
+                {
+                    Series series = new Series(_sqlData[i].First().Name);
+                    series.Points.DataBindXY(_sqlTime, "Time", _sqlData[i].Select(p => Double.Parse(p.Value)).ToList(), "Value");
+                    series.ChartType = SeriesChartType.Line;
+                    series.BorderWidth = 3;
+                    chartVar.Series.Add(series);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            for (int i = 0; i < _sqlData.Count(); i++)
+        }
+
+        /// <summary>
+        /// Método que responde a la llamada del timer de la ventana y llama a LoadCharts.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void LoadChartsTimer(object source, ElapsedEventArgs e)
+        {
+            this.UpdateChart();
+        }
+
+        private void UpdateChart()
+        {
+            if (this.chartVar.InvokeRequired)
             {
-                Series series = this.chartVar.Series.Add(_sqlData[i].ToString());
-                series.Points.Add(Double.Parse(_sqlData[i].ToString()));
-                //chartVar.Series[i].XValueMember = _sqlTime[0].ToString();
-                //chartVar.Series[i].XValueType = ChartValueType.Int32;
-                //chartVar.Series[i].YValueMembers = _sqlData[i].ToString();
-                //chartVar.Series[i].YValueType = ChartValueType.Double;
-                //chartVar.Series[i].Points.AddXY(i, i);
-                ////chartVar.Series[i].Points.AddXY(Int32.Parse(_sqlTime[i].ToString()), Double.Parse(_sqlData[i].ToString()));
-                //chartVar.Series[i].ChartType = SeriesChartType.Spline;
-                //chartVar.Series[i].BorderWidth = 3;
-                //chartVar.ChartAreas[i].AxisX.Interval = 1;
+                //Para evitar concurrencia se llama a un delegado puesto que los datos se han obtenido en otro hilo
+                StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(UpdateChart);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                //Se recogen los valores de las variables seleccionadas
+                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts")).First().Value);
+                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First())
+                    .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
+                foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+                {
+                    _sqlData.Add(_db_services.GetVarValue(_proyect, v));
+                    if(_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
+                    {
+                        chartVar.Series[v.Name].Points.Clear();
+                        chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, "Seconds", _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList(), "Value");
+                    }
+                }
+
+                chartVar.Update();
             }
         }
 
@@ -106,8 +167,31 @@ namespace PlantaPiloto
             this.btnClose.Text = _res_man.GetString("btnClose_txt", _cul);
         }
 
+
         #endregion
 
+        #region Events
 
+        /// <summary>
+        /// Evento que recoge la pulsación del botón cancelar.
+        /// Cierra la ventana.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this._timer.Dispose();
+                this.Dispose();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
     }
 }

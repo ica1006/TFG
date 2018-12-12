@@ -128,5 +128,24 @@ namespace PlantaPiloto
 
             #endregion
         }
+
+        /// <summary>
+        /// Evento que recoge la pulsación del botón cancelar.
+        /// Cierra la ventana.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
     }
 }
