@@ -125,6 +125,9 @@ namespace PlantaPiloto
             this.UpdateChart();
         }
 
+        /// <summary>
+        /// Función que actualiza la gráfica
+        /// </summary>
         private void UpdateChart()
         {
             if (this.chartVar.InvokeRequired)
