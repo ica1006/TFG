@@ -35,3 +35,11 @@ En la cuarta reunión se ha expuesto el trabajo realizado hasta el momento y los
 4. El botón "Gráfico" muestra una ventana en el que se seleccionan las variables que se quieren mostrar graficadas y abre tantas ventanas como variables seleccionadas.
 5. Pasar SonarQube.
 6. Botón "Archivo" guarda en un archivo de texto las variables seleccionadas previamente.
+### 13 de Diciembre de 2018
+En la quinta reunión se ha mostrado una primera versión de la aplicación (pre-release) y se han definido los siguientes pasos a llevar a cabo:
+1. La cantidad de datos mostrados en la gráfica debe poder ser definible por el usuario.
+2. Al pulsar el botón "Archivo", la aplicación guardará los valores de las variables seleccionadas en un archivo, incluyendo en este como cabecera los datos del proyecto (Nombre, Descripción, Fecha).
+3. Investigar acerca de los ficheros de ayuda (fichero de ayuda .chm) y su implementación en windows forms.
+4. Las gráficas deben mostrar unidades en los ejes.
+5. Funcionalidad del botón "Variables": mostrará un listado con todas las variables (lectura y lectura/escritura).
+6. Modificar configuración: cargará los datos de la configuración actual pudiendo modificar los mismos, pero no agregar nuevas variables.

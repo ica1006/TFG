@@ -106,6 +106,9 @@ namespace PlantaPiloto
                     series.ChartType = SeriesChartType.Line;
                     series.BorderWidth = 3;
                     chartVar.Series.Add(series);
+                    chartVar.ChartAreas[0].AxisX.Interval = 10;
+                    chartVar.ChartAreas[0].AxisX.Title = "Seconds";
+
                 }
             }
             catch (Exception ex)
