@@ -107,7 +107,8 @@ namespace PlantaPiloto
                     series.BorderWidth = 3;
                     chartVar.Series.Add(series);
                     chartVar.ChartAreas[0].AxisX.Interval = 10;
-                    chartVar.ChartAreas[0].AxisX.Title = "Seconds";
+                    chartVar.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _cul);
+                    chartVar.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _cul);
 
                 }
             }
@@ -151,7 +152,7 @@ namespace PlantaPiloto
                     if(_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
                     {
                         chartVar.Series[v.Name].Points.Clear();
-                        chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, "Seconds", _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList(), "Value");
+                        chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList());
                     }
                 }
 

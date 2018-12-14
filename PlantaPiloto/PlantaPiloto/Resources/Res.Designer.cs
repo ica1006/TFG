@@ -223,6 +223,24 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Segundos.
+        /// </summary>
+        public static string chartXAxisLabel {
+            get {
+                return ResourceManager.GetString("chartXAxisLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valores.
+        /// </summary>
+        public static string chartYAxisLabel {
+            get {
+                return ResourceManager.GetString("chartYAxisLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configuración.
         /// </summary>
         public static string ConfigForm_txt {

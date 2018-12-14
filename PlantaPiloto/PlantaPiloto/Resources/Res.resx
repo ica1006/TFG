@@ -342,4 +342,10 @@
   <data name="ChartForm_txt" xml:space="preserve">
     <value>Gráfico</value>
   </data>
+  <data name="chartXAxisLabel" xml:space="preserve">
+    <value>Segundos</value>
+  </data>
+  <data name="chartYAxisLabel" xml:space="preserve">
+    <value>Valores</value>
+  </data>
 </root>
