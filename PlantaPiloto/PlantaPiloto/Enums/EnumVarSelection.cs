@@ -9,6 +9,7 @@ namespace PlantaPiloto.Enums
     public enum EnumVarSelection
     {
         Chart,
-        File
+        File,
+        Vars
     }
 }

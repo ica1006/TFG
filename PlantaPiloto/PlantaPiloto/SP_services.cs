@@ -109,7 +109,7 @@ namespace PlantaPiloto
                 // Set the read/write timeouts
                 _serialPort.ReadBufferSize = 8192;
                 _serialPort.Open();
-                
+
                 var a = _serialPort.ReadLine();
                 while (_serialPort.IsOpen)
                 {
@@ -119,8 +119,8 @@ namespace PlantaPiloto
 
                     if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
                     {
-                        _proyect.Variables.FirstOrDefault(p => p.Name  == spLine[1]).Time = Int32.Parse(spLine[0]);
-                        _proyect.Variables.FirstOrDefault(p => p.Name  == spLine[1]).Value = spLine[2];
+                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Time = Int32.Parse(spLine[0]);
+                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
 
                         //Asigno valor a las variables que son sólo de escritura para tener una referencia en la vista
                         if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
@@ -142,8 +142,13 @@ namespace PlantaPiloto
                         _lastRow = new Proyect();
                         foreach (Variable v in _proyect.Variables)
                         {
-                            _lastRow.Variables.Add(new Variable() {
-                                Name = v.Name, Access = v.Access, Time = v.Time, Value = v.Value});
+                            _lastRow.Variables.Add(new Variable()
+                            {
+                                Name = v.Name,
+                                Access = v.Access,
+                                Time = v.Time,
+                                Value = v.Value
+                            });
                             v.Time = null;
                             v.Value = null;
                         }

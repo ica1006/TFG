@@ -56,13 +56,41 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void VarSelection_Load(object sender, EventArgs e)
         {
-            this.Switch_language();
-
             //Carga de variables en el dataGridView
-            foreach(Variable v in _proyect.Variables)
+            dgvVarSelection.Columns.Add(new DataGridViewColumn()
             {
-                dgvVarSelection.Rows.Add(new object[]{ v.Name, false});
+                Name = "Variables",
+                HeaderText = "Variables",
+                ReadOnly = true,
+                CellTemplate = new dg
+            });
+            dgvVarSelection.Columns[0].CellTemplate = 
+            if (_purpose == EnumVarSelection.Vars)
+            {
+                this.btnAccept.Visible = false;
+                dgvVarSelection.Columns.Add(new DataGridViewColumn()
+                {
+                    Name = "Values",
+                    HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
+                    ReadOnly = true,
+                });
+                //for(int i = 0; i < _proyect.Variables.Count(); i++)
+                //{
+                //    dgvVarSelection.Rows.Add(values.,);
+                //}
+                if (_proyect.Variables.Count(p => p.Value == null) == 0)
+                    foreach (Variable v in _proyect.Variables)
+                        dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
             }
+            else
+            {
+                this.btnAccept.Visible = true;
+                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "X", HeaderText = "X", ReadOnly = false });
+                foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
+                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+            }
+
+            this.Switch_language();
         }
 
         /// <summary>
@@ -76,10 +104,15 @@ namespace PlantaPiloto
             this.Text = _res_man.GetString("VarSelectionForm_txt", _cul);
             this.gbVarSelection.Text = _res_man.GetString("gbVarSelection_txt", _cul);
             this.btnCancel.Text = _res_man.GetString("btnCancel_txt", _cul);
-            if(this._purpose == EnumVarSelection.Chart)
-                this.btnAccept.Text = _res_man.GetString("btnAcceptChart_txt", _cul);
-            else
-                this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
+            switch (this._purpose)
+            {
+                case EnumVarSelection.Chart:
+                    this.btnAccept.Text = _res_man.GetString("btnAcceptChart_txt", _cul);
+                    break;
+                case EnumVarSelection.File:
+                    this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
+                    break;
+            }
 
             #endregion
         }

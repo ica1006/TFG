@@ -27,7 +27,7 @@ namespace PlantaPiloto
         private SP_services _sp_services;
         private Thread _threadSaveRow;
         private System.Timers.Timer _timerRefreshDataGrid;
-        private Proyect rowsSP;
+        private Proyect _lastRowSP;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
 
         #region Constructor
@@ -55,7 +55,11 @@ namespace PlantaPiloto
 
         #region Form Events
 
-
+        /// <summary>
+        /// Evento que se invoca al cargar el formulario. Carga los elementos necesarios para conformar la ventana.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             _sp_services = new SP_services();
@@ -229,9 +233,9 @@ namespace PlantaPiloto
                 ////_threadGetLastRow.Start();
                 //_db_services = new DB_services();
                 //rowsDB = _db_services.GetLastRowValue(_proyect);
-                rowsSP = _sp_services.LastRow;
-                if (rowsSP.Variables.Where(p => p.Value == null).Count() == 0)
-                    this.FillDataGridView(rowsSP);
+                _lastRowSP = _sp_services.LastRow;
+                if (_lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
+                    this.FillDataGridView(_lastRowSP);
             }
             catch (Exception ex)
             {
@@ -584,9 +588,26 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void btnChart_Click(object sender, EventArgs e)
         {
+            _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
             VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
             _varSelection.MdiParent = this.MdiParent;
             _varSelection.Show();
+        }
+
+        /// <summary>
+        /// Evento que atiende al botón de Variables. Abre una ventana donde se muestran todas las variables.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVar_Click(object sender, EventArgs e)
+        {
+            _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
+            if (_proyect.Variables.Count(p => p.Value == null) == 0)
+            {
+                VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Vars, this.getCulture());
+                _varSelection.MdiParent = this.MdiParent;
+                _varSelection.Show();
+            }
         }
 
         /// <summary>
