@@ -170,7 +170,14 @@ namespace PlantaPiloto
             }
         }
 
-        public List<Variable> GetVarValue(Proyect proyect, Variable var)
+        /// <summary>
+        /// Mëtodo que devuelve una lista de variables con los valores almacenados en la BD.
+        /// </summary>
+        /// <param name="proyect"></param>
+        /// <param name="var"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public List<Variable> GetVarValue(Proyect proyect, Variable var, int amount)
         {
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
@@ -186,7 +193,7 @@ namespace PlantaPiloto
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
                     if ((int)cmd.ExecuteScalar() == 1)
-                        using (SqlCommand command = new SqlCommand("SELECT TOP 100 [Time], [" + var.Name + "] " +
+                        using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + " [Time], [" + var.Name + "] " +
                             "FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader varDataReader = command.ExecuteReader();

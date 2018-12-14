@@ -348,4 +348,10 @@
   <data name="chartYAxisLabel" xml:space="preserve">
     <value>Valores</value>
   </data>
+  <data name="btnChartAmount_txt" xml:space="preserve">
+    <value>Asignar</value>
+  </data>
+  <data name="lblChartAmount_txt" xml:space="preserve">
+    <value>Cantidad de valores mostrados</value>
+  </data>
 </root>

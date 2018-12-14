@@ -28,6 +28,7 @@ namespace PlantaPiloto
         private DB_services _db_services;
         private System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
+        private int _chartAmount;
 
         #region Constructor
 
@@ -41,9 +42,10 @@ namespace PlantaPiloto
             _proyect = new Proyect();
             _sqlData = new List<List<Variable>>();
             _sqlTime = new List<double>();
-            _timer = new System.Timers.Timer(5000);
+            _timer = new System.Timers.Timer(2000);
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
+            _chartAmount = 100;
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -54,12 +56,13 @@ namespace PlantaPiloto
             _db_services = new DB_services();
             _sqlData = new List<List<Variable>>();
             _sqlTime = new List<double>();
-            _timer = new System.Timers.Timer(5000); ;
+            _timer = new System.Timers.Timer(2000); ;
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _variables = variables;
             _cul = cultureInfo;
             _proyect = proyect;
+            _chartAmount = 100;
         }
 
         #endregion
@@ -77,6 +80,7 @@ namespace PlantaPiloto
 
             //Rellenamos el gráfico
             this.LoadCharts();
+            this.txtChartAmount.Text = "100";
 
             //Iniciamos el timer
             this._timer.Enabled = true;
@@ -93,11 +97,11 @@ namespace PlantaPiloto
                 //Se recogen los valores de las variables seleccionadas
                 foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                 {
-                    _sqlData.Add(_db_services.GetVarValue(_proyect, v));
+                    _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
                 }
                 //_sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First()).Select(p => p.Time.Value).ToList();
-                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts")).First().Value);
-                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First())
+                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
+                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
                     .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
                 for (int i = 0; i < _sqlData.Count(); i++)
                 {
@@ -143,12 +147,12 @@ namespace PlantaPiloto
             else
             {
                 //Se recogen los valores de las variables seleccionadas
-                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts")).First().Value);
-                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First())
+                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
+                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
                     .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
                 foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                 {
-                    _sqlData.Add(_db_services.GetVarValue(_proyect, v));
+                    _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
                     if(_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
                     {
                         chartVar.Series[v.Name].Points.Clear();
@@ -172,6 +176,8 @@ namespace PlantaPiloto
                 this.Text += " - " + v.Name;
             }
             this.btnClose.Text = _res_man.GetString("btnClose_txt", _cul);
+            this.lblChartAmount.Text = _res_man.GetString("lblChartAmount_txt", _cul);
+            this.btnChartAmount.Text = _res_man.GetString("btnChartAmount_txt", _cul);
         }
 
 
@@ -197,6 +203,41 @@ namespace PlantaPiloto
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Evento que controla que la tecla pulsada es un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtChartAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                // Verify that the pressed key isn't CTRL or any non-numeric digit
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Evento que evalúa si el valor es positivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtChartAmount_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(this.txtChartAmount.Text) > 0)
+                _chartAmount = int.Parse(this.txtChartAmount.Text);
+            else
+                this.txtChartAmount.Text = _chartAmount.ToString();
         }
 
         #endregion

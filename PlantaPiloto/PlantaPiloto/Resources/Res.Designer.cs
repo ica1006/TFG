@@ -106,6 +106,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asignar.
+        /// </summary>
+        public static string btnChartAmount_txt {
+            get {
+                return ResourceManager.GetString("btnChartAmount_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cerrar.
         /// </summary>
         public static string btnClose_txt {
@@ -399,6 +408,15 @@ namespace PlantaPiloto.Language {
         public static string gbVarSelection_txt {
             get {
                 return ResourceManager.GetString("gbVarSelection_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cantidad de valores mostrados.
+        /// </summary>
+        public static string lblChartAmount_txt {
+            get {
+                return ResourceManager.GetString("lblChartAmount_txt", resourceCulture);
             }
         }
         
