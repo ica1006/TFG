@@ -28,6 +28,7 @@ namespace PlantaPiloto
         private Thread _threadSaveRow;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
+        private bool _allowThread = true;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
 
@@ -44,7 +45,11 @@ namespace PlantaPiloto
             _variable = new Variable();
             _db_services = new DB_services();
             Switch_language();
-            _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
+            _threadSaveRow = new Thread(() =>
+            {
+                if (_allowThread)
+                    _sp_services.OpenConnection();
+            });
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
             _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
@@ -439,7 +444,9 @@ namespace PlantaPiloto
             {
                 _sp_services = new SP_services(_proyect, _cul);
                 _sp_services.SerialPort.PortName = cboPort.Text;
-                _threadSaveRow.Start();
+                _allowThread = true;
+                if (_threadSaveRow.ThreadState == ThreadState.Unstarted)
+                    _threadSaveRow.Start();
                 this.ViewConnectionOpen();
                 this._timerRefreshDataGrid.Enabled = true;
             }
@@ -481,8 +488,10 @@ namespace PlantaPiloto
         {
             try
             {
-                _sp_services.SerialPort.Close();
+                _sp_services.CloseConnection();
                 _timerRefreshDataGrid.Enabled = false;
+                _allowThread = false;
+                this.ViewConnectionClose();
             }
             catch (Exception ex)
             {

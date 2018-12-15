@@ -161,6 +161,15 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que cierra la conexión al puerto serie
+        /// </summary>
+        public void CloseConnection()
+        {
+            if (_serialPort.IsOpen)
+                _serialPort.Close();
+        }
+
         #endregion
 
         #region Miembros de INotifyPropertyChanged
