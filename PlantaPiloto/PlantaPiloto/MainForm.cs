@@ -29,6 +29,7 @@ namespace PlantaPiloto
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
+        delegate void ShowButtonsDelegate();
 
         #region Constructor
 
@@ -74,6 +75,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _timerRefreshDataGrid.Enabled = false;
             if (_sp_services.SerialPort.IsOpen)
                 _sp_services.SerialPort.Close();
             if (_threadSaveRow.IsAlive)
@@ -230,12 +232,12 @@ namespace PlantaPiloto
         {
             try
             {
-                ////_threadGetLastRow.Start();
-                //_db_services = new DB_services();
-                //rowsDB = _db_services.GetLastRowValue(_proyect);
                 _lastRowSP = _sp_services.LastRow;
                 if (_lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
+                {
                     this.FillDataGridView(_lastRowSP);
+                    this.ViewConnectionOpen();
+                }
             }
             catch (Exception ex)
             {
@@ -345,17 +347,43 @@ namespace PlantaPiloto
         /// </summary>
         private void ViewConnectionOpen()
         {
-            btnStart.Enabled = false;
-            btnFinish.Enabled = true;
-            btnChart.Enabled = true;
-            btnVar.Enabled = true;
-            btnFile.Enabled = true;
-            btnRefreshPorts.Enabled = false;
-            cboPort.Enabled = false;
-            lblProName.Visible = true;
-            lblRWVariables.Visible = true;
-            lblProDesc.Visible = true;
-            dgvProVars.Visible = true;
+            try
+            {
+                if (this.gBoxControls.InvokeRequired)
+                {
+                    //Para evitar concurrencia se llama a un delegado puesto que los datos se han obtenido en otro hilo
+                    ShowButtonsDelegate d = new ShowButtonsDelegate(ViewConnectionOpen);
+                    this.Invoke(d, new object[] { });
+                }
+                else
+                {
+                    btnStart.Enabled = false;
+                    btnFinish.Enabled = true;
+                    if (_lastRowSP != null && _lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
+                    {
+                        btnChart.Enabled = true;
+                        btnVar.Enabled = true;
+                        btnFile.Enabled = true;
+                    }
+                    else
+                    {
+                        btnChart.Enabled = false;
+                        btnVar.Enabled = false;
+                        btnFile.Enabled = false;
+                    }
+                    btnRefreshPorts.Enabled = false;
+                    cboPort.Enabled = false;
+                    lblProName.Visible = true;
+                    lblRWVariables.Visible = true;
+                    lblProDesc.Visible = true;
+                    dgvProVars.Visible = true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -368,9 +396,9 @@ namespace PlantaPiloto
             {
                 btnStart.Enabled = true;
                 btnFinish.Enabled = false;
-                btnChart.Enabled = true;
-                btnVar.Enabled = true;
-                btnFile.Enabled = true;
+                btnChart.Enabled = false;
+                btnVar.Enabled = false;
+                btnFile.Enabled = false;
                 btnRefreshPorts.Enabled = true;
                 cboPort.Enabled = true;
                 lblProName.Visible = true;

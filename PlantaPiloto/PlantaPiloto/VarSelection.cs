@@ -40,7 +40,30 @@ namespace PlantaPiloto
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services();
-            _proyect = proyect;
+            _proyect = new Proyect()
+            {
+                Name = proyect.Name,
+                Description = proyect.Description,
+                ImagePath = proyect.ImagePath,
+                Cul = proyect.Cul,
+            };
+            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable()
+            {
+                Name = p.Name,
+                Type = p.Type,
+                Description = p.Description,
+                Access = p.Access,
+                BoardUnits = p.BoardUnits,
+                InterfaceUnits = p.InterfaceUnits,
+                LinearAdjustA = p.LinearAdjustA,
+                LinearAdjustB = p.LinearAdjustB,
+                RangeLow = p.RangeLow,
+                RangeHigh = p.RangeHigh,
+                CommunicationType = p.CommunicationType,
+                Value = p.Value,
+                Time = p.Time,
+                Cul = p.Cul
+            }));
             _purpose = purpose;
             _cul = cultureInfo;
         }
@@ -62,9 +85,9 @@ namespace PlantaPiloto
                 Name = "Variables",
                 HeaderText = "Variables",
                 ReadOnly = true,
-                CellTemplate = new dg
+                CellTemplate = new DataGridViewTextBoxCell()
             });
-            dgvVarSelection.Columns[0].CellTemplate = 
+
             if (_purpose == EnumVarSelection.Vars)
             {
                 this.btnAccept.Visible = false;
@@ -73,11 +96,9 @@ namespace PlantaPiloto
                     Name = "Values",
                     HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
                     ReadOnly = true,
+                    CellTemplate = new DataGridViewTextBoxCell()
                 });
-                //for(int i = 0; i < _proyect.Variables.Count(); i++)
-                //{
-                //    dgvVarSelection.Rows.Add(values.,);
-                //}
+
                 if (_proyect.Variables.Count(p => p.Value == null) == 0)
                     foreach (Variable v in _proyect.Variables)
                         dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
@@ -85,7 +106,13 @@ namespace PlantaPiloto
             else
             {
                 this.btnAccept.Visible = true;
-                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "X", HeaderText = "X", ReadOnly = false });
+                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
+                {
+                    Name = "X",
+                    HeaderText = "X",
+                    ReadOnly = false,
+                    CellTemplate = new DataGridViewCheckBoxCell()
+                });
                 foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
                     dgvVarSelection.Rows.Add(new object[] { v.Name, false });
             }
@@ -111,6 +138,9 @@ namespace PlantaPiloto
                     break;
                 case EnumVarSelection.File:
                     this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
+                    break;
+                case EnumVarSelection.Vars:
+                    this.btnCancel.Text = _res_man.GetString("btnClose_txt", _cul);
                     break;
             }
 

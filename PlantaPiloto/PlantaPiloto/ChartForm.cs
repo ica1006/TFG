@@ -86,6 +86,11 @@ namespace PlantaPiloto
             this._timer.Enabled = true;
         }
 
+        private void ChartForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _timer.Enabled = false;
+        }
+
         /// <summary>
         /// Método que crea las series para el gráfico a partir de las variables seleccionadas
         /// </summary>
