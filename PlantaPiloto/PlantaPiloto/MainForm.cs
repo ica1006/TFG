@@ -28,9 +28,9 @@ namespace PlantaPiloto
         private Thread _threadSaveRow;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
-        private bool _allowThread = true;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
+        public delegate void SaveFileDelegate(List<Variable> vars);
 
         #region Constructor
 
@@ -45,11 +45,6 @@ namespace PlantaPiloto
             _variable = new Variable();
             _db_services = new DB_services();
             Switch_language();
-            _threadSaveRow = new Thread(() =>
-            {
-                if (_allowThread)
-                    _sp_services.OpenConnection();
-            });
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
             _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
@@ -306,6 +301,58 @@ namespace PlantaPiloto
             }
         }
 
+        public void SaveFile(List<Variable> vars)
+        {
+            try
+            {
+                if (vars.Count() > 0)
+                {
+                    SaveFileDialog saveFileDialog1;
+                    saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
+                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
+                    //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    //{
+                    //    StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                    //    tw.WriteLine(DateTime.Now);
+                    //    tw.WriteLine(_proyect.Name);
+                    //    tw.WriteLine(_proyect.Description);
+                    //    tw.WriteLine(_proyect.ImagePath);
+                    //    foreach (Variable v in _proyect.Variables)
+                    //    {
+                    //        tw.WriteLine("****************************************");
+                    //        tw.WriteLine(v.Name);
+                    //        tw.WriteLine(v.Type);
+                    //        tw.WriteLine(v.Description);
+                    //        tw.WriteLine(v.Access);
+                    //        if (v.Type != EnumVarType.String)
+                    //        {
+                    //            tw.WriteLine(v.BoardUnits);
+                    //            tw.WriteLine(v.InterfaceUnits);
+                    //            tw.WriteLine(v.LinearAdjustA);
+                    //            tw.WriteLine(v.LinearAdjustB);
+                    //            tw.WriteLine(v.RangeLow);
+                    //            tw.WriteLine(v.RangeHigh);
+                    //        }
+                    //        tw.WriteLine(v.CommunicationType);
+
+                    //    }
+                    //    tw.WriteLine("****************************************");
+                    //    tw.WriteLine("****************************************");
+                    //    tw.Dispose();
+                    //    tw.Close();
+                    //    _mainForm.LoadProyect(_proyect);
+                    //    this.CleanForm(1);
+                    //    this.Close();
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #region Métodos modificadores del estado de los elementos de la vista
 
         /// <summary>
@@ -444,9 +491,8 @@ namespace PlantaPiloto
             {
                 _sp_services = new SP_services(_proyect, _cul);
                 _sp_services.SerialPort.PortName = cboPort.Text;
-                _allowThread = true;
-                if (_threadSaveRow.ThreadState == ThreadState.Unstarted)
-                    _threadSaveRow.Start();
+                _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
+                _threadSaveRow.Start();
                 this.ViewConnectionOpen();
                 this._timerRefreshDataGrid.Enabled = true;
             }
@@ -454,28 +500,6 @@ namespace PlantaPiloto
             {
                 this.ViewConnectionClose();
                 MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método encargado de enviar un mensaje a través del puerto serie con el que se tiene conexión
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_sp_services.SerialPort.IsOpen)
-                {
-
-                    //_sp_services.SerialPort.WriteLine(txtMessage.Text);
-                    //txtMessage.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -490,7 +514,7 @@ namespace PlantaPiloto
             {
                 _sp_services.CloseConnection();
                 _timerRefreshDataGrid.Enabled = false;
-                _allowThread = false;
+                _threadSaveRow.Abort();
                 this.ViewConnectionClose();
             }
             catch (Exception ex)
@@ -628,6 +652,20 @@ namespace PlantaPiloto
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
             VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
             _varSelection.MdiParent = this.MdiParent;
+            _varSelection.Show();
+        }
+
+        /// <summary>
+        /// Evento que se ejecuta cuando el botón Archivo es pulsado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFile_Click(object sender, EventArgs e)
+        {
+            _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
+            VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
+            _varSelection.MdiParent = this.MdiParent;
+            _varSelection.save_file += new SaveFileDelegate(SaveFile);
             _varSelection.Show();
         }
 

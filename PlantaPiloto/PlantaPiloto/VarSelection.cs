@@ -1,15 +1,12 @@
 ﻿using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PlantaPiloto.MainForm;
 
 namespace PlantaPiloto
 {
@@ -22,6 +19,7 @@ namespace PlantaPiloto
         private Variable _variable;
         private EnumVarSelection _purpose;
         private DB_services _db_services;
+        public event SaveFileDelegate save_file;
 
         #region Constructor
 
@@ -130,7 +128,7 @@ namespace PlantaPiloto
 
             this.Text = _res_man.GetString("VarSelectionForm_txt", _cul);
             this.gbVarSelection.Text = _res_man.GetString("gbVarSelection_txt", _cul);
-            this.btnCancel.Text = _res_man.GetString("btnCancel_txt", _cul);
+            this.btnCancel.Text = _res_man.GetString("btnClose_txt", _cul);
             switch (this._purpose)
             {
                 case EnumVarSelection.Chart:
@@ -138,9 +136,6 @@ namespace PlantaPiloto
                     break;
                 case EnumVarSelection.File:
                     this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
-                    break;
-                case EnumVarSelection.Vars:
-                    this.btnCancel.Text = _res_man.GetString("btnClose_txt", _cul);
                     break;
             }
 
@@ -150,6 +145,7 @@ namespace PlantaPiloto
         #endregion
 
         #region Events
+
 
         /// <summary>
         /// Evento que responde al botón de aceptar de la ventana y según el propósito de la misma
@@ -178,7 +174,7 @@ namespace PlantaPiloto
                             _chartForm.Show();
                             break;
                         case EnumVarSelection.File:
-                            MessageBox.Show("gráficas");
+                            save_file(_varSelected);
                             break;
                     }
 
@@ -188,8 +184,6 @@ namespace PlantaPiloto
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            #endregion
         }
 
         /// <summary>
@@ -210,5 +204,7 @@ namespace PlantaPiloto
                 throw;
             }
         }
+
+        #endregion
     }
 }
