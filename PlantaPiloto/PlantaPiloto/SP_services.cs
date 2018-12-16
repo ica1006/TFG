@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Resources;
@@ -74,6 +75,26 @@ namespace PlantaPiloto
 
         public DB_services _db_services { get; set; }
 
+        private bool _saveFile;
+        /// <summary>
+        /// Propiedad que indica si hay que guardar los valores de las variables en un archivo o no
+        /// </summary>
+        public bool SaveFile
+        {
+            get { return _saveFile; }
+            set { _saveFile = value; OnPropertyChanged("SaveFile"); }
+        }
+
+        private string _filePath;
+        /// <summary>
+        /// Ruta del archivo donde guardar las variables
+        /// </summary>
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { _filePath = value; OnPropertyChanged("FilePath");}
+        }
+
         #endregion
 
         #region Constructor
@@ -84,6 +105,7 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services();
             _lastRow = new Proyect();
+            _saveFile = false;
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
@@ -95,6 +117,7 @@ namespace PlantaPiloto
             _cul = cul;
             _db_services = new DB_services();
             _lastRow = new Proyect();
+            _saveFile = false;
         }
         #endregion
 
@@ -140,6 +163,7 @@ namespace PlantaPiloto
                     {
                         _db_services.SaveRow(_proyect);
                         _lastRow = new Proyect();
+
                         foreach (Variable v in _proyect.Variables)
                         {
                             _lastRow.Variables.Add(new Variable()
@@ -151,6 +175,11 @@ namespace PlantaPiloto
                             });
                             v.Time = null;
                             v.Value = null;
+                        }
+
+                        if (_saveFile)
+                        {
+                            this.SaveVarsValue();
                         }
                     }
                 }
@@ -168,6 +197,43 @@ namespace PlantaPiloto
         {
             if (_serialPort.IsOpen)
                 _serialPort.Close();
+        }
+
+        public void SaveVarsValue()
+        {
+            try
+            {
+                if (File.Exists(_filePath) && !new FileInfo(_filePath).IsReadOnly)
+                {
+                    //Leemos la línea que almacena los nombres de las variables
+                    int counter = 0;
+                    string line = "";
+                    string[] fileVars = new string[] { };
+                    StreamReader fileReader = new StreamReader(_filePath);
+                    while ((line = fileReader.ReadLine()) != null)
+                    {
+                        if (counter == 5)
+                        {
+                            fileVars = line.Split(';');
+                            break;
+                        }
+                        counter++;
+                    }
+                    //Guardamos la nueva línea
+                    using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
+                    {
+                        //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
+                        fileWriter.WriteLine(_lastRow.Variables.SelectMany(p => fileVars.(p.Name)));
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         #endregion

@@ -19,7 +19,7 @@ namespace PlantaPiloto
         private Variable _variable;
         private EnumVarSelection _purpose;
         private DB_services _db_services;
-        public event SaveFileDelegate save_file;
+        public event SaveFileDelegate Save_file;
 
         #region Constructor
 
@@ -86,33 +86,46 @@ namespace PlantaPiloto
                 CellTemplate = new DataGridViewTextBoxCell()
             });
 
-            if (_purpose == EnumVarSelection.Vars)
+            switch (_purpose)
             {
-                this.btnAccept.Visible = false;
-                dgvVarSelection.Columns.Add(new DataGridViewColumn()
-                {
-                    Name = "Values",
-                    HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
-                    ReadOnly = true,
-                    CellTemplate = new DataGridViewTextBoxCell()
-                });
-
-                if (_proyect.Variables.Count(p => p.Value == null) == 0)
+                case EnumVarSelection.Chart:
+                    this.btnAccept.Visible = true;
+                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
+                    {
+                        Name = "X",
+                        HeaderText = "X",
+                        ReadOnly = false,
+                        CellTemplate = new DataGridViewCheckBoxCell()
+                    });
+                    foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
+                        dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+                    break;
+                case EnumVarSelection.File:
+                    this.btnAccept.Visible = true;
+                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
+                    {
+                        Name = "X",
+                        HeaderText = "X",
+                        ReadOnly = false,
+                        CellTemplate = new DataGridViewCheckBoxCell()
+                    });
                     foreach (Variable v in _proyect.Variables)
-                        dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
-            }
-            else
-            {
-                this.btnAccept.Visible = true;
-                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
-                {
-                    Name = "X",
-                    HeaderText = "X",
-                    ReadOnly = false,
-                    CellTemplate = new DataGridViewCheckBoxCell()
-                });
-                foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
-                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+                        dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+                    break;
+                case EnumVarSelection.Vars:
+                    this.btnAccept.Visible = false;
+                    dgvVarSelection.Columns.Add(new DataGridViewColumn()
+                    {
+                        Name = "Values",
+                        HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
+                        ReadOnly = true,
+                        CellTemplate = new DataGridViewTextBoxCell()
+                    });
+
+                    if (_proyect.Variables.Count(p => p.Value == null) == 0)
+                        foreach (Variable v in _proyect.Variables)
+                            dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
+                    break;
             }
 
             this.Switch_language();
@@ -174,7 +187,8 @@ namespace PlantaPiloto
                             _chartForm.Show();
                             break;
                         case EnumVarSelection.File:
-                            save_file(_varSelected);
+                            Save_file(_varSelected);
+                            this.Close();
                             break;
                     }
 

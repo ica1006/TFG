@@ -26,6 +26,7 @@ namespace PlantaPiloto
         private DB_services _db_services;
         private SP_services _sp_services;
         private Thread _threadSaveRow;
+        private Thread _threadSaveFile;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
@@ -76,10 +77,12 @@ namespace PlantaPiloto
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             _timerRefreshDataGrid.Enabled = false;
-            if (_sp_services.SerialPort.IsOpen)
+            if (_sp_services != null && _sp_services.SerialPort.IsOpen)
                 _sp_services.SerialPort.Close();
-            if (_threadSaveRow.IsAlive)
-                _threadSaveRow.Abort();
+            if (_threadSaveRow != null && _threadSaveRow.IsAlive)
+                _threadSaveRow.Abort(); ;
+            if (_threadSaveFile != null && _threadSaveFile.IsAlive)
+                _threadSaveFile.Abort();
         }
 
         #endregion
@@ -309,42 +312,31 @@ namespace PlantaPiloto
                 {
                     SaveFileDialog saveFileDialog1;
                     saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
+                    saveFileDialog1.FileName = _proyect.Name.ToString();
+                    foreach (Variable v in vars)
+                        saveFileDialog1.FileName += "_" + v.Name;
+                    saveFileDialog1.FileName += ".txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
-                    //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                    //{
-                    //    StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                    //    tw.WriteLine(DateTime.Now);
-                    //    tw.WriteLine(_proyect.Name);
-                    //    tw.WriteLine(_proyect.Description);
-                    //    tw.WriteLine(_proyect.ImagePath);
-                    //    foreach (Variable v in _proyect.Variables)
-                    //    {
-                    //        tw.WriteLine("****************************************");
-                    //        tw.WriteLine(v.Name);
-                    //        tw.WriteLine(v.Type);
-                    //        tw.WriteLine(v.Description);
-                    //        tw.WriteLine(v.Access);
-                    //        if (v.Type != EnumVarType.String)
-                    //        {
-                    //            tw.WriteLine(v.BoardUnits);
-                    //            tw.WriteLine(v.InterfaceUnits);
-                    //            tw.WriteLine(v.LinearAdjustA);
-                    //            tw.WriteLine(v.LinearAdjustB);
-                    //            tw.WriteLine(v.RangeLow);
-                    //            tw.WriteLine(v.RangeHigh);
-                    //        }
-                    //        tw.WriteLine(v.CommunicationType);
-
-                    //    }
-                    //    tw.WriteLine("****************************************");
-                    //    tw.WriteLine("****************************************");
-                    //    tw.Dispose();
-                    //    tw.Close();
-                    //    _mainForm.LoadProyect(_proyect);
-                    //    this.CleanForm(1);
-                    //    this.Close();
-                    //}
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                        tw.WriteLine(DateTime.Now);
+                        tw.WriteLine(_proyect.Name);
+                        tw.WriteLine(_proyect.Description);
+                        tw.WriteLine(_proyect.ImagePath);
+                        tw.WriteLine("****************************************");
+                        string varNames = "";
+                        vars.ForEach(p => varNames += p.Name + ";");
+                        tw.WriteLine(varNames);
+                        tw.Dispose();
+                        tw.Close();
+                        if (_sp_services != null)
+                        {
+                            _sp_services.FilePath = saveFileDialog1.FileName;
+                            _sp_services.SaveFile = true;
+                        }
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -665,7 +657,7 @@ namespace PlantaPiloto
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
             VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
             _varSelection.MdiParent = this.MdiParent;
-            _varSelection.save_file += new SaveFileDelegate(SaveFile);
+            _varSelection.Save_file += new SaveFileDelegate(SaveFile);
             _varSelection.Show();
         }
 
