@@ -354,4 +354,7 @@
   <data name="lblChartAmount_txt" xml:space="preserve">
     <value>Number of values displayed</value>
   </data>
+  <data name="btnFileStop_txt" xml:space="preserve">
+    <value>Stop saving</value>
+  </data>
 </root>

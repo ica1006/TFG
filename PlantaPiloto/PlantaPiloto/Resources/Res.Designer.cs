@@ -142,6 +142,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detener guardado.
+        /// </summary>
+        public static string btnFileStop_txt {
+            get {
+                return ResourceManager.GetString("btnFileStop_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fin.
         /// </summary>
         public static string btnFinish_txt {

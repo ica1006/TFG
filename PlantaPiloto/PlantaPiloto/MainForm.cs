@@ -128,7 +128,10 @@ namespace PlantaPiloto
             this.btnFinish.Text = _res_man.GetString("btnFinish_txt", _cul);
             this.btnChart.Text = _res_man.GetString("btnChart_txt", _cul);
             this.btnVar.Text = _res_man.GetString("btnVar_txt", _cul);
-            this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
+            if(_sp_services == null || !_sp_services.SaveFile)
+                this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
+            else
+                this.btnFile.Text = _res_man.GetString("btnFileStop_txt", _cul);
             this.btnRefreshPorts.Text = _res_man.GetString("btnRefreshPorts_txt", _cul);
             this.gBoxControls.Text = _res_man.GetString("gBoxControls_txt", _cul);
             this.gBoxProyect.Text = _res_man.GetString("gBoxProyect_txt", _cul);
@@ -304,6 +307,11 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que crea el archivo y la cabecera del archivo donde se van a guardar las variables
+        /// y activa el guardado de variables
+        /// </summary>
+        /// <param name="vars">Variables que van a ser guardadas</param>
         public void SaveFile(List<Variable> vars)
         {
             try
@@ -335,7 +343,7 @@ namespace PlantaPiloto
                             _sp_services.FilePath = saveFileDialog1.FileName;
                             _sp_services.SaveFile = true;
                         }
-                        this.Close();
+                        this.btnFile.Text = _res_man.GetString("btnFileStop_txt", _cul);
                     }
                 }
             }
@@ -507,6 +515,7 @@ namespace PlantaPiloto
                 _sp_services.CloseConnection();
                 _timerRefreshDataGrid.Enabled = false;
                 _threadSaveRow.Abort();
+                _sp_services.SaveFile = false;
                 this.ViewConnectionClose();
             }
             catch (Exception ex)
@@ -654,11 +663,19 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void btnFile_Click(object sender, EventArgs e)
         {
-            _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
-            VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
-            _varSelection.MdiParent = this.MdiParent;
-            _varSelection.Save_file += new SaveFileDelegate(SaveFile);
-            _varSelection.Show();
+            if (_sp_services.SaveFile)
+            {
+                _sp_services.SaveFile = false;
+                this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
+            }
+            else
+            {
+                _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
+                VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
+                _varSelection.MdiParent = this.MdiParent;
+                _varSelection.Save_file += new SaveFileDelegate(SaveFile);
+                _varSelection.Show();
+            }
         }
 
         /// <summary>

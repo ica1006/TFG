@@ -199,6 +199,9 @@ namespace PlantaPiloto
                 _serialPort.Close();
         }
 
+        /// <summary>
+        /// Método que agrega una nueva línea al archivo donde se guardan los valores de las variables
+        /// </summary>
         public void SaveVarsValue()
         {
             try
@@ -215,18 +218,20 @@ namespace PlantaPiloto
                         if (counter == 5)
                         {
                             fileVars = line.Split(';');
+                            fileVars = fileVars.Where(p => p != "").ToArray();
                             break;
                         }
                         counter++;
                     }
+                    fileReader.Close();
                     //Guardamos la nueva línea
                     using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
                     {
                         //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
-                        fileWriter.WriteLine(_lastRow.Variables.SelectMany(p => fileVars.(p.Name)));
+                        string newValues = "";
+                        _lastRow.Variables.Where(p => fileVars.Contains(p.Name)).ToList().ForEach(q => newValues += q.Value + ";");
+                        fileWriter.WriteLine(newValues);
                     }
-
-
                 }
             }
             catch (Exception ex)
