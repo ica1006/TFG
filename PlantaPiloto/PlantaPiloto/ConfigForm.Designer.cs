@@ -67,6 +67,8 @@ namespace PlantaPiloto
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnExit = new System.Windows.Forms.Button();
+            this.lblSelectVar = new System.Windows.Forms.Label();
+            this.cbSelectVar = new System.Windows.Forms.ComboBox();
             this.gbProyectDetails.SuspendLayout();
             this.gbNewVar.SuspendLayout();
             this.SuspendLayout();
@@ -444,11 +446,33 @@ namespace PlantaPiloto
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // lblSelectVar
+            // 
+            this.lblSelectVar.AutoSize = true;
+            this.lblSelectVar.Location = new System.Drawing.Point(29, 320);
+            this.lblSelectVar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSelectVar.Name = "lblSelectVar";
+            this.lblSelectVar.Size = new System.Drawing.Size(98, 13);
+            this.lblSelectVar.TabIndex = 36;
+            this.lblSelectVar.Text = "seleccione variable";
+            // 
+            // cbSelectVar
+            // 
+            this.cbSelectVar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSelectVar.FormattingEnabled = true;
+            this.cbSelectVar.Location = new System.Drawing.Point(135, 317);
+            this.cbSelectVar.Margin = new System.Windows.Forms.Padding(2);
+            this.cbSelectVar.Name = "cbSelectVar";
+            this.cbSelectVar.Size = new System.Drawing.Size(121, 21);
+            this.cbSelectVar.TabIndex = 37;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 349);
+            this.Controls.Add(this.cbSelectVar);
+            this.Controls.Add(this.lblSelectVar);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.gbNewVar);
             this.Controls.Add(this.btnSaveConfig);
@@ -464,6 +488,7 @@ namespace PlantaPiloto
             this.gbNewVar.ResumeLayout(false);
             this.gbNewVar.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -504,5 +529,7 @@ namespace PlantaPiloto
         private System.Windows.Forms.Button btnLoadImage;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label lblSelectVar;
+        private System.Windows.Forms.ComboBox cbSelectVar;
     }
 }

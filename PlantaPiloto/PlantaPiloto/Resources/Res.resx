@@ -357,4 +357,7 @@
   <data name="btnFileStop_txt" xml:space="preserve">
     <value>Detener guardado</value>
   </data>
+  <data name="lblSelectVar_txt" xml:space="preserve">
+    <value>Seleccione variable</value>
+  </data>
 </root>

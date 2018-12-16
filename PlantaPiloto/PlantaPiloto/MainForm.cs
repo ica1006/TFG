@@ -32,6 +32,7 @@ namespace PlantaPiloto
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
+        public delegate void LoadProyectDelegate(Proyect proyect);
 
         #region Constructor
 
@@ -639,8 +640,29 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que abre la ventana de configuración con los datos del proyecto cargados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemModifyConfig_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if(_proyect != null)
+                {
+                    ConfigForm _createConfig = new ConfigForm(_proyect);
+                    _createConfig.MdiParent = this.MdiParent;
+                    _createConfig.SetCulture(this.getCulture());
+                    _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
+                    _createConfig.Show();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>

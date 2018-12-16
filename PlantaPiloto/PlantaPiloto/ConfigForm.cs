@@ -12,6 +12,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PlantaPiloto.MainForm;
 
 namespace PlantaPiloto
 {
@@ -23,8 +24,10 @@ namespace PlantaPiloto
         private Proyect _proyect;
         private Variable _variable;
         private DB_services _db_services;
+        private int _eagerLoading;
+        public event LoadProyectDelegate LoadProyect;
 
-        #region Form Methods
+        #region Constructor
 
         public ConfigForm()
         {
@@ -33,14 +36,82 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
             _db_services = new DB_services();
+            _eagerLoading = 0;
         }
 
+        public ConfigForm(Proyect proyect)
+        {
+            InitializeComponent();
+            _mainForm = new MainForm();
+            _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
+            _proyect = new Proyect()
+            {
+                Name = proyect.Name,
+                Description = proyect.Description,
+                ImagePath = proyect.ImagePath,
+                Cul = proyect.Cul,
+            };
+            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable()
+            {
+                Name = p.Name,
+                Type = p.Type,
+                Description = p.Description,
+                Access = p.Access,
+                BoardUnits = p.BoardUnits,
+                InterfaceUnits = p.InterfaceUnits,
+                LinearAdjustA = p.LinearAdjustA,
+                LinearAdjustB = p.LinearAdjustB,
+                RangeLow = p.RangeLow,
+                RangeHigh = p.RangeHigh,
+                CommunicationType = p.CommunicationType,
+                Value = p.Value,
+                Time = p.Time,
+                Cul = p.Cul
+            }));
+            _db_services = new DB_services();
+            _eagerLoading = 1;
+        }
+
+        #endregion
+
+        #region Methods
+
+        #region Form Methods
+
+        /// <summary>
+        /// Carga de los elementos del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-            cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-            cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-            this.Switch_language();
+            switch (_eagerLoading)
+            {
+                case 0:
+                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                    this.lblSelectVar.Visible = false;
+                    this.cbSelectVar.Visible = false;
+                    this.Switch_language();
+                    break;
+                case 1:
+                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                    cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                    this.btnAddVar.Visible = false;
+                    this.Switch_language();
+                    break;
+                default:
+                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                    this.lblSelectVar.Visible = false;
+                    this.cbSelectVar.Visible = false;
+                    this.Switch_language();
+                    break;
+            }
         }
 
         /// <summary>
@@ -132,6 +203,7 @@ namespace PlantaPiloto
             this.lblVarRange.Text = _res_man.GetString("lblVarRange_txt", _cul);
             this.lblVarType.Text = _res_man.GetString("lblVarType_txt", _cul);
             this.lblVectFile.Text = _res_man.GetString("lblVectFile_txt", _cul);
+            this.lblSelectVar.Text = _res_man.GetString("lblSelectVar_txt", _cul);
             this.gbNewVar.Text = _res_man.GetString("gbNewVar_txt", _cul);
             this.gbProyectDetails.Text = _res_man.GetString("gbProyectDetails_txt", _cul);
             this.btnAddVar.Text = _res_man.GetString("btnAddVar_txt", _cul);
@@ -149,142 +221,6 @@ namespace PlantaPiloto
         internal void SetCulture(CultureInfo cultureInfo)
         {
             _cul = cultureInfo;
-        }
-
-        /// <summary>
-        /// Método que guarda una nueva variable y la añade a la lista de variables del proyecto
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void addNewVar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ValidateVar())
-                {
-                    _variable = new Variable();
-                    _variable.Name = this.txtVarName.Text;
-                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
-                    _variable.Description = this.txtVarDesc.Text;
-                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
-                    if (_variable.Type != EnumVarType.String)
-                    {
-                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
-                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
-                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
-                    }
-                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
-                    _variable.Cul = _cul;
-
-                    _proyect.Variables.Add(_variable);
-                    this.CleanForm(0);
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que crea y guarda en un archivo txt un nuevo proyecto
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void saveConfigFile_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ValidateProyect())
-                {
-                    _proyect.Name = this.txtProName.Text;
-                    _proyect.Description = this.txtProDesc.Text;
-                    saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
-                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                    {
-                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        tw.WriteLine(DateTime.Now);
-                        tw.WriteLine(_proyect.Name);
-                        tw.WriteLine(_proyect.Description);
-                        tw.WriteLine(_proyect.ImagePath);
-                        foreach (Variable v in _proyect.Variables)
-                        {
-                            tw.WriteLine("****************************************");
-                            tw.WriteLine(v.Name);
-                            tw.WriteLine(v.Type);
-                            tw.WriteLine(v.Description);
-                            tw.WriteLine(v.Access);
-                            if (v.Type != EnumVarType.String)
-                            {
-                                tw.WriteLine(v.BoardUnits);
-                                tw.WriteLine(v.InterfaceUnits);
-                                tw.WriteLine(v.LinearAdjustA);
-                                tw.WriteLine(v.LinearAdjustB);
-                                tw.WriteLine(v.RangeLow);
-                                tw.WriteLine(v.RangeHigh);
-                            }
-                            tw.WriteLine(v.CommunicationType);
-
-                        }
-                        tw.WriteLine("****************************************");
-                        tw.WriteLine("****************************************");
-                        tw.Dispose();
-                        tw.Close();
-                        _mainForm.LoadProyect(_proyect);
-                        this.CleanForm(1);
-                        this.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Evento que carga la ruta de una imagen e informa que esta ha sido cargada
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnLoadImage_Click(object sender, EventArgs e)
-        {
-            openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Title = _res_man.GetString("showLoadImageDialogTitle", _cul);
-            openFileDialog1.Filter = _res_man.GetString("showLoadImageDialogFilter", _cul);
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                _proyect.ImagePath = openFileDialog1.FileName;
-                this.btnLoadImage.BackColor = Color.LightGreen;
-            }
-        }
-
-        /// <summary>
-        /// Evento que cierra el formulario
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.CleanForm(1);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
         }
 
         #region Validaciones
@@ -368,7 +304,146 @@ namespace PlantaPiloto
             }
         }
 
+        #endregion
+
         #region Eventos 
+
+        /// <summary>
+        /// Método que guarda una nueva variable y la añade a la lista de variables del proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addNewVar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidateVar())
+                {
+                    _variable = new Variable();
+                    _variable.Name = this.txtVarName.Text;
+                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
+                    _variable.Description = this.txtVarDesc.Text;
+                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
+                    if (_variable.Type != EnumVarType.String)
+                    {
+                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
+                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
+                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
+                    }
+                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
+                    _variable.Cul = _cul;
+
+                    _proyect.Variables.Add(_variable);
+                    this.CleanForm(0);
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que crea y guarda en un archivo txt un nuevo proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveConfigFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidateProyect())
+                {
+                    _proyect.Name = this.txtProName.Text;
+                    _proyect.Description = this.txtProDesc.Text;
+                    _proyect.Cul = _cul;
+                    saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
+                    saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                        tw.WriteLine(DateTime.Now);
+                        tw.WriteLine(_proyect.Name);
+                        tw.WriteLine(_proyect.Description);
+                        tw.WriteLine(_proyect.ImagePath);
+                        foreach (Variable v in _proyect.Variables)
+                        {
+                            tw.WriteLine("****************************************");
+                            tw.WriteLine(v.Name);
+                            tw.WriteLine(v.Type);
+                            tw.WriteLine(v.Description);
+                            tw.WriteLine(v.Access);
+                            if (v.Type != EnumVarType.String)
+                            {
+                                tw.WriteLine(v.BoardUnits);
+                                tw.WriteLine(v.InterfaceUnits);
+                                tw.WriteLine(v.LinearAdjustA);
+                                tw.WriteLine(v.LinearAdjustB);
+                                tw.WriteLine(v.RangeLow);
+                                tw.WriteLine(v.RangeHigh);
+                            }
+                            tw.WriteLine(v.CommunicationType);
+
+                        }
+                        tw.WriteLine("****************************************");
+                        tw.WriteLine("****************************************");
+                        tw.Dispose();
+                        tw.Close();
+                        this.LoadProyect(_proyect);
+                        this.CleanForm(1);
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Evento que carga la ruta de una imagen e informa que esta ha sido cargada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadImage_Click(object sender, EventArgs e)
+        {
+            openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = _res_man.GetString("showLoadImageDialogTitle", _cul);
+            openFileDialog1.Filter = _res_man.GetString("showLoadImageDialogFilter", _cul);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                _proyect.ImagePath = openFileDialog1.FileName;
+                this.btnLoadImage.BackColor = Color.LightGreen;
+            }
+        }
+
+        /// <summary>
+        /// Evento que cierra el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.CleanForm(1);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
 
         /// <summary>
         /// Método que cambia la disponibilidad de los textbox de ajuste lineal y rango cuando la 
@@ -398,21 +473,41 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que llama al método que valida si el valor introducido es un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtVarLinearAdjA_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);
         }
 
+        /// <summary>
+        /// Evento que llama al método que valida si el valor introducido es un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtVarLinearAdjB_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);
         }
 
+        /// <summary>
+        /// Evento que llama al método que valida si el valor introducido es un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtVarRangeLow_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);
         }
 
+        /// <summary>
+        /// Evento que llama al método que valida si el valor introducido es un número
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtVarRangeHigh_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);

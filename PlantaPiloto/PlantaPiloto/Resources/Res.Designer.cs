@@ -502,6 +502,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seleccione variable.
+        /// </summary>
+        public static string lblSelectVar_txt {
+            get {
+                return ResourceManager.GetString("lblSelectVar_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enviar.
         /// </summary>
         public static string lblSend_txt {
