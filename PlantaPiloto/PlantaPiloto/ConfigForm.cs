@@ -25,6 +25,8 @@ namespace PlantaPiloto
         private Variable _variable;
         private DB_services _db_services;
         private int _eagerLoading;
+        private string _lastVariable;
+        private bool _secondLap;
         public event LoadProyectDelegate LoadProyect;
 
         #region Constructor
@@ -70,6 +72,8 @@ namespace PlantaPiloto
             }));
             _db_services = new DB_services();
             _eagerLoading = 1;
+            _lastVariable = "";
+            _secondLap = false;
         }
 
         #endregion
@@ -96,10 +100,12 @@ namespace PlantaPiloto
                     this.Switch_language();
                     break;
                 case 1:
-                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-                    cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                    this.cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                    this.cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                    this.cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                    this.txtProName.Text = _proyect.Name;
+                    this.txtProDesc.Text = _proyect.Description;
+                    this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
                     this.btnAddVar.Visible = false;
                     this.Switch_language();
                     break;
@@ -221,6 +227,75 @@ namespace PlantaPiloto
         internal void SetCulture(CultureInfo cultureInfo)
         {
             _cul = cultureInfo;
+        }
+
+        /// <summary>
+        /// Método que rellena el formulario con los valores de una variable
+        /// </summary>
+        /// <param name="v">Variable que se va a mostrar</param>
+        public void LoadVar(Variable v)
+        {
+            this.txtVarName.Text = v.Name;
+            this.txtVarDesc.Text = v.Description;
+            this.cbVarType.SelectedItem = v.Type;
+            this.cbVarAccess.SelectedItem = v.Access;
+            this.txtVarBoardUnits.Text = v.BoardUnits;
+            this.txtVarInterfaceUnits.Text = v.InterfaceUnits;
+            this.txtVarLinearAdjA.Text = v.LinearAdjustA.ToString();
+            this.txtVarLinearAdjB.Text = v.LinearAdjustB.ToString();
+            this.txtVarRangeLow.Text = v.RangeLow.ToString();
+            this.txtVarRangeHigh.Text = v.RangeLow.ToString();
+            this.cbVarCommunicationType.SelectedItem = v.CommunicationType;
+        }
+
+        /// <summary>
+        /// Método que actualiza los valores de las propiedades de una variable.
+        /// </summary>
+        /// <param name="v"></param>
+        public void UpdateVar(Variable v)
+        {
+            try
+            {
+                _proyect.Variables.Remove(v);
+                if (ValidateVar())
+                {
+                    _variable = new Variable();
+                    _variable.Name = this.txtVarName.Text;
+                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
+                    _variable.Description = this.txtVarDesc.Text;
+                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
+                    if (_variable.Type != EnumVarType.String)
+                    {
+                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
+                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
+                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
+                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
+                    }
+                    else
+                    {
+                        _variable.BoardUnits = "";
+                        _variable.InterfaceUnits = "";
+                        _variable.LinearAdjustA = new float();
+                        _variable.LinearAdjustB = new float();
+                        _variable.RangeLow = new float();
+                        _variable.RangeHigh = new float();
+                    }
+                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
+                    _variable.Cul = _cul;
+
+                    _proyect.Variables.Add(_variable);
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region Validaciones
@@ -359,6 +434,10 @@ namespace PlantaPiloto
         {
             try
             {
+                if(_eagerLoading == 1)
+                {
+                    this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                }
                 if (ValidateProyect())
                 {
                     _proyect.Name = this.txtProName.Text;
@@ -511,6 +590,34 @@ namespace PlantaPiloto
         private void txtVarRangeHigh_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidateNumberInput(sender, e);
+        }
+
+        /// <summary>
+        /// Evento que se ejecuta al cambiar el valor del comboBox que contiene las variables del proyecto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbSelectVar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!_secondLap)
+                {
+                    if (_lastVariable != "")
+                        this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                    _lastVariable = (sender as ComboBox).SelectedValue.ToString();
+                    this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                }
+                _secondLap = true;
+                this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                _secondLap = false;
+                this.cbSelectVar.Refresh();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         #endregion

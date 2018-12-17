@@ -465,6 +465,7 @@ namespace PlantaPiloto
             this.cbSelectVar.Name = "cbSelectVar";
             this.cbSelectVar.Size = new System.Drawing.Size(121, 21);
             this.cbSelectVar.TabIndex = 37;
+            this.cbSelectVar.SelectedIndexChanged += new System.EventHandler(this.cbSelectVar_SelectedIndexChanged);
             // 
             // ConfigForm
             // 

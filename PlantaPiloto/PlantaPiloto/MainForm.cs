@@ -580,6 +580,7 @@ namespace PlantaPiloto
             ConfigForm _createConfig = new ConfigForm();
             _createConfig.MdiParent = this.MdiParent;
             _createConfig.SetCulture(this.getCulture());
+            _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
             _createConfig.Show();
         }
 

@@ -170,7 +170,6 @@ namespace PlantaPiloto
             set { _time = value; OnPropertyChanged("Time"); }
         }
 
-
         #endregion
 
         #region Constructor 
