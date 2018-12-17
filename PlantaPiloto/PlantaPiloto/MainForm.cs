@@ -169,26 +169,15 @@ namespace PlantaPiloto
                     this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
                     this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
                     this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+
                     //Se muestran sólo las variables que son de escritura
                     this.dgvProVars.Rows.Clear();
-                    this.dgvProVars.Rows.Add(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count());
-                    for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
-                        this.dgvProVars[0, i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
-
-                    //ConfigForm c = new ConfigForm();
-                    //var iniDrawX = gbProVars.Location.X - gbProVars.Width;
-                    //var iniDrawY = gbProVars.Location.Y + 20;
-
-                    //foreach (Variable v in _proyect.Variables)
-                    //{
-                    //    Label lblVar = new Label();
-                    //    lblVar.Name = "lblVar" + v.Name;
-                    //    lblVar.Text = v.Name;
-                    //    iniDrawY += 20;
-                    //    lblVar.Location = new System.Drawing.Point(iniDrawX, iniDrawY);
-                    //    gbProVars.Controls.Add(lblVar);
-                    //}
-
+                    if(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count() > 0)
+                    {
+                        this.dgvProVars.Rows.Add(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count());
+                        for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
+                            this.dgvProVars[0, i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
+                    }
                 }
             }
             catch (Exception ex)
@@ -446,33 +435,19 @@ namespace PlantaPiloto
         private void ViewConnectionClose()
         {
             if (cboPort.Items.Count != 0)
-            {
                 btnStart.Enabled = true;
-                btnFinish.Enabled = false;
-                btnChart.Enabled = false;
-                btnVar.Enabled = false;
-                btnFile.Enabled = false;
-                btnRefreshPorts.Enabled = true;
-                cboPort.Enabled = true;
-                lblProName.Visible = true;
-                lblProDesc.Visible = true;
-                lblRWVariables.Visible = true;
-                dgvProVars.Visible = true;
-            }
             else
-            {
                 btnStart.Enabled = false;
-                btnFinish.Enabled = false;
-                btnChart.Enabled = true;
-                btnVar.Enabled = true;
-                btnFile.Enabled = true;
-                btnRefreshPorts.Enabled = true;
-                cboPort.Enabled = true;
-                lblProName.Visible = true;
-                lblProDesc.Visible = true;
-                lblRWVariables.Visible = true;
-                dgvProVars.Visible = true;
-            }
+            btnFinish.Enabled = false;
+            btnChart.Enabled = false;
+            btnVar.Enabled = false;
+            btnFile.Enabled = false;
+            btnRefreshPorts.Enabled = true;
+            cboPort.Enabled = true;
+            lblProName.Visible = true;
+            lblProDesc.Visible = true;
+            lblRWVariables.Visible = true;
+            dgvProVars.Visible = true;
         }
 
         #endregion
