@@ -206,20 +206,22 @@ namespace PlantaPiloto
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userManualToolStripMenuItem.Text = "Manual de usuario";
+            this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
             // toolStripMenuItemHelpHelp
             // 
             this.toolStripMenuItemHelpHelp.Name = "toolStripMenuItemHelpHelp";
-            this.toolStripMenuItemHelpHelp.Size = new System.Drawing.Size(172, 22);
+            this.toolStripMenuItemHelpHelp.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemHelpHelp.Text = "Ayuda";
             // 
             // toolStripMenuItemAbout
             // 
             this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
-            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(172, 22);
+            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemAbout.Text = "Acerca de";
+            this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
             // 
             // gBoxControls
             // 

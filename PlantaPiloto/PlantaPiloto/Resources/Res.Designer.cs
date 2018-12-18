@@ -61,6 +61,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acerca de.
+        /// </summary>
+        public static string AboutForm_txt {
+            get {
+                return ResourceManager.GetString("AboutForm_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crear gráficas.
         /// </summary>
         public static string btnAcceptChart_txt {
@@ -417,6 +426,42 @@ namespace PlantaPiloto.Language {
         public static string gbVarSelection_txt {
             get {
                 return ResourceManager.GetString("gbVarSelection_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grado en Ingeniería Informática..
+        /// </summary>
+        public static string lblAboutDegree_txt {
+            get {
+                return ResourceManager.GetString("lblAboutDegree_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proyecto de Fin de Grado realizado por Francisco Crespo Diez..
+        /// </summary>
+        public static string lblAboutDesc_txt {
+            get {
+                return ResourceManager.GetString("lblAboutDesc_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interfaz para Planta Piloto.
+        /// </summary>
+        public static string lblAboutTitle_txt {
+            get {
+                return ResourceManager.GetString("lblAboutTitle_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Universidad de Burgos..
+        /// </summary>
+        public static string lblAboutUni_txt {
+            get {
+                return ResourceManager.GetString("lblAboutUni_txt", resourceCulture);
             }
         }
         

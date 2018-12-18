@@ -14,6 +14,7 @@ using System.IO;
 using PlantaPiloto.Enums;
 using System.Threading;
 using System.Timers;
+using System.Diagnostics;
 
 namespace PlantaPiloto
 {
@@ -29,6 +30,7 @@ namespace PlantaPiloto
         private Thread _threadSaveFile;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
+        string _pdfPath;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
@@ -52,6 +54,7 @@ namespace PlantaPiloto
             _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
+            _pdfPath = Path.Combine(Application.StartupPath, "../../files/archivo.pdf");
         }
 
         #endregion
@@ -457,95 +460,6 @@ namespace PlantaPiloto
         #region Events
 
         /// <summary>
-        /// Método encargado de abrir una conexión con el puerto serie elegido en el comboBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _sp_services = new SP_services(_proyect, _cul);
-                _sp_services.SerialPort.PortName = cboPort.Text;
-                _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
-                _threadSaveRow.Start();
-                this.ViewConnectionOpen();
-                this._timerRefreshDataGrid.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                this.ViewConnectionClose();
-                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que cierra la conexión con el puerto serie 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnFinish_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _sp_services.CloseConnection();
-                _timerRefreshDataGrid.Enabled = false;
-                _threadSaveRow.Abort();
-                _sp_services.SaveFile = false;
-                this.ViewConnectionClose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que recibe por el puerto serie y lo muestra en el txtBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReceive_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtReceive.Clear();
-                //if (_sp_services.SerialPort.IsOpen)
-                //{
-                //    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que cambia el idioma a inglés
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStripMenuItemSpanish.Checked = false;
-            toolStripMenuItemEnglish.Checked = true;
-            Switch_language();
-        }
-
-        /// <summary>
-        /// Método que cambia el idioma a español
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void toolStripMenuItemSpanish_Click(object sender, EventArgs e)
-        {
-            toolStripMenuItemSpanish.Checked = true;
-            toolStripMenuItemEnglish.Checked = false;
-            Switch_language();
-        }
-
-        /// <summary>
         /// Método que abre la ventana para introducir una nueva configuración
         /// </summary>
         /// <param name="sender"></param>
@@ -642,6 +556,58 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Método que cambia el idioma a inglés
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemSpanish.Checked = false;
+            toolStripMenuItemEnglish.Checked = true;
+            Switch_language();
+        }
+
+        /// <summary>
+        /// Método que cambia el idioma a español
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemSpanish_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemSpanish.Checked = true;
+            toolStripMenuItemEnglish.Checked = false;
+            Switch_language();
+        }
+
+        /// <summary>
+        /// Evento que abre un archivo PDF con el manual de usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(_pdfPath);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Evento que recoge el clic sobre el elemento del menú "Acerca de"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
+        {
+            AboutForm _aboutForm = new AboutForm(_cul);
+            _aboutForm.Show();
+        }
+
+        /// <summary>
         /// Evento que atiende al botón de gráfica. Abre una ventana donde se seleccionan las variables a mostrar en gráficas
         /// </summary>
         /// <param name="sender"></param>
@@ -703,6 +669,71 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Método encargado de abrir una conexión con el puerto serie elegido en el comboBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _sp_services = new SP_services(_proyect, _cul);
+                _sp_services.SerialPort.PortName = cboPort.Text;
+                _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
+                _threadSaveRow.Start();
+                this.ViewConnectionOpen();
+                this._timerRefreshDataGrid.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                this.ViewConnectionClose();
+                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que cierra la conexión con el puerto serie 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _sp_services.CloseConnection();
+                _timerRefreshDataGrid.Enabled = false;
+                _threadSaveRow.Abort();
+                _sp_services.SaveFile = false;
+                this.ViewConnectionClose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método que recibe por el puerto serie y lo muestra en el txtBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReceive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //txtReceive.Clear();
+                //if (_sp_services.SerialPort.IsOpen)
+                //{
+                //    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
         /// Evento que actúa al cambiar el valor de una celda
         /// </summary>
         /// <param name="sender"></param>
@@ -722,7 +753,6 @@ namespace PlantaPiloto
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         #endregion
     }

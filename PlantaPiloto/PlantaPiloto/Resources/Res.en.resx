@@ -360,4 +360,19 @@
   <data name="lblSelectVar_txt" xml:space="preserve">
     <value>Select variable</value>
   </data>
+  <data name="AboutForm_txt" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="lblAboutTitle_txt" xml:space="preserve">
+    <value>Pilot Plant Interface</value>
+  </data>
+  <data name="lblAboutDesc_txt" xml:space="preserve">
+    <value>Degree Thesis by Francisco Crespo Diez.</value>
+  </data>
+  <data name="lblAboutDegree_txt" xml:space="preserve">
+    <value>Computer Science Degree.</value>
+  </data>
+  <data name="lblAboutUni_txt" xml:space="preserve">
+    <value>Universidad de Burgos.</value>
+  </data>
 </root>
