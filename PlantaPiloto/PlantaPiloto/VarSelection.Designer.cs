@@ -93,6 +93,7 @@
             this.Controls.Add(this.gbVarSelection);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "VarSelection";
             this.Text = "VarSelection";
             this.Load += new System.EventHandler(this.VarSelection_Load);
