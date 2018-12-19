@@ -122,6 +122,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resources\Res.en.resx">
       <CustomToolNamespace>PlantaPiloto.Language</CustomToolNamespace>
@@ -162,10 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="files\" />
-    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\help.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

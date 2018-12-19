@@ -27,7 +27,6 @@ namespace PlantaPiloto
         private DB_services _db_services;
         private SP_services _sp_services;
         private Thread _threadSaveRow;
-        private Thread _threadSaveFile;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
         private string _pdfPath;
@@ -56,9 +55,7 @@ namespace PlantaPiloto
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
-            _helpProvider.SetHelpKeyword(this, "Main menu");
-            _helpProvider.SetHelpNavigator(this, HelpNavigator.TableOfContents);
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/help.chm");
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _pdfPath = Path.Combine(Application.StartupPath, "../../files/archivo.pdf");
         }
 
@@ -89,9 +86,7 @@ namespace PlantaPiloto
             if (_sp_services != null && _sp_services.SerialPort.IsOpen)
                 _sp_services.SerialPort.Close();
             if (_threadSaveRow != null && _threadSaveRow.IsAlive)
-                _threadSaveRow.Abort(); ;
-            if (_threadSaveFile != null && _threadSaveFile.IsAlive)
-                _threadSaveFile.Abort();
+                _threadSaveRow.Abort(); 
         }
 
         #endregion
@@ -565,11 +560,6 @@ namespace PlantaPiloto
             }
         }
 
-        private void toolStripMenuItemHelpHelp_Click(object sender, EventArgs e)
-        {
-            Help.ShowHelp(this, _helpProvider.HelpNamespace);
-        }
-
         /// <summary>
         /// Método que cambia el idioma a inglés
         /// </summary>
@@ -604,6 +594,18 @@ namespace PlantaPiloto
             try
             {
                 Process.Start(_pdfPath);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void toolStripMenuItemHelpHelp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Principal");
             }
             catch (Exception)
             {

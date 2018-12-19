@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
@@ -16,9 +17,9 @@ namespace PlantaPiloto
         private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
-        private Variable _variable;
         private EnumVarSelection _purpose;
         private DB_services _db_services;
+        private HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
 
         #region Constructor
@@ -30,6 +31,8 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
             _db_services = new DB_services();
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         public VarSelection(Proyect proyect, EnumVarSelection purpose, CultureInfo cultureInfo)
@@ -64,6 +67,8 @@ namespace PlantaPiloto
             }));
             _purpose = purpose;
             _cul = cultureInfo;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         #endregion
@@ -215,6 +220,24 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Evento que abre el archivo de ayuda para el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Selección de Variables");
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -18,6 +19,7 @@ namespace PlantaPiloto
 
         private ResourceManager _res_man;
         private CultureInfo _cul;
+        private HelpProvider _helpProvider;
 
         public CultureInfo Cul
         {
@@ -34,6 +36,8 @@ namespace PlantaPiloto
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _cul = cul;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         #endregion
@@ -80,6 +84,24 @@ namespace PlantaPiloto
         private void btnAboutAccept_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Evento que abre el archivo de ayuda del formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Acerca de");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         #endregion

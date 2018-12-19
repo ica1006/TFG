@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -24,11 +25,11 @@ namespace PlantaPiloto
         private List<Variable> _variables;
         private List<List<Variable>> _sqlData;
         private List<double> _sqlTime;
-        private EnumVarSelection _purpose;
         private DB_services _db_services;
         private System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
         private int _chartAmount;
+        private HelpProvider _helpProvider;
 
         #region Constructor
 
@@ -46,6 +47,8 @@ namespace PlantaPiloto
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _chartAmount = 100;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -63,6 +66,8 @@ namespace PlantaPiloto
             _cul = cultureInfo;
             _proyect = proyect;
             _chartAmount = 100;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         #endregion
@@ -243,6 +248,24 @@ namespace PlantaPiloto
                 _chartAmount = int.Parse(this.txtChartAmount.Text);
             else
                 this.txtChartAmount.Text = _chartAmount.ToString();
+        }
+
+        /// <summary>
+        /// Evento que abre el archivo de ayuda del formulario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Gráficos");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         #endregion

@@ -27,6 +27,7 @@ namespace PlantaPiloto
         private int _eagerLoading;
         private string _lastVariable;
         private bool _secondLap;
+        private HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
 
         #region Constructor
@@ -39,6 +40,8 @@ namespace PlantaPiloto
             _proyect = new Proyect();
             _db_services = new DB_services();
             _eagerLoading = 0;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         public ConfigForm(Proyect proyect)
@@ -74,6 +77,8 @@ namespace PlantaPiloto
             _eagerLoading = 1;
             _lastVariable = "";
             _secondLap = false;
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
         }
 
         #endregion
@@ -612,6 +617,24 @@ namespace PlantaPiloto
                 this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
                 _secondLap = false;
                 this.cbSelectVar.Refresh();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Evento que abre la ayuda para el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Configuración");
             }
             catch (Exception)
             {

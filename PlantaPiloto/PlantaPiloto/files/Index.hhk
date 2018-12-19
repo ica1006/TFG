@@ -4,35 +4,30 @@
 <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
 <!-- Sitemap 1.0 -->
 </HEAD><BODY>
-<OBJECT type="text/site properties">
-	<param name="ImageType" value="Folder">
-</OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Formulario Principal">
+		<param name="Name" value="Formulario Principal">
 		<param name="Local" value="helpMainForm.html">
 		<param name="WindowName" value="Formulario Principal">
-		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Formulario Configuraci&oacute;n">
+		<param name="Name" value="Formulario Configuración">
+		<param name="Local" value="helpConfigForm.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Formulario Gr&aacute;ficos">
 		<param name="Local" value="helpChartForm.html">
-		<param name="ImageNumber" value="1">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Formulario Configuraci&oacute;n">
-		<param name="Local" value="helpConfigForm.html">
-		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Formulario Selecci&oacute;n de Variables">
+		<param name="Name" value="Formulario Selección de Variables">
 		<param name="Local" value="helpVarSelectionForm.html">
-		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Acerca de">
 		<param name="Local" value="helpAboutForm.html">
-		<param name="ImageNumber" value="1">
 		</OBJECT>
 </UL>
 </BODY></HTML>

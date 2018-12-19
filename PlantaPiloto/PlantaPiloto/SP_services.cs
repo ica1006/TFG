@@ -234,7 +234,7 @@ namespace PlantaPiloto
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;

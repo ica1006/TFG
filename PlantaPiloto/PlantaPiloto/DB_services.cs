@@ -199,7 +199,6 @@ namespace PlantaPiloto
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
                             {
-                                string a;
                                 Variable v = new Variable()
                                 {
                                     Name = var.Name,
