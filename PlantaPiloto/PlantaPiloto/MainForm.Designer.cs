@@ -212,6 +212,7 @@ namespace PlantaPiloto
             this.toolStripMenuItemHelpHelp.Name = "toolStripMenuItemHelpHelp";
             this.toolStripMenuItemHelpHelp.Size = new System.Drawing.Size(252, 30);
             this.toolStripMenuItemHelpHelp.Text = "Ayuda";
+            this.toolStripMenuItemHelpHelp.Click += new System.EventHandler(this.toolStripMenuItemHelpHelp_Click);
             // 
             // toolStripMenuItemAbout
             // 

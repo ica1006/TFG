@@ -30,7 +30,8 @@ namespace PlantaPiloto
         private Thread _threadSaveFile;
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
-        string _pdfPath;
+        private string _pdfPath;
+        private HelpProvider _helpProvider;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
@@ -54,6 +55,10 @@ namespace PlantaPiloto
             _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
+            _helpProvider = new HelpProvider();
+            _helpProvider.SetHelpKeyword(this, "Main menu");
+            _helpProvider.SetHelpNavigator(this, HelpNavigator.TableOfContents);
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/help.chm");
             _pdfPath = Path.Combine(Application.StartupPath, "../../files/archivo.pdf");
         }
 
@@ -558,6 +563,11 @@ namespace PlantaPiloto
 
                 throw;
             }
+        }
+
+        private void toolStripMenuItemHelpHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, _helpProvider.HelpNamespace);
         }
 
         /// <summary>
