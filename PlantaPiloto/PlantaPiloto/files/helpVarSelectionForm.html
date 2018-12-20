@@ -1,12 +1,63 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <HTML>
 <HEAD>
-    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
-    <Title>helpGeneral</Title>
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1" charset="utf-8">
+    <Title>Ayuda para la ventana de Selección de Variables</Title>
 </HEAD>
 <BODY>
-    <h1>Ayuda para el Formulario Selecci�n de Variables</h1>
-    <p>A continuaci�n se explicar�n los apartados que componen el formulario de selecci�n de variables de la aplicaci�n Interfaz para Planta Piloto.</p>
+    <h1>Ayuda para el Formulario Selección de Variables</h1>
+    <p>A continuación se explicarán los apartados que componen el formulario de selección de variables de la aplicación Interfaz para Planta Piloto. Esta ventana puede presentarse de tres formas diferentes que se explicarán a continuación.</p>
 
+    <h2>Formulario Selección de Variables a través del botón "Variables"</h2>
+    <p>La finalidad de esta ventana es meramente informativa, en ella se podrán contemplar las variables cargadas en el proyecto y el último valor devuelto por la placa para dicha variable.</p>
+    <img src="images/varSelectionVariables.png" alt="Formulario de Selección de Variables" />
+    <ol>
+        <li>Columna con los nombres de todas las variables cargadas en la configuración de la aplicación.</li>
+        <li>Columna con los valores devueltos por la placa de todas las variables cargadas en la configuración de la aplicación.</li>
+        <li>botón de ayuda de la ventana.</li>
+        <li>botón para cerrar el formulario</li>
+    </ol>
+
+    <h2>Formulario Selección de Variables a través del botón "Gráfico"</h2>
+    <p>
+        En esta ventana se seleccionarán las variables que quieren ser graficadas en tiempo real.
+        Crearemos tantas gráficas como desemos siempre que pulsemos el botón "Crear Gráficas", pudiendo cambiar la selección de variables entre ellas.
+    </p>
+    <img src="images/varSelectionCharts.png" alt="Formulario de Selección de Variables" />
+    <ol>
+        <li>Columna con los nombres de todas las variables cargadas en la configuración de la aplicación que sean graficables (que no son cadenas de texto).</li>
+        <li>Columna en la que se seleccionarán las variables que se quieran graficar..</li>
+        <li>botón de ayuda de la ventana.</li>
+        <li>botón para crear la gráfica con las variables seleccionadas.</li>
+        <li>botón para cerrar el formulario</li>
+    </ol>
+
+    <h2>Formulario Selección de Variables a través del botón "Archivo"</h2>
+    <p>En esta ventana se seleccionarán todas las variables que se quieran guardar en un archivo de texto.</p>
+    <img src="images/varSelectionFile.png" alt="Formulario de Selección de Variables" />
+    <ol>
+        <li>Columna con los nombres de todas las variables cargadas en la configuración de la aplicación.</li>
+        <li>Columna en la que se seleccionarán las variables que se quieran guardar en un archivo.</li>
+        <li>botón de ayuda de la ventana.</li>
+        <li>botón para comenzar el guardado de las variables seleccionadas.</li>
+        <li>botón para cerrar el formulario</li>
+    </ol>
+    <p>
+        En el momento que pulsemos el botón "Crear archivo" con alguna de las variables seleccionadas se nos abrirá
+        el siguiente cuadro de diálogo donde elegiremos la ruta en la que guardar el archivo de texto que contiene los valores de las variables que hemos seleccionado.
+    </p>
+    <p>Por defecto, el nombre que se le asignará al archivo será "nombre_del_proyecto_nombre_de_cada_variable_seleccionada.txt".</p>
+    <img src="images/saveDialog.png" alt="Cuadro de diálogo" />
+    <h3>Formato del archivo donde se guardarán las variables</h3>
+    <p>Al abrir el archivo que acabamos de crear y en donde se guardarán los valores de las variables seleccionadas nos encontraremos:</p>
+    <img src="images/saveDialogFile.png" alt="Archivo de texto" />
+    <ol>
+        <li>Fecha de creación del archivo.</li>
+        <li>Nombre del proyecto.</li>
+        <li>Descripción del proyecto.</li>
+        <li>Ruta de la imagen cargada en el proyecto.</li>
+        <li>Lista de variables que se están guardando, separadas por ';'.</li>
+        <li>Serie de valores devueltos por la placa de las variables seleccionadas, separados por ';'.</li>
+    </ol>
 </BODY>
 </HTML>
