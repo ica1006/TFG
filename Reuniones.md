@@ -43,3 +43,10 @@ En la quinta reunión se ha mostrado una primera versión de la aplicación (pre
 4. Las gráficas deben mostrar unidades en los ejes.
 5. Funcionalidad del botón "Variables": mostrará un listado con todas las variables (lectura y lectura/escritura).
 6. Modificar configuración: cargará los datos de la configuración actual pudiendo modificar los mismos, pero no agregar nuevas variables.
+### 20 de Diciembre de 2018
+Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido sin Carlos):
+1. Uso de la herramienta Codecy, resolver errores.
+2. Gestionar excepciones, archivo log.
+3. Manual de usuario.
+4. Memoria en Latex.
+5. Controlar "Modificar proyecto" con proyecto no cargado; cambios de valores en datagridview dejando el campo en blanco.
