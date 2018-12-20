@@ -56,7 +56,7 @@ namespace PlantaPiloto
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _pdfPath = Path.Combine(Application.StartupPath, "../../files/archivo.pdf");
+            _pdfPath = Path.Combine(Application.StartupPath, "../../files/Manual_Usuario.pdf");
         }
 
         #endregion
