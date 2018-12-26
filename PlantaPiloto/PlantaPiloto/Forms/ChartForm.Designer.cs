@@ -1,4 +1,6 @@
-﻿namespace PlantaPiloto
+﻿using PlantaPiloto.Services;
+
+namespace PlantaPiloto
 {
     partial class ChartForm
     {
@@ -34,7 +36,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.chartVar = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnClose = new System.Windows.Forms.Button();
-            this.tFG_DBDataSet = new PlantaPiloto.TFG_DBDataSet();
+            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             this.lblChartAmount = new System.Windows.Forms.Label();
             this.txtChartAmount = new System.Windows.Forms.RichTextBox();
             this.btnChartAmount = new System.Windows.Forms.Button();

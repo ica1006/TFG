@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using PlantaPiloto.Services;
+using System.Windows.Forms;
 
 namespace PlantaPiloto
 {
@@ -68,7 +69,7 @@ namespace PlantaPiloto
             this.lblProName = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tFG_DBDataSet = new PlantaPiloto.TFG_DBDataSet();
+            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
