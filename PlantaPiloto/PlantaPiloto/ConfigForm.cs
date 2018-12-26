@@ -18,16 +18,15 @@ namespace PlantaPiloto
 {
     public partial class ConfigForm : Form
     {
-        private MainForm _mainForm;
-        private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
+        readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
-        private DB_services _db_services;
-        private int _eagerLoading;
+        readonly DB_services _db_services;
+        readonly int _eagerLoading;
         private string _lastVariable;
         private bool _secondLap;
-        private HelpProvider _helpProvider;
+        readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
 
         #region Constructor
@@ -35,7 +34,6 @@ namespace PlantaPiloto
         public ConfigForm()
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
             _db_services = new DB_services();
@@ -47,9 +45,8 @@ namespace PlantaPiloto
         public ConfigForm(Proyect proyect)
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _proyect = new Proyect()
+            _proyect = new Proyect
             {
                 Name = proyect.Name,
                 Description = proyect.Description,
@@ -439,6 +436,7 @@ namespace PlantaPiloto
         {
             try
             {
+                //Actualiza la última variable cargada si el formulario está modificando un proyecto.
                 if(_eagerLoading == 1)
                 {
                     this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));

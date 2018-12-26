@@ -20,16 +20,16 @@ namespace PlantaPiloto
     {
         private MainForm _mainForm;
         private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
-        private CultureInfo _cul;            // declare culture info
-        private Proyect _proyect;
+        readonly CultureInfo _cul;            // declare culture info
+        readonly Proyect _proyect;
         private List<Variable> _variables;
-        private List<List<Variable>> _sqlData;
+        readonly List<List<Variable>> _sqlData;
         private List<double> _sqlTime;
         private DB_services _db_services;
         private System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
         private int _chartAmount;
-        private HelpProvider _helpProvider;
+        readonly HelpProvider _helpProvider;
 
         #region Constructor
 

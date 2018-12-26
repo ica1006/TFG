@@ -17,7 +17,7 @@ namespace PlantaPiloto
     {
         #region Properties
 
-        private ResourceManager _res_man;
+        readonly ResourceManager _res_man;
         private CultureInfo _cul;
         private HelpProvider _helpProvider;
 

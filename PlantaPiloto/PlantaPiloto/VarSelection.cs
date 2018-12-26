@@ -14,8 +14,8 @@ namespace PlantaPiloto
     public partial class VarSelection : Form
     {
         private MainForm _mainForm;
-        private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
-        private CultureInfo _cul;            // declare culture info
+        readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
+        readonly CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private EnumVarSelection _purpose;
         private DB_services _db_services;

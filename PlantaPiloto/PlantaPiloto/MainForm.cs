@@ -20,8 +20,8 @@ namespace PlantaPiloto
 {
     public partial class MainForm : Form
     {
-        ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
-        CultureInfo _cul;            // declare culture info
+        readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
+        private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
         private DB_services _db_services;
@@ -30,7 +30,7 @@ namespace PlantaPiloto
         private System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
         private string _pdfPath;
-        private HelpProvider _helpProvider;
+        readonly HelpProvider _helpProvider;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
@@ -528,7 +528,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul) + "\n" + ex.Message.ToString(),
+                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul) + "\n" + ex.Message,
                         _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
@@ -607,10 +607,7 @@ namespace PlantaPiloto
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Principal");
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            catch (Exception) { }
         }
 
         /// <summary>
