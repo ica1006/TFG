@@ -374,25 +374,6 @@ namespace PlantaPiloto
 
         /// <summary>
         /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
-        /// la aplicación no tiene cargado un proyecto.
-        /// </summary>
-        private void ViewNoConnection()
-        {
-            btnStart.Enabled = false;
-            btnFinish.Enabled = false;
-            btnChart.Enabled = false;
-            btnVar.Enabled = false;
-            btnFile.Enabled = false;
-            btnRefreshPorts.Enabled = true;
-            cboPort.Enabled = true;
-            lblProName.Visible = true;
-            lblProDesc.Visible = true;
-            lblRWVariables.Visible = true;
-            dgvProVars.Visible = true;
-        }
-
-        /// <summary>
-        /// Método que establece la visibilidad o estado de los elementos de la vista cuando 
         /// la aplicación tiene cargado un proyecto y la conexión con el puerto serie abierta.
         /// </summary>
         private void ViewConnectionOpen()
@@ -719,27 +700,6 @@ namespace PlantaPiloto
                 _threadSaveRow.Abort();
                 _sp_services.SaveFile = false;
                 this.ViewConnectionClose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Método que recibe por el puerto serie y lo muestra en el txtBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReceive_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtReceive.Clear();
-                //if (_sp_services.SerialPort.IsOpen)
-                //{
-                //    txtReceive.Text = _sp_services.SerialPort.ReadLine() + Environment.NewLine;
-                //}
             }
             catch (Exception ex)
             {

@@ -19,7 +19,7 @@ namespace PlantaPiloto
 
         readonly ResourceManager _res_man;
         private CultureInfo _cul;
-        private HelpProvider _helpProvider;
+        readonly HelpProvider _helpProvider;
 
         public CultureInfo Cul
         {

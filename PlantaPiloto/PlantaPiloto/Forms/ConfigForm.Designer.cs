@@ -498,7 +498,6 @@ namespace PlantaPiloto
             this.MaximizeBox = false;
             this.Name = "ConfigForm";
             this.Text = "MakeConfig";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfigForm_FormClosing);
             this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.gbProyectDetails.ResumeLayout(false);
             this.gbProyectDetails.PerformLayout();

@@ -72,7 +72,7 @@ namespace PlantaPiloto
         /// Método que obtiene el nombre de las columnas del proyecto que se pasa por parámetro
         /// </summary>
         /// <param name="proyect">Proyecto del que se quieren conocer los nombres de las columnas</param>
-        public string[] GetLastRowValue(Proyect proyect)
+        public static string[] GetLastRowValue(Proyect proyect)
         {
             string[] row = null;
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
@@ -150,7 +150,7 @@ namespace PlantaPiloto
                         using (SqlCommand command = new SqlCommand(insertCmd, con))
                             command.ExecuteNonQuery();
                     else
-                        this.CreateTableDB(proyect);
+                        CreateTableDB(proyect);
                 }
                 catch (Exception ex)
                 {
@@ -199,7 +199,7 @@ namespace PlantaPiloto
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
                             {
-                                Variable v = new Variable()
+                                Variable v = new Variable
                                 {
                                     Name = var.Name,
                                     Type = var.Type,

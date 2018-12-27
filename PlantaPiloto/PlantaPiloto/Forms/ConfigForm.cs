@@ -171,23 +171,6 @@ namespace PlantaPiloto
             }
         }
 
-        /// <summary>
-        /// Método que se ejecuta al cerrar el formulario, antes de que este se cierre
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         #endregion
 
         /// <summary>

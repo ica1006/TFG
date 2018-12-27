@@ -166,7 +166,7 @@ namespace PlantaPiloto
 
                         foreach (Variable v in _proyect.Variables)
                         {
-                            _lastRow.Variables.Add(new Variable()
+                            _lastRow.Variables.Add(new Variable
                             {
                                 Name = v.Name,
                                 Access = v.Access,
