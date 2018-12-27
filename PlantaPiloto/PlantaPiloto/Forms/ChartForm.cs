@@ -91,6 +91,11 @@ namespace PlantaPiloto
             this._timer.Enabled = true;
         }
 
+        /// <summary>
+        /// Método que gestiona el cierre del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChartForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _timer.Enabled = false;
@@ -109,7 +114,7 @@ namespace PlantaPiloto
                 {
                     _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
                 }
-                //_sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First()).Select(p => p.Time.Value).ToList();
+
                 double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
                 _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
                     .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
