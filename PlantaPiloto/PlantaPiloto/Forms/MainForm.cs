@@ -24,7 +24,7 @@ namespace PlantaPiloto
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
-        private DB_services _db_services;
+        readonly DB_services _db_services;
         private SP_services _sp_services;
         private Thread _threadSaveRow;
         private System.Timers.Timer _timerRefreshDataGrid;

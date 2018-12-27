@@ -98,7 +98,6 @@ namespace PlantaPiloto
             this.txtChartAmount.TabIndex = 3;
             this.txtChartAmount.Text = "";
             this.txtChartAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChartAmount_KeyPress);
-            this.txtChartAmount.Validating += new System.ComponentModel.CancelEventHandler(this.txtChartAmount_Validating);
             // 
             // btnChartAmount
             // 

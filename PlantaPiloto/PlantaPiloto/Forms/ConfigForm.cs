@@ -556,46 +556,6 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Evento que llama al método que valida si el valor introducido es un número
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtVarLinearAdjA_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidateNumberInput(sender, e);
-        }
-
-        /// <summary>
-        /// Evento que llama al método que valida si el valor introducido es un número
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtVarLinearAdjB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidateNumberInput(sender, e);
-        }
-
-        /// <summary>
-        /// Evento que llama al método que valida si el valor introducido es un número
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtVarRangeLow_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidateNumberInput(sender, e);
-        }
-
-        /// <summary>
-        /// Evento que llama al método que valida si el valor introducido es un número
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtVarRangeHigh_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidateNumberInput(sender, e);
-        }
-
-        /// <summary>
         /// Evento que se ejecuta al cambiar el valor del comboBox que contiene las variables del proyecto
         /// </summary>
         /// <param name="sender"></param>

@@ -17,7 +17,7 @@ namespace PlantaPiloto
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
-        private EnumVarSelection _purpose;
+        readonly EnumVarSelection _purpose;
         private DB_services _db_services;
         private HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
@@ -154,6 +154,9 @@ namespace PlantaPiloto
                     break;
                 case EnumVarSelection.File:
                     this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
+                    break;
+                default:
+                    this.btnAccept.Visible = false;
                     break;
             }
 

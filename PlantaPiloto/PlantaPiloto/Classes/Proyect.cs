@@ -17,7 +17,6 @@ namespace PlantaPiloto
     {
         #region Properties
 
-        readonly ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);   // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;
 
         public CultureInfo Cul

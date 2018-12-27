@@ -18,7 +18,7 @@ namespace PlantaPiloto
 {
     public partial class ChartForm : Form
     {
-        private MainForm _mainForm;
+        readonly MainForm _mainForm;
         private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
@@ -26,7 +26,7 @@ namespace PlantaPiloto
         readonly List<List<Variable>> _sqlData;
         private List<double> _sqlTime;
         private DB_services _db_services;
-        private System.Timers.Timer _timer;
+        readonly System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
         private int _chartAmount;
         readonly HelpProvider _helpProvider;
@@ -220,7 +220,7 @@ namespace PlantaPiloto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtChartAmount_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtChartAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -235,19 +235,6 @@ namespace PlantaPiloto
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Evento que evalúa si el valor es positivo
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtChartAmount_Validating(object sender, CancelEventArgs e)
-        {
-            if (int.Parse(this.txtChartAmount.Text) > 0)
-                _chartAmount = int.Parse(this.txtChartAmount.Text);
-            else
-                this.txtChartAmount.Text = _chartAmount.ToString();
         }
 
         /// <summary>

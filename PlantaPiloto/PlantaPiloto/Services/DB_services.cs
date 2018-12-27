@@ -222,14 +222,8 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    try
-                    {
-                        con.Close();
-                        con.Dispose();
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    con.Close();
+                    con.Dispose();
                 }
             }
         }
