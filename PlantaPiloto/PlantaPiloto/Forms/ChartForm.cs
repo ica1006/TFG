@@ -111,13 +111,9 @@ namespace PlantaPiloto
                 chartVar.Series.Clear();
                 //Se recogen los valores de las variables seleccionadas
                 foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
-                {
                     _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
-                }
 
-                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
-                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
-                    .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
+                GetVarValuesAndTimes();
                 for (int i = 0; i < _sqlData.Count(); i++)
                 {
                     Series series = new Series(_sqlData[i].First().Name);
@@ -162,9 +158,7 @@ namespace PlantaPiloto
             else
             {
                 //Se recogen los valores de las variables seleccionadas
-                double _ts = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
-                _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
-                    .Select(p => Double.Parse(p.Time.Value.ToString()) * _ts).ToList();
+                GetVarValuesAndTimes();
                 foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                 {
                     _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
@@ -177,6 +171,19 @@ namespace PlantaPiloto
 
                 chartVar.Update();
             }
+        }
+
+        /// <summary>
+        /// Método que devuelve el valor de la variable y el tiempo de la gráfica
+        /// </summary>
+        /// <returns></returns>
+        private void GetVarValuesAndTimes()
+        {
+            //Obtengo el periodo
+            double values = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
+            //Multiplico el periodo por el momento de la placa guardado en la BD
+            _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
+                    .Select(p => Double.Parse(p.Time.Value.ToString()) * values).ToList();
         }
 
         /// <summary>

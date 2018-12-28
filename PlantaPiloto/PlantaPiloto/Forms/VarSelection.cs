@@ -132,18 +132,6 @@ namespace PlantaPiloto
                             dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
                     break;
                 default:
-                    this.btnAccept.Visible = false;
-                    dgvVarSelection.Columns.Add(new DataGridViewColumn()
-                    {
-                        Name = "Values",
-                        HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
-                        ReadOnly = true,
-                        CellTemplate = new DataGridViewTextBoxCell()
-                    });
-
-                    if (_proyect.Variables.Count(p => p.Value == null) == 0)
-                        foreach (Variable v in _proyect.Variables)
-                            dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
                     break;
             }
 
@@ -211,6 +199,8 @@ namespace PlantaPiloto
                         case EnumVarSelection.File:
                             Save_file(_varSelected);
                             this.Close();
+                            break;
+                        default:
                             break;
                     }
 

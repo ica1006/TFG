@@ -34,19 +34,19 @@ namespace PlantaPiloto
                             command.ExecuteNonQuery();
 
                     // Create table string
-                    string sqlStr = "CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [int] NOT NULL";
+                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [int] NOT NULL");
                     foreach (Variable v in proyect.Variables)
                     {
-                        sqlStr += ", [" + v.Name + "] ";
+                        sqlStr.Append(", [" + v.Name + "] ");
                         if (v.Type == EnumVarType.String)
-                            sqlStr += "[nvarchar](20) NULL";
+                            sqlStr.Append("[nvarchar](20) NULL");
                         else
-                            sqlStr += "[float] NULL";
+                            sqlStr.Append("[float] NULL");
                     }
-                    sqlStr += ")";
+                    sqlStr.Append(")");
 
                     // The following code uses an SqlCommand based on the SqlConnection.
-                    using (SqlCommand command = new SqlCommand(sqlStr, con))
+                    using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         command.ExecuteNonQuery();
                 }
                 catch (Exception ex)
@@ -55,14 +55,8 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    try
-                    {
-                        con.Close();
-                        con.Dispose();
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    con.Close();
+                    con.Dispose();
                 }
             }
 
@@ -107,14 +101,8 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    try
-                    {
-                        con.Close();
-                        con.Dispose();
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    con.Close();
+                    con.Dispose();
                 }
             }
         }
@@ -137,17 +125,17 @@ namespace PlantaPiloto
                         " AND TABLE_NAME = '" + proyect.Name + "'";
                     SqlCommand cmd = new SqlCommand(sCmd, con);
                     // Cadena para insertar una nueva fila
-                    string insertCmd = "INSERT INTO [dbo].[" + proyect.Name + "]([Time]";
+                    StringBuilder insertCmd = new StringBuilder("INSERT INTO [dbo].[" + proyect.Name + "]([Time]");
                     foreach (Variable v in proyect.Variables)
-                        insertCmd += ",[" + v.Name + "]";
-                    insertCmd += ") VALUES (" + proyect.Variables[0].Time;
+                        insertCmd.Append(",[" + v.Name + "]");
+                    insertCmd.Append(") VALUES (" + proyect.Variables[0].Time);
                     foreach (Variable v in proyect.Variables)
-                        insertCmd += v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value;
-                    insertCmd += ")";
+                        insertCmd.Append(v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value);
+                    insertCmd.Append(")");
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
                     if ((int)cmd.ExecuteScalar() == 1)
-                        using (SqlCommand command = new SqlCommand(insertCmd, con))
+                        using (SqlCommand command = new SqlCommand(insertCmd.ToString(), con))
                             command.ExecuteNonQuery();
                     else
                         CreateTableDB(proyect);
@@ -158,14 +146,8 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    try
-                    {
-                        con.Close();
-                        con.Dispose();
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    con.Close();
+                    con.Dispose();
                 }
             }
         }
@@ -206,9 +188,7 @@ namespace PlantaPiloto
                                     Access = var.Access,
                                     CommunicationType = var.CommunicationType,
                                     Time = varDataReader.GetInt32(0),
-                                    // EVALUAR TIPO DE VARIABLE Y ASIGNAR GETDOUBLE, GETINT DEPENDIENDO
                                     Value = varDataReader.GetDouble(1).ToString()
-                                    //Value = varDataReader[1].ToString()
                                 };
                                 result.Add(v);
                             }
