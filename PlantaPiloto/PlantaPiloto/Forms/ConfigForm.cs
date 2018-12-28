@@ -146,6 +146,7 @@ namespace PlantaPiloto
                     _proyect = new Proyect();
                     break;
                 default:
+                    CleanVarForm();
                     break;
             }
         }

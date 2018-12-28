@@ -132,6 +132,7 @@ namespace PlantaPiloto
                             dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
                     break;
                 default:
+                    this.btnAccept.Visible = false;
                     break;
             }
 
@@ -201,6 +202,7 @@ namespace PlantaPiloto
                             this.Close();
                             break;
                         default:
+                            this.Close();
                             break;
                     }
 

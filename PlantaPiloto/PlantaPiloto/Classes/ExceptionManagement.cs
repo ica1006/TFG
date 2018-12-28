@@ -19,6 +19,7 @@ namespace PlantaPiloto.Classes
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            NullReferenceException 
 
     */
         public void HandleException(Exception ex)
@@ -27,6 +28,7 @@ namespace PlantaPiloto.Classes
             {
                 
                 default:
+                    Console.WriteLine($"{ex.GetType().Name}, {ex.StackTrace}");
                     break;
             }
         }
