@@ -1,4 +1,5 @@
-﻿using PlantaPiloto.Enums;
+﻿using PlantaPiloto.Classes;
+using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace PlantaPiloto
         private bool _secondLap;
         readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
+        private ExceptionManagement _exMg;
 
         #region Constructor
 
@@ -53,7 +55,7 @@ namespace PlantaPiloto
                 ImagePath = proyect.ImagePath,
                 Cul = proyect.Cul,
             };
-            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable()
+            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable
             {
                 Name = p.Name,
                 Type = p.Type,
@@ -130,25 +132,10 @@ namespace PlantaPiloto
             switch (eagerLoading)
             {
                 case 0:
-                    foreach (Control c in this.gbNewVar.Controls)
-                    {
-                        if (c is TextBox || c is RichTextBox)
-                        {
-                            c.Text = "";
-                        }
-                    }
-                    _variable = new Variable();
+                    CleanVarForm();
                     break;
                 case 1:
-                    foreach (Control c in this.gbNewVar.Controls)
-                    {
-                        if (c is TextBox || c is RichTextBox)
-                        {
-                            c.Text = "";
-                        }
-                    }
-                    _variable = new Variable();
-
+                    CleanVarForm();
                     foreach (Control c in this.gbProyectDetails.Controls)
                     {
                         if (c is TextBox || c is RichTextBox)
@@ -159,16 +146,24 @@ namespace PlantaPiloto
                     _proyect = new Proyect();
                     break;
                 default:
-                    foreach (Control c in this.gbNewVar.Controls)
-                    {
-                        if (c is TextBox || c is RichTextBox)
-                        {
-                            c.Text = "";
-                        }
-                    }
-                    _variable = new Variable();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Método que limpia los cuadros de texto correspondientes a variable 
+        /// y crea una nueva variable interna.
+        /// </summary>
+        private void CleanVarForm()
+        {
+            foreach (Control c in this.gbNewVar.Controls)
+            {
+                if (c is TextBox || c is RichTextBox)
+                {
+                    c.Text = "";
+                }
+            }
+            _variable = new Variable();
         }
 
         #endregion
@@ -273,13 +268,9 @@ namespace PlantaPiloto
                     _proyect.Variables.Add(_variable);
                 }
             }
-            catch (FormatException ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -311,7 +302,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
                 return false;
             }
         }
@@ -359,7 +350,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
                 throw;
             }
         }
@@ -402,11 +393,7 @@ namespace PlantaPiloto
             }
             catch (FormatException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -470,7 +457,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -505,8 +492,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
@@ -559,10 +545,9 @@ namespace PlantaPiloto
                 _secondLap = false;
                 this.cbSelectVar.Refresh();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
@@ -577,10 +562,9 @@ namespace PlantaPiloto
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Configuración");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
