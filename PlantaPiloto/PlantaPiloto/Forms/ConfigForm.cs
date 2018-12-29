@@ -49,30 +49,28 @@ namespace PlantaPiloto
         {
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _proyect = new Proyect
-            {
-                Name = proyect.Name,
-                Description = proyect.Description,
-                ImagePath = proyect.ImagePath,
-                Cul = proyect.Cul,
-            };
-            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable
-            {
-                Name = p.Name,
-                Type = p.Type,
-                Description = p.Description,
-                Access = p.Access,
-                BoardUnits = p.BoardUnits,
-                InterfaceUnits = p.InterfaceUnits,
-                LinearAdjustA = p.LinearAdjustA,
-                LinearAdjustB = p.LinearAdjustB,
-                RangeLow = p.RangeLow,
-                RangeHigh = p.RangeHigh,
-                CommunicationType = p.CommunicationType,
-                Value = p.Value,
-                Time = p.Time,
-                Cul = p.Cul
-            }));
+            _proyect = new Proyect(
+                proyect.Name,
+                proyect.Description,
+                proyect.ImagePath,
+                proyect.Cul
+            );
+            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable(
+                p.Name,
+                p.Type,
+                p.Description,
+                p.Access,
+                p.BoardUnits,
+                p.InterfaceUnits,
+                p.LinearAdjustA,
+                p.LinearAdjustB,
+                p.RangeLow,
+                p.RangeHigh,
+                p.CommunicationType,
+                p.Value,
+                p.Time,
+                p.Cul
+            )));
             _db_services = new DB_services();
             _eagerLoading = 1;
             _lastVariable = "";
@@ -424,14 +422,14 @@ namespace PlantaPiloto
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        //StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        //tw.WriteLine(DateTime.Now);
-                        //tw.WriteLine(_proyect.Name);
-                        //tw.WriteLine(_proyect.Description);
-                        //tw.WriteLine(_proyect.ImagePath);
+                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                        tw.WriteLine(DateTime.Now);
+                        tw.WriteLine(_proyect.Name);
+                        tw.WriteLine(_proyect.Description);
+                        tw.WriteLine(_proyect.ImagePath);
                         foreach (Variable v in _proyect.Variables)
                         {
-                            //tw.WriteLine("****************************************");
+                            tw.WriteLine("****************************************");
                             tw.WriteLine(v.Name);
                             tw.WriteLine(v.Type);
                             tw.WriteLine(v.Description);
@@ -448,8 +446,8 @@ namespace PlantaPiloto
                             tw.WriteLine(v.CommunicationType);
 
                         }
-                        //tw.WriteLine("****************************************");
-                        //tw.WriteLine("****************************************");
+                        tw.WriteLine("****************************************");
+                        tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
                         this.LoadProyect(_proyect);

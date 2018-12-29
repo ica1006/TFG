@@ -77,12 +77,13 @@ namespace PlantaPiloto
             Variables = new ObservableCollection<Variable>();
         }
 
-        public Proyect(string name, string desc, string imgPath)
+        public Proyect(string name, string desc, string imgPath, CultureInfo cul)
         {
             Name = name;
             Description = desc;
             ImagePath = imgPath;
             Variables = new ObservableCollection<Variable>();
+            Cul = cul;
         }
 
         #endregion

@@ -175,7 +175,10 @@ namespace PlantaPiloto
 
         public Variable() { }
 
-        public Variable(string name, EnumVarType type, string desc, EnumVarAccess access, string boardUn, string interfaceUn, float? linearAdjA, float? linearAdjB, float? rangeLow, float? rangeHigh, EnumVarCommunicationType comType, CultureInfo cul)
+        public Variable(string name, EnumVarType type, string desc, EnumVarAccess access, 
+            string boardUn, string interfaceUn, float? linearAdjA, float? linearAdjB, 
+            float? rangeLow, float? rangeHigh, EnumVarCommunicationType comType, string value,
+            int? time, CultureInfo cul)
         {
             Name = name;
             Type = type;
@@ -188,6 +191,8 @@ namespace PlantaPiloto
             RangeLow = rangeLow;
             RangeHigh = rangeHigh;
             CommunicationType = comType;
+            Value = value;
+            Time = time;
             Cul = cul;
         }
 
