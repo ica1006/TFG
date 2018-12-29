@@ -149,16 +149,16 @@ namespace PlantaPiloto
                         _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
 
                         //Asigno valor a las variables que son sólo de escritura para tener una referencia en la vista
-                        //if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
-                        //{
-                        //    _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
-                        //    _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Value = spLine[2];
-                        //}
-                        //if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Count() != 0)
-                        //{
-                        //    _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
-                        //    _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Value = spLine[2];
-                        //}
+                        if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
+                        {
+                            _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
+                            _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Value = spLine[2];
+                        }
+                        if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Count() != 0)
+                        {
+                            _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
+                            _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Value = spLine[2];
+                        }
                     }
                     // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
                     // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
@@ -247,17 +247,17 @@ namespace PlantaPiloto
 
         #region Miembros de INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        /// <summary>
-        /// Método que actualiza la propiedad cuando esta cambia
-        /// </summary>
-        /// <param name="name">Propiedad a actualizar</param>
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
-        }
+        //public event PropertyChangedEventHandler PropertyChanged;
+        ///// <summary>
+        ///// Método que actualiza la propiedad cuando esta cambia
+        ///// </summary>
+        ///// <param name="name">Propiedad a actualizar</param>
+        //protected void OnPropertyChanged(string name)
+        //{
+        //    PropertyChangedEventHandler handler = PropertyChanged;
+        //    if (handler != null)
+        //        handler(this, new PropertyChangedEventArgs(name));
+        //}
 
         #endregion
 
