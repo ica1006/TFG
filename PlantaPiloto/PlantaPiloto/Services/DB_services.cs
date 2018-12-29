@@ -117,11 +117,12 @@ namespace PlantaPiloto
                     foreach (Variable v in proyect.Variables)
                         insertCmd.Append(",[" + v.Name + "]");
                     insertCmd.Append(") VALUES (" + proyect.Variables[0].Time);
+
                     foreach (Variable v in proyect.Variables)
                         insertCmd.Append(v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value);
                     insertCmd.Append(")");
+
                     // Comprobamos si está
-                    // Devuelve 1 si ya existe o 0 si no existe
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand(insertCmd.ToString(), con))
                             command.ExecuteNonQuery();
