@@ -26,13 +26,8 @@ namespace PlantaPiloto
                 {
                     // Open the SqlConnection.
                     con.Open();
-                    // Delete table if exists
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
-                        " AND TABLE_NAME = '" + proyect.Name + "'";
-                    SqlCommand cmd = new SqlCommand(sCmd, con);
-                    // Comprobamos si está
-                    // Devuelve 1 si ya existe o 0 si no existe
-                    if ((int)cmd.ExecuteScalar() == 1)
+
+                    if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("DROP TABLE dbo." + proyect.Name, con))
                             command.ExecuteNonQuery();
 
