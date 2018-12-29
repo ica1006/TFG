@@ -10,7 +10,9 @@ namespace PlantaPiloto.Classes
 {
     class ExceptionManagement
     {
+        //Ruta del archivo de log
         string _filePath = Path.Combine(Application.StartupPath, "../../files/ExceptionLog.txt");
+
         /// <summary>
         /// Método que recibe las excepciones de la aplicación y las controla según el tipo
         /// </summary>
