@@ -58,8 +58,7 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    con.Close();
-                    con.Dispose();
+                    CloseConnection(con);
                 }
             }
 
@@ -78,13 +77,8 @@ namespace PlantaPiloto
                 {
                     // Open the SqlConnection.
                     con.Open();
-                    // Delete table if exists
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
-                        " AND TABLE_NAME = '" + proyect.Name + "'";
-                    SqlCommand cmd = new SqlCommand(sCmd, con);
-                    // Comprobamos si está
-                    // Devuelve 1 si ya existe o 0 si no existe
-                    if ((int)cmd.ExecuteScalar() == 1)
+
+                    if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
@@ -104,8 +98,7 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    con.Close();
-                    con.Dispose();
+                    CloseConnection(con);
                 }
             }
         }
@@ -123,10 +116,7 @@ namespace PlantaPiloto
                 {
                     // Open the SqlConnection.
                     con.Open();
-                    // Cadena para comprobar si la tabla existe
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
-                        " AND TABLE_NAME = '" + proyect.Name + "'";
-                    SqlCommand cmd = new SqlCommand(sCmd, con);
+
                     // Cadena para insertar una nueva fila
                     StringBuilder insertCmd = new StringBuilder("INSERT INTO [dbo].[" + proyect.Name + "]([Time]");
                     foreach (Variable v in proyect.Variables)
@@ -137,7 +127,7 @@ namespace PlantaPiloto
                     insertCmd.Append(")");
                     // Comprobamos si está
                     // Devuelve 1 si ya existe o 0 si no existe
-                    if ((int)cmd.ExecuteScalar() == 1)
+                    if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand(insertCmd.ToString(), con))
                             command.ExecuteNonQuery();
                     else
@@ -149,8 +139,7 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    con.Close();
-                    con.Dispose();
+                    CloseConnection(con);
                 }
             }
         }
@@ -171,13 +160,8 @@ namespace PlantaPiloto
                 {
                     // Open the SqlConnection.
                     con.Open();
-                    // Delete table if exists
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
-                        " AND TABLE_NAME = '" + proyect.Name + "'";
-                    SqlCommand cmd = new SqlCommand(sCmd, con);
-                    // Comprobamos si está
-                    // Devuelve 1 si ya existe o 0 si no existe
-                    if ((int)cmd.ExecuteScalar() == 1)
+
+                    if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + " [Time], [" + var.Name + "] " +
                             "FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
@@ -205,10 +189,47 @@ namespace PlantaPiloto
                 }
                 finally
                 {
-                    con.Close();
-                    con.Dispose();
+                    CloseConnection(con);
                 }
             }
+        }
+
+        /// <summary>
+        /// Método que evalúa si la BD existe
+        /// </summary>
+        /// <param name="proyect">Proyecto que se utiliza para saber el nombre de la BD</param>
+        /// <returns></returns>
+        public bool CheckDBExists(Proyect proyect)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+                {
+                    con.Open();
+
+                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
+                           " AND TABLE_NAME = '" + proyect.Name + "'";
+
+                    SqlCommand cmd = new SqlCommand(sCmd, con);
+
+                    return ((int)cmd.ExecuteScalar() == 1);
+                }
+            }
+            catch(Exception ex)
+            {
+                _exMg.HandleException(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Método que cierra la conexión con la BD
+        /// </summary>
+        /// <param name="con"></param>
+        public void CloseConnection(SqlConnection con)
+        {
+            con.Close();
+            con.Dispose();
         }
     }
 }
