@@ -690,6 +690,7 @@ namespace PlantaPiloto
                 _timerRefreshDataGrid.Enabled = false;
                 _threadSaveRow.Abort();
                 _sp_services.SaveFile = false;
+                LoadProyect();
                 this.ViewConnectionClose();
             }
             catch (Exception ex)
