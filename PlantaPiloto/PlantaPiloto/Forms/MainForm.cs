@@ -307,10 +307,7 @@ namespace PlantaPiloto
                 {
                     SaveFileDialog saveFileDialog1;
                     saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = _proyect.Name.ToString();
-                    foreach (Variable v in vars)
-                        saveFileDialog1.FileName += "_" + v.Name;
-                    saveFileDialog1.FileName += ".txt";
+                    saveFileDialog1.FileName = _proyect.Name.ToString() + "_" + vars.Count +"variables.txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {

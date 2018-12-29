@@ -424,14 +424,14 @@ namespace PlantaPiloto
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        tw.WriteLine(DateTime.Now);
-                        tw.WriteLine(_proyect.Name);
-                        tw.WriteLine(_proyect.Description);
-                        tw.WriteLine(_proyect.ImagePath);
+                        //StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
+                        //tw.WriteLine(DateTime.Now);
+                        //tw.WriteLine(_proyect.Name);
+                        //tw.WriteLine(_proyect.Description);
+                        //tw.WriteLine(_proyect.ImagePath);
                         foreach (Variable v in _proyect.Variables)
                         {
-                            tw.WriteLine("****************************************");
+                            //tw.WriteLine("****************************************");
                             tw.WriteLine(v.Name);
                             tw.WriteLine(v.Type);
                             tw.WriteLine(v.Description);
@@ -448,8 +448,8 @@ namespace PlantaPiloto
                             tw.WriteLine(v.CommunicationType);
 
                         }
-                        tw.WriteLine("****************************************");
-                        tw.WriteLine("****************************************");
+                        //tw.WriteLine("****************************************");
+                        //tw.WriteLine("****************************************");
                         tw.Dispose();
                         tw.Close();
                         this.LoadProyect(_proyect);
