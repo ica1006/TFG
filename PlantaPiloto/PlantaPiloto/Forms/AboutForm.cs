@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlantaPiloto.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace PlantaPiloto
         readonly ResourceManager _res_man;
         private CultureInfo _cul;
         readonly HelpProvider _helpProvider;
+        private ExceptionManagement _exMg;
 
         public CultureInfo Cul
         {
@@ -38,6 +40,7 @@ namespace PlantaPiloto
             _cul = cul;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         #endregion
@@ -97,10 +100,9 @@ namespace PlantaPiloto
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Acerca de");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 

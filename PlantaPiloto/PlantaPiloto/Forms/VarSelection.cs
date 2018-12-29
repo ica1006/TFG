@@ -1,4 +1,5 @@
-﻿using PlantaPiloto.Enums;
+﻿using PlantaPiloto.Classes;
+using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,6 +22,7 @@ namespace PlantaPiloto
         private DB_services _db_services;
         private HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
+        private ExceptionManagement _exMg;
 
         #region Constructor
 
@@ -33,6 +35,7 @@ namespace PlantaPiloto
             _db_services = new DB_services();
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         public VarSelection(Proyect proyect, EnumVarSelection purpose, CultureInfo cultureInfo)
@@ -69,6 +72,7 @@ namespace PlantaPiloto
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         #endregion
@@ -210,7 +214,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -228,8 +232,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
@@ -244,10 +247,9 @@ namespace PlantaPiloto
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Selección de Variables");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 

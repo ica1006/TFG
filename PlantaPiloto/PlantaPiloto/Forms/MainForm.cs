@@ -15,6 +15,7 @@ using PlantaPiloto.Enums;
 using System.Threading;
 using System.Timers;
 using System.Diagnostics;
+using PlantaPiloto.Classes;
 
 namespace PlantaPiloto
 {
@@ -27,10 +28,11 @@ namespace PlantaPiloto
         readonly DB_services _db_services;
         private SP_services _sp_services;
         private Thread _threadSaveRow;
-        private System.Timers.Timer _timerRefreshDataGrid;
+        readonly System.Timers.Timer _timerRefreshDataGrid;
         private Proyect _lastRowSP;
-        private string _pdfPath;
+        readonly string _pdfPath;
         readonly HelpProvider _helpProvider;
+        private ExceptionManagement _exMg;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
@@ -57,6 +59,7 @@ namespace PlantaPiloto
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _pdfPath = Path.Combine(Application.StartupPath, "../../files/Manual_Usuario.pdf");
+            _exMg = new ExceptionManagement();
         }
 
         #endregion
@@ -73,20 +76,6 @@ namespace PlantaPiloto
             _sp_services = new SP_services();
             this.LoadPorts();
             this.ViewNoProyect();
-        }
-
-        /// <summary>
-        /// Evento que se ejecuta al cerrarse (justo antes) el formulario
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _timerRefreshDataGrid.Enabled = false;
-            if (_sp_services != null && _sp_services.SerialPort.IsOpen)
-                _sp_services.SerialPort.Close();
-            if (_threadSaveRow != null && _threadSaveRow.IsAlive)
-                _threadSaveRow.Abort(); 
         }
 
         #endregion
@@ -190,7 +179,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
 
         }
@@ -245,7 +234,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -274,7 +263,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -301,7 +290,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -347,7 +336,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -413,7 +402,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -509,9 +498,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(_res_man.GetString("ErrorFileNoValid", _cul) + "\n" + ex.Message,
-                        _res_man.GetString("ErrorFileNoValid", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw;
+                    _exMg.HandleException(ex);
                 }
             }
         }
@@ -534,10 +521,9 @@ namespace PlantaPiloto
                     _createConfig.Show();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
@@ -576,19 +562,27 @@ namespace PlantaPiloto
             {
                 Process.Start(_pdfPath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
+        /// <summary>
+        /// Evento que abre el archivo de ayuda de la ventana principal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemHelpHelp_Click(object sender, EventArgs e)
         {
             try
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Principal");
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
         }
 
         /// <summary>
@@ -682,7 +676,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 this.ViewConnectionClose();
-                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -703,7 +697,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -718,13 +712,12 @@ namespace PlantaPiloto
             {
                 if (e.ColumnIndex == 2 && dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString() != "")
                 {
-                    var c = dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString();
                     this.SendVarSP(e);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 

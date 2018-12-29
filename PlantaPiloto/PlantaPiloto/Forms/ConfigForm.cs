@@ -42,6 +42,7 @@ namespace PlantaPiloto
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         public ConfigForm(Proyect proyect)
@@ -78,6 +79,7 @@ namespace PlantaPiloto
             _secondLap = false;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         #endregion

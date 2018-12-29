@@ -1,4 +1,5 @@
-﻿using PlantaPiloto.Enums;
+﻿using PlantaPiloto.Classes;
+using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,6 +12,8 @@ namespace PlantaPiloto
 {
     public class DB_services
     {
+        private ExceptionManagement _exMg = new ExceptionManagement();
+
         /// <summary>
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
         /// </summary>
@@ -51,7 +54,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _exMg.HandleException(ex);
                 }
                 finally
                 {
@@ -66,7 +69,7 @@ namespace PlantaPiloto
         /// Método que obtiene el nombre de las columnas del proyecto que se pasa por parámetro
         /// </summary>
         /// <param name="proyect">Proyecto del que se quieren conocer los nombres de las columnas</param>
-        public static string[] GetLastRowValue(Proyect proyect)
+        public string[] GetLastRowValue(Proyect proyect)
         {
             string[] row = null;
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
@@ -96,7 +99,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _exMg.HandleException(ex);
                     return row;
                 }
                 finally
@@ -142,7 +145,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _exMg.HandleException(ex);
                 }
                 finally
                 {
@@ -197,7 +200,7 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _exMg.HandleException(ex);
                     return result;
                 }
                 finally

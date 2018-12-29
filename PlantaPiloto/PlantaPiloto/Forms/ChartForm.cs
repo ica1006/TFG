@@ -1,4 +1,5 @@
-﻿using PlantaPiloto.Enums;
+﻿using PlantaPiloto.Classes;
+using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,7 @@ namespace PlantaPiloto
         delegate void StringArgReturningVoidDelegate();
         private int _chartAmount;
         readonly HelpProvider _helpProvider;
+        private ExceptionManagement _exMg;
 
         #region Constructor
 
@@ -49,6 +51,7 @@ namespace PlantaPiloto
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -68,6 +71,7 @@ namespace PlantaPiloto
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _exMg = new ExceptionManagement();
         }
 
         #endregion
@@ -129,7 +133,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
 
         }
@@ -223,7 +227,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -244,8 +248,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
@@ -260,10 +263,9 @@ namespace PlantaPiloto
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Gráficos");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 

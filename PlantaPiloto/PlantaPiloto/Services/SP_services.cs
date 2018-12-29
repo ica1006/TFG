@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlantaPiloto.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -95,6 +96,8 @@ namespace PlantaPiloto
             set { _filePath = value; OnPropertyChanged("FilePath");}
         }
 
+        private ExceptionManagement _exMg = new ExceptionManagement();
+
         #endregion
 
         #region Constructor
@@ -186,7 +189,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, _res_man.GetString("ErrorSerialPortConnectionKey", _cul), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _exMg.HandleException(ex);
             }
         }
 
@@ -234,10 +237,9 @@ namespace PlantaPiloto
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _exMg.HandleException(ex);
             }
         }
 
