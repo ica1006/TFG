@@ -356,6 +356,7 @@ namespace PlantaPiloto
             lblProDesc.Visible = false;
             lblRWVariables.Visible = false;
             dgvProVars.Visible = false;
+            toolStripMenuItemModifyConfig.Enabled = false;
         }
 
         /// <summary>
@@ -394,6 +395,7 @@ namespace PlantaPiloto
                     lblRWVariables.Visible = true;
                     lblProDesc.Visible = true;
                     dgvProVars.Visible = true;
+                    toolStripMenuItemModifyConfig.Enabled = false;
 
                 }
             }
@@ -423,6 +425,7 @@ namespace PlantaPiloto
             lblProDesc.Visible = true;
             lblRWVariables.Visible = true;
             dgvProVars.Visible = true;
+            toolStripMenuItemModifyConfig.Enabled = true;
         }
 
         #endregion
