@@ -33,7 +33,7 @@ namespace PlantaPiloto
 
         #region Constructor
 
-        public ConfigForm()
+        public ConfigForm(CultureInfo cul)
         {
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
@@ -43,9 +43,10 @@ namespace PlantaPiloto
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _exMg = new ExceptionManagement();
+            _cul = cul;
         }
 
-        public ConfigForm(Proyect proyect)
+        public ConfigForm(Proyect proyect, CultureInfo cul)
         {
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
@@ -78,6 +79,7 @@ namespace PlantaPiloto
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _exMg = new ExceptionManagement();
+            _cul = cul;
         }
 
         #endregion
@@ -199,15 +201,6 @@ namespace PlantaPiloto
             this.btnExit.Text = _res_man.GetString("btnExit_txt", _cul);
 
             #endregion
-        }
-
-        /// <summary>
-        /// Método que establece al form el idioma del MainForm
-        /// </summary>
-        /// <param name="cultureInfo"></param>
-        internal void SetCulture(CultureInfo cultureInfo)
-        {
-            _cul = cultureInfo;
         }
 
         /// <summary>

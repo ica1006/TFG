@@ -114,9 +114,9 @@ namespace PlantaPiloto
             this.toolStripMenuItemSerie.Text = _res_man.GetString("toolStripMenuItemSerie_txt", _cul);
             this.toolStripMenuItemSpanish.Text = _res_man.GetString("toolStripMenuItemSpanish_txt", _cul);
             this.lblPorts.Text = _res_man.GetString("lblPorts_txt", _cul);
-            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) ;
+            this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul);
             this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul);
-            if(_proyect != null)
+            if (_proyect != null)
             {
                 this.lblProName.Text += " " + _proyect.Name;
                 this.lblProDesc.Text += " " + _proyect.Description;
@@ -126,7 +126,7 @@ namespace PlantaPiloto
             this.btnFinish.Text = _res_man.GetString("btnFinish_txt", _cul);
             this.btnChart.Text = _res_man.GetString("btnChart_txt", _cul);
             this.btnVar.Text = _res_man.GetString("btnVar_txt", _cul);
-            if(_sp_services == null || !_sp_services.SaveFile)
+            if (_sp_services == null || !_sp_services.SaveFile)
                 this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
             else
                 this.btnFile.Text = _res_man.GetString("btnFileStop_txt", _cul);
@@ -169,7 +169,7 @@ namespace PlantaPiloto
 
                     //Se muestran sólo las variables que son de escritura
                     this.dgvProVars.Rows.Clear();
-                    if(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count() > 0)
+                    if (_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count() > 0)
                     {
                         this.dgvProVars.Rows.Add(_proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count());
                         for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
@@ -307,7 +307,7 @@ namespace PlantaPiloto
                 {
                     SaveFileDialog saveFileDialog1;
                     saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.FileName = _proyect.Name.ToString() + "_" + vars.Count +"variables.txt";
+                    saveFileDialog1.FileName = _proyect.Name.ToString() + "_" + vars.Count + "variables.txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
@@ -335,6 +335,26 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
             }
+        }
+
+        /// <summary>
+        /// Método que abre la ventana de configuración según la llamada
+        /// </summary>
+        /// <param name="eagerLoading"></param>
+        public void CreateConfigForm(int eagerLoading)
+        {
+            ConfigForm _createConfig;
+            switch (eagerLoading)
+            {
+                case 1:
+                    _createConfig = new ConfigForm(_proyect, _cul);
+                    break;
+                default:
+                    _createConfig = new ConfigForm(_cul);
+                    break;
+            }
+            _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
+            _createConfig.Show();
         }
 
         #region Métodos modificadores del estado de los elementos de la vista
@@ -441,11 +461,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void toolStripMenuItemCreateConfig_Click(object sender, EventArgs e)
         {
-            ConfigForm _createConfig = new ConfigForm();
-            _createConfig.MdiParent = this.MdiParent;
-            _createConfig.SetCulture(this.getCulture());
-            _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
-            _createConfig.Show();
+            CreateConfigForm(0);
         }
 
         /// <summary>
@@ -512,13 +528,9 @@ namespace PlantaPiloto
         {
             try
             {
-                if(_proyect != null)
+                if (_proyect != null)
                 {
-                    ConfigForm _createConfig = new ConfigForm(_proyect);
-                    _createConfig.MdiParent = this.MdiParent;
-                    _createConfig.SetCulture(this.getCulture());
-                    _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
-                    _createConfig.Show();
+                    CreateConfigForm(1);
                 }
             }
             catch (Exception ex)
