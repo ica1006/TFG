@@ -11,7 +11,7 @@ namespace PlantaPiloto.Classes
     class ExceptionManagement
     {
         //Ruta del archivo de log
-        string _filePath = Path.Combine(Application.StartupPath, "../../files/ExceptionLog.txt");
+        readonly string _filePath = Path.Combine(Application.StartupPath, "../../files/ExceptionLog.txt");
 
         /// <summary>
         /// Método que recibe las excepciones de la aplicación y las controla según el tipo
@@ -19,7 +19,6 @@ namespace PlantaPiloto.Classes
         /// <param name="ex"></param>
         public void HandleException(Exception ex)
         {
-            string a = ex.GetType().ToString();
             switch (ex.GetType().ToString())
             {
                 case "System.FormatException":

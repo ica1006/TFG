@@ -91,7 +91,7 @@ namespace PlantaPiloto
             // txtChartAmount
             // 
             this.txtChartAmount.Location = new System.Drawing.Point(191, 413);
-            this.txtChartAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtChartAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtChartAmount.Multiline = false;
             this.txtChartAmount.Name = "txtChartAmount";
             this.txtChartAmount.Size = new System.Drawing.Size(84, 22);
@@ -102,12 +102,13 @@ namespace PlantaPiloto
             // btnChartAmount
             // 
             this.btnChartAmount.Location = new System.Drawing.Point(284, 413);
-            this.btnChartAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChartAmount.Margin = new System.Windows.Forms.Padding(2);
             this.btnChartAmount.Name = "btnChartAmount";
             this.btnChartAmount.Size = new System.Drawing.Size(52, 25);
             this.btnChartAmount.TabIndex = 4;
             this.btnChartAmount.Text = "button1";
             this.btnChartAmount.UseVisualStyleBackColor = true;
+            this.btnChartAmount.Click += new System.EventHandler(this.btnChartAmount_Click);
             // 
             // pictureBox3
             // 

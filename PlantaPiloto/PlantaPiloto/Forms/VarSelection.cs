@@ -14,15 +14,15 @@ namespace PlantaPiloto
 {
     public partial class VarSelection : Form
     {
-        private MainForm _mainForm;
+        readonly MainForm _mainForm;
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
-        private Proyect _proyect;
+        readonly Proyect _proyect;
         readonly EnumVarSelection _purpose;
         private DB_services _db_services;
-        private HelpProvider _helpProvider;
+        readonly HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
-        private ExceptionManagement _exMg;
+        readonly ExceptionManagement _exMg;
 
         #region Constructor
 

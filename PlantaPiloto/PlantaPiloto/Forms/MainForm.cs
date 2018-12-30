@@ -32,7 +32,7 @@ namespace PlantaPiloto
         private Proyect _lastRowSP;
         readonly string _pdfPath;
         readonly HelpProvider _helpProvider;
-        private ExceptionManagement _exMg;
+        readonly ExceptionManagement _exMg;
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
@@ -76,6 +76,19 @@ namespace PlantaPiloto
             _sp_services = new SP_services();
             this.LoadPorts();
             this.ViewNoProyect();
+        }
+
+        /// <summary>
+        /// Evento que se ejecuta al cerrar el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_sp_services.SerialPort.IsOpen)
+                _sp_services.CloseConnection();
+            this.Dispose();
+            this.Close();
         }
 
         #endregion

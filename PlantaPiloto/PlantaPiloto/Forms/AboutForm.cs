@@ -21,7 +21,7 @@ namespace PlantaPiloto
         readonly ResourceManager _res_man;
         private CultureInfo _cul;
         readonly HelpProvider _helpProvider;
-        private ExceptionManagement _exMg;
+        readonly ExceptionManagement _exMg;
 
         public CultureInfo Cul
         {

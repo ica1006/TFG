@@ -12,7 +12,7 @@ namespace PlantaPiloto
 {
     public class DB_services
     {
-        private ExceptionManagement _exMg = new ExceptionManagement();
+        readonly ExceptionManagement _exMg = new ExceptionManagement();
 
         /// <summary>
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto

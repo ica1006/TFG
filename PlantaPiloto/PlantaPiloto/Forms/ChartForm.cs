@@ -20,18 +20,18 @@ namespace PlantaPiloto
     public partial class ChartForm : Form
     {
         readonly MainForm _mainForm;
-        private ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
+        readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
-        private List<Variable> _variables;
+        readonly List<Variable> _variables;
         readonly List<List<Variable>> _sqlData;
         private List<double> _sqlTime;
-        private DB_services _db_services;
+        readonly DB_services _db_services;
         readonly System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
         private int _chartAmount;
         readonly HelpProvider _helpProvider;
-        private ExceptionManagement _exMg;
+        readonly ExceptionManagement _exMg;
 
         #region Constructor
 
@@ -245,6 +245,23 @@ namespace PlantaPiloto
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Evento que actualiza el número de valores a mostrar en la gráfica
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChartAmount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _chartAmount = Int32.Parse(txtChartAmount.Text);
             }
             catch (Exception ex)
             {

@@ -96,7 +96,7 @@ namespace PlantaPiloto
             set { _filePath = value; OnPropertyChanged("FilePath");}
         }
 
-        private ExceptionManagement _exMg = new ExceptionManagement();
+        readonly ExceptionManagement _exMg = new ExceptionManagement();
 
         #endregion
 

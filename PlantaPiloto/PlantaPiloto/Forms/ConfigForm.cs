@@ -29,7 +29,7 @@ namespace PlantaPiloto
         private bool _secondLap;
         readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
-        private ExceptionManagement _exMg;
+        readonly ExceptionManagement _exMg;
 
         #region Constructor
 
