@@ -222,8 +222,7 @@ namespace PlantaPiloto
             try
             {
                 this._timer.Dispose();
-                this.Dispose();
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {

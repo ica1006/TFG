@@ -53,3 +53,11 @@ FormatException,    en System.Number.StringToNumber(String str, NumberStyles opt
    en System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
    en System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
    en PlantaPiloto.MainForm.FillDataGridView(Proyect rows) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 266, Info: Objeto disposed
+30/12/2018 12:19:33 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 143, Info: Excepción Entrada/Salida (puerto Serie)

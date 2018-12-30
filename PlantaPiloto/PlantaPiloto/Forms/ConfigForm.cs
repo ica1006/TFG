@@ -441,7 +441,6 @@ namespace PlantaPiloto
                         }
                         tw.WriteLine("****************************************");
                         tw.WriteLine("****************************************");
-                        tw.Dispose();
                         tw.Close();
                         this.LoadProyect(_proyect);
                         this.CleanForm(1);

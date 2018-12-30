@@ -88,7 +88,6 @@ namespace PlantaPiloto
             if (_sp_services.SerialPort.IsOpen)
                 _sp_services.CloseConnection();
             this.Dispose();
-            this.Close();
         }
 
         #endregion
@@ -333,7 +332,6 @@ namespace PlantaPiloto
                         string varNames = "";
                         vars.ForEach(p => varNames += p.Name + ";");
                         tw.WriteLine(varNames);
-                        tw.Dispose();
                         tw.Close();
                         if (_sp_services != null)
                         {
