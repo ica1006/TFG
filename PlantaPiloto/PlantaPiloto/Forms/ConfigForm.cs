@@ -131,22 +131,17 @@ namespace PlantaPiloto
         /// </summary>
         internal void CleanForm(int eagerLoading)
         {
-            switch (eagerLoading)
+            CleanVarForm();
+            if (eagerLoading == 1)
             {
-                case 1:
-                    CleanVarForm();
-                    foreach (Control c in this.gbProyectDetails.Controls)
+                foreach (Control c in this.gbProyectDetails.Controls)
+                {
+                    if (c is TextBox || c is RichTextBox)
                     {
-                        if (c is TextBox || c is RichTextBox)
-                        {
-                            c.Text = "";
-                        }
+                        c.Text = "";
                     }
-                    _proyect = new Proyect();
-                    break;
-                default:
-                    CleanVarForm();
-                    break;
+                }
+                _proyect = new Proyect();
             }
         }
 
@@ -259,7 +254,7 @@ namespace PlantaPiloto
                     _proyect.Variables.Add(_variable);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _exMg.HandleException(ex);
             }
@@ -398,7 +393,7 @@ namespace PlantaPiloto
             try
             {
                 //Actualiza la última variable cargada si el formulario está modificando un proyecto.
-                if(_eagerLoading == 1)
+                if (_eagerLoading == 1)
                 {
                     this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
                 }

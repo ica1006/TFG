@@ -104,7 +104,6 @@ namespace PlantaPiloto
         /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
         public void SaveRow(Proyect proyect)
         {
-            List<string> columns = new List<string>;
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
             {
                 try
