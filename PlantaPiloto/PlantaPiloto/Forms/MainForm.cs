@@ -37,6 +37,7 @@ namespace PlantaPiloto
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
         public delegate void LoadProyectDelegate(Proyect proyect);
+        private FileSaver _fileSaver;
 
         #region Constructor
 
@@ -60,6 +61,7 @@ namespace PlantaPiloto
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _pdfPath = Path.Combine(Application.StartupPath, "../../files/Manual_Usuario.pdf");
             _exMg = new ExceptionManagement();
+            _fileSaver = new FileSaver();
         }
 
         #endregion
@@ -324,10 +326,7 @@ namespace PlantaPiloto
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        tw.WriteLine(DateTime.Now);
-                        tw.WriteLine(_proyect.Name);
-                        tw.WriteLine(_proyect.Description);
-                        tw.WriteLine(_proyect.ImagePath);
+                        _fileSaver.WriteProyectProperties(tw, _proyect);
                         tw.WriteLine("****************************************");
                         string varNames = "";
                         vars.ForEach(p => varNames += p.Name + ";");
