@@ -50,7 +50,7 @@ namespace PlantaPiloto.Classes
         public void SaveVarsValue(string newLog)
         {
             using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
-                fileWriter.WriteLine(DateTime.Parse(DateTime.Now.ToString(), new System.Globalization.CultureInfo("es-ES")).ToString() + " - " + newLog);
+                fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
         }
     }
 }
