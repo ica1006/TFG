@@ -24,7 +24,7 @@ namespace PlantaPiloto
             get { return _cul; }
             set
             {
-                _cul = value; OnPropertyChanged("Cul");
+                _cul = value; OnPropertyChangedProyect("Cul");
             }
         }
 
@@ -33,7 +33,7 @@ namespace PlantaPiloto
         public string Name
         {
             get { return _name; }
-            set { _name = value; OnPropertyChanged("Name"); }
+            set { _name = value; OnPropertyChangedProyect("Name"); }
         }
 
         private string _description;
@@ -41,7 +41,7 @@ namespace PlantaPiloto
         public string Description
         {
             get { return _description; }
-            set { _description = value; OnPropertyChanged("Description"); }
+            set { _description = value; OnPropertyChangedProyect("Description"); }
         }
 
         private string _imagePath;
@@ -49,7 +49,7 @@ namespace PlantaPiloto
         public string ImagePath
         {
             get { return _imagePath; }
-            set { _imagePath = value; OnPropertyChanged("ImagePath"); }
+            set { _imagePath = value; OnPropertyChangedProyect("ImagePath"); }
         }
 
         private ObservableCollection<Variable> _variables;
@@ -57,7 +57,7 @@ namespace PlantaPiloto
         public ObservableCollection<Variable> Variables
         {
             get { return _variables; }
-            set { _variables = value; OnPropertyChanged("Variables"); }
+            set { _variables = value; OnPropertyChangedProyect("Variables"); }
         }
 
         private string _error;
@@ -65,7 +65,7 @@ namespace PlantaPiloto
         public string Error
         {
             get { return _error; }
-            set { _error = value; OnPropertyChanged("Error"); }
+            set { _error = value; OnPropertyChangedProyect("Error"); }
         }
 
         #endregion
@@ -99,11 +99,9 @@ namespace PlantaPiloto
         /// Método que actualiza la propiedad cuando esta cambia
         /// </summary>
         /// <param name="name">Propiedad a actualizar</param>
-        protected void OnPropertyChanged(string name)
+        protected void OnPropertyChangedProyect(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion
