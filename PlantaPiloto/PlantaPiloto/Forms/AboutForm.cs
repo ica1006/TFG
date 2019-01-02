@@ -112,14 +112,12 @@ namespace PlantaPiloto
 
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
-        /// Método que actualiza la propiedad cuando esta cambia
+        /// Método que actualiza la propiedad cuando esta cambia de valor
         /// </summary>
         /// <param name="name">Propiedad a actualizar</param>
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

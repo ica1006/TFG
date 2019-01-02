@@ -26,7 +26,7 @@ namespace PlantaPiloto
         public SerialPort SerialPort
         {
             get { return _serialPort; }
-            set { _serialPort = value; OnPropertyChanged("SerialPort"); }
+            set { _serialPort = value; OnPropertyChangedSP_services("SerialPort"); }
         }
 
         private string[] _ports;
@@ -37,7 +37,7 @@ namespace PlantaPiloto
         public string[] Ports
         {
             get { return _ports; }
-            set { _ports = value; OnPropertyChanged("Ports"); }
+            set { _ports = value; OnPropertyChangedSP_services("Ports"); }
         }
 
         private ResourceManager _res_man;
@@ -48,7 +48,7 @@ namespace PlantaPiloto
         public ResourceManager Res_man
         {
             get { return _res_man; }
-            set { _res_man = value; OnPropertyChanged("Res_man"); }
+            set { _res_man = value; OnPropertyChangedSP_services("Res_man"); }
         }
 
         private CultureInfo _cul;
@@ -59,7 +59,7 @@ namespace PlantaPiloto
         public CultureInfo Cul
         {
             get { return _cul; }
-            set { _cul = value; OnPropertyChanged("Cul"); }
+            set { _cul = value; OnPropertyChangedSP_services("Cul"); }
         }
 
         private Proyect _lastRow;
@@ -69,7 +69,7 @@ namespace PlantaPiloto
         public Proyect LastRow
         {
             get { return _lastRow; }
-            set { _lastRow = value; OnPropertyChanged("LastRow"); }
+            set { _lastRow = value; OnPropertyChangedSP_services("LastRow"); }
         }
 
         public Proyect _proyect { get; set; }
@@ -83,7 +83,7 @@ namespace PlantaPiloto
         public bool SaveFile
         {
             get { return _saveFile; }
-            set { _saveFile = value; OnPropertyChanged("SaveFile"); }
+            set { _saveFile = value; OnPropertyChangedSP_services("SaveFile"); }
         }
 
         private string _filePath;
@@ -93,7 +93,7 @@ namespace PlantaPiloto
         public string FilePath
         {
             get { return _filePath; }
-            set { _filePath = value; OnPropertyChanged("FilePath");}
+            set { _filePath = value; OnPropertyChangedSP_services("FilePath");}
         }
 
         readonly ExceptionManagement _exMg = new ExceptionManagement();
@@ -251,11 +251,9 @@ namespace PlantaPiloto
         /// Método que actualiza la propiedad cuando esta cambia
         /// </summary>
         /// <param name="name">Propiedad a actualizar</param>
-        protected void OnPropertyChanged(string name)
+        protected void OnPropertyChangedSP_services(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

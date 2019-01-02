@@ -9,6 +9,11 @@ namespace PlantaPiloto.Classes
 {
     class FileSaver
     {
+        /// <summary>
+        /// Método que guarda las propiedades de un proyecto en un archivo
+        /// </summary>
+        /// <param name="tw">StreamWriter que escribe en el archivo de texto</param>
+        /// <param name="_proyect">Proyecto del que se guardan las propiedades</param>
         public void WriteProyectProperties(StreamWriter tw, Proyect _proyect)
         {
             tw.WriteLine(DateTime.Now);
