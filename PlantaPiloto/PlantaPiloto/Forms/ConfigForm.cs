@@ -97,14 +97,6 @@ namespace PlantaPiloto
         {
             switch (_eagerLoading)
             {
-                case 0:
-                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-                    this.lblSelectVar.Visible = false;
-                    this.cbSelectVar.Visible = false;
-                    this.Switch_language();
-                    break;
                 case 1:
                     this.cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
                     this.cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
@@ -225,32 +217,7 @@ namespace PlantaPiloto
                 _proyect.Variables.Remove(v);
                 if (ValidateVar())
                 {
-                    _variable = new Variable();
-                    _variable.Name = this.txtVarName.Text;
-                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
-                    _variable.Description = this.txtVarDesc.Text;
-                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
-                    if (_variable.Type != EnumVarType.String)
-                    {
-                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
-                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
-                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
-                    }
-                    else
-                    {
-                        _variable.BoardUnits = "";
-                        _variable.InterfaceUnits = "";
-                        _variable.LinearAdjustA = new float();
-                        _variable.LinearAdjustB = new float();
-                        _variable.RangeLow = new float();
-                        _variable.RangeHigh = new float();
-                    }
-                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
-                    _variable.Cul = _cul;
-
+                    LoadVariableFromForm();
                     _proyect.Variables.Add(_variable);
                 }
             }
@@ -258,6 +225,38 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
             }
+        }
+
+        /// <summary>
+        /// Método que recibe una las propiedades de una variable y las cargas en la propiedad de la clase principal.
+        /// </summary>
+        public void LoadVariableFromForm()
+        {
+            _variable = new Variable();
+            _variable.Name = this.txtVarName.Text;
+            _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
+            _variable.Description = this.txtVarDesc.Text;
+            _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
+            if (_variable.Type != EnumVarType.String)
+            {
+                _variable.BoardUnits = this.txtVarBoardUnits.Text;
+                _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
+                _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
+                _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
+            }
+            else
+            {
+                _variable.BoardUnits = "";
+                _variable.InterfaceUnits = "";
+                _variable.LinearAdjustA = new float();
+                _variable.LinearAdjustB = new float();
+                _variable.RangeLow = new float();
+                _variable.RangeHigh = new float();
+            }
+            _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
+            _variable.Cul = _cul;
         }
 
         #region Validaciones
@@ -356,23 +355,7 @@ namespace PlantaPiloto
             {
                 if (ValidateVar())
                 {
-                    _variable = new Variable();
-                    _variable.Name = this.txtVarName.Text;
-                    _variable.Type = (EnumVarType)this.cbVarType.SelectedItem;
-                    _variable.Description = this.txtVarDesc.Text;
-                    _variable.Access = (EnumVarAccess)this.cbVarAccess.SelectedItem;
-                    if (_variable.Type != EnumVarType.String)
-                    {
-                        _variable.BoardUnits = this.txtVarBoardUnits.Text;
-                        _variable.InterfaceUnits = this.txtVarInterfaceUnits.Text;
-                        _variable.LinearAdjustA = float.Parse(this.txtVarLinearAdjA.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.LinearAdjustB = float.Parse(this.txtVarLinearAdjB.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeLow = float.Parse(this.txtVarRangeLow.Text, CultureInfo.InvariantCulture.NumberFormat);
-                        _variable.RangeHigh = float.Parse(this.txtVarRangeHigh.Text, CultureInfo.InvariantCulture.NumberFormat);
-                    }
-                    _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
-                    _variable.Cul = _cul;
-
+                    LoadVariableFromForm();
                     _proyect.Variables.Add(_variable);
                     this.CleanForm(0);
                 }
