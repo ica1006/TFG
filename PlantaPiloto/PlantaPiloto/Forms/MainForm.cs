@@ -180,6 +180,8 @@ namespace PlantaPiloto
                     this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
                     if (File.Exists(_proyect.ImagePath))
                         this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+                    else
+                        this.pbProImg.Image = null;
 
                     //Se muestran sólo las variables que son de escritura
                     this.dgvProVars.Rows.Clear();
