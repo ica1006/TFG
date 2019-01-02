@@ -62,7 +62,7 @@ namespace PlantaPiloto
             _db_services = new DB_services();
             _sqlData = new List<List<Variable>>();
             _sqlTime = new List<double>();
-            _timer = new System.Timers.Timer(2000); ;
+            _timer = new System.Timers.Timer(2000);
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _variables = variables;

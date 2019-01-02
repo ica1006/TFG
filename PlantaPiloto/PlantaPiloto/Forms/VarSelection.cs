@@ -109,7 +109,7 @@ namespace PlantaPiloto
                     break;
                 case EnumVarSelection.File:
                     this.btnAccept.Visible = true;
-                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
+                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
                     {
                         Name = "X",
                         HeaderText = "X",
@@ -121,7 +121,7 @@ namespace PlantaPiloto
                     break;
                 case EnumVarSelection.Vars:
                     this.btnAccept.Visible = false;
-                    dgvVarSelection.Columns.Add(new DataGridViewColumn()
+                    dgvVarSelection.Columns.Add(new DataGridViewColumn
                     {
                         Name = "Values",
                         HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
