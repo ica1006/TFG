@@ -40,7 +40,7 @@ namespace PlantaPiloto
             _cul = cul;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
         }
 
         #endregion

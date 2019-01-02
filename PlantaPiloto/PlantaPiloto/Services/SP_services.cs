@@ -96,7 +96,7 @@ namespace PlantaPiloto
             set { _filePath = value; OnPropertyChangedSP_services("FilePath");}
         }
 
-        readonly ExceptionManagement _exMg = new ExceptionManagement();
+        readonly ExceptionManagement _exMg;
 
         #endregion
 
@@ -106,9 +106,10 @@ namespace PlantaPiloto
             _serialPort = new SerialPort();
             _ports = SerialPort.GetPortNames();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _lastRow = new Proyect();
             _saveFile = false;
+            _exMg = new ExceptionManagement(_cul);
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
@@ -118,9 +119,10 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = pr;
             _cul = cul;
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _lastRow = new Proyect();
             _saveFile = false;
+            _exMg = new ExceptionManagement(_cul);
         }
         #endregion
 

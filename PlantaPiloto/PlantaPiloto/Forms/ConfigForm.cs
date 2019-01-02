@@ -39,12 +39,12 @@ namespace PlantaPiloto
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
             _cul = cul;
+            _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }
 
@@ -53,14 +53,14 @@ namespace PlantaPiloto
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = proyect;
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _eagerLoading = 1;
             _lastVariable = "";
             _secondLap = false;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
             _cul = cul;
+            _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }
 

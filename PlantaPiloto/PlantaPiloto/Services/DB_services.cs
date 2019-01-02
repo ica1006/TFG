@@ -3,6 +3,7 @@ using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,29 @@ namespace PlantaPiloto
 {
     public class DB_services
     {
-        readonly ExceptionManagement _exMg = new ExceptionManagement();
+        private CultureInfo _cul;
 
+        public CultureInfo Cul
+        {
+            get { return _cul; }
+            set
+            {
+                _cul = value;
+            }
+        }
+        #region Properties
+        readonly ExceptionManagement _exMg;
+        #endregion
+
+        #region Constructor
+        public DB_services(CultureInfo cul)
+        {
+            _cul = cul;
+            _exMg = new ExceptionManagement(_cul);
+        }
+        #endregion
+
+        #region Methods
         /// <summary>
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
         /// </summary>
@@ -226,5 +248,6 @@ namespace PlantaPiloto
             con.Close();
             con.Dispose();
         }
+        #endregion
     }
 }

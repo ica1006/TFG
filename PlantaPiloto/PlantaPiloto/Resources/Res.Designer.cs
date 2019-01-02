@@ -313,6 +313,24 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Por favor, finalice la comunicación con el puerto serie pulsando en el botón &apos;Fin&apos; y vuelva a iniciarla.
+        /// </summary>
+        public static string ErrorConnectionMsg {
+            get {
+                return ResourceManager.GetString("ErrorConnectionMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fallo en la conexión.
+        /// </summary>
+        public static string ErrorConnectionTitle {
+            get {
+                return ResourceManager.GetString("ErrorConnectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archivo no válido.
         /// </summary>
         public static string ErrorFileNoValid {

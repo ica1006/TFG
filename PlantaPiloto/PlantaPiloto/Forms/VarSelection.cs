@@ -32,10 +32,10 @@ namespace PlantaPiloto
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
         }
 
         public VarSelection(Proyect proyect, EnumVarSelection purpose, CultureInfo cultureInfo)
@@ -43,7 +43,7 @@ namespace PlantaPiloto
             InitializeComponent();
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _proyect = new Proyect(
                 proyect.Name,
                 proyect.Description,
@@ -70,7 +70,7 @@ namespace PlantaPiloto
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
         }
 
         #endregion

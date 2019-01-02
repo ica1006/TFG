@@ -375,4 +375,10 @@
   <data name="lblAboutUni_txt" xml:space="preserve">
     <value>Universidad de Burgos.</value>
   </data>
+  <data name="ErrorConnectionTitle" xml:space="preserve">
+    <value>Connection problem</value>
+  </data>
+  <data name="ErrorConnectionMsg" xml:space="preserve">
+    <value>Please, terminate the communication with the serial port by clicking on the 'End' button and restart it.</value>
+  </data>
 </root>

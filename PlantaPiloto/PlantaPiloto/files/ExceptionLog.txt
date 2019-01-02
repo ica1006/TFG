@@ -111,3 +111,192 @@ FormatException,    en System.Number.StringToNumber(String str, NumberStyles opt
    en System.IO.Ports.SerialPort.ReadTo(String value)
    en System.IO.Ports.SerialPort.ReadLine()
    en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 142,  Info: excepción no definida.
+01/02/2019 23:24:22 - ArgumentNullException,    en System.IO.Path.GetFullPathInternal(String path)
+   en System.IO.Path.GetFullPath(String path)
+   en System.Drawing.IntSecurity.UnsafeGetFullPath(String fileName)
+   en System.Drawing.IntSecurity.DemandReadFileIO(String fileName)
+   en System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   en System.Drawing.Image.FromFile(String filename)
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 182,  Info: excepción no definida.
+01/02/2019 23:25:14 - ArgumentNullException,    en System.IO.Path.GetFullPathInternal(String path)
+   en System.IO.Path.GetFullPath(String path)
+   en System.Drawing.IntSecurity.UnsafeGetFullPath(String fileName)
+   en System.Drawing.IntSecurity.DemandReadFileIO(String fileName)
+   en System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   en System.Drawing.Image.FromFile(String filename)
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 182,  Info: excepción no definida.
+01/02/2019 23:25:21 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145,  Índice fuera de rango
+01/02/2019 23:25:32 - ArgumentException,    en System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.GetFullPathInternal(String path)
+   en System.IO.Path.GetFullPath(String path)
+   en System.Drawing.IntSecurity.UnsafeGetFullPath(String fileName)
+   en System.Drawing.IntSecurity.DemandReadFileIO(String fileName)
+   en System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   en System.Drawing.Image.FromFile(String filename)
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 182,  Info: excepción no definida.
+01/02/2019 23:25:37 - ArgumentException,    en System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.GetFullPathInternal(String path)
+   en System.IO.Path.GetFullPath(String path)
+   en System.Drawing.IntSecurity.UnsafeGetFullPath(String fileName)
+   en System.Drawing.IntSecurity.DemandReadFileIO(String fileName)
+   en System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   en System.Drawing.Image.FromFile(String filename)
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 182,  Info: excepción no definida.
+01/02/2019 23:25:59 - ArgumentException,    en System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   en System.IO.Path.GetFullPathInternal(String path)
+   en System.IO.Path.GetFullPath(String path)
+   en System.Drawing.IntSecurity.UnsafeGetFullPath(String fileName)
+   en System.Drawing.IntSecurity.DemandReadFileIO(String fileName)
+   en System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   en System.Drawing.Image.FromFile(String filename)
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 182,  Info: excepción no definida.
+01/02/2019 23:34:13 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145,  Índice fuera de rango
+01/02/2019 23:35:24 - NullReferenceException,    en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 142,  Info: Valor nulo
+01/02/2019 23:35:38 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145,  Índice fuera de rango
+01/02/2019 23:49:16 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 142,  Info: Excepción Entrada/Salida (puerto Serie)
+01/02/2019 23:49:26 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 145,  Índice fuera de rango
+01/02/2019 23:54:23 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/02/2019 23:54:27 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/02/2019 23:56:23 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/02/2019 23:59:36 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/02/2019 23:59:39 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/02/2019 23:59:41 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/02/2019 23:59:48 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:06:11 - ThreadAbortException,    en SNIReadSyncOverAsync(SNI_ConnWrapper* , SNI_Packet** , Int32 )
+   en SNINativeMethodWrapper.SNIReadSyncOverAsync(SafeHandle pConn, IntPtr& packet, Int32 timeout)
+   en System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   en System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   en System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   en System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect),  Info: excepción no definida.
+01/03/2019 00:06:11 - ThreadAbortException,    en PlantaPiloto.DB_services.SaveRow(Proyect proyect)
+   en PlantaPiloto.SP_services.OpenConnection(),  Info: excepción no definida.
+01/03/2019 00:08:24 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:08:42 - ThreadAbortException,    en SNIReadSyncOverAsync(SNI_ConnWrapper* , SNI_Packet** , Int32 )
+   en SNINativeMethodWrapper.SNIReadSyncOverAsync(SafeHandle pConn, IntPtr& packet, Int32 timeout)
+   en System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   en System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   en System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   en System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/03/2019 00:08:42 - ThreadAbortException,    en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 156
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 168,  Info: excepción no definida.
+01/03/2019 00:11:20 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:13:38 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:18:08 - NullReferenceException,    en PlantaPiloto.MainForm.CloseSP_services() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 292
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 177,  Info: Valor nulo
+01/03/2019 00:18:15 - NullReferenceException,    en PlantaPiloto.MainForm.CloseSP_services() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 292
+   en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 177,  Info: Valor nulo
+01/03/2019 00:19:21 - NullReferenceException,    en PlantaPiloto.MainForm.LoadProyect() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 177,  Info: Valor nulo
+01/03/2019 00:19:57 - NullReferenceException,    en PlantaPiloto.MainForm.LoadProyect(),  Info: Valor nulo
+01/03/2019 00:22:22 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:23:45 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:24:13 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:24:21 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:24:25 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:24:30 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/03/2019 00:24:38 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:24:43 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/03/2019 00:24:50 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango

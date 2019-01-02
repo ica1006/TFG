@@ -375,4 +375,10 @@
   <data name="lblAboutUni_txt" xml:space="preserve">
     <value>Universidad de Burgos.</value>
   </data>
+  <data name="ErrorConnectionMsg" xml:space="preserve">
+    <value>Por favor, finalice la comunicación con el puerto serie pulsando en el botón 'Fin' y vuelva a iniciarla</value>
+  </data>
+  <data name="ErrorConnectionTitle" xml:space="preserve">
+    <value>Fallo en la conexión</value>
+  </data>
 </root>

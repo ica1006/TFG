@@ -41,7 +41,7 @@ namespace PlantaPiloto
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _variables = new List<Variable>();
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _proyect = new Proyect();
             _sqlData = new List<List<Variable>>();
             _sqlTime = new List<double>();
@@ -51,7 +51,7 @@ namespace PlantaPiloto
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
         }
 
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
@@ -59,7 +59,7 @@ namespace PlantaPiloto
             InitializeComponent();
             _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             _sqlData = new List<List<Variable>>();
             _sqlTime = new List<double>();
             _timer = new System.Timers.Timer(2000);
@@ -71,7 +71,7 @@ namespace PlantaPiloto
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
         }
 
         #endregion

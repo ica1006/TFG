@@ -50,7 +50,7 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
             _variable = new Variable();
-            _db_services = new DB_services();
+            _db_services = new DB_services(_cul);
             Switch_language();
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
@@ -60,7 +60,7 @@ namespace PlantaPiloto
             _helpProvider = new HelpProvider();
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _pdfPath = Path.Combine(Application.StartupPath, "../../files/Manual_Usuario.pdf");
-            _exMg = new ExceptionManagement();
+            _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }
 
@@ -176,10 +176,10 @@ namespace PlantaPiloto
                     _db_services.CreateTableDB(_proyect);
 
                     //Mostramos datos
-                    this.ViewConnectionClose();
                     this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul) + " " + _proyect.Name;
                     this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul) + " " + _proyect.Description;
-                    this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
+                    if (File.Exists(_proyect.ImagePath))
+                        this.pbProImg.Image = Image.FromFile(_proyect.ImagePath);
 
                     //Se muestran sólo las variables que son de escritura
                     this.dgvProVars.Rows.Clear();
@@ -279,6 +279,20 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
             }
+        }
+
+        /// <summary>
+        /// Método que cierra la conexión con el puerto serie
+        /// </summary>
+        public void CloseSP_services()
+        {
+            _sp_services.CloseConnection();
+            _timerRefreshDataGrid.Enabled = false;
+            if (_threadSaveRow != null)
+                _threadSaveRow.Join();
+            _sp_services.SaveFile = false;
+            LoadProyect();
+            this.ViewConnectionClose();
         }
 
         /// <summary>
@@ -471,6 +485,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void toolStripMenuItemCreateConfig_Click(object sender, EventArgs e)
         {
+            CloseSP_services();
             CreateConfigForm(0);
         }
 
@@ -481,6 +496,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
         {
+            CloseSP_services();
             openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
             openFileDialog1.Title = _res_man.GetString("showDialogTitle", _cul);
             openFileDialog1.FileName = "";
@@ -540,6 +556,7 @@ namespace PlantaPiloto
             {
                 if (_proyect != null)
                 {
+                    CloseSP_services();
                     CreateConfigForm(1);
                 }
             }
@@ -711,12 +728,7 @@ namespace PlantaPiloto
         {
             try
             {
-                _sp_services.CloseConnection();
-                _timerRefreshDataGrid.Enabled = false;
-                _threadSaveRow.Abort();
-                _sp_services.SaveFile = false;
-                LoadProyect();
-                this.ViewConnectionClose();
+                CloseSP_services();
             }
             catch (Exception ex)
             {
