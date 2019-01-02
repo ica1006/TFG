@@ -19,27 +19,29 @@ namespace PlantaPiloto.Classes
         /// <param name="ex"></param>
         public void HandleException(Exception ex)
         {
+            string msg = "";
             switch (ex.GetType().ToString())
             {
                 case "System.FormatException":
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, Info: Formato inválido");
+                    msg = " Info: Formato inválido";
                     break;
                 case "System.NullReferenceException":
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, Info: Valor nulo");
+                    msg = " Info: Valor nulo";
                     break;
                 case "System.IndexOutOfRangeException":
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, Info: Índice fuera de rango");
+                    msg = " Índice fuera de rango";
                     break;
                 case "System.ObjectDisposedException":
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, Info: Objeto disposed");
+                    msg = " Info: Objeto disposed";
                     break;
                 case "System.IO.IOException":
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, Info: Excepción Entrada/Salida (puerto Serie)");
+                    msg = " Info: Excepción Entrada/Salida (puerto Serie)";
                     break;
                 default:
-                    SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}");
+                    msg = " Info: excepción no definida.";
                     break;
             }
+            SaveVarsValue($"{ex.GetType().Name}, {ex.StackTrace}, {msg}");
         }
 
         /// <summary>
