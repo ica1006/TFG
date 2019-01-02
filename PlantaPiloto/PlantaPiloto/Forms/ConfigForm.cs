@@ -30,6 +30,7 @@ namespace PlantaPiloto
         readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
         readonly ExceptionManagement _exMg;
+        private FileSaver _fileSaver;
 
         #region Constructor
 
@@ -44,34 +45,14 @@ namespace PlantaPiloto
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _exMg = new ExceptionManagement();
             _cul = cul;
+            _fileSaver = new FileSaver();
         }
 
         public ConfigForm(Proyect proyect, CultureInfo cul)
         {
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _proyect = new Proyect(
-                proyect.Name,
-                proyect.Description,
-                proyect.ImagePath,
-                proyect.Cul
-            );
-            proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable(
-                p.Name,
-                p.Type,
-                p.Description,
-                p.Access,
-                p.BoardUnits,
-                p.InterfaceUnits,
-                p.LinearAdjustA,
-                p.LinearAdjustB,
-                p.RangeLow,
-                p.RangeHigh,
-                p.CommunicationType,
-                p.Value,
-                p.Time,
-                p.Cul
-            )));
+            _proyect = proyect;
             _db_services = new DB_services();
             _eagerLoading = 1;
             _lastVariable = "";
@@ -80,6 +61,7 @@ namespace PlantaPiloto
             _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
             _exMg = new ExceptionManagement();
             _cul = cul;
+            _fileSaver = new FileSaver();
         }
 
         #endregion
@@ -391,10 +373,7 @@ namespace PlantaPiloto
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        tw.WriteLine(DateTime.Now);
-                        tw.WriteLine(_proyect.Name);
-                        tw.WriteLine(_proyect.Description);
-                        tw.WriteLine(_proyect.ImagePath);
+                        _fileSaver.WriteProyectProperties(tw, _proyect);
                         foreach (Variable v in _proyect.Variables)
                         {
                             tw.WriteLine("****************************************");
