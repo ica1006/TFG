@@ -19,7 +19,7 @@ namespace PlantaPiloto
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
         readonly EnumVarSelection _purpose;
-        private DB_services _db_services;
+        readonly DB_services _db_services;
         readonly HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
         readonly ExceptionManagement _exMg;

@@ -20,7 +20,7 @@ namespace PlantaPiloto
     public partial class ConfigForm : Form
     {
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
-        private CultureInfo _cul;            // declare culture info
+        readonly CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
         readonly DB_services _db_services;
@@ -133,9 +133,6 @@ namespace PlantaPiloto
         {
             switch (eagerLoading)
             {
-                case 0:
-                    CleanVarForm();
-                    break;
                 case 1:
                     CleanVarForm();
                     foreach (Control c in this.gbProyectDetails.Controls)
