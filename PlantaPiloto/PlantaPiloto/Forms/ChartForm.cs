@@ -96,11 +96,11 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Método que gestiona el cierre del formulario
+        /// Método que se ejecuta al cerrar el formulario
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ChartForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void ChartForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _timer.Enabled = false;
         }
@@ -153,27 +153,34 @@ namespace PlantaPiloto
         /// </summary>
         private void UpdateChart()
         {
-            if (this.chartVar.InvokeRequired)
+            try
             {
-                //Para evitar concurrencia se llama a un delegado puesto que los datos se han obtenido en otro hilo
-                StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(UpdateChart);
-                this.Invoke(d, new object[] { });
-            }
-            else
-            {
-                //Se recogen los valores de las variables seleccionadas
-                GetVarValuesAndTimes();
-                foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+                if (this.chartVar.InvokeRequired)
                 {
-                    _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
-                    if(_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
-                    {
-                        chartVar.Series[v.Name].Points.Clear();
-                        chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList());
-                    }
+                    //Para evitar concurrencia se llama a un delegado puesto que los datos se han obtenido en otro hilo
+                    StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(UpdateChart);
+                    this.Invoke(d, new object[] { });
                 }
+                else
+                {
+                    //Se recogen los valores de las variables seleccionadas
+                    GetVarValuesAndTimes();
+                    foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+                    {
+                        _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
+                        if (_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
+                        {
+                            chartVar.Series[v.Name].Points.Clear();
+                            chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList());
+                        }
+                    }
 
-                chartVar.Update();
+                    chartVar.Update();
+                }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
             }
         }
 

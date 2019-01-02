@@ -137,7 +137,7 @@ namespace PlantaPiloto
             this.MaximizeBox = false;
             this.Name = "ChartForm";
             this.Text = "Chart";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChartForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChartForm_FormClosed);
             this.Load += new System.EventHandler(this.Chart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartVar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
