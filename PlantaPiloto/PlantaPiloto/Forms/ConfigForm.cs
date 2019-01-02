@@ -30,7 +30,7 @@ namespace PlantaPiloto
         readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
         readonly ExceptionManagement _exMg;
-        private FileSaver _fileSaver;
+        readonly FileSaver _fileSaver;
 
         #region Constructor
 

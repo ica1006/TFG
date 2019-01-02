@@ -37,7 +37,7 @@ namespace PlantaPiloto
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
         public delegate void LoadProyectDelegate(Proyect proyect);
-        private FileSaver _fileSaver;
+        readonly FileSaver _fileSaver;
 
         #region Constructor
 

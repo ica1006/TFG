@@ -22,7 +22,7 @@ namespace PlantaPiloto
             get { return _cul; }
             set
             {
-                _cul = value; OnPropertyChanged("Cul");
+                _cul = value; OnPropertyChangedVariable("Cul");
             }
         }
 
@@ -34,7 +34,7 @@ namespace PlantaPiloto
         public string Name
         {
             get { return _name; }
-            set { _name = value; OnPropertyChanged("Name"); }
+            set { _name = value; OnPropertyChangedVariable("Name"); }
         }
 
         private EnumVarType _type;
@@ -45,7 +45,7 @@ namespace PlantaPiloto
         public EnumVarType Type
         {
             get { return _type; }
-            set { _type = value; OnPropertyChanged("Type"); }
+            set { _type = value; OnPropertyChangedVariable("Type"); }
         }
 
         private string _description;
@@ -56,7 +56,7 @@ namespace PlantaPiloto
         public string Description
         {
             get { return _description; }
-            set { _description = value; OnPropertyChanged("Description"); }
+            set { _description = value; OnPropertyChangedVariable("Description"); }
         }
 
         private EnumVarAccess _access;
@@ -67,7 +67,7 @@ namespace PlantaPiloto
         public EnumVarAccess Access
         {
             get { return _access; }
-            set { _access = value; OnPropertyChanged("Access"); }
+            set { _access = value; OnPropertyChangedVariable("Access"); }
         }
 
         private string _boardUnits;
@@ -78,7 +78,7 @@ namespace PlantaPiloto
         public string BoardUnits
         {
             get { return _boardUnits; }
-            set { _boardUnits = value; OnPropertyChanged("BoardUnits"); }
+            set { _boardUnits = value; OnPropertyChangedVariable("BoardUnits"); }
         }
 
         private string _interfaceUnits;
@@ -89,7 +89,7 @@ namespace PlantaPiloto
         public string InterfaceUnits
         {
             get { return _interfaceUnits; }
-            set { _interfaceUnits = value; OnPropertyChanged("InterfaceUnits"); }
+            set { _interfaceUnits = value; OnPropertyChangedVariable("InterfaceUnits"); }
         }
 
         private float? _linearAdjustA;
@@ -100,7 +100,7 @@ namespace PlantaPiloto
         public float? LinearAdjustA
         {
             get { return _linearAdjustA; }
-            set { _linearAdjustA = value; OnPropertyChanged("LinearAdjustA"); }
+            set { _linearAdjustA = value; OnPropertyChangedVariable("LinearAdjustA"); }
         }
 
         private float? _linearAdjustB;
@@ -111,7 +111,7 @@ namespace PlantaPiloto
         public float? LinearAdjustB
         {
             get { return _linearAdjustB; }
-            set { _linearAdjustB = value; OnPropertyChanged("LinearAdjustB"); }
+            set { _linearAdjustB = value; OnPropertyChangedVariable("LinearAdjustB"); }
         }
 
         private float? _rangeLow;
@@ -122,7 +122,7 @@ namespace PlantaPiloto
         public float? RangeLow
         {
             get { return _rangeLow; }
-            set { _rangeLow = value; OnPropertyChanged("RangeLow"); }
+            set { _rangeLow = value; OnPropertyChangedVariable("RangeLow"); }
         }
 
         private float? _rangeHigh;
@@ -133,7 +133,7 @@ namespace PlantaPiloto
         public float? RangeHigh
         {
             get { return _rangeHigh; }
-            set { _rangeHigh = value; OnPropertyChanged("RangeHigh"); }
+            set { _rangeHigh = value; OnPropertyChangedVariable("RangeHigh"); }
         }
 
         private EnumVarCommunicationType _communicationType;
@@ -144,7 +144,7 @@ namespace PlantaPiloto
         public EnumVarCommunicationType CommunicationType
         {
             get { return _communicationType; }
-            set { _communicationType = value; OnPropertyChanged("ConnectionType"); }
+            set { _communicationType = value; OnPropertyChangedVariable("ConnectionType"); }
         }
 
         private string _value;
@@ -155,7 +155,7 @@ namespace PlantaPiloto
         public string Value
         {
             get { return _value; }
-            set { _value = value; OnPropertyChanged("Value"); }
+            set { _value = value; OnPropertyChangedVariable("Value"); }
         }
 
         private int? _time;
@@ -166,7 +166,7 @@ namespace PlantaPiloto
         public int? Time
         {
             get { return _time; }
-            set { _time = value; OnPropertyChanged("Time"); }
+            set { _time = value; OnPropertyChangedVariable("Time"); }
         }
 
         #endregion
@@ -218,11 +218,9 @@ namespace PlantaPiloto
         /// Método que actualiza la propiedad cuando esta cambia
         /// </summary>
         /// <param name="name">Propiedad a actualizar</param>
-        protected void OnPropertyChanged(string name)
+        protected void OnPropertyChangedVariable(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion
