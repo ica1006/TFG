@@ -55,3 +55,4 @@ Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido s
 	- Una vez que exista una conexión con el puerto serie, sin que hubiera un proyecto cargado, poder ver las variables que se están emitiendo desde la placa.
 	- Adición de idiomas.
 	- Actualizar valores en la ventana VarSelection cuando se muestran todas las variables y sus valores.
+	- Implementar variables PID.
