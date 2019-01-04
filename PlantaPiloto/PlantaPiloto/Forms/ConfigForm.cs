@@ -77,26 +77,25 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            switch (_eagerLoading)
+            if (_eagerLoading == 1)
             {
-                case 1:
-                    this.cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                    this.cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                    this.cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-                    this.txtProName.Text = _proyect.Name;
-                    this.txtProDesc.Text = _proyect.Description;
-                    this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
-                    this.btnAddVar.Visible = false;
-                    this.Switch_language();
-                    break;
-                default:
-                    cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                    cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                    cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
-                    this.lblSelectVar.Visible = false;
-                    this.cbSelectVar.Visible = false;
-                    this.Switch_language();
-                    break;
+                this.cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                this.cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                this.cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                this.txtProName.Text = _proyect.Name;
+                this.txtProDesc.Text = _proyect.Description;
+                this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                this.btnAddVar.Visible = false;
+                this.Switch_language();
+            }
+            else
+            {
+                cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+                cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+                cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+                this.lblSelectVar.Visible = false;
+                this.cbSelectVar.Visible = false;
+                this.Switch_language();
             }
         }
 

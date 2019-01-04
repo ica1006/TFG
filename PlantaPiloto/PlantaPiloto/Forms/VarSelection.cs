@@ -45,28 +45,6 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services(_cul);
             _proyect = proyect;
-            //_proyect = new Proyect(
-            //    proyect.Name,
-            //    proyect.Description,
-            //    proyect.ImagePath,
-            //    proyect.Cul
-            //);
-            //proyect.Variables.ToList().ForEach(p => _proyect.Variables.Add(new Variable(
-            //    p.Name,
-            //    p.Type,
-            //    p.Description,
-            //    p.Access,
-            //    p.BoardUnits,
-            //    p.InterfaceUnits,
-            //    p.LinearAdjustA,
-            //    p.LinearAdjustB,
-            //    p.RangeLow,
-            //    p.RangeHigh,
-            //    p.CommunicationType,
-            //    p.Value,
-            //    p.Time,
-            //    p.Cul
-            //)));
             _purpose = purpose;
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
@@ -86,7 +64,7 @@ namespace PlantaPiloto
         private void VarSelection_Load(object sender, EventArgs e)
         {
             //Carga de variables en el dataGridView
-            dgvVarSelection.Columns.Add(new DataGridViewColumn()
+            dgvVarSelection.Columns.Add(new DataGridViewColumn
             {
                 Name = "Variables",
                 HeaderText = "Variables",
@@ -94,49 +72,46 @@ namespace PlantaPiloto
                 CellTemplate = new DataGridViewTextBoxCell()
             });
 
-            switch (_purpose)
+            if (_purpose == EnumVarSelection.Chart)
             {
-                case EnumVarSelection.Chart:
-                    this.btnAccept.Visible = true;
-                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn()
-                    {
-                        Name = "X",
-                        HeaderText = "X",
-                        ReadOnly = false,
-                        CellTemplate = new DataGridViewCheckBoxCell()
-                    });
-                    foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
-                        dgvVarSelection.Rows.Add(new object[] { v.Name, false });
-                    break;
-                case EnumVarSelection.File:
-                    this.btnAccept.Visible = true;
-                    dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
-                    {
-                        Name = "X",
-                        HeaderText = "X",
-                        ReadOnly = false,
-                        CellTemplate = new DataGridViewCheckBoxCell()
-                    });
-                    foreach (Variable v in _proyect.Variables)
-                        dgvVarSelection.Rows.Add(new object[] { v.Name, false });
-                    break;
-                case EnumVarSelection.Vars:
-                    this.btnAccept.Visible = false;
-                    dgvVarSelection.Columns.Add(new DataGridViewColumn
-                    {
-                        Name = "Values",
-                        HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
-                        ReadOnly = true,
-                        CellTemplate = new DataGridViewTextBoxCell()
-                    });
+                this.btnAccept.Visible = true;
+                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
+                {
+                    Name = "X",
+                    HeaderText = "X",
+                    ReadOnly = false,
+                    CellTemplate = new DataGridViewCheckBoxCell()
+                });
+                foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
+                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+            }
+            else if (_purpose == EnumVarSelection.File)
+            {
+                this.btnAccept.Visible = true;
+                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
+                {
+                    Name = "X",
+                    HeaderText = "X",
+                    ReadOnly = false,
+                    CellTemplate = new DataGridViewCheckBoxCell()
+                });
+                foreach (Variable v in _proyect.Variables)
+                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
+            }
+            else if (_purpose == EnumVarSelection.Vars)
+            {
+                this.btnAccept.Visible = false;
+                dgvVarSelection.Columns.Add(new DataGridViewColumn
+                {
+                    Name = "Values",
+                    HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
+                    ReadOnly = true,
+                    CellTemplate = new DataGridViewTextBoxCell()
+                });
 
-                    if (_proyect.Variables.Count(p => p.Value == null) == 0)
-                        foreach (Variable v in _proyect.Variables)
-                            dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
-                    break;
-                default:
-                    this.btnAccept.Visible = false;
-                    break;
+                if (_proyect.Variables.Count(p => p.Value == null) == 0)
+                    foreach (Variable v in _proyect.Variables)
+                        dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
             }
 
             this.Switch_language();

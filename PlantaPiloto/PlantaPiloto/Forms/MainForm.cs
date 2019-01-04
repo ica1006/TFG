@@ -370,15 +370,10 @@ namespace PlantaPiloto
         public void CreateConfigForm(int eagerLoading)
         {
             ConfigForm _createConfig;
-            switch (eagerLoading)
-            {
-                case 1:
-                    _createConfig = new ConfigForm(_proyect, _cul);
-                    break;
-                default:
-                    _createConfig = new ConfigForm(_cul);
-                    break;
-            }
+            if (eagerLoading == 1)
+                _createConfig = new ConfigForm(_proyect, _cul);
+            else
+                _createConfig = new ConfigForm(_cul);
             _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
             _createConfig.Show();
         }
