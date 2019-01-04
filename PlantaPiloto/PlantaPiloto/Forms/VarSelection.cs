@@ -128,18 +128,12 @@ namespace PlantaPiloto
             this.Text = _res_man.GetString("VarSelectionForm_txt", _cul);
             this.gbVarSelection.Text = _res_man.GetString("gbVarSelection_txt", _cul);
             this.btnCancel.Text = _res_man.GetString("btnClose_txt", _cul);
-            switch (this._purpose)
-            {
-                case EnumVarSelection.Chart:
-                    this.btnAccept.Text = _res_man.GetString("btnAcceptChart_txt", _cul);
-                    break;
-                case EnumVarSelection.File:
-                    this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
-                    break;
-                default:
-                    this.btnAccept.Visible = false;
-                    break;
-            }
+            if (this._purpose == EnumVarSelection.Chart)
+                this.btnAccept.Text = _res_man.GetString("btnAcceptChart_txt", _cul);
+            else if (_purpose == EnumVarSelection.File)
+                this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
+            else if (_purpose == EnumVarSelection.Vars)
+                this.btnAccept.Visible = false;
 
             #endregion
         }
@@ -168,21 +162,19 @@ namespace PlantaPiloto
 
                 if (_varSelected.Count != 0)
                 {
-                    switch (_purpose)
+                    if (_purpose == EnumVarSelection.Chart)
                     {
-                        case EnumVarSelection.Chart:
-                            ChartForm _chartForm = new ChartForm(_proyect, _varSelected, _cul);
-                            _chartForm.MdiParent = this.MdiParent;
-                            _chartForm.Show();
-                            break;
-                        case EnumVarSelection.File:
-                            Save_file(_varSelected);
-                            this.Close();
-                            break;
-                        default:
-                            this.Close();
-                            break;
+                        ChartForm _chartForm = new ChartForm(_proyect, _varSelected, _cul);
+                        _chartForm.MdiParent = this.MdiParent;
+                        _chartForm.Show();
                     }
+                    else if (_purpose == EnumVarSelection.File)
+                    {
+                        Save_file(_varSelected);
+                        this.Close();
+                    }
+                    else if (_purpose == EnumVarSelection.Vars)
+                        this.Close();
 
                 }
             }
