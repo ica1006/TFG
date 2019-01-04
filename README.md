@@ -1,4 +1,7 @@
 # TFG - Desarrollo de una interfaz para planta piloto
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/34c75bc645844205843531d102a62c7c)](https://app.codacy.com/app/clopezno/TFG?utm_source=github.com&utm_medium=referral&utm_content=FranBurgos/TFG&utm_campaign=Badge_Grade_Dashboard)
+
 Trabajo de Fin de Grado - Desarrollo de una interfaz para planta piloto
 ## Autor
 Francisco Crespo Diez
