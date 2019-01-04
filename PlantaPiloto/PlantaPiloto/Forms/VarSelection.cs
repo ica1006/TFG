@@ -175,7 +175,6 @@ namespace PlantaPiloto
                     }
                     else if (_purpose == EnumVarSelection.Vars)
                         this.Close();
-
                 }
             }
             catch (Exception ex)
