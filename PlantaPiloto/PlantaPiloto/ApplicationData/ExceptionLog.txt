@@ -1,0 +1,31 @@
+01/05/2019 00:36:18 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/05/2019 00:36:27 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/05/2019 00:36:34 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/05/2019 00:36:37 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/05/2019 00:36:38 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/05/2019 00:36:47 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/05/2019 01:06:33 - Win32Exception,    en System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   en System.Diagnostics.Process.Start()
+   en System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   en PlantaPiloto.MainForm.userManualToolStripMenuItem_Click(Object sender, EventArgs e) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 599,  Info: excepción no definida.
+01/05/2019 01:07:44 - Win32Exception,    en System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   en System.Diagnostics.Process.Start()
+   en System.Diagnostics.Process.Start(ProcessStartInfo startInfo)
+   en PlantaPiloto.MainForm.userManualToolStripMenuItem_Click(Object sender, EventArgs e) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 599,  Info: excepción no definida.
