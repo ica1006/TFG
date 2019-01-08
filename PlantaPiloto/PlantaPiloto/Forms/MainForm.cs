@@ -58,8 +58,8 @@ namespace PlantaPiloto
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = "ApplicationData/helpProyect.chm";
-            _pdfPath = "ApplicationData/Manual_Usuario.pdf";
+            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "ApplicationData/helpProyect.chm");
+            _pdfPath = Path.Combine(Application.StartupPath, "ApplicationData/Manual_Usuario.pdf");
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }
