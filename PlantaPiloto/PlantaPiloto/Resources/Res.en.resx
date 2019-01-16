@@ -390,4 +390,10 @@
   <data name="btnAcceptVars_txt" xml:space="preserve">
     <value>Show values</value>
   </data>
+  <data name="VarValuesForm_txt" xml:space="preserve">
+    <value>Variable values</value>
+  </data>
+  <data name="gbVarValues_txt" xml:space="preserve">
+    <value>Selected variables</value>
+  </data>
 </root>

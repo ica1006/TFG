@@ -118,6 +118,7 @@ namespace PlantaPiloto
                     _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
 
                 GetVarValuesAndTimes();
+
                 for (int i = 0; i < _sqlData.Count(); i++)
                 {
                     Series series = new Series(_sqlData[i].First().Name);

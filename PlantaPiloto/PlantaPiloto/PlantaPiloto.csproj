@@ -61,6 +61,12 @@
     <Compile Include="Forms\ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\VarValuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VarValuesForm.Designer.cs">
+      <DependentUpon>VarValuesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\DB_services.cs" />
     <Compile Include="Enums\EnumVarSelection.cs" />
     <Compile Include="Enums\EnumVarAccess.cs" />
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VarValuesForm.resx">
+      <DependentUpon>VarValuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

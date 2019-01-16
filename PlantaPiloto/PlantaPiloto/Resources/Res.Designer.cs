@@ -475,6 +475,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variables seleccionadas.
+        /// </summary>
+        public static string gbVarValues_txt {
+            get {
+                return ResourceManager.GetString("gbVarValues_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grado en Ingeniería Informática..
         /// </summary>
         public static string lblAboutDegree_txt {
@@ -876,6 +885,15 @@ namespace PlantaPiloto.Language {
         public static string VarSelectionForm_txt {
             get {
                 return ResourceManager.GetString("VarSelectionForm_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valores de variables.
+        /// </summary>
+        public static string VarValuesForm_txt {
+            get {
+                return ResourceManager.GetString("VarValuesForm_txt", resourceCulture);
             }
         }
     }

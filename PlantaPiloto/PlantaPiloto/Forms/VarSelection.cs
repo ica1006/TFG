@@ -1,5 +1,6 @@
 ﻿using PlantaPiloto.Classes;
 using PlantaPiloto.Enums;
+using PlantaPiloto.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -150,7 +151,10 @@ namespace PlantaPiloto
                     }
                     else if (_purpose == EnumVarSelection.Vars)
                     {
-
+                        VarValuesForm _varValuesForm = new VarValuesForm(_proyect, _varSelected, _cul);
+                        _varValuesForm.MdiParent = this.MdiParent;
+                        _varValuesForm.ShowDialog();
+                        this.Close();
                     }
                 }
             }
