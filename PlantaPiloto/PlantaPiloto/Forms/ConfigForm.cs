@@ -88,14 +88,12 @@ namespace PlantaPiloto
                 this.txtProDesc.Text = _proyect.Description;
                 this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
                 this.btnAddVar.Visible = false;
-                this.Text = _res_man.GetString("ConfigFormModify_txt", _cul);
             }
             //Crear configuración
             else
             {
                 this.lblSelectVar.Visible = false;
                 this.cbSelectVar.Visible = false;
-                this.Text = _res_man.GetString("ConfigFormCreate_txt", _cul);
             }
             this.Switch_language();
         }
@@ -145,7 +143,10 @@ namespace PlantaPiloto
             //Cambio de idioma de las cadenas
             #region Actualización de cadenas
 
-            this.Text = _res_man.GetString("ConfigForm_txt", _cul);
+            if (_eagerLoading == 1)
+                this.Text = _res_man.GetString("ConfigFormModify_txt", _cul);
+            if(_eagerLoading == 0)
+                this.Text = _res_man.GetString("ConfigFormCreate_txt", _cul);
             this.lblConfigProName.Text = _res_man.GetString("lblConfigProName_txt", _cul);
             this.lblConfigProDesc.Text = _res_man.GetString("lblConfigProDesc_txt", _cul);
             this.lblVarAccess.Text = _res_man.GetString("lblVarAccess_txt", _cul);

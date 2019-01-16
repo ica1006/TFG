@@ -384,7 +384,7 @@
   <data name="ConfigFormModify_txt" xml:space="preserve">
     <value>Modify configuration</value>
   </data>
-  <data name="ConfigFromCreate_txt" xml:space="preserve">
+  <data name="ConfigFormCreate_txt" xml:space="preserve">
     <value>Create configuration</value>
   </data>
 </root>

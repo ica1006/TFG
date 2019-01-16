@@ -381,7 +381,7 @@
   <data name="ErrorConnectionTitle" xml:space="preserve">
     <value>Fallo en la conexión</value>
   </data>
-  <data name="ConfigFromCreate_txt" xml:space="preserve">
+  <data name="ConfigFormCreate_txt" xml:space="preserve">
     <value>Crear configuración</value>
   </data>
   <data name="ConfigFormModify_txt" xml:space="preserve">
