@@ -63,7 +63,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void VarSelection_Load(object sender, EventArgs e)
         {
-            //Carga de variables en el dataGridView
+            //Creación de columnas
             dgvVarSelection.Columns.Add(new DataGridViewColumn
             {
                 Name = "Variables",
@@ -72,47 +72,21 @@ namespace PlantaPiloto
                 CellTemplate = new DataGridViewTextBoxCell()
             });
 
-            if (_purpose == EnumVarSelection.Chart)
+            dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
             {
-                this.btnAccept.Visible = true;
-                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
-                {
-                    Name = "X",
-                    HeaderText = "X",
-                    ReadOnly = false,
-                    CellTemplate = new DataGridViewCheckBoxCell()
-                });
-                foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
-                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
-            }
-            else if (_purpose == EnumVarSelection.File)
-            {
-                this.btnAccept.Visible = true;
-                dgvVarSelection.Columns.Add(new DataGridViewCheckBoxColumn
-                {
-                    Name = "X",
-                    HeaderText = "X",
-                    ReadOnly = false,
-                    CellTemplate = new DataGridViewCheckBoxCell()
-                });
+                Name = "X",
+                HeaderText = "X",
+                ReadOnly = false,
+                CellTemplate = new DataGridViewCheckBoxCell()
+            });
+
+            //Carga de variables en el dataGridView
+            if (_purpose == EnumVarSelection.Vars)
                 foreach (Variable v in _proyect.Variables)
                     dgvVarSelection.Rows.Add(new object[] { v.Name, false });
-            }
-            else if (_purpose == EnumVarSelection.Vars)
-            {
-                this.btnAccept.Visible = false;
-                dgvVarSelection.Columns.Add(new DataGridViewColumn
-                {
-                    Name = "Values",
-                    HeaderText = _res_man.GetString("chartYAxisLabel", _cul),
-                    ReadOnly = true,
-                    CellTemplate = new DataGridViewTextBoxCell()
-                });
-
-                if (_proyect.Variables.Count(p => p.Value == null) == 0)
-                    foreach (Variable v in _proyect.Variables)
-                        dgvVarSelection.Rows.Add(new object[] { v.Name, v.Value });
-            }
+            else
+                foreach (Variable v in _proyect.Variables.Where(p => p.Type != EnumVarType.String))
+                    dgvVarSelection.Rows.Add(new object[] { v.Name, false });
 
             this.Switch_language();
         }
@@ -133,7 +107,7 @@ namespace PlantaPiloto
             else if (_purpose == EnumVarSelection.File)
                 this.btnAccept.Text = _res_man.GetString("btnAcceptFile_txt", _cul);
             else if (_purpose == EnumVarSelection.Vars)
-                this.btnAccept.Visible = false;
+                this.btnAccept.Text = _res_man.GetString("btnAcceptVars_txt", _cul);
 
             #endregion
         }
@@ -166,7 +140,8 @@ namespace PlantaPiloto
                     {
                         ChartForm _chartForm = new ChartForm(_proyect, _varSelected, _cul);
                         _chartForm.MdiParent = this.MdiParent;
-                        _chartForm.Show();
+                        _chartForm.ShowDialog();
+                        this.Close();
                     }
                     else if (_purpose == EnumVarSelection.File)
                     {
@@ -174,7 +149,9 @@ namespace PlantaPiloto
                         this.Close();
                     }
                     else if (_purpose == EnumVarSelection.Vars)
-                        this.Close();
+                    {
+
+                    }
                 }
             }
             catch (Exception ex)

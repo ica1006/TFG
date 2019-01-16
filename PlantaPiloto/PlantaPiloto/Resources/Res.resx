@@ -387,4 +387,7 @@
   <data name="ConfigFormModify_txt" xml:space="preserve">
     <value>Modificar configuración</value>
   </data>
+  <data name="btnAcceptVars_txt" xml:space="preserve">
+    <value>Mostrar valores</value>
+  </data>
 </root>

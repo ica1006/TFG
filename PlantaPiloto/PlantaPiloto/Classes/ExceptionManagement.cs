@@ -79,8 +79,8 @@ namespace PlantaPiloto.Classes
         /// </summary>
         public void SaveVarsValue(string newLog)
         {
-            using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
-                fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
+            //using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
+                //fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
         }
         #endregion
     }

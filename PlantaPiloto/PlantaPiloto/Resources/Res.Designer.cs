@@ -88,6 +88,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mostrar valores.
+        /// </summary>
+        public static string btnAcceptVars_txt {
+            get {
+                return ResourceManager.GetString("btnAcceptVars_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar variable.
         /// </summary>
         public static string btnAddVar_txt {
