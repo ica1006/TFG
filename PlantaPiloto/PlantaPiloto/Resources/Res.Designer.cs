@@ -277,6 +277,24 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modificar configuración.
+        /// </summary>
+        public static string ConfigFormModify_txt {
+            get {
+                return ResourceManager.GetString("ConfigFormModify_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear configuración.
+        /// </summary>
+        public static string ConfigFromCreate_txt {
+            get {
+                return ResourceManager.GetString("ConfigFromCreate_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar.
         /// </summary>
         public static string dgvColumnSave {

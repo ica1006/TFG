@@ -381,4 +381,10 @@
   <data name="ErrorConnectionMsg" xml:space="preserve">
     <value>Please, terminate the communication with the serial port by clicking on the 'End' button and restart it.</value>
   </data>
+  <data name="ConfigFormModify_txt" xml:space="preserve">
+    <value>Modify configuration</value>
+  </data>
+  <data name="ConfigFromCreate_txt" xml:space="preserve">
+    <value>Create configuration</value>
+  </data>
 </root>

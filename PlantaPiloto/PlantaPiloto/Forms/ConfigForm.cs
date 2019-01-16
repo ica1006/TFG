@@ -77,26 +77,27 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void ConfigForm_Load(object sender, EventArgs e)
         {
+            cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
+            cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
+            cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
+
+            //Modificar configuración
             if (_eagerLoading == 1)
             {
-                this.cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                this.cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                this.cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
                 this.txtProName.Text = _proyect.Name;
                 this.txtProDesc.Text = _proyect.Description;
                 this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
                 this.btnAddVar.Visible = false;
-                this.Switch_language();
+                this.Text = _res_man.GetString("ConfigFormModify_txt", _cul);
             }
+            //Crear configuración
             else
             {
-                cbVarType.DataSource = Enum.GetValues(typeof(EnumVarType));
-                cbVarAccess.DataSource = Enum.GetValues(typeof(EnumVarAccess));
-                cbVarCommunicationType.DataSource = Enum.GetValues(typeof(EnumVarCommunicationType));
                 this.lblSelectVar.Visible = false;
                 this.cbSelectVar.Visible = false;
-                this.Switch_language();
+                this.Text = _res_man.GetString("ConfigFormCreate_txt", _cul);
             }
+            this.Switch_language();
         }
 
         /// <summary>
