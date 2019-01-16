@@ -45,9 +45,10 @@
             // 
             // btnAboutAccept
             // 
-            this.btnAboutAccept.Location = new System.Drawing.Point(140, 230);
+            this.btnAboutAccept.Location = new System.Drawing.Point(210, 354);
+            this.btnAboutAccept.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAboutAccept.Name = "btnAboutAccept";
-            this.btnAboutAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAboutAccept.Size = new System.Drawing.Size(112, 35);
             this.btnAboutAccept.TabIndex = 0;
             this.btnAboutAccept.Text = "button1";
             this.btnAboutAccept.UseVisualStyleBackColor = true;
@@ -61,9 +62,11 @@
             this.gbAbout.Controls.Add(this.pictureBox1);
             this.gbAbout.Controls.Add(this.lblAboutUni);
             this.gbAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAbout.Location = new System.Drawing.Point(24, 12);
+            this.gbAbout.Location = new System.Drawing.Point(36, 18);
+            this.gbAbout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbAbout.Name = "gbAbout";
-            this.gbAbout.Size = new System.Drawing.Size(311, 208);
+            this.gbAbout.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbAbout.Size = new System.Drawing.Size(466, 320);
             this.gbAbout.TabIndex = 26;
             this.gbAbout.TabStop = false;
             this.gbAbout.Text = "groupBox1";
@@ -71,20 +74,20 @@
             // lblAboutDesc
             // 
             this.lblAboutDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAboutDesc.Location = new System.Drawing.Point(5, 40);
-            this.lblAboutDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAboutDesc.MaximumSize = new System.Drawing.Size(363, 141);
+            this.lblAboutDesc.Location = new System.Drawing.Point(8, 62);
+            this.lblAboutDesc.MaximumSize = new System.Drawing.Size(544, 217);
             this.lblAboutDesc.Name = "lblAboutDesc";
-            this.lblAboutDesc.Size = new System.Drawing.Size(303, 30);
+            this.lblAboutDesc.Size = new System.Drawing.Size(454, 46);
             this.lblAboutDesc.TabIndex = 21;
             this.lblAboutDesc.Text = "Proyecto de Fin de Grado realizado por Francisco Crespo Diez.";
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(171, 122);
+            this.pictureBox2.Location = new System.Drawing.Point(256, 188);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 76);
+            this.pictureBox2.Size = new System.Drawing.Size(98, 117);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 25;
             this.pictureBox2.TabStop = false;
@@ -92,20 +95,20 @@
             // lblAboutDegree
             // 
             this.lblAboutDegree.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAboutDegree.Location = new System.Drawing.Point(5, 70);
-            this.lblAboutDegree.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAboutDegree.MaximumSize = new System.Drawing.Size(363, 141);
+            this.lblAboutDegree.Location = new System.Drawing.Point(8, 108);
+            this.lblAboutDegree.MaximumSize = new System.Drawing.Size(544, 217);
             this.lblAboutDegree.Name = "lblAboutDegree";
-            this.lblAboutDegree.Size = new System.Drawing.Size(231, 18);
+            this.lblAboutDegree.Size = new System.Drawing.Size(346, 28);
             this.lblAboutDegree.TabIndex = 22;
             this.lblAboutDegree.Text = "Grado en Ingeniería Informática";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(87, 122);
+            this.pictureBox1.Location = new System.Drawing.Point(130, 188);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 76);
+            this.pictureBox1.Size = new System.Drawing.Size(88, 117);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
@@ -113,11 +116,10 @@
             // lblAboutUni
             // 
             this.lblAboutUni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAboutUni.Location = new System.Drawing.Point(5, 101);
-            this.lblAboutUni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblAboutUni.MaximumSize = new System.Drawing.Size(363, 141);
+            this.lblAboutUni.Location = new System.Drawing.Point(8, 155);
+            this.lblAboutUni.MaximumSize = new System.Drawing.Size(544, 217);
             this.lblAboutUni.Name = "lblAboutUni";
-            this.lblAboutUni.Size = new System.Drawing.Size(231, 18);
+            this.lblAboutUni.Size = new System.Drawing.Size(346, 28);
             this.lblAboutUni.TabIndex = 23;
             this.lblAboutUni.Text = "Universidad de Burgos";
             // 
@@ -125,9 +127,10 @@
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::PlantaPiloto.Properties.Resources.help;
-            this.pictureBox3.Location = new System.Drawing.Point(304, 231);
+            this.pictureBox3.Location = new System.Drawing.Point(456, 355);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 23);
+            this.pictureBox3.Size = new System.Drawing.Size(46, 35);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
@@ -135,13 +138,15 @@
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 266);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(540, 409);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.gbAbout);
             this.Controls.Add(this.btnAboutAccept);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AboutForm";
             this.Text = "About";
             this.Load += new System.EventHandler(this.About_Load);

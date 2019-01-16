@@ -52,22 +52,24 @@ namespace PlantaPiloto
             this.chartVar.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartVar.Legends.Add(legend1);
-            this.chartVar.Location = new System.Drawing.Point(12, 12);
+            this.chartVar.Location = new System.Drawing.Point(18, 18);
+            this.chartVar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartVar.Name = "chartVar";
             this.chartVar.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartVar.Series.Add(series1);
-            this.chartVar.Size = new System.Drawing.Size(776, 397);
+            this.chartVar.Size = new System.Drawing.Size(1164, 611);
             this.chartVar.TabIndex = 0;
             this.chartVar.Text = "chart1";
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(712, 415);
+            this.btnClose.Location = new System.Drawing.Point(1068, 638);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(112, 35);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "button1";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -81,30 +83,27 @@ namespace PlantaPiloto
             // lblChartAmount
             // 
             this.lblChartAmount.AutoSize = true;
-            this.lblChartAmount.Location = new System.Drawing.Point(12, 415);
-            this.lblChartAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblChartAmount.Location = new System.Drawing.Point(18, 638);
             this.lblChartAmount.Name = "lblChartAmount";
-            this.lblChartAmount.Size = new System.Drawing.Size(76, 13);
+            this.lblChartAmount.Size = new System.Drawing.Size(113, 20);
             this.lblChartAmount.TabIndex = 2;
             this.lblChartAmount.Text = "cantidadDatos";
             // 
             // txtChartAmount
             // 
-            this.txtChartAmount.Location = new System.Drawing.Point(191, 413);
-            this.txtChartAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.txtChartAmount.Location = new System.Drawing.Point(286, 635);
             this.txtChartAmount.Multiline = false;
             this.txtChartAmount.Name = "txtChartAmount";
-            this.txtChartAmount.Size = new System.Drawing.Size(84, 22);
+            this.txtChartAmount.Size = new System.Drawing.Size(124, 32);
             this.txtChartAmount.TabIndex = 3;
             this.txtChartAmount.Text = "";
             this.txtChartAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChartAmount_KeyPress);
             // 
             // btnChartAmount
             // 
-            this.btnChartAmount.Location = new System.Drawing.Point(284, 413);
-            this.btnChartAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChartAmount.Location = new System.Drawing.Point(426, 635);
             this.btnChartAmount.Name = "btnChartAmount";
-            this.btnChartAmount.Size = new System.Drawing.Size(52, 25);
+            this.btnChartAmount.Size = new System.Drawing.Size(78, 38);
             this.btnChartAmount.TabIndex = 4;
             this.btnChartAmount.Text = "button1";
             this.btnChartAmount.UseVisualStyleBackColor = true;
@@ -114,9 +113,10 @@ namespace PlantaPiloto
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::PlantaPiloto.Properties.Resources.help;
-            this.pictureBox3.Location = new System.Drawing.Point(665, 415);
+            this.pictureBox3.Location = new System.Drawing.Point(998, 638);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 23);
+            this.pictureBox3.Size = new System.Drawing.Size(46, 35);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 40;
             this.pictureBox3.TabStop = false;
@@ -124,9 +124,10 @@ namespace PlantaPiloto
             // 
             // ChartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.btnChartAmount);
             this.Controls.Add(this.txtChartAmount);
@@ -134,6 +135,7 @@ namespace PlantaPiloto
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.chartVar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "ChartForm";
             this.Text = "Chart";
