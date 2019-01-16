@@ -375,7 +375,7 @@ namespace PlantaPiloto
             else
                 _createConfig = new ConfigForm(_cul);
             _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
-            _createConfig.Show();
+            _createConfig.ShowDialog();
         }
 
         #region Métodos modificadores del estado de los elementos de la vista
@@ -642,7 +642,7 @@ namespace PlantaPiloto
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
             VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
             _varSelection.MdiParent = this.MdiParent;
-            _varSelection.Show();
+            _varSelection.ShowDialog();
         }
 
         /// <summary>
@@ -663,7 +663,7 @@ namespace PlantaPiloto
                 VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
                 _varSelection.MdiParent = this.MdiParent;
                 _varSelection.Save_file += new SaveFileDelegate(SaveFile);
-                _varSelection.Show();
+                _varSelection.ShowDialog();
             }
         }
 
@@ -679,7 +679,7 @@ namespace PlantaPiloto
             {
                 VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Vars, this.getCulture());
                 _varSelection.MdiParent = this.MdiParent;
-                _varSelection.Show();
+                _varSelection.ShowDialog();
             }
         }
 
