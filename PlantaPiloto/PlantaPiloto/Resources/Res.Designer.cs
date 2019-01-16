@@ -106,7 +106,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gráficos.
+        ///   Looks up a localized string similar to Gráficas.
         /// </summary>
         public static string btnChart_txt {
             get {
@@ -241,7 +241,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gráfico.
+        ///   Looks up a localized string similar to Gráfica.
         /// </summary>
         public static string ChartForm_txt {
             get {

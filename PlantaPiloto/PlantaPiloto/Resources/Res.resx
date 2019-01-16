@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnChart_txt" xml:space="preserve">
-    <value>Gráficos</value>
+    <value>Gráficas</value>
   </data>
   <data name="btnClose_txt" xml:space="preserve">
     <value>Cerrar</value>
@@ -340,7 +340,7 @@
     <value>Crear archivo</value>
   </data>
   <data name="ChartForm_txt" xml:space="preserve">
-    <value>Gráfico</value>
+    <value>Gráfica</value>
   </data>
   <data name="chartXAxisLabel" xml:space="preserve">
     <value>Segundos</value>
