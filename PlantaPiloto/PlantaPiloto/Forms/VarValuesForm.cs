@@ -23,6 +23,7 @@ namespace PlantaPiloto.Forms
         readonly DB_services _db_services;
         readonly HelpProvider _helpProvider;
         readonly ExceptionManagement _exMg;
+        readonly string _filesPath;
 
         public VarValuesForm(Proyect proyect, List<Variable> varsSelected, CultureInfo cultureInfo)
         {
@@ -33,7 +34,8 @@ namespace PlantaPiloto.Forms
             _varsSelected = varsSelected;
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 

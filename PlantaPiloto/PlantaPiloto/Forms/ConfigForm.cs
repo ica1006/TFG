@@ -31,6 +31,7 @@ namespace PlantaPiloto
         public event LoadProyectDelegate LoadProyect;
         readonly ExceptionManagement _exMg;
         readonly FileSaver _fileSaver;
+        readonly string _filesPath;
 
         #region Constructor
 
@@ -42,7 +43,8 @@ namespace PlantaPiloto
             _db_services = new DB_services(_cul);
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
@@ -58,7 +60,8 @@ namespace PlantaPiloto
             _lastVariable = "";
             _secondLap = false;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();

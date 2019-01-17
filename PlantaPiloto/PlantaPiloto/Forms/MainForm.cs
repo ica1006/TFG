@@ -38,6 +38,7 @@ namespace PlantaPiloto
         public delegate void SaveFileDelegate(List<Variable> vars);
         public delegate void LoadProyectDelegate(Proyect proyect);
         readonly FileSaver _fileSaver;
+        readonly string _filesPath;
 
         #region Constructor
 
@@ -58,8 +59,9 @@ namespace PlantaPiloto
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "ApplicationData/helpProyect.chm");
-            _pdfPath = Path.Combine(Application.StartupPath, "ApplicationData/Manual_Usuario.pdf");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
+            _pdfPath = Path.Combine(_filesPath, "Manual_Usuario.pdf");
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }

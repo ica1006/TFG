@@ -24,6 +24,7 @@ namespace PlantaPiloto
         readonly HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
         readonly ExceptionManagement _exMg;
+        readonly string _filesPath;
 
         #region Constructor
 
@@ -35,7 +36,8 @@ namespace PlantaPiloto
             _proyect = new Proyect();
             _db_services = new DB_services(_cul);
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 
@@ -49,7 +51,8 @@ namespace PlantaPiloto
             _purpose = purpose;
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 

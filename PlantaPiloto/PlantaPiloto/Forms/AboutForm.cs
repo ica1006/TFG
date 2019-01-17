@@ -22,6 +22,7 @@ namespace PlantaPiloto
         private CultureInfo _cul;
         readonly HelpProvider _helpProvider;
         readonly ExceptionManagement _exMg;
+        readonly string _filesPath;
 
         public CultureInfo Cul
         {
@@ -39,7 +40,8 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _cul = cul;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 

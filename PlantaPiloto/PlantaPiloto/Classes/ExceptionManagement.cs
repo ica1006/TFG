@@ -14,7 +14,7 @@ namespace PlantaPiloto.Classes
     {
         #region Properties
         //Ruta del archivo de log
-        readonly string _filePath = Path.Combine(Application.StartupPath, "ApplicationData/ExceptionLog.txt");
+        readonly string _filePath = Path.Combine(new GlobalParameters().FilesPath, "ExceptionLog.txt");
 
         private CultureInfo _cul;
 
@@ -79,8 +79,8 @@ namespace PlantaPiloto.Classes
         /// </summary>
         public void SaveVarsValue(string newLog)
         {
-            //using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
-                //fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
+            using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
+                fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
         }
         #endregion
     }

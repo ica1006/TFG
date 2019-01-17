@@ -2,7 +2,6 @@
 using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -32,6 +31,7 @@ namespace PlantaPiloto
         private int _chartAmount;
         readonly HelpProvider _helpProvider;
         readonly ExceptionManagement _exMg;
+        readonly string _filesPath;
 
         #region Constructor
 
@@ -50,7 +50,8 @@ namespace PlantaPiloto
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 
@@ -70,7 +71,8 @@ namespace PlantaPiloto
             _proyect = proyect;
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
-            _helpProvider.HelpNamespace = Path.Combine(Application.StartupPath, "../../files/helpProyect.chm");
+            _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
 
