@@ -25,8 +25,15 @@
 		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Formulario Selecci&oacute;n de Variables">
+		<param name="Name" value="Formulario Valores de variables">
+		<param name="Local" value="helpVarValuesForm.html">
+		<param name="WindowName" value="Formulario Valores de variables">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Formulario Selecci&oacute;n de variables">
 		<param name="Local" value="helpVarSelectionForm.html">
+		<param name="WindowName" value="Formulario Selección de variables">
 		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">

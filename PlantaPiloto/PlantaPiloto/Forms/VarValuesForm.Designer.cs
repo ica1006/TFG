@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VarValuesForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.gbVarValues = new System.Windows.Forms.GroupBox();
@@ -48,6 +49,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnCancel
             // 
@@ -58,6 +60,7 @@
             this.btnCancel.TabIndex = 40;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // gbVarValues
             // 
@@ -92,6 +95,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbVarValues);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VarValuesForm";
             this.Text = "VarValuesForm";
             this.Load += new System.EventHandler(this.VarValuesForm_Load);

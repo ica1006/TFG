@@ -156,7 +156,7 @@ namespace PlantaPiloto
                     {
                         VarValuesForm _varValuesForm = new VarValuesForm(_proyect, _varSelected, _cul);
                         _varValuesForm.MdiParent = this.MdiParent;
-                        _varValuesForm.ShowDialog();
+                        _varValuesForm.Show();
                         this.Close();
                     }
                 }

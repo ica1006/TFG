@@ -5,12 +5,15 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace PlantaPiloto.Forms
 {
     public partial class VarValuesForm : Form
     {
+        #region Properties
+
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
@@ -18,7 +21,12 @@ namespace PlantaPiloto.Forms
         readonly DB_services _db_services;
         readonly HelpProvider _helpProvider;
         readonly ExceptionManagement _exMg;
+        readonly System.Timers.Timer _timer;
         readonly string _filesPath;
+
+        #endregion
+
+        #region Constructor
 
         public VarValuesForm(Proyect proyect, List<Variable> varsSelected, CultureInfo cultureInfo)
         {
@@ -32,8 +40,20 @@ namespace PlantaPiloto.Forms
             _filesPath = new GlobalParameters().FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
+            _timer = new System.Timers.Timer(5000);
+            _timer.Enabled = false;
+            _timer.Elapsed += new ElapsedEventHandler(this.FillDataGridTimer);
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Evento que carga valores al abrir el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VarValuesForm_Load(object sender, EventArgs e)
         {
             //Creación de columnas
@@ -53,15 +73,8 @@ namespace PlantaPiloto.Forms
                 CellTemplate = new DataGridViewTextBoxCell()
             });
 
-            foreach (Variable v in _varsSelected)
-            {
-                string value = _db_services.GetVarValue(_proyect, v, 1).FirstOrDefault(p => p.Name == v.Name).Value;
-                dgvVarValues.Rows.Add(new object[] {
-                        v.Name,
-                        value
-                });
-            }
-
+            this.FillDataGrid();
+            _timer.Enabled = true;
             this.Switch_language();
         }
 
@@ -78,6 +91,80 @@ namespace PlantaPiloto.Forms
             this.btnCancel.Text = _res_man.GetString("btnClose_txt", _cul);
 
             #endregion
+        }
+
+        /// <summary>
+        /// Método que responde a la llamada del timer de la ventana y llama a FillDataGrid.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void FillDataGridTimer(object source, ElapsedEventArgs e)
+        {
+            this.FillDataGrid();
+        }
+
+        /// <summary>
+        /// Método que rellena las columnas con los últimos valores
+        /// </summary>
+        private void FillDataGrid()
+        {
+            try
+            {
+                if (_varsSelected.Count() > 0)
+                {
+                    if (dgvVarValues.Rows.Count == 0)
+                    {
+                        foreach (Variable v in _varsSelected)
+                        {
+                            string value = _db_services.GetVarValue(_proyect, v, 1).FirstOrDefault(p => p.Name == v.Name).Value;
+                            dgvVarValues.Rows.Add(v.Name, value);
+                        }
+                    }
+                    else
+                    {
+                        foreach (Variable v in _varsSelected)
+                        {
+                            string value = _db_services.GetVarValue(_proyect, v, 1).FirstOrDefault(p => p.Name == v.Name).Value;
+                            for (int i = 0; i < dgvVarValues.Rows.Count; i++)
+                                if (dgvVarValues[0, i].Value.ToString() == v.Name)
+                                    dgvVarValues[1, i].Value = value;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
+        }
+
+        #endregion
+        /// <summary>
+        /// Evento que controla el botón Cancelar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _timer.Close();
+            this.Close();
+        }
+
+        /// <summary>
+        /// Evento que abre la ayuda de la ventana
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Valores de variables");
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
         }
     }
 }

@@ -56,3 +56,5 @@ Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido s
 	- Adición de idiomas.
 	- Actualizar valores en la ventana VarSelection cuando se muestran todas las variables y sus valores.
 	- Implementar variables PID.
+### 15 de Enero de 2019
+Reunión con Daniel Sarabia. Se comentaron los errores encontrados en la release V0.1 y se decicidió solventar todos esos errores para la siguiente reunión (.docx adjunto al issue #58).

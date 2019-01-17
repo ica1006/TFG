@@ -192,7 +192,7 @@ namespace PlantaPiloto
                                     Access = var.Access,
                                     CommunicationType = var.CommunicationType,
                                     Time = varDataReader.GetInt32(0),
-                                    Value = varDataReader.GetDouble(1).ToString()
+                                    Value = var.Type == EnumVarType.String ? varDataReader.GetString(1) : varDataReader.GetDouble(1).ToString()
                                 };
                                 result.Add(v);
                             }
