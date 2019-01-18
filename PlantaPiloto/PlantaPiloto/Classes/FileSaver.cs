@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PlantaPiloto.Classes
 {
@@ -19,7 +20,15 @@ namespace PlantaPiloto.Classes
             tw.WriteLine(DateTime.Now);
             tw.WriteLine(_proyect.Name);
             tw.WriteLine(_proyect.Description);
-            tw.WriteLine(_proyect.ImagePath);
+            if (File.Exists(_proyect.ImagePath))
+            {
+                if (!Directory.Exists(Path.Combine(Application.StartupPath, "Configuraciones\\images")))
+                    Directory.CreateDirectory(Path.Combine(Application.StartupPath, "Configuraciones\\images"));
+                string newPath = Path.Combine(Application.StartupPath, "Configuraciones\\images", Path.GetFileName(_proyect.ImagePath));
+                File.Copy(_proyect.ImagePath, newPath);
+                _proyect.ImagePath = newPath;
+            }
+                tw.WriteLine(_proyect.ImagePath);
         }
     }
 }
