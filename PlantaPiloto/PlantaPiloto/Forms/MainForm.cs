@@ -39,6 +39,7 @@ namespace PlantaPiloto
         public delegate void LoadProyectDelegate(Proyect proyect);
         readonly FileSaver _fileSaver;
         readonly string _filesPath;
+        readonly string _configsPath;
 
         #region Constructor
 
@@ -59,6 +60,7 @@ namespace PlantaPiloto
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
+            _configsPath = new GlobalParameters().ConfigsPath;
             _filesPath = new GlobalParameters().FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _pdfPath = Path.Combine(_filesPath, "Manual_Usuario.pdf");
@@ -496,6 +498,9 @@ namespace PlantaPiloto
         private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
         {
             CloseSP_services();
+            if (!Directory.Exists(_configsPath))
+                Directory.CreateDirectory(_configsPath);
+            openFileDialog1.InitialDirectory = _configsPath;
             openFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
             openFileDialog1.Title = _res_man.GetString("showDialogTitle", _cul);
             openFileDialog1.FileName = "";

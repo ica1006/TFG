@@ -229,7 +229,7 @@
     <value>Select configuration file</value>
   </data>
   <data name="btnAddVar_txt" xml:space="preserve">
-    <value>Save variable</value>
+    <value>Add variable</value>
   </data>
   <data name="btnSaveConfig_txt" xml:space="preserve">
     <value>Accept</value>
@@ -395,5 +395,11 @@
   </data>
   <data name="gbVarValues_txt" xml:space="preserve">
     <value>Selected variables</value>
+  </data>
+  <data name="ErrorNoVarRange" xml:space="preserve">
+    <value>You must enter a valid Variable Range</value>
+  </data>
+  <data name="ErrorVarTitle" xml:space="preserve">
+    <value>Fill the variable</value>
   </data>
 </root>

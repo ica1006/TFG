@@ -97,7 +97,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guardar variable.
+        ///   Looks up a localized string similar to Añadir variable.
         /// </summary>
         public static string btnAddVar_txt {
             get {
@@ -403,6 +403,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debe introducir un rango válido para la variable.
+        /// </summary>
+        public static string ErrorNoVarRange {
+            get {
+                return ResourceManager.GetString("ErrorNoVarRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debe introducir un Tipo de Variable válido.
         /// </summary>
         public static string ErrorNoVarType {
@@ -426,6 +435,15 @@ namespace PlantaPiloto.Language {
         public static string ErrorVarRepeated {
             get {
                 return ResourceManager.GetString("ErrorVarRepeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete la varible.
+        /// </summary>
+        public static string ErrorVarTitle {
+            get {
+                return ResourceManager.GetString("ErrorVarTitle", resourceCulture);
             }
         }
         

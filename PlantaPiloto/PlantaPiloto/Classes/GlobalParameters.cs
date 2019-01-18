@@ -5,6 +5,7 @@ namespace PlantaPiloto.Classes
 {
     class GlobalParameters
     {
-        public string FilesPath = Path.Combine(Application.StartupPath, "../../ApplicationData");
+        public string FilesPath = Path.Combine(Application.StartupPath, "..\\..\\ApplicationData");
+        public string ConfigsPath = Path.Combine(Application.StartupPath, "Configuraciones");
     }
 }

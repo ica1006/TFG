@@ -32,6 +32,7 @@ namespace PlantaPiloto
         readonly ExceptionManagement _exMg;
         readonly FileSaver _fileSaver;
         readonly string _filesPath;
+        readonly string _configsPath;
 
         #region Constructor
 
@@ -44,6 +45,7 @@ namespace PlantaPiloto
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
             _filesPath = new GlobalParameters().FilesPath;
+            _configsPath = new GlobalParameters().ConfigsPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
@@ -61,6 +63,7 @@ namespace PlantaPiloto
             _secondLap = false;
             _helpProvider = new HelpProvider();
             _filesPath = new GlobalParameters().FilesPath;
+            _configsPath = new GlobalParameters().ConfigsPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
@@ -148,7 +151,7 @@ namespace PlantaPiloto
 
             if (_eagerLoading == 1)
                 this.Text = _res_man.GetString("ConfigFormModify_txt", _cul);
-            if(_eagerLoading == 0)
+            if (_eagerLoading == 0)
                 this.Text = _res_man.GetString("ConfigFormCreate_txt", _cul);
             this.lblConfigProName.Text = _res_man.GetString("lblConfigProName_txt", _cul);
             this.lblConfigProDesc.Text = _res_man.GetString("lblConfigProDesc_txt", _cul);
@@ -256,16 +259,23 @@ namespace PlantaPiloto
             try
             {
                 if (this.txtVarName.Text == ""
-                    || this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text))
+                    || this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text)
+                    || this.txtVarRangeHigh.Text == ""
+                    || this.txtVarRangeLow.Text == "")
                 {
                     if (this.txtVarName.Text == "")
                     {
-                        MessageBox.Show(_res_man.GetString("ErrorNoVarName", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(_res_man.GetString("ErrorNoVarName", _cul), _res_man.GetString("ErrorVarTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     if (this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text))
                     {
-                        MessageBox.Show(_res_man.GetString("ErrorVarRepeated", _cul), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(_res_man.GetString("ErrorVarRepeated", _cul), _res_man.GetString("ErrorVarTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    if (this.txtVarRangeHigh.Text == "" || this.txtVarRangeLow.Text == "")
+                    {
+                        MessageBox.Show(_res_man.GetString("ErrorNoVarRange", _cul), _res_man.GetString("ErrorVarTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
                     return false;
                 }
                 else
@@ -372,6 +382,9 @@ namespace PlantaPiloto
                     _proyect.Description = this.txtProDesc.Text;
                     _proyect.Cul = _cul;
                     saveFileDialog1 = new SaveFileDialog();
+                    if (!Directory.Exists(_configsPath))
+                        Directory.CreateDirectory(_configsPath);
+                    saveFileDialog1.InitialDirectory = _configsPath;
                     saveFileDialog1.FileName = _proyect.Name.ToString() + ".txt";
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)

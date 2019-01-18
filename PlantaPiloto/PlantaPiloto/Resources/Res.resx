@@ -229,7 +229,7 @@
     <value>Seleccione archivo de configuración</value>
   </data>
   <data name="btnAddVar_txt" xml:space="preserve">
-    <value>Guardar variable</value>
+    <value>Añadir variable</value>
   </data>
   <data name="btnSaveConfig_txt" xml:space="preserve">
     <value>Aceptar</value>
@@ -395,5 +395,11 @@
   </data>
   <data name="gbVarValues_txt" xml:space="preserve">
     <value>Variables seleccionadas</value>
+  </data>
+  <data name="ErrorNoVarRange" xml:space="preserve">
+    <value>Debe introducir un rango válido para la variable</value>
+  </data>
+  <data name="ErrorVarTitle" xml:space="preserve">
+    <value>Complete la varible</value>
   </data>
 </root>
