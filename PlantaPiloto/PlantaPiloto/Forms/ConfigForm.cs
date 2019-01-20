@@ -57,16 +57,16 @@ namespace PlantaPiloto
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = proyect;
+            _cul = cul;
             _db_services = new DB_services(_cul);
+            _exMg = new ExceptionManagement(_cul);
             _eagerLoading = 1;
             _lastVariable = "";
             _secondLap = false;
-            _helpProvider = new HelpProvider();
             _filesPath = new GlobalParameters().FilesPath;
+            _helpProvider = new HelpProvider();
             _configsPath = new GlobalParameters().ConfigsPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
-            _cul = cul;
-            _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
         }
 
