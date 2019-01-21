@@ -2760,3 +2760,34 @@
 01/17/2019 20:22:22 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
    en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
    en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/21/2019 19:45:40 - FormatException,    en System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   en System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   en System.Int32.Parse(String s)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 149,  Info: Formato inválido
+01/21/2019 19:50:17 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName),  Info: excepción no definida.
+01/21/2019 19:50:46 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 216,  Info: excepción no definida.
+01/21/2019 19:52:49 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 216,  Info: excepción no definida.
+01/21/2019 19:56:13 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 217,  Info: excepción no definida.
+01/21/2019 19:57:42 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 217,  Info: excepción no definida.
+01/21/2019 19:59:24 - ArgumentException,    en System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   en System.Windows.Forms.ListControl.set_ValueMember(String value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName),  Info: La ruta no tiene un formato válido.
+01/21/2019 19:59:30 - ArgumentException,    en System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   en System.Windows.Forms.ListControl.set_ValueMember(String value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName),  Info: La ruta no tiene un formato válido.
+01/21/2019 19:59:48 - ArgumentException,    en System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   en System.Windows.Forms.ListControl.set_ValueMember(String value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName),  Info: La ruta no tiene un formato válido.
+01/21/2019 20:00:05 - ArgumentException,    en System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   en System.Windows.Forms.ListControl.set_ValueMember(String value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 218,  Info: La ruta no tiene un formato válido.
+01/21/2019 20:03:08 - ArgumentException,    en System.Windows.Forms.ListControl.SetDataConnection(Object newDataSource, BindingMemberInfo newDisplayMember, Boolean force)
+   en System.Windows.Forms.ListControl.set_ValueMember(String value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ConfigForm.cs:línea 217,  Info: La ruta no tiene un formato válido.
+01/21/2019 20:04:53 - InvalidOperationException,    en System.Windows.Forms.ListControl.set_SelectedValue(Object value)
+   en PlantaPiloto.ConfigForm.UpdateVar(String varOldName),  Info: excepción no definida.

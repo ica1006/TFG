@@ -93,7 +93,6 @@ namespace PlantaPiloto
                 this.txtProName.Text = _proyect.Name;
                 this.txtProDesc.Text = _proyect.Description;
                 this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
-                this.btnAddVar.Visible = false;
             }
             //Crear configuración
             else
@@ -150,9 +149,15 @@ namespace PlantaPiloto
             #region Actualización de cadenas
 
             if (_eagerLoading == 1)
+            {
                 this.Text = _res_man.GetString("ConfigFormModify_txt", _cul);
+                this.btnAddVar.Text = _res_man.GetString("btnAddVarModify_txt", _cul);
+            }
             if (_eagerLoading == 0)
+            {
                 this.Text = _res_man.GetString("ConfigFormCreate_txt", _cul);
+                this.btnAddVar.Text = _res_man.GetString("btnAddVar_txt", _cul);
+            }
             this.lblConfigProName.Text = _res_man.GetString("lblConfigProName_txt", _cul);
             this.lblConfigProDesc.Text = _res_man.GetString("lblConfigProDesc_txt", _cul);
             this.lblVarAccess.Text = _res_man.GetString("lblVarAccess_txt", _cul);
@@ -168,7 +173,6 @@ namespace PlantaPiloto
             this.lblSelectVar.Text = _res_man.GetString("lblSelectVar_txt", _cul);
             this.gbNewVar.Text = _res_man.GetString("gbNewVar_txt", _cul);
             this.gbProyectDetails.Text = _res_man.GetString("gbProyectDetails_txt", _cul);
-            this.btnAddVar.Text = _res_man.GetString("btnAddVar_txt", _cul);
             this.btnSaveConfig.Text = _res_man.GetString("btnSaveConfig_txt", _cul);
             this.btnLoadImage.Text = _res_man.GetString("btnLoadImage_txt", _cul);
             this.btnExit.Text = _res_man.GetString("btnExit_txt", _cul);
@@ -193,21 +197,24 @@ namespace PlantaPiloto
             this.txtVarRangeLow.Text = v.RangeLow.ToString();
             this.txtVarRangeHigh.Text = v.RangeLow.ToString();
             this.cbVarCommunicationType.SelectedItem = v.CommunicationType;
+            _variable = v;
         }
 
         /// <summary>
         /// Método que actualiza los valores de las propiedades de una variable.
         /// </summary>
         /// <param name="v"></param>
-        public void UpdateVar(Variable v)
+        public void UpdateVar(String varOldName)
         {
             try
             {
-                _proyect.Variables.Remove(v);
+                _proyect.Variables.Remove(_proyect.Variables.FirstOrDefault(p => p.Name == varOldName));
                 if (ValidateVar())
                 {
-                    LoadVariableFromForm();
+                    varOldName = _variable.Name;
                     _proyect.Variables.Add(_variable);
+                    this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                    this.cbSelectVar.SelectedIndex = _proyect.Variables.Count - 1;
                 }
             }
             catch (Exception ex)
@@ -260,8 +267,7 @@ namespace PlantaPiloto
             {
                 if (this.txtVarName.Text == ""
                     || this._proyect.Variables.Any(p => p.Name == this.txtVarName.Text)
-                    || this.txtVarRangeHigh.Text == ""
-                    || this.txtVarRangeLow.Text == "")
+                    || ((EnumVarType)cbVarType.SelectedItem != EnumVarType.String && (this.txtVarRangeHigh.Text == "" || this.txtVarRangeLow.Text == "")))
                 {
                     if (this.txtVarName.Text == "")
                     {
@@ -271,7 +277,7 @@ namespace PlantaPiloto
                     {
                         MessageBox.Show(_res_man.GetString("ErrorVarRepeated", _cul), _res_man.GetString("ErrorVarTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    if (this.txtVarRangeHigh.Text == "" || this.txtVarRangeLow.Text == "")
+                    if ((EnumVarType)cbVarType.SelectedItem != EnumVarType.String && (this.txtVarRangeHigh.Text == "" || this.txtVarRangeLow.Text == ""))
                     {
                         MessageBox.Show(_res_man.GetString("ErrorNoVarRange", _cul), _res_man.GetString("ErrorVarTitle"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
@@ -349,11 +355,19 @@ namespace PlantaPiloto
         {
             try
             {
-                if (ValidateVar())
+                if (_eagerLoading == 1)
                 {
                     LoadVariableFromForm();
-                    _proyect.Variables.Add(_variable);
-                    this.CleanForm(0);
+                    UpdateVar(_lastVariable);
+                }
+                else
+                {
+                    if (ValidateVar())
+                    {
+                        LoadVariableFromForm();
+                        _proyect.Variables.Add(_variable);
+                        this.CleanForm(0);
+                    }
                 }
             }
             catch (FormatException ex)
@@ -371,11 +385,6 @@ namespace PlantaPiloto
         {
             try
             {
-                //Actualiza la última variable cargada si el formulario está modificando un proyecto.
-                if (_eagerLoading == 1)
-                {
-                    this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
-                }
                 if (ValidateProyect())
                 {
                     _proyect.Name = this.txtProName.Text;
@@ -497,17 +506,20 @@ namespace PlantaPiloto
         {
             try
             {
-                if (!_secondLap)
-                {
-                    if (_lastVariable != "")
-                        this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
-                    _lastVariable = (sender as ComboBox).SelectedValue.ToString();
-                    this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
-                }
-                _secondLap = true;
-                this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
-                _secondLap = false;
-                this.cbSelectVar.Refresh();
+                //if (!_secondLap)
+                //{
+                //    if (_lastVariable != "")
+                //        this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                //    _lastVariable = (sender as ComboBox).SelectedValue.ToString();
+                //    this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                //}
+                //_secondLap = true;
+                //this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                //_secondLap = false;
+                //this.cbSelectVar.Refresh();
+
+                _lastVariable = (sender as ComboBox).SelectedValue.ToString();
+                this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
             }
             catch (Exception ex)
             {

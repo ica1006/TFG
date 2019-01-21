@@ -402,4 +402,7 @@
   <data name="ErrorVarTitle" xml:space="preserve">
     <value>Complete la varible</value>
   </data>
+  <data name="btnAddVarModify_txt" xml:space="preserve">
+    <value>Guardar cambios en la variable</value>
+  </data>
 </root>

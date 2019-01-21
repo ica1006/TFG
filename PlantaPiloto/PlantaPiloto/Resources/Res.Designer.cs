@@ -106,6 +106,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardar cambios en la variable.
+        /// </summary>
+        public static string btnAddVarModify_txt {
+            get {
+                return ResourceManager.GetString("btnAddVarModify_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelar.
         /// </summary>
         public static string btnCancel_txt {
