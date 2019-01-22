@@ -60,7 +60,7 @@ namespace PlantaPiloto
             Switch_language();
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
-            _timerRefreshDataGrid.Elapsed += new ElapsedEventHandler(this.TimerElapsedEvent);
+            _timerRefreshDataGrid.Elapsed += this.TimerElapsedEvent;
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
@@ -399,7 +399,7 @@ namespace PlantaPiloto
                 _createConfig = new ConfigForm(_proyect, _cul);
             else
                 _createConfig = new ConfigForm(_cul);
-            _createConfig.LoadProyect += new LoadProyectDelegate(LoadProyect);
+            _createConfig.LoadProyect += LoadProyect;
             _createConfig.ShowDialog();
         }
 
@@ -668,8 +668,8 @@ namespace PlantaPiloto
         private void btnChart_Click(object sender, EventArgs e)
         {
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
-            VarSelection _varSelection = _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
-            _varSelection.ShowChart += new ShowChartDelegate(ShowChart);
+            VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
+            _varSelection.ShowChart += ShowChart;
             _varSelection.ShowDialog();
         }
 
@@ -690,7 +690,7 @@ namespace PlantaPiloto
                 _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
                 VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.File, this.getCulture());
                 _varSelection.MdiParent = this.MdiParent;
-                _varSelection.Save_file += new SaveFileDelegate(SaveFile);
+                _varSelection.Save_file += SaveFile;
                 _varSelection.ShowDialog();
             }
         }
