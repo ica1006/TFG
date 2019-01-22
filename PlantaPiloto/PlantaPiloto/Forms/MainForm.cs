@@ -346,7 +346,7 @@ namespace PlantaPiloto
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        _fileSaver.WriteProyectProperties(tw, _proyect);
+                        _fileSaver.WriteProyectProperties(tw, _proyect, saveFileDialog1.FileName);
                         tw.WriteLine("****************************************");
                         string varNames = "";
                         vars.ForEach(p => varNames += p.Name + ";");

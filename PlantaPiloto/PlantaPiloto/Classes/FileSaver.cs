@@ -14,21 +14,33 @@ namespace PlantaPiloto.Classes
         /// Método que guarda las propiedades de un proyecto en un archivo de texto
         /// </summary>
         /// <param name="tw">StreamWriter que escribe en el archivo de texto</param>
-        /// <param name="_proyect">Proyecto del que se guardan las propiedades</param>
-        public void WriteProyectProperties(StreamWriter tw, Proyect _proyect)
+        /// <param name="proyect">Proyecto del que se guardan las propiedades</param>
+        public void WriteProyectProperties(StreamWriter tw, Proyect proyect, string fileDir)
         {
             tw.WriteLine(DateTime.Now);
-            tw.WriteLine(_proyect.Name);
-            tw.WriteLine(_proyect.Description);
-            if (File.Exists(_proyect.ImagePath))
+            tw.WriteLine(proyect.Name);
+            tw.WriteLine(proyect.Description);
+            string fileDirectory = fileDir.Split('\\')[fileDir.Split('\\').Length - 1];
+            fileDirectory = fileDirectory.Substring(0, fileDirectory.Length - 4);
+            if (File.Exists(proyect.ImagePath))
             {
-                if (!Directory.Exists(Path.Combine(Application.StartupPath, "Configuraciones\\images")))
-                    Directory.CreateDirectory(Path.Combine(Application.StartupPath, "Configuraciones\\images"));
-                string newPath = Path.Combine(Application.StartupPath, "Configuraciones\\images", Path.GetFileName(_proyect.ImagePath));
-                File.Copy(_proyect.ImagePath, newPath);
-                _proyect.ImagePath = newPath;
+                if (!Directory.Exists(Path.Combine(Application.StartupPath, "Configuraciones\\images", fileDirectory)))
+                    Directory.CreateDirectory(Path.Combine(Application.StartupPath, "Configuraciones\\images", fileDirectory));
+                string newPath = Path.Combine(Application.StartupPath, "Configuraciones\\images", fileDirectory, Path.GetFileName(proyect.ImagePath));
+                if (File.Exists(newPath))
+                {
+                    string fileName = Path.GetFileName(proyect.ImagePath);
+                    string fileFormat = fileName.Substring(fileName.Length - 4);
+                    fileName = fileName.Substring(0,fileName.Length - 4);
+                    newPath = Path.Combine(
+                        Application.StartupPath, "Configuraciones\\images",
+                        fileDirectory,
+                        string.Concat(fileName, "_", (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds, fileFormat)); //Se añade la fecha en timespam                   
+                }
+                File.Copy(proyect.ImagePath, newPath);
+                proyect.ImagePath = newPath;
             }
-                tw.WriteLine(_proyect.ImagePath);
+            tw.WriteLine(proyect.ImagePath);
         }
     }
 }

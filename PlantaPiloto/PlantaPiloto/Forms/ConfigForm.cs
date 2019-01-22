@@ -195,7 +195,7 @@ namespace PlantaPiloto
             this.txtVarLinearAdjA.Text = v.LinearAdjustA.ToString();
             this.txtVarLinearAdjB.Text = v.LinearAdjustB.ToString();
             this.txtVarRangeLow.Text = v.RangeLow.ToString();
-            this.txtVarRangeHigh.Text = v.RangeLow.ToString();
+            this.txtVarRangeHigh.Text = v.RangeHigh.ToString();
             this.cbVarCommunicationType.SelectedItem = v.CommunicationType;
             _variable = v;
         }
@@ -246,10 +246,10 @@ namespace PlantaPiloto
             {
                 _variable.BoardUnits = "";
                 _variable.InterfaceUnits = "";
-                _variable.LinearAdjustA = new float();
-                _variable.LinearAdjustB = new float();
-                _variable.RangeLow = new float();
-                _variable.RangeHigh = new float();
+                _variable.LinearAdjustA = null;
+                _variable.LinearAdjustB = null;
+                _variable.RangeLow = null;
+                _variable.RangeHigh = null;
             }
             _variable.CommunicationType = (EnumVarCommunicationType)this.cbVarCommunicationType.SelectedItem;
             _variable.Cul = _cul;
@@ -398,30 +398,34 @@ namespace PlantaPiloto
                     saveFileDialog1.Filter = _res_man.GetString("showDialogFilter", _cul);
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
-                        _fileSaver.WriteProyectProperties(tw, _proyect);
-                        foreach (Variable v in _proyect.Variables)
+                        if (File.Exists(saveFileDialog1.FileName))
+                            File.Delete(saveFileDialog1.FileName);
+                        using (StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile()))
                         {
-                            tw.WriteLine("****************************************");
-                            tw.WriteLine(v.Name);
-                            tw.WriteLine(v.Type);
-                            tw.WriteLine(v.Description);
-                            tw.WriteLine(v.Access);
-                            if (v.Type != EnumVarType.String)
+                            _fileSaver.WriteProyectProperties(tw, _proyect, saveFileDialog1.FileName);
+                            foreach (Variable v in _proyect.Variables)
                             {
-                                tw.WriteLine(v.BoardUnits);
-                                tw.WriteLine(v.InterfaceUnits);
-                                tw.WriteLine(v.LinearAdjustA);
-                                tw.WriteLine(v.LinearAdjustB);
-                                tw.WriteLine(v.RangeLow);
-                                tw.WriteLine(v.RangeHigh);
-                            }
-                            tw.WriteLine(v.CommunicationType);
+                                tw.WriteLine("****************************************");
+                                tw.WriteLine(v.Name);
+                                tw.WriteLine(v.Type);
+                                tw.WriteLine(v.Description);
+                                tw.WriteLine(v.Access);
+                                if (v.Type != EnumVarType.String)
+                                {
+                                    tw.WriteLine(v.BoardUnits);
+                                    tw.WriteLine(v.InterfaceUnits);
+                                    tw.WriteLine(v.LinearAdjustA);
+                                    tw.WriteLine(v.LinearAdjustB);
+                                    tw.WriteLine(v.RangeLow);
+                                    tw.WriteLine(v.RangeHigh);
+                                }
+                                tw.WriteLine(v.CommunicationType);
 
+                            }
+                            tw.WriteLine("****************************************");
+                            tw.WriteLine("****************************************");
+                            tw.Close();
                         }
-                        tw.WriteLine("****************************************");
-                        tw.WriteLine("****************************************");
-                        tw.Close();
                         this.LoadProyect(_proyect);
                         this.CleanForm(1);
                         this.Close();
@@ -430,6 +434,7 @@ namespace PlantaPiloto
             }
             catch (Exception ex)
             {
+                MessageBox.Show(_res_man.GetString("ErrorImage", _cul), _res_man.GetString("ErrorImgTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _exMg.HandleException(ex);
             }
         }
