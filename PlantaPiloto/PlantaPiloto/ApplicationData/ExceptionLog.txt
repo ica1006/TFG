@@ -3068,3 +3068,20 @@
    en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
    en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
    en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/22/2019 22:34:15 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/22/2019 22:34:18 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/22/2019 22:34:36 - ObjectDisposedException,    en System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   en System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 162,  Info: Objeto disposed
+01/22/2019 22:34:41 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
