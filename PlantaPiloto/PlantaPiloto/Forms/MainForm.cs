@@ -21,6 +21,7 @@ namespace PlantaPiloto
 {
     public partial class MainForm : Form
     {
+#region Properties
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
@@ -36,10 +37,13 @@ namespace PlantaPiloto
         delegate void StringArgReturningVoidDelegate(Proyect rows);
         delegate void ShowButtonsDelegate();
         public delegate void SaveFileDelegate(List<Variable> vars);
+        public delegate void ShowChartDelegate(List<Variable> vars);
         public delegate void LoadProyectDelegate(Proyect proyect);
         readonly FileSaver _fileSaver;
         readonly string _filesPath;
         readonly string _configsPath;
+
+        #endregion
 
         #region Constructor
 
@@ -368,6 +372,23 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Método que abre una nueva ventana en la que aparecen una gráfica con las variables pasadas como parámetro
+        /// </summary>
+        /// <param name="vars">Variables a graficar</param>
+        public void ShowChart(List<Variable> vars)
+        {
+            try
+            {
+                ChartForm _chartForm = new ChartForm(_proyect, vars, _cul);                
+                _chartForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
+        }
+
+        /// <summary>
         /// Método que abre la ventana de configuración según la llamada
         /// </summary>
         /// <param name="eagerLoading"></param>
@@ -647,8 +668,8 @@ namespace PlantaPiloto
         private void btnChart_Click(object sender, EventArgs e)
         {
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
-            VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
-            _varSelection.MdiParent = this.MdiParent;
+            VarSelection _varSelection = _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
+            _varSelection.ShowChart += new ShowChartDelegate(ShowChart);
             _varSelection.ShowDialog();
         }
 

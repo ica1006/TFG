@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PlantaPiloto.Classes
@@ -31,7 +27,7 @@ namespace PlantaPiloto.Classes
                 {
                     string fileName = Path.GetFileName(proyect.ImagePath);
                     string fileFormat = fileName.Substring(fileName.Length - 4);
-                    fileName = fileName.Substring(0,fileName.Length - 4);
+                    fileName = fileName.Substring(0, fileName.Length - 4);
                     newPath = Path.Combine(
                         Application.StartupPath, "Configuraciones\\images",
                         fileDirectory,

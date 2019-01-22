@@ -23,6 +23,7 @@ namespace PlantaPiloto
         readonly DB_services _db_services;
         readonly HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
+        public event ShowChartDelegate ShowChart;
         readonly ExceptionManagement _exMg;
         readonly string _filesPath;
 
@@ -142,9 +143,7 @@ namespace PlantaPiloto
                 {
                     if (_purpose == EnumVarSelection.Chart)
                     {
-                        ChartForm _chartForm = new ChartForm(_proyect, _varSelected, _cul);
-                        _chartForm.MdiParent = this.MdiParent;
-                        _chartForm.ShowDialog();
+                        ShowChart(_varSelected);
                         this.Close();
                     }
                     else if (_purpose == EnumVarSelection.File)
