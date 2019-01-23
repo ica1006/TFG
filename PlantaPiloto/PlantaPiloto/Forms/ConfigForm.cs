@@ -26,7 +26,6 @@ namespace PlantaPiloto
         readonly DB_services _db_services;
         readonly int _eagerLoading;
         private string _lastVariable;
-        private bool _secondLap;
         readonly HelpProvider _helpProvider;
         public event LoadProyectDelegate LoadProyect;
         readonly ExceptionManagement _exMg;
@@ -62,7 +61,6 @@ namespace PlantaPiloto
             _exMg = new ExceptionManagement(_cul);
             _eagerLoading = 1;
             _lastVariable = "";
-            _secondLap = false;
             _filesPath = new GlobalParameters().FilesPath;
             _helpProvider = new HelpProvider();
             _configsPath = new GlobalParameters().ConfigsPath;
@@ -208,14 +206,11 @@ namespace PlantaPiloto
         {
             try
             {
-                _proyect.Variables.Remove(_proyect.Variables.FirstOrDefault(p => p.Name == varOldName));
-                if (ValidateVar())
-                {
-                    varOldName = _variable.Name;
-                    _proyect.Variables.Add(_variable);
-                    this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
-                    this.cbSelectVar.SelectedIndex = _proyect.Variables.Count - 1;
-                }
+                varOldName = _variable.Name;
+                _proyect.Variables.Add(_variable);
+                this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
+                this.cbSelectVar.SelectedIndex = _proyect.Variables.Count - 1;
+
             }
             catch (Exception ex)
             {
@@ -357,8 +352,12 @@ namespace PlantaPiloto
             {
                 if (_eagerLoading == 1)
                 {
-                    LoadVariableFromForm();
-                    UpdateVar(_lastVariable);
+                    _proyect.Variables.Remove(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+                    if (ValidateVar())
+                    {
+                        LoadVariableFromForm();
+                        UpdateVar(_lastVariable);
+                    }
                 }
                 else
                 {
