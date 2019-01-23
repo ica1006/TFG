@@ -135,6 +135,7 @@ namespace PlantaPiloto
             this.toolStripMenuItemOthers.Text = _res_man.GetString("toolStripMenuItemOthers_txt", _cul);
             this.toolStripMenuItemSerie.Text = _res_man.GetString("toolStripMenuItemSerie_txt", _cul);
             this.toolStripMenuItemSpanish.Text = _res_man.GetString("toolStripMenuItemSpanish_txt", _cul);
+            this.userManualToolStripMenuItem.Text = _res_man.GetString("toolStripMenuItemUserManual_txt", _cul);
             this.lblPorts.Text = _res_man.GetString("lblPorts_txt", _cul);
             this.lblProDesc.Text = _res_man.GetString("lblProDesc_txt", _cul);
             this.lblProName.Text = _res_man.GetString("lblProName_txt", _cul);
