@@ -215,14 +215,15 @@ namespace PlantaPiloto
                     //Leemos la línea que almacena los nombres de las variables
                     int counter = 0;
                     string line = "";
-                    string[] fileVars = new string[] { };
+                    List<string> fileVars = new List<string>();
                     StreamReader fileReader = new StreamReader(_filePath);
                     while ((line = fileReader.ReadLine()) != null)
                     {
                         if (counter == 5)
                         {
-                            fileVars = line.Split(';');
-                            fileVars = fileVars.Where(p => p != "").ToArray();
+                            fileVars = line.Split(';').ToList();
+                            fileVars.RemoveAt(0);
+                            fileVars.Remove("");
                             break;
                         }
                         counter++;
@@ -232,7 +233,7 @@ namespace PlantaPiloto
                     using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
                     {
                         //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
-                        string newValues = "";
+                        string newValues = (_lastRow.Variables[0].Time * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + "s;";
                         _lastRow.Variables.Where(p => fileVars.Contains(p.Name)).ToList().ForEach(q => newValues += q.Value + ";");
                         fileWriter.WriteLine(newValues);
                     }

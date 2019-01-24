@@ -353,7 +353,7 @@ namespace PlantaPiloto
                         StreamWriter tw = new StreamWriter(saveFileDialog1.OpenFile());
                         _fileSaver.WriteProyectProperties(tw, _proyect, saveFileDialog1.FileName);
                         tw.WriteLine("****************************************");
-                        string varNames = "";
+                        string varNames = "Time;";
                         vars.ForEach(p => varNames += p.Name + ";");
                         tw.WriteLine(varNames);
                         tw.Close();
