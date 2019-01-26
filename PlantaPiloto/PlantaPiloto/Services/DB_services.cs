@@ -2,6 +2,7 @@
 using PlantaPiloto.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,45 @@ namespace PlantaPiloto
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Método que crea una Base de Datos en SQL Server
+        /// </summary>
+        public void CreateDB()
+        {
+            String str;
+            SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;database=master");
+            str = "CREATE DATABASE TFG_DB ON PRIMARY " +
+                "(NAME = TFG_DB, " +
+                "FILENAME = 'C:\\MyDatabaseData.mdf', " +
+                "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
+                "LOG ON (NAME = TFG_DB_Log, " +
+                "FILENAME = 'C:\\TFG_DB_Log.ldf', " +
+                "SIZE = 4MB, " +
+                "MAXSIZE = 20MB, " +
+                "FILEGROWTH = 10%)";
+            using (SqlCommand myCommand = new SqlCommand(str, myConn))
+            {
+                try
+                {
+                    myConn.Open();
+                    myCommand.ExecuteNonQuery();
+                    MessageBox.Show("DataBase is Created Successfully", "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                finally
+                {
+                    if (myConn.State == ConnectionState.Open)
+                    {
+                        myConn.Close();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
         /// </summary>
@@ -232,7 +272,7 @@ namespace PlantaPiloto
                     return ((int)cmd.ExecuteScalar() == 1);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _exMg.HandleException(ex);
                 return false;

@@ -59,6 +59,9 @@ Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido s
 ### 15 de Enero de 2019
 Reunión con Daniel Sarabia. Se comentaron los errores encontrados en la release V0.1 y se decicidió solventar todos esos errores para la siguiente reunión (.docx adjunto al issue #58).
 ### 25 de Enero de 2019
-Crear base de datos desde código.
-cambiar guardado de tiempo en bd.
-documentar
+Reunión con Daniel Sarabia y Alejandro Merino. Se comentaron las soluciones aportadas para los problemas encontrados en la anterior reunión. Se hizo 
+una demostración del funcionamiento de la aplicación tanto con la placa sola como con la placa conectada a la planta piloto. Se encontró la razón de un error
+que llevaba latente desde la primera release. Los próximos pasos a seguir son:
+	- Crear base de datos desde código.
+	- Cambiar guardado de tiempo en bd.
+	- Documentar.

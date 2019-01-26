@@ -181,7 +181,8 @@ namespace PlantaPiloto
             {
                 if (_proyect.Name != null)
                 {
-                    //Creamos la tabla en la BD para el proyecto
+                    //Creamos la BD y la tabla en la BD para el proyecto
+                    _db_services.CreateDB();
                     _db_services.CreateTableDB(_proyect);
 
                     //Mostramos datos
