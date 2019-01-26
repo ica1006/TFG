@@ -3437,3 +3437,292 @@
    en System.IO.Ports.SerialPort.ReadTo(String value)
    en System.IO.Ports.SerialPort.ReadLine()
    en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 17:01:29 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/25/2019 17:07:58 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 17:08:13 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:15:36 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:15:52 - ObjectDisposedException,    en System.Runtime.InteropServices.SafeHandle.DangerousAddRef(Boolean& success)
+   en System.StubHelpers.StubHelpers.SafeHandleAddRef(SafeHandle pHandle, Boolean& success)
+   en Microsoft.Win32.UnsafeNativeMethods.ReadFile(SafeFileHandle handle, Byte* bytes, Int32 numBytesToRead, IntPtr numBytesRead, NativeOverlapped* overlapped)
+   en System.IO.Ports.SerialStream.ReadFileNative(Byte[] bytes, Int32 offset, Int32 count, NativeOverlapped* overlapped, Int32& hr)
+   en System.IO.Ports.SerialStream.BeginReadCore(Byte[] array, Int32 offset, Int32 numBytes, AsyncCallback userCallback, Object stateObject)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Objeto disposed
+01/25/2019 17:15:54 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:15:59 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:02 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/25/2019 17:16:04 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:15 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 17:16:19 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:24 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:29 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:34 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:39 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:44 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:49 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:54 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:16:59 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:17:04 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:17:09 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:17:14 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:17:19 - NullReferenceException,    en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 127,  Info: Valor nulo
+01/25/2019 17:17:21 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:17:32 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:20:12 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:20:25 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:23:03 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 17:25:42 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 17:30:45 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/25/2019 18:36:20 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/25/2019 18:36:23 - IndexOutOfRangeException,    en PlantaPiloto.SP_services.<>c__DisplayClass39_0.<OpenConnection>b__6(Variable p) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147
+   en System.Linq.Enumerable.Count[TSource](IEnumerable`1 source, Func`2 predicate)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 147,  Índice fuera de rango
+01/25/2019 18:36:35 - SqlException,    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en PlantaPiloto.DB_services.SaveRow(Proyect proyect) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\DB_services.cs:línea 149,  Info: excepción no definida.
+01/25/2019 18:43:02 - NullReferenceException,    en PlantaPiloto.MainForm.dgvProVars_CellValueChanged(Object sender, DataGridViewCellEventArgs e) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 774,  Info: Valor nulo
+01/25/2019 18:43:11 - NullReferenceException,    en PlantaPiloto.MainForm.dgvProVars_CellValueChanged(Object sender, DataGridViewCellEventArgs e) en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\MainForm.cs:línea 774,  Info: Valor nulo
+01/25/2019 18:43:17 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 18:43:17 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:18 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:19 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:20 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:21 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:22 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:23 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:24 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:25 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:26 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:27 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:28 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:29 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:30 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:31 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:32 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:33 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:34 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:35 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 18:43:36 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:00:58 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 144,  Info: Excepción Entrada/Salida (puerto Serie)
+01/25/2019 19:01:01 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:02 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:03 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:04 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:05 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:06 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:07 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:08 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:09 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:10 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:11 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:12 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:13 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:14 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:15 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:16 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:17 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:18 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:19 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:20 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:21 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:22 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:23 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:24 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:25 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:26 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.
+01/25/2019 19:01:27 - InvalidOperationException,    en System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   en PlantaPiloto.ChartForm.GetVarValuesAndTimes() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 194
+   en PlantaPiloto.ChartForm.UpdateChart() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\ChartForm.cs:línea 167,  Info: excepción no definida.

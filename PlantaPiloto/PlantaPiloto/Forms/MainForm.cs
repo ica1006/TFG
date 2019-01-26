@@ -381,7 +381,7 @@ namespace PlantaPiloto
             try
             {
                 ChartForm _chartForm = new ChartForm(_proyect, vars, _cul);                
-                _chartForm.ShowDialog();
+                _chartForm.Show();
             }
             catch (Exception ex)
             {

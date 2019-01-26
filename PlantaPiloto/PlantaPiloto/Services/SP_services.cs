@@ -233,7 +233,7 @@ namespace PlantaPiloto
                     using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
                     {
                         //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
-                        string newValues = (_lastRow.Variables[0].Time * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + "s;";
+                        string newValues = (_lastRow.Variables[0].Time * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + ";";
                         _lastRow.Variables.Where(p => fileVars.Contains(p.Name)).ToList().ForEach(q => newValues += q.Value + ";");
                         fileWriter.WriteLine(newValues);
                     }

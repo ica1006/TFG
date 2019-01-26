@@ -58,3 +58,7 @@ Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido s
 	- Implementar variables PID.
 ### 15 de Enero de 2019
 Reunión con Daniel Sarabia. Se comentaron los errores encontrados en la release V0.1 y se decicidió solventar todos esos errores para la siguiente reunión (.docx adjunto al issue #58).
+### 25 de Enero de 2019
+Crear base de datos desde código.
+cambiar guardado de tiempo en bd.
+documentar

@@ -36,14 +36,14 @@ namespace PlantaPiloto
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.chartVar = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnClose = new System.Windows.Forms.Button();
-            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             this.lblChartAmount = new System.Windows.Forms.Label();
             this.txtChartAmount = new System.Windows.Forms.RichTextBox();
             this.btnChartAmount = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.chartVar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // chartVar
@@ -55,7 +55,7 @@ namespace PlantaPiloto
             this.chartVar.Location = new System.Drawing.Point(18, 18);
             this.chartVar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartVar.Name = "chartVar";
-            this.chartVar.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chartVar.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
@@ -74,11 +74,6 @@ namespace PlantaPiloto
             this.btnClose.Text = "button1";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // tFG_DBDataSet
-            // 
-            this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
-            this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblChartAmount
             // 
@@ -122,6 +117,11 @@ namespace PlantaPiloto
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
+            // tFG_DBDataSet
+            // 
+            this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
+            this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -142,8 +142,8 @@ namespace PlantaPiloto
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChartForm_FormClosed);
             this.Load += new System.EventHandler(this.Chart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartVar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
