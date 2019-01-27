@@ -8,5 +8,6 @@ namespace PlantaPiloto.Classes
         public string FilesPath = Path.Combine(Application.StartupPath, "..\\..\\ApplicationData");
         public string ConfigsPath = Path.Combine(Application.StartupPath, "Configuraciones");
         public string DBPath = Path.Combine(Application.StartupPath, "DB");
+        public string DBName = "TFG_DB";
     }
 }

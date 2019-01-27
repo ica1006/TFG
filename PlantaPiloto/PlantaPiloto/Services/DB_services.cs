@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security;
+using System.Security.AccessControl;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,38 +52,61 @@ namespace PlantaPiloto
         /// </summary>
         public void CreateDB()
         {
-            String str;
-            SqlConnection myConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
-            str = "CREATE DATABASE TFG_DB ON PRIMARY " +
-                "(NAME = TFG_DB, " +
-                "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "TFG_DB.mdf") + "'," +
-                "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
-                "LOG ON (NAME = TFG_DB_Log, " +
-                "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "TFG_DB_Log.ldf") + "', " +
-                "SIZE = 4MB, " +
-                "MAXSIZE = 20MB, " +
-                "FILEGROWTH = 10%)";
-            using (SqlCommand myCommand = new SqlCommand(str, myConn))
+            //Comprobar si la DB existe
+            bool dbExists = false;
+            SqlConnection tmpConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
+            string sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", _globalParameters.DBName);
+            using (tmpConn)
             {
-                try
+                using (SqlCommand sqlCmd = new SqlCommand(sqlCreateDBQuery, tmpConn))
                 {
-                    myConn.Open();
-                    if (!Directory.Exists(_globalParameters.DBPath))
-                        Directory.CreateDirectory(_globalParameters.DBPath);
-                    //FileIOPermission f = new FileIOPermission(FileIOPermissionAccess.AllAccess, _globalParameters.DBPath);
-                    //f.AddPathList(FileIOPermissionAccess.AllAccess, _globalParameters.DBPath);
-                    myCommand.ExecuteNonQuery();
-                    MessageBox.Show("DataBase is Created Successfully", "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tmpConn.Open();
+                    object resultObj = sqlCmd.ExecuteScalar();
+                    int databaseID = 0;
+                    if (resultObj != null)
+                        int.TryParse(resultObj.ToString(), out databaseID);                    
+                    tmpConn.Close();
+                    dbExists = (databaseID > 0);
                 }
-                catch (Exception ex)
+            }
+            //Si la DB no existe se crea
+            if (!dbExists)
+            {
+                String str;
+                SqlConnection myConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
+                str = "CREATE DATABASE " + _globalParameters.DBName + " ON PRIMARY " +
+                    "(NAME = " + _globalParameters.DBName + ", " +
+                    "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "" + _globalParameters.DBName + ".mdf") + "'," +
+                    "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
+                    "LOG ON (NAME = " + _globalParameters.DBName + "_Log, " +
+                    "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "" + _globalParameters.DBName + "_Log.ldf") + "', " +
+                    "SIZE = 4MB, " +
+                    "MAXSIZE = 20MB, " +
+                    "FILEGROWTH = 10%)";
+                using (SqlCommand myCommand = new SqlCommand(str, myConn))
                 {
-                    MessageBox.Show(ex.ToString(), "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                finally
-                {
-                    if (myConn.State == ConnectionState.Open)
+                    try
                     {
-                        myConn.Close();
+                        myConn.Open();
+                        //Crear directorio y asignar permisos para poder crear archivos
+                        if (!Directory.Exists(_globalParameters.DBPath))
+                            Directory.CreateDirectory(_globalParameters.DBPath);
+                        DirectorySecurity ds = Directory.GetAccessControl(_globalParameters.DBPath);
+                        ds.AddAccessRule(new FileSystemAccessRule("Todos", FileSystemRights.FullControl, AccessControlType.Allow));
+                        Directory.SetAccessControl(_globalParameters.DBPath, ds);
+                        //Ejecutar sentencia SQL
+                        myCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        _exMg.HandleException(ex);
+                    }
+                    finally
+                    {
+                        if (myConn.State == ConnectionState.Open)
+                        {
+                            myConn.Close();
+                        }
                     }
                 }
             }
@@ -94,7 +118,7 @@ namespace PlantaPiloto
         /// <param name="pr">Proyecto del que toma los datos</param>
         public void CreateTableDB(Proyect proyect)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -140,7 +164,7 @@ namespace PlantaPiloto
         public string[] GetLastRowValue(Proyect proyect)
         {
             string[] row = null;
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -148,7 +172,7 @@ namespace PlantaPiloto
                     con.Open();
 
                     if (CheckDBExists(proyect))
-                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [" + _globalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
                             while (columnsDataReader.Read())
@@ -178,7 +202,7 @@ namespace PlantaPiloto
         /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
         public void SaveRow(Proyect proyect)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -222,7 +246,7 @@ namespace PlantaPiloto
         /// <returns></returns>
         public List<Variable> GetVarValue(Proyect proyect, Variable var, int amount)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
             {
                 List<Variable> result = new List<Variable>();
                 try
@@ -232,7 +256,7 @@ namespace PlantaPiloto
 
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + " [Time], [" + var.Name + "] " +
-                            "FROM [TFG_DB].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                            "FROM [" + _globalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
@@ -272,11 +296,11 @@ namespace PlantaPiloto
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=TFG_DB;Integrated Security = True;"))
+                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
                 {
                     con.Open();
 
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = 'TFG_DB'" +
+                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + _globalParameters.DBName + "'" +
                            " AND TABLE_NAME = '" + proyect.Name + "'";
 
                     SqlCommand cmd = new SqlCommand(sCmd, con);
