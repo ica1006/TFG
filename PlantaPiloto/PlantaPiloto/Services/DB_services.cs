@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +17,11 @@ namespace PlantaPiloto
 {
     public class DB_services
     {
+        #region Properties
+        readonly GlobalParameters _globalParameters;
+
+        readonly ExceptionManagement _exMg;
+
         private CultureInfo _cul;
 
         public CultureInfo Cul
@@ -24,8 +32,7 @@ namespace PlantaPiloto
                 _cul = value;
             }
         }
-        #region Properties
-        readonly ExceptionManagement _exMg;
+
         #endregion
 
         #region Constructor
@@ -33,6 +40,7 @@ namespace PlantaPiloto
         {
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
+            _globalParameters = new GlobalParameters();
         }
         #endregion
 
@@ -44,13 +52,13 @@ namespace PlantaPiloto
         public void CreateDB()
         {
             String str;
-            SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;database=master");
+            SqlConnection myConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
             str = "CREATE DATABASE TFG_DB ON PRIMARY " +
                 "(NAME = TFG_DB, " +
-                "FILENAME = 'C:\\MyDatabaseData.mdf', " +
+                "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "TFG_DB.mdf") + "'," +
                 "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
                 "LOG ON (NAME = TFG_DB_Log, " +
-                "FILENAME = 'C:\\TFG_DB_Log.ldf', " +
+                "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "TFG_DB_Log.ldf") + "', " +
                 "SIZE = 4MB, " +
                 "MAXSIZE = 20MB, " +
                 "FILEGROWTH = 10%)";
@@ -59,6 +67,10 @@ namespace PlantaPiloto
                 try
                 {
                     myConn.Open();
+                    if (!Directory.Exists(_globalParameters.DBPath))
+                        Directory.CreateDirectory(_globalParameters.DBPath);
+                    //FileIOPermission f = new FileIOPermission(FileIOPermissionAccess.AllAccess, _globalParameters.DBPath);
+                    //f.AddPathList(FileIOPermissionAccess.AllAccess, _globalParameters.DBPath);
                     myCommand.ExecuteNonQuery();
                     MessageBox.Show("DataBase is Created Successfully", "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApplicationData\" />
+    <Folder Include="BD\" />
     <Folder Include="Configuraciones\" />
   </ItemGroup>
   <ItemGroup>
