@@ -2,43 +2,43 @@
 
 En este apartado se detallarán las técnicas y herramientas utilizadas para desarrollar el proyecto.
 
-\subsection{4.1. Metodología}
+\section{Metodología}
 
-\subsubsection{4.1.1. Scrum}
+\subsection{4.1.1. Scrum}
 
 \href{https://proyectosagiles.org/que-es-scrum/}{Scrum} es un marco de trabajo para el desarrollo de \textit{software} que se engloba dentro de las metodologías ágiles. Sus principales características son la adopción de una estrategia de desarrollo incremental, basar la calidad del resultado en el conocimiento tácito de los integrantes de equipos auto organizados, y en el solapamiento de las diferentes fases del desarrollo \cite{wiki:scrum}.
 
 En este caso los \textit{sprints} han sido de dos semanas, tras los cuales se realizaba una reunión para definir las nuevas tareas del siguiente \textit{sprint} y realizar una retroalimentación del \textit{sprint} recién hecho.
 
-\subsubsection{4.1.2. Técnica de Pomodoro}
+\subsection{4.1.2. Técnica de Pomodoro}
 
 Para mejorar la concentración durante el desarrollo del proyecto se ha utilizado la técnica Pomodoro, consistente en intervalos de 25 minutos de concentración intensa seguidos de descansos de 5 minutos, y descansos de 30 minutos después de haber completado cuatro ciclos 25+5 \cite{wiki:pomodoro}.
 
-\subsection{4.2. Patrones de diseño}
+\section{Patrones de diseño}
 
-\subsubsection{4.2.1. MVC - Modelo Vista Controlador}
+\subsection{4.2.1. MVC - Modelo Vista Controlador}
 
 A la hora de estructurar el desarrollo de la aplicación se ha optado por la utilización del Modelo Vista Controlador, consiguiendo así separar la capa que representa la realidad, la capa que conoce los métodos y atributos del modelo, recibiendo y realizando las peticiones del usuario, y la capa visible para el usuario \cite{web:patronDis}.
 
-\subsection{4.3. Control de versiones}
+\section{Control de versiones}
 
-\subsubsection{4.3.1. Git}
+\subsection{4.3.1. Git}
 
 \href{https://git-scm.com/}{Git} es, a día de hoy, el sistema de control de versiones distribuido más usado del mundo. Su propósito es llevar el registro de los cambios realizados en los archivos de un ordenador y coordinar el trabajo de un equipo formado por varias personas sobre un mismo archivo \cite{wiki:Git}.
 
 La otra opción tenida en cuenta para este proyecto fue \href{https://subversion.apache.org/}{Subversion}, que fue descartada por la facilidad de uso que ofrece Git, la familiaridad con el sistema de control de versiones y las herramientas con las que se puede complementar.
 
-\subsection{4.4. Hosting de repositorio}
+\section{Hosting de repositorio}
 
-\subsubsection{4.4.1. GitHub}
+\subsection{4.4.1. GitHub}
 
 \href{https://github.com/}{GitHub} es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git.\cite{wiki:github}. Ofrece un repositorio Git donde los desarrolladores pueden almacenar, compartir, testear y colaborar en proyectos web.
 
 Al comenzar el proyecto también se tuvo en cuenta la posibilidad de utilizar \href{https://about.gitlab.com/}{GitLab} pero fue descartado por la compatibilidad de GitHub con otras herramientas usadas en el desarrollo del proyecto y por la familiaridad con dicho hosting de repositorio.
 
-\subsection{4.5. Gestión del proyecto }
+\section{Gestión del proyecto }
 
-\subsubsection{4.5.1. ZenHub}
+\subsection{4.5.1. ZenHub}
 
 \href{https://www.zenhub.com/}{ZenHub} es una herramienta gratuita para proyectos pequeños u \textit{open source} cuya finalidad es la gestión de proyectos en GitHub. Esta herramienta trabaja de manera totalmente integrada ofreciendo un tablero canvas en el que cada \textit{issue} nativo de GitHub se representa como una tarea. A estas tareas se le pueden asignar prioridad, dependencias, estimaciones de tiempo de realización, colaboradores y el \textit{sprint} al que pertenece. ZenHub también permite graficar los avances llevados a cabo en el proyecto.
 
@@ -46,21 +46,15 @@ Al comenzar el proyecto también se tuvo en cuenta la posibilidad de utilizar \h
 
 En un principio también se barajó utilizar GitHub Proyect pero tras ver los vídeos explicativos subidos en la plataforma de la universidad me decanté por ZenHub.
 
-\subsection{4.6. Entorno de desarrollo integrado (IDE)}
+\section{Entorno de desarrollo integrado (IDE)}
 
-\subsubsection{4.6.1. Microsoft Visual Studio 2017}
+\subsection{4.6.1. Microsoft Visual Studio 2017}
 
 \href{https://visualstudio.microsoft.com/es/vs/}{Microsoft Visual Studio 2017} es un entorno de desarrollo integrado para sistemas operativos Windows. Soporta múltiples lenguajes de programación, tales como F\#, Python, C++, C\#, Visual Basic .NET, Java, Ruby y PHP, al igual que entornos de desarrollo web, como ASP.NET MVC, Django, etc., a lo cual hay que sumarle las nuevas capacidades online bajo Windows Azure en forma del editor Monaco \cite{wiki:visualstudio}.
 
 Cuando se inició el proyecto también se tuvo en cuenta usar versiones anteriores de Visual Studio por sus compatibilidades a la hora de desarrollar Windows Forms sobre C++, pero tras enfrentar las ventajas de cada IDE se decidió usar el Visual Studio 2017 con Windows Forms en C\#.
 
-\subsubsection{4.6.2. Texmaker}
-
-\href{http://www.xm1math.net/texmaker/}{Texmaker} es un editor multiplataforma gratuito (licencia GNU GLP v3.0) para \LaTeX que integra la mayoría de herramientas necesarias para la escritura de documentos, corrector ortográfico, auto-completado, resultado de análisis, visor de PDF integrado, entre otros.
-
-En un principio se trató de utilizar \href{https://code.visualstudio.com/}{Visual Studio Code} con la extensión LaTeX Workshop pero no ofreció un uso eficiente a la hora de compilar toda la solución \LaTeX.
-
-\subsection{4.7. Comunicación}
+\section{Comunicación}
 
 La comunicación con los tutores se ha realizado a través de varias vías:
 \begin{itemize}
@@ -71,9 +65,9 @@ La comunicación con los tutores se ha realizado a través de varias vías:
 
 También se pensó en utilizar herramientas como \href{https://slack.com/intl/es-es/}{Slack} pero se descartaron porque se vieron innecesarias.
 
-\subsection{4.8. Documentación}
+\section{Documentación}
 
-\subsubsection{4.8.1. LaTeX}
+\subsection{4.8.1. LaTeX}
 
 \LaTeX es un sistema de composición de textos, orientado a la creación de documentos escritos que presenten una alta calidad tipográfica. Por sus posibilidades y características, es usado de forma especialmente intensa en la generación de libros científicos y artículos que incluyen, entre otros elementos, expresiones matemáticas \cite{wiki:latex}.
 
@@ -81,20 +75,58 @@ Para la correcta presentación de esta documentación que está siendo leída se
 
 En un principio se planteó la posibilidad de utilizar tanto Open Office Writter como Microsoft Word, en el primer caso porque la Universidad de Burgos ofrecía una plantilla oficial, y en el segundo porque la universidad incluye una licencia para su uso, sin olvidar lo familiarizado que estoy a ella.
 
-\subsubsection{4.8.2. HTML Help Workshop}
+\subsection{4.8.2. HTML Help Workshop}
 
-\href{}{HTML Help Workshop}
+\href{https://www.microsoft.com/en-us/download/details.aspx?id=21138}{HTML Help Workshop} es un programa que permite crear, editar y compilar archivos HTML para convertirlos en proyectos CHM. Este archivo CHM será el encargado de mostrar la ayuda presente en todas las ventanas de la aplicación.
 
-\subsection{4.9. Test}
+\imagen{chmFile}{CHM File}
 
-\subsubsection{4.9.1. Codacy}
+\section{Test}
+
+\subsection{4.9.1. Codacy}
 
 Para llevar a cabo una revisión del código de la aplicación se utilizó \href{https://www.codacy.com/}{Codacy}, herramienta que ejecuta de manera automática exámenes sobre el código de cada \textit{commit} que se realice en Git. Codacy informa de los problemas de seguridad, de cobertura, de duplicidad y de complicidad que pueda tener el código, catalogando a este según los baremos de la propia aplicación y graficando los resultados.
 
 \imagen{codacyDashboard}{Codacy Dashboard}
 
-\subsection{4.10. Otras herramientas}
+\section{Otras herramientas}
 
-\subsubsection{4.10.1. Paint.NET}
+\subsection{4.10.1. Paint.NET}
 
 \href{https://www.getpaint.net/index.html}{Paint.NET} es una herramienta de edición de imágenes sobre entorno de Windows. Ofrece una gran cantidad de posibilidades a la hora de editar una imagen, es un programa ligero y de muy fácil utilización. También se tuvo en cuenta \href{http://www.gimp.org.es/}{Gimp} como herramienta de edición de imágenes pero se descartó porque tardaba mucho en ejecutarse.
+
+\subsection{4.10.2. Termite}
+
+\href{https://www.compuphase.com/software_termite.htm}{Termite} es un terminal \href{https://es.wikipedia.org/wiki/RS-232}{RS232} que actúa como una interfaz de chat teniendo un como canal un puerto serie. Cabe destacar la simplicidad de esta herramienta y su facilidad de instalación. Su uso permitió la comprobación de la comunicación con la placa y la realización de pruebas sobre la misma.
+
+\subsection{4.10.3. Active Presenter}
+
+\href{https://atomisystems.com/activepresenter/}{Active Presenter} es un programa dedicado a la grabación de pantalla, edición de vídeo y creación de tutoriales. Antes de elegir este producto se tuvieron presentes otras opciones como \href{https://www.techsmith.com/video-editor.html}{Camtasia} o \href{https://icecreamapps.com/Screen-Recorder/}{Ice Cream Screen Recorder} pero se eligió Active Presenter por haber trabajado con ello previamente y por las herramientas de edición que ofrece.
+
+\section{Base de datos}
+
+\subsection{4.11.1. Microsoft SQL Server}
+
+\href{https://www.microsoft.com/es-es/sql-server/sql-server-2017}{Microsoft SQL Server} es un sistema de manejo de bases del modelo relacional, diseñado por Microsoft \cite{wiki:sqlServer}.
+
+Dentro de las posibilidades que ofrecía el mercado para cubrir la necesidad de base de datos que tenía la aplicación se tuvieron en cuenta \href{https://mariadb.org/}{MariaDB} y \href{https://www.mysql.com/}{MySQL}. La decisión de usar Microsoft SQL Server se vio motivada a la compatibilidad con el resto de aplicaciones que se estaban usando y por la facilidad de uso que presentaba.
+
+\subsection{4.11.4. Microsoft SQL Server Management Studio 17}
+
+\href{https://docs.microsoft.com/es-es/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017}{Microsoft SQL Server Management Studio 17} es un entorno integrado que permite administrar cualquier infraestructura de SQL.
+
+Se tuvo presente esta herramienta durante el desarrollo de la aplicación para poder interactuar con la base de datos.
+
+\section{Editores}
+
+\subsection{4.12.1. Texmaker}
+
+\href{http://www.xm1math.net/texmaker/}{Texmaker} es un editor multiplataforma gratuito (licencia GNU GLP v3.0) para \LaTeX que integra la mayoría de herramientas necesarias para la escritura de documentos, corrector ortográfico, auto-completado, resultado de análisis, visor de PDF integrado, entre otros.
+
+En un principio se trató de utilizar \href{https://code.visualstudio.com/}{Visual Studio Code} con la extensión LaTeX Workshop pero no ofreció un uso eficiente a la hora de compilar toda la solución \LaTeX.
+
+\subsection{4.12.2. Visual Studio Code}
+
+\href{https://code.visualstudio.com/}{Visual Studio Code} es un editor de código fuente desarrollado por Microsoft para Windows, Linux y MacOs. Visual Studio Code se basa en \href{https://electronjs.org/}{Electron}, un framework que se utiliza para implementar aplicaciones \href{https://nodejs.org/es/}{Node.js} para el escritorio, que se ejecuta en el motor de diseño Blink. Aunque utiliza el framework Electron, el software no usa Atom y en su lugar emplea el mismo componente editor ("Monaco") utilizado en Visual Studio Team Services (anteriormente llamado Visual Studio Online) \cite{wiki:vsCode}.
+
+Este editor fue utilizado para el diseño de las páginas HTML usadas en los archivos de ayuda CHM.

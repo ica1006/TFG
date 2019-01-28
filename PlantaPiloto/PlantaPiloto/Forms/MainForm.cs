@@ -21,7 +21,7 @@ namespace PlantaPiloto
 {
     public partial class MainForm : Form
     {
-#region Properties
+        #region Properties
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
