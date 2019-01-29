@@ -86,16 +86,6 @@ namespace PlantaPiloto
             set { _saveFile = value; OnPropertyChangedSP_services("SaveFile"); }
         }
 
-        private string _filePath;
-        /// <summary>
-        /// Ruta del archivo donde guardar las variables
-        /// </summary>
-        public string FilePath
-        {
-            get { return _filePath; }
-            set { _filePath = value; OnPropertyChangedSP_services("FilePath");}
-        }
-
         /// <summary>
         /// Encargado de controlar las excepciones
         /// </summary>
@@ -215,11 +205,6 @@ namespace PlantaPiloto
                                 v.BoardMoment = null;
                                 v.Value = null;
                             }
-
-                            if (_saveFile)
-                            {
-                                this.SaveVarsValue();
-                            }
                         }
                     }
                 }
@@ -237,48 +222,6 @@ namespace PlantaPiloto
         {
             if (_serialPort.IsOpen)
                 _serialPort.Close();
-        }
-
-        /// <summary>
-        /// Método que agrega una nueva línea al archivo donde se guardan los valores de las variables
-        /// </summary>
-        public void SaveVarsValue()
-        {
-            try
-            {
-                if (File.Exists(_filePath) && !new FileInfo(_filePath).IsReadOnly)
-                {
-                    //Leemos la línea que almacena los nombres de las variables
-                    int counter = 0;
-                    string line = "";
-                    List<string> fileVars = new List<string>();
-                    StreamReader fileReader = new StreamReader(_filePath);
-                    while ((line = fileReader.ReadLine()) != null)
-                    {
-                        if (counter == 5)
-                        {
-                            fileVars = line.Split(';').ToList();
-                            fileVars.RemoveAt(0);
-                            fileVars.Remove("");
-                            break;
-                        }
-                        counter++;
-                    }
-                    fileReader.Close();
-                    //Guardamos la nueva línea
-                    using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
-                    {
-                        //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
-                        string newValues = (_lastRow.Variables[0].BoardMoment * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + ";";
-                        _lastRow.Variables.Where(p => fileVars.Contains(p.Name)).ToList().ForEach(q => newValues += q.Value + ";");
-                        fileWriter.WriteLine(newValues);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _exMg.HandleException(ex);
-            }
         }
 
         #endregion

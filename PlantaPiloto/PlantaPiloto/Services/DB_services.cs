@@ -159,33 +159,34 @@ namespace PlantaPiloto
         /// Método que obtiene el nombre de las columnas del proyecto que se pasa por parámetro
         /// </summary>
         /// <param name="proyect">Proyecto del que se quieren conocer los nombres de las columnas</param>
-        public string[] GetLastRowValue(Proyect proyect)
+        public string GetLastRowValue(Proyect proyect, List<string> vars)
         {
-            string[] row = null;
+            StringBuilder row = new StringBuilder("");
             using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
                     // Open the SqlConnection.
                     con.Open();
-
+                    StringBuilder sqlStr = new StringBuilder("SELECT TOP 1 [Time]");
+                    vars.ForEach(f => sqlStr.Append(",[" + f + "]"));
+                    sqlStr.Append(" FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ");
                     if (CheckDBExists(proyect))
-                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
                             while (columnsDataReader.Read())
                             {
-                                row = new string[columnsDataReader.FieldCount];
                                 for (int i = 0; i < columnsDataReader.FieldCount; i++)
-                                    row[i] = String.Format("{0}", columnsDataReader[i]);
+                                    row.Append(String.Format("{0};", columnsDataReader[i]));
                             }
                         }
-                    return row;
+                    return row.ToString();
                 }
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
-                    return row;
+                    return row.ToString();
                 }
                 finally
                 {

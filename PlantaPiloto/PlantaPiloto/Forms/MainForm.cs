@@ -30,6 +30,7 @@ namespace PlantaPiloto
         private SP_services _sp_services;
         private Thread _threadSaveRow;
         readonly System.Timers.Timer _timerRefreshDataGrid;
+        readonly System.Timers.Timer _timerSaveFile;
         private Proyect _lastRowSP;
         readonly string _pdfPath;
         readonly HelpProvider _helpProvider;
@@ -42,6 +43,7 @@ namespace PlantaPiloto
         readonly FileSaver _fileSaver;
         readonly string _filesPath;
         readonly string _configsPath;
+        private string _saveFilePath;
 
         #endregion
 
@@ -61,6 +63,9 @@ namespace PlantaPiloto
             _timerRefreshDataGrid = new System.Timers.Timer(2000);
             _timerRefreshDataGrid.Enabled = false;
             _timerRefreshDataGrid.Elapsed += this.TimerElapsedEvent;
+            _timerSaveFile = new System.Timers.Timer(2000);
+            _timerSaveFile.Enabled = false;
+            _timerSaveFile.Elapsed += this.TimerSaveFile;
             dgvProVars.Columns[0].ReadOnly = true;
             dgvProVars.Columns[1].ReadOnly = true;
             _helpProvider = new HelpProvider();
@@ -265,6 +270,47 @@ namespace PlantaPiloto
         }
 
         /// <summary>
+        /// Método que guarda una nueva línea en el archivo
+        /// </summary>
+        private void TimerSaveFile(object source, ElapsedEventArgs e)
+        {
+            try
+            {
+                if (File.Exists(_saveFilePath) && !new FileInfo(_saveFilePath).IsReadOnly)
+                {
+                    //Leemos la línea que almacena los nombres de las variables
+                    int counter = 0;
+                    string line = "";
+                    List<string> fileVars = new List<string>();
+                    StreamReader fileReader = new StreamReader(_saveFilePath);
+                    while ((line = fileReader.ReadLine()) != null)
+                    {
+                        if (counter == 5)
+                        {
+                            fileVars = line.Split(';').ToList();
+                            fileVars.RemoveAt(0);
+                            fileVars.Remove("");
+                            break;
+                        }
+                        counter++;
+                    }
+                    fileReader.Close();
+                    //Guardamos la nueva línea
+                    using (StreamWriter fileWriter = new StreamWriter(_saveFilePath, true))
+                    {
+                        //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
+                        string newValues = _db_services.GetLastRowValue(_proyect, fileVars);
+                        fileWriter.WriteLine(newValues);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+            }
+        }
+
+        /// <summary>
         /// Método que actualiza la columna del dataGrid que contiene los valores actuales que recibe de la placa
         /// </summary>
         /// <param name="rows">Proyecto que guarda todas las variables con su último valor</param>
@@ -358,12 +404,9 @@ namespace PlantaPiloto
                         vars.ForEach(p => varNames += p.Name + ";");
                         tw.WriteLine(varNames);
                         tw.Close();
-                        if (_sp_services != null)
-                        {
-                            _sp_services.FilePath = saveFileDialog1.FileName;
-                            _sp_services.SaveFile = true;
-                        }
+                        _saveFilePath = saveFileDialog1.FileName;
                         this.btnFile.Text = _res_man.GetString("btnFileStop_txt", _cul);
+                        _timerSaveFile.Enabled = true;
                     }
                 }
             }
@@ -682,9 +725,9 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void btnFile_Click(object sender, EventArgs e)
         {
-            if (_sp_services.SaveFile)
+            if (_timerSaveFile.Enabled)
             {
-                _sp_services.SaveFile = false;
+                _timerSaveFile.Enabled = false;
                 this.btnFile.Text = _res_man.GetString("btnFile_txt", _cul);
             }
             else
