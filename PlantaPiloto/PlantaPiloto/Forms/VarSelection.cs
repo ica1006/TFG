@@ -37,7 +37,7 @@ namespace PlantaPiloto
             _proyect = new Proyect();
             _db_services = new DB_services(_cul);
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
@@ -52,7 +52,7 @@ namespace PlantaPiloto
             _purpose = purpose;
             _cul = cultureInfo;
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }

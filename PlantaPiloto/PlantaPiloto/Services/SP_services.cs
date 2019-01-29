@@ -96,7 +96,20 @@ namespace PlantaPiloto
             set { _filePath = value; OnPropertyChangedSP_services("FilePath");}
         }
 
+        /// <summary>
+        /// Encargado de controlar las excepciones
+        /// </summary>
         readonly ExceptionManagement _exMg;
+
+        /// <summary>
+        /// Tiempo de la aplicación
+        /// </summary>
+        private float _time;
+
+        /// <summary>
+        /// Periodo de la placa
+        /// </summary>
+        private float _ts;
 
         #endregion
 
@@ -110,12 +123,16 @@ namespace PlantaPiloto
             _lastRow = new Proyect();
             _saveFile = false;
             _exMg = new ExceptionManagement(_cul);
+            _time = 0;
+            _ts = GlobalParameters.DefaultTs;
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
         {
             _serialPort = new SerialPort();
             _ports = SerialPort.GetPortNames();
+            _time = 0;
+            _ts = GlobalParameters.DefaultTs;
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = pr;
             _cul = cul;
@@ -135,55 +152,74 @@ namespace PlantaPiloto
             try
             {
                 // Set the read/write timeouts
-                _serialPort.ReadBufferSize = 8192;
+                //_serialPort.ReadBufferSize = 8192;
                 _serialPort.Open();
+                int oldMoment = -1;
 
                 while (_serialPort.IsOpen)
                 {
                     // Lectura del puerto serie
                     string[] spLine = _serialPort.ReadLine().Split(';');
-                    // Asignación del valor a la variable
-
-                    if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
+                    if (spLine.Count() == 3)
                     {
-                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Time = Int32.Parse(spLine[0]);
-                        _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
+                        if (oldMoment == -1)
+                            Int32.TryParse(spLine[0], out oldMoment);
 
-                        //Asigno valor a las variables que son sólo de escritura para tener una referencia en la vista
-                        if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
-                        {
-                            _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
-                            _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Value = spLine[2];
-                        }
-                        if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Count() != 0)
-                        {
-                            _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Time = Int32.Parse(spLine[0]);
-                            _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Value = spLine[2];
-                        }
-                    }
-                    // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
-                    // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
-                    if (_proyect.Variables.Count(p => p.Value == null) == 0)
-                    {
-                        _db_services.SaveRow(_proyect);
-                        _lastRow = new Proyect();
+                        int newMoment = Int32.Parse(spLine[0]);
 
-                        foreach (Variable v in _proyect.Variables)
+                        if (newMoment != oldMoment)
                         {
-                            _lastRow.Variables.Add(new Variable
+                            _time += _ts;
+                            _time = (float)(Math.Round((double)_time, 2));
+                            oldMoment = newMoment;
+                        }
+
+                        // Asignación del valor a la variable
+                        if (_proyect.Variables.Count(p => p.Name == spLine[1]) > 0)
+                        {
+                            _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).BoardMoment = Int32.Parse(spLine[0]);
+                            _proyect.Variables.FirstOrDefault(p => p.Name == spLine[1]).Value = spLine[2];
+
+                            //Se actualiza el valor del periodo de la placa
+                            if (spLine[1] == "Ts")
+                                _ts = float.Parse(spLine[2], CultureInfo.InvariantCulture);
+
+                            //Asigno valor a las variables que son sólo de escritura para tener una referencia en la vista
+                            if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
                             {
-                                Name = v.Name,
-                                Access = v.Access,
-                                Time = v.Time,
-                                Value = v.Value
-                            });
-                            v.Time = null;
-                            v.Value = null;
+                                _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).BoardMoment = Int32.Parse(spLine[0]);
+                                _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Value = spLine[2];
+                            }
+                            if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Count() != 0)
+                            {
+                                _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).BoardMoment = Int32.Parse(spLine[0]);
+                                _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Value = spLine[2];
+                            }
                         }
-
-                        if (_saveFile)
+                        // Comprobación que todas las variables tienen valor y llamada al método que las guarda en la BD
+                        // Se crea el requisito de que todas las variables del proyecto deben existir en la placa
+                        if (_proyect.Variables.Count(p => p.Value == null) == 0)
                         {
-                            this.SaveVarsValue();
+                            _db_services.SaveRow(_proyect, _time);
+                            _lastRow = new Proyect();
+
+                            foreach (Variable v in _proyect.Variables)
+                            {
+                                _lastRow.Variables.Add(new Variable
+                                {
+                                    Name = v.Name,
+                                    Access = v.Access,
+                                    BoardMoment = v.BoardMoment,
+                                    Value = v.Value
+                                });
+                                v.BoardMoment = null;
+                                v.Value = null;
+                            }
+
+                            if (_saveFile)
+                            {
+                                this.SaveVarsValue();
+                            }
                         }
                     }
                 }
@@ -233,7 +269,7 @@ namespace PlantaPiloto
                     using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
                     {
                         //añadir los valores de las variables cuyo nombre coincide con alguno de los presentes en fileVars
-                        string newValues = (_lastRow.Variables[0].Time * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + ";";
+                        string newValues = (_lastRow.Variables[0].BoardMoment * float.Parse(_lastRow.Variables.FirstOrDefault(p => p.Name == "Ts").Value)).ToString() + ";";
                         _lastRow.Variables.Where(p => fileVars.Contains(p.Name)).ToList().ForEach(q => newValues += q.Value + ";");
                         fileWriter.WriteLine(newValues);
                     }

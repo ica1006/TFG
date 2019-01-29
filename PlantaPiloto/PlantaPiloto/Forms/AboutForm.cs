@@ -34,7 +34,7 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _cul = cul;
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }

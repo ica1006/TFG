@@ -21,7 +21,7 @@ namespace PlantaPiloto
         readonly Proyect _proyect;
         readonly List<Variable> _variables;
         readonly List<List<Variable>> _sqlData;
-        private List<double> _sqlTime;
+        private List<float> _sqlTime;
         readonly DB_services _db_services;
         readonly System.Timers.Timer _timer;
         delegate void StringArgReturningVoidDelegate();
@@ -41,13 +41,13 @@ namespace PlantaPiloto
             _db_services = new DB_services(_cul);
             _proyect = new Proyect();
             _sqlData = new List<List<Variable>>();
-            _sqlTime = new List<double>();
+            _sqlTime = new List<float>();
             _timer = new System.Timers.Timer(2000);
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
@@ -59,7 +59,7 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services(_cul);
             _sqlData = new List<List<Variable>>();
-            _sqlTime = new List<double>();
+            _sqlTime = new List<float>();
             _timer = new System.Timers.Timer(2000);
             _timer.Enabled = false;
             _timer.Elapsed += new ElapsedEventHandler(this.LoadChartsTimer);
@@ -68,7 +68,7 @@ namespace PlantaPiloto
             _proyect = proyect;
             _chartAmount = 100;
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _exMg = new ExceptionManagement(_cul);
         }
@@ -116,7 +116,9 @@ namespace PlantaPiloto
                 foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                     _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
 
-                GetVarValuesAndTimes();
+                //Se obtienen los valores de tiempo
+                _sqlTime.Clear();
+                _sqlTime = _db_services.GetTime(_proyect, _chartAmount);
 
                 for (int i = 0; i < _sqlData.Count(); i++)
                 {
@@ -128,7 +130,7 @@ namespace PlantaPiloto
                     chartVar.ChartAreas[0].AxisX.Interval = 10;
                     chartVar.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _cul);
                     chartVar.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _cul);
-
+                    chartVar.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
                 }
             }
             catch (Exception ex)
@@ -164,7 +166,8 @@ namespace PlantaPiloto
                 else
                 {
                     //Se recogen los valores de las variables seleccionadas
-                    GetVarValuesAndTimes();
+                    _sqlTime.Clear();
+                    _sqlTime = _db_services.GetTime(_proyect, _chartAmount);
                     foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                     {
                         _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
@@ -182,19 +185,6 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
             }
-        }
-
-        /// <summary>
-        /// Método que devuelve el valor de la variable y el tiempo de la gráfica
-        /// </summary>
-        /// <returns></returns>
-        private void GetVarValuesAndTimes()
-        {
-            //Obtengo el periodo
-            double values = Double.Parse(_db_services.GetVarValue(_proyect, _proyect.Variables.FirstOrDefault(q => q.Name == "Ts"), _chartAmount).First().Value);
-            //Multiplico el periodo por el momento de la placa guardado en la BD
-            _sqlTime = _db_services.GetVarValue(_proyect, _proyect.Variables.First(), _chartAmount)
-                    .Select(p => Double.Parse(p.Time.Value.ToString()) * values).ToList();
         }
 
         /// <summary>

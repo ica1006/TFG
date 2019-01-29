@@ -43,8 +43,8 @@ namespace PlantaPiloto
             _db_services = new DB_services(_cul);
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
-            _filesPath = new GlobalParameters().FilesPath;
-            _configsPath = new GlobalParameters().ConfigsPath;
+            _filesPath = GlobalParameters.FilesPath;
+            _configsPath = GlobalParameters.ConfigsPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
@@ -61,9 +61,9 @@ namespace PlantaPiloto
             _exMg = new ExceptionManagement(_cul);
             _eagerLoading = 1;
             _lastVariable = "";
-            _filesPath = new GlobalParameters().FilesPath;
+            _filesPath = GlobalParameters.FilesPath;
             _helpProvider = new HelpProvider();
-            _configsPath = new GlobalParameters().ConfigsPath;
+            _configsPath = GlobalParameters.ConfigsPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
             _fileSaver = new FileSaver();
         }

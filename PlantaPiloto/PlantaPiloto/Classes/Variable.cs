@@ -158,15 +158,15 @@ namespace PlantaPiloto
             set { _value = value; OnPropertyChangedVariable("Value"); }
         }
 
-        private int? _time;
+        private int? _boardMoment;
 
         /// <summary>
         /// Propiedad que almacena el momento en el que se definió la variable
         /// </summary>
-        public int? Time
+        public int? BoardMoment
         {
-            get { return _time; }
-            set { _time = value; OnPropertyChangedVariable("Time"); }
+            get { return _boardMoment; }
+            set { _boardMoment = value; OnPropertyChangedVariable("Time"); }
         }
 
         #endregion
@@ -192,7 +192,7 @@ namespace PlantaPiloto
             RangeHigh = rangeHigh;
             CommunicationType = comType;
             Value = value;
-            Time = time;
+            BoardMoment = time;
             Cul = cul;
         }
 

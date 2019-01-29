@@ -19,8 +19,7 @@ namespace PlantaPiloto
     public class DB_services
     {
         #region Properties
-        readonly GlobalParameters _globalParameters;
-
+        
         readonly ExceptionManagement _exMg;
 
         private CultureInfo _cul;
@@ -41,7 +40,6 @@ namespace PlantaPiloto
         {
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
-            _globalParameters = new GlobalParameters();
         }
         #endregion
 
@@ -55,7 +53,7 @@ namespace PlantaPiloto
             //Comprobar si la DB existe
             bool dbExists = false;
             SqlConnection tmpConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
-            string sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", _globalParameters.DBName);
+            string sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", GlobalParameters.DBName);
             using (tmpConn)
             {
                 using (SqlCommand sqlCmd = new SqlCommand(sqlCreateDBQuery, tmpConn))
@@ -74,12 +72,12 @@ namespace PlantaPiloto
             {
                 String str;
                 SqlConnection myConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
-                str = "CREATE DATABASE " + _globalParameters.DBName + " ON PRIMARY " +
-                    "(NAME = " + _globalParameters.DBName + ", " +
-                    "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "" + _globalParameters.DBName + ".mdf") + "'," +
+                str = "CREATE DATABASE " + GlobalParameters.DBName + " ON PRIMARY " +
+                    "(NAME = " + GlobalParameters.DBName + ", " +
+                    "FILENAME = '" + Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + ".mdf") + "'," +
                     "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
-                    "LOG ON (NAME = " + _globalParameters.DBName + "_Log, " +
-                    "FILENAME = '" + Path.Combine(_globalParameters.DBPath, "" + _globalParameters.DBName + "_Log.ldf") + "', " +
+                    "LOG ON (NAME = " + GlobalParameters.DBName + "_Log, " +
+                    "FILENAME = '" + Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + "_Log.ldf") + "', " +
                     "SIZE = 4MB, " +
                     "MAXSIZE = 20MB, " +
                     "FILEGROWTH = 10%)";
@@ -89,11 +87,11 @@ namespace PlantaPiloto
                     {
                         myConn.Open();
                         //Crear directorio y asignar permisos para poder crear archivos
-                        if (!Directory.Exists(_globalParameters.DBPath))
-                            Directory.CreateDirectory(_globalParameters.DBPath);
-                        DirectorySecurity ds = Directory.GetAccessControl(_globalParameters.DBPath);
+                        if (!Directory.Exists(GlobalParameters.DBPath))
+                            Directory.CreateDirectory(GlobalParameters.DBPath);
+                        DirectorySecurity ds = Directory.GetAccessControl(GlobalParameters.DBPath);
                         ds.AddAccessRule(new FileSystemAccessRule("Todos", FileSystemRights.FullControl, AccessControlType.Allow));
-                        Directory.SetAccessControl(_globalParameters.DBPath, ds);
+                        Directory.SetAccessControl(GlobalParameters.DBPath, ds);
                         //Ejecutar sentencia SQL
                         myCommand.ExecuteNonQuery();
                     }
@@ -118,7 +116,7 @@ namespace PlantaPiloto
         /// <param name="pr">Proyecto del que toma los datos</param>
         public void CreateTableDB(Proyect proyect)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -130,7 +128,7 @@ namespace PlantaPiloto
                             command.ExecuteNonQuery();
 
                     // Create table string
-                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [int] NOT NULL");
+                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [nvarchar](20) NOT NULL");
                     foreach (Variable v in proyect.Variables)
                     {
                         sqlStr.Append(", [" + v.Name + "] ");
@@ -164,7 +162,7 @@ namespace PlantaPiloto
         public string[] GetLastRowValue(Proyect proyect)
         {
             string[] row = null;
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -172,7 +170,7 @@ namespace PlantaPiloto
                     con.Open();
 
                     if (CheckDBExists(proyect))
-                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [" + _globalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP 1 * FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
                             while (columnsDataReader.Read())
@@ -200,9 +198,9 @@ namespace PlantaPiloto
         /// Método que añade una nueva fila a la BD
         /// </summary>
         /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
-        public void SaveRow(Proyect proyect)
+        public void SaveRow(Proyect proyect, float time)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             {
                 try
                 {
@@ -213,7 +211,7 @@ namespace PlantaPiloto
                     StringBuilder insertCmd = new StringBuilder("INSERT INTO [dbo].[" + proyect.Name + "]([Time]");
                     foreach (Variable v in proyect.Variables)
                         insertCmd.Append(",[" + v.Name + "]");
-                    insertCmd.Append(") VALUES (" + proyect.Variables[0].Time);
+                    insertCmd.Append(") VALUES ('" + time + "'");
 
                     foreach (Variable v in proyect.Variables)
                         insertCmd.Append(v.Type == EnumVarType.String ? ",'" + v.Value.ToString() + "'" : "," + v.Value);
@@ -246,7 +244,7 @@ namespace PlantaPiloto
         /// <returns></returns>
         public List<Variable> GetVarValue(Proyect proyect, Variable var, int amount)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             {
                 List<Variable> result = new List<Variable>();
                 try
@@ -255,8 +253,8 @@ namespace PlantaPiloto
                     con.Open();
 
                     if (CheckDBExists(proyect))
-                        using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + " [Time], [" + var.Name + "] " +
-                            "FROM [" + _globalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + "[" + var.Name + "] " +
+                            "FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
                         {
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
@@ -267,11 +265,49 @@ namespace PlantaPiloto
                                     Type = var.Type,
                                     Access = var.Access,
                                     CommunicationType = var.CommunicationType,
-                                    Time = varDataReader.GetInt32(0),
-                                    Value = var.Type == EnumVarType.String ? varDataReader.GetString(1) : varDataReader.GetDouble(1).ToString()
+                                    Value = var.Type == EnumVarType.String ? varDataReader.GetString(0) : varDataReader.GetDouble(0).ToString()
                                 };
                                 result.Add(v);
                             }
+                        }
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    _exMg.HandleException(ex);
+                    return result;
+                }
+                finally
+                {
+                    CloseConnection(con);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Mëtodo que devuelve una lista de tiempos almacenados en la BD.
+        /// </summary>
+        /// <param name="proyect"></param>
+        /// <param name="var"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public List<float> GetTime(Proyect proyect, int amount)
+        {
+            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            {
+                List<float> result = new List<float>();
+                try
+                {
+                    // Open the SqlConnection.
+                    con.Open();
+
+                    if (CheckDBExists(proyect))
+                        using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + "[Time] " +
+                            "FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                        {
+                            SqlDataReader columnsDataReader = command.ExecuteReader();
+                            while (columnsDataReader.Read())
+                                result.Add(float.Parse(String.Format("{0}", columnsDataReader[0])));
                         }
                     return result;
                 }
@@ -296,11 +332,11 @@ namespace PlantaPiloto
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + _globalParameters.DBName + ";Integrated Security = True;"))
+                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
                 {
                     con.Open();
 
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + _globalParameters.DBName + "'" +
+                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + GlobalParameters.DBName + "'" +
                            " AND TABLE_NAME = '" + proyect.Name + "'";
 
                     SqlCommand cmd = new SqlCommand(sCmd, con);

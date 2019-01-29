@@ -14,7 +14,7 @@ namespace PlantaPiloto.Classes
     {
         #region Properties
         //Ruta del archivo de log
-        readonly string _filePath = Path.Combine(new GlobalParameters().FilesPath, "ExceptionLog.txt");
+        readonly string _filePath = Path.Combine(GlobalParameters.FilesPath, "ExceptionLog.txt");
 
         private CultureInfo _cul;
 
