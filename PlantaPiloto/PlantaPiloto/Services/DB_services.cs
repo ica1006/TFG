@@ -90,7 +90,7 @@ namespace PlantaPiloto
                         if (!Directory.Exists(GlobalParameters.DBPath))
                             Directory.CreateDirectory(GlobalParameters.DBPath);
                         DirectorySecurity ds = Directory.GetAccessControl(GlobalParameters.DBPath);
-                        ds.AddAccessRule(new FileSystemAccessRule(@"NT Service\SQLTELEMETRY$SQLEXPRESS", FileSystemRights.FullControl, AccessControlType.Allow));
+                        ds.AddAccessRule(new FileSystemAccessRule(GlobalParameters.DBCreationUser, FileSystemRights.FullControl, AccessControlType.Allow));
                         Directory.SetAccessControl(GlobalParameters.DBPath, ds);
                         //Ejecutar sentencia SQL
                         myCommand.ExecuteNonQuery();

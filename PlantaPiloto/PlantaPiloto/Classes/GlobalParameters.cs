@@ -5,26 +5,11 @@ namespace PlantaPiloto.Classes
 {
     public static class GlobalParameters
     {
-        static readonly string _filesPath = Path.Combine(Application.StartupPath, "..\\..\\ApplicationData");
-        public static string FilesPath
-        {
-            get { return _filesPath; }
-        }
-        static readonly string _configsPath = Path.Combine(Application.StartupPath, "Configuraciones");
-        public static string ConfigsPath
-        {
-            get { return _configsPath; }
-        }
-        static readonly string _dBPath = Path.Combine(Application.StartupPath, "DB");
-        public static string DBPath
-        {
-            get { return _dBPath; }
-        }
-        static readonly string _dBName = "TFG_DB";
-        public static string DBName
-        {
-            get { return _dBName; }
-        }
+        public static string FilesPath { get; } = Path.Combine(Application.StartupPath, "..\\..\\ApplicationData");
+        public static string ConfigsPath { get; } = Path.Combine(Application.StartupPath, "Configuraciones");
+        public static string DBPath { get; } = Path.Combine(Application.StartupPath, "DB");
+        public static string DBName { get; } = "TFG_DB";
+        public static string DBCreationUser{ get; } = @"NT Service\SQLTELEMETRY$SQLEXPRESS";
         public static float DefaultTs { get; } = 0.2F;
     }
 }
