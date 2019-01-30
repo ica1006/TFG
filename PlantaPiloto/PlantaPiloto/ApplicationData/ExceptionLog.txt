@@ -9249,3 +9249,22 @@
    en System.IO.Ports.SerialPort.ReadTo(String value)
    en System.IO.Ports.SerialPort.ReadLine()
    en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\source\repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 152,  Info: Excepción Entrada/Salida (puerto Serie)
+01/29/2019 22:05:08 - FormatException,    en System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   en System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   en System.Int32.Parse(String s)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 158,  Info: Formato inválido
+01/29/2019 22:05:13 - FormatException,    en System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   en System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   en System.Int32.Parse(String s)
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 158,  Info: Formato inválido
+01/29/2019 22:07:09 - InvalidOperationException,    en System.Windows.Forms.DataGridViewRowCollection.AddInternal(Boolean newRow, Object[] values)
+   en System.Windows.Forms.DataGridViewRowCollection.Add(Object[] values)
+   en PlantaPiloto.Forms.VarValuesForm.FillDataGrid() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Forms\VarValuesForm.cs:línea 120,  Info: excepción no definida.
+01/29/2019 22:07:10 - IOException,    en System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   en System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   en System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   en System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   en System.IO.Ports.SerialPort.ReadTo(String value)
+   en System.IO.Ports.SerialPort.ReadLine()
+   en PlantaPiloto.SP_services.OpenConnection() en C:\Users\fpiza\Source\Repos\TFG\PlantaPiloto\PlantaPiloto\Services\SP_services.cs:línea 152,  Info: Excepción Entrada/Salida (puerto Serie)
