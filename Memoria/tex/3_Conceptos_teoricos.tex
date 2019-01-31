@@ -1,6 +1,6 @@
 \capitulo{3}{Conceptos teóricos}
 
-En este capítulo se expondrán los conceptos teóricos que se van a ver reflejados en la aplicación, permitiendo al lector tener una base de conocimiento en la que apoyarse para la comprensión del proyecto.
+En este capítulo se expondrán los conceptos teóricos que se van a ver reflejados en el proyecto, permitiendo al lector tener una base de conocimiento en la que apoyarse para la comprensión del proyecto.
 
 \section{.NET Framework}
 
@@ -16,7 +16,7 @@ En este capítulo se expondrán los conceptos teóricos que se van a ver refleja
 
 .NET Framework tiene dos componentes principales: la biblioteca de clases de .NET Framework y Common Language Runtime (CLR). En la siguiente ilustración se puede apreciar la relación de Common Language Runtime y la biblioteca de clases con el sistema en su conjunto y las aplicaciones. En la ilustración se representa igualmente cómo funciona el código administrado dentro de una arquitectura mayor \cite{web:docNet}.
 
-\imagen{docNetContext}{.Net Context}
+\imagen{docNetContext}{Contexto .NET}
 
 \subsection{Biblioteca de clases de .Net Framework}
 
@@ -26,14 +26,54 @@ La biblioteca de clases de .NET Framework es una colección de tipos reutilizabl
 
 Common Language Runtime gestiona la memoria, la ejecución de código, la ejecución de subprocesos, la comprobación de la seguridad del código, la compilación y el resto servicios del sistema. Estas características son intrínsecas del código administrado que se ejecuta en Common Language Runtime.
 
-\section{SQL}
+\section{Base de datos}
 
+Una base datos es una aplicación independiente que almacena una colección de datos pertenecientes a un mismo contexto organizados por registros, archivos y campos, permitiendo así un rápido acceso a dichos datos.
 
+\subsection{Base de datos relacional}
+
+Una base de datos es relacional cuando cumple con el modelo relacional, el cual hace referencia a la relación que existe entre las distintas entidades o tablas de la base. En este modelo, el lugar y la forma en que se almacenan los datos no es relevante (a diferencia de otros modelos como el jerárquico y el de red).
+
+\subsection{SQL}
+
+SQL (Structured Query Language, lenguaje de consulta estructurada) es un lenguaje específico del dominio utilizado en programación, diseñado para administrar, y recuperar información de sistemas de gestión de bases de datos relacionales. Una de sus principales características es el manejo del álgebra y el cálculo relacional para realizar consultas para recuperar información de bases de datos y efectuar cambios en ellas \cite{wiki:sql}.
+
+SQL es un lenguaje de alto nivel que permite la inserción, actualización, consulta y borrado de datos, así como la creación y modificación de esquemas y el control de acceso a los datos. Es el lenguaje más habitual para construir las consultas a bases de datos relacionales.
 
 \section{Comunicación Serie}
-\section{Placa NXP FRDMK64F}
 
-En este capítulo se expondrán los conceptos teóricos con los que se ha trabajado en el desarrollo del proyecto.
+A diferencia de la comunicación en paralelo en la que todos los bits se envían al mismo tiempo, la comunicación serie o secuencial consiste en el envío de datos de un bit a la vez, de manera secuencial, sobre un canal de comunicación o un bus. A pesar de que a la misma frecuencia la comunicación paralela obtiene un mayor rendimiento, la transmisión en serie requiere de un menor número de líneas de trasmisión.
+
+\imagen{paralelCom}{Ejemplo de puerto de comunicación paralelo \cite{web:ibmCom}.}
+
+\imagen{serieCom}{Ejemplo de puerto de comunicación serie \cite{web:ibmCom}.}
+
+\section{Planta piloto}
+
+Para llevar a cabo este proyecto, se parte de una planta piloto ya creada la cual requiere de una interfaz hombre-máquina para mejorar la interacción en la transmisión de datos, tanto para procesarlos como para modificarlos.
+
+Esta planta piloto fue diseñada y construída por María Isabel Revilla Izquierdo, egresada en Ingeniería Electrónica Industrial y Automática, durante su trabajo de fin de grado, bajo la tutela del Dr. Daniel Sarabia Ortiz.
+
+La planta piloto se compone de:
+\begin{itemize}
+	\item Una planta.
+\imagen{planta}{Esquema del contenido de la planta \cite{tfgMaria}.}
+	\item Un equipo de alimentación.
+	\item Un acondicionamiento.
+	\item Un control (ofrecido por la placa FRDM-K64F).
+\end{itemize} 
+
+\imagen{plantaPiloto}{Repartición de los componentes de la planta piloto \cite{tfgMaria}.}
+
+\subsection{Freescale Freedom NXP FRDM-K64F}
+
+La plataforma de desarrollo Freescale Freedom es un conjunto de herramientas software y hardware para el desarrollo y la evaluación de prototipos de aplicaciones basadas en microcontroladores. Concretamente, el hardware Freescale Freedom K64 (FRDM-K64F), es el que va a ser usado para el proyecto.
+
+\imagen{frdmk64f}{Hardware Freescale Freedom K64 (FRDM-K64F) \cite{frdmk64f_manual}}
+
+Durante la ejecución del proyecto los componentes que se van a utilizar del hardware Freescale Freedom K64 (FRDM-K64F) serán "Power/OpenSDAv2 Micro USB" y el botón "Reset button", centrándose de esta manera en la programación de la interfaz hombre-máquina.
+
+
 
 \section{Secciones}
 

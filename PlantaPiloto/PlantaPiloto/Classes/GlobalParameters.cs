@@ -5,7 +5,7 @@ namespace PlantaPiloto.Classes
 {
     public static class GlobalParameters
     {
-        public static string FilesPath { get; } = Path.Combine(Application.StartupPath, "..\\..\\ApplicationData");
+        public static string FilesPath { get; } = Path.Combine(Application.StartupPath, "ApplicationData");
         public static string ConfigsPath { get; } = Path.Combine(Application.StartupPath, "Configuraciones");
         public static string DBPath { get; } = Path.Combine(Application.StartupPath, "DB");
         public static string DBName { get; } = "TFG_DB";
