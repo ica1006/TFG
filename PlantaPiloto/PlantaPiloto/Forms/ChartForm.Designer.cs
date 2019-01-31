@@ -1,4 +1,4 @@
-﻿using PlantaPiloto.Services;
+﻿//using PlantaPiloto.Services;
 
 namespace PlantaPiloto
 {
@@ -40,10 +40,10 @@ namespace PlantaPiloto
             this.txtChartAmount = new System.Windows.Forms.RichTextBox();
             this.btnChartAmount = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
+            //this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             ((System.ComponentModel.ISupportInitialize)(this.chartVar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // chartVar
@@ -119,8 +119,8 @@ namespace PlantaPiloto
             // 
             // tFG_DBDataSet
             // 
-            this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
-            this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
+            //this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ChartForm
             // 
@@ -143,7 +143,7 @@ namespace PlantaPiloto
             this.Load += new System.EventHandler(this.Chart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartVar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +153,7 @@ namespace PlantaPiloto
 
         private System.Windows.Forms.DataVisualization.Charting.Chart chartVar;
         private System.Windows.Forms.Button btnClose;
-        private TFG_DBDataSet tFG_DBDataSet;
+        //private TFG_DBDataSet tFG_DBDataSet;
         private System.Windows.Forms.Label lblChartAmount;
         private System.Windows.Forms.RichTextBox txtChartAmount;
         private System.Windows.Forms.Button btnChartAmount;

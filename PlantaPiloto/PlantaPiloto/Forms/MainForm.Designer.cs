@@ -1,4 +1,4 @@
-﻿using PlantaPiloto.Services;
+﻿//using PlantaPiloto.Services;
 using System.Windows.Forms;
 
 namespace PlantaPiloto
@@ -69,14 +69,14 @@ namespace PlantaPiloto
             this.lblProName = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
+            //this.tFG_DBDataSet = new PlantaPiloto.Services.TFG_DBDataSet();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProVars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProImg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tFGDBDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -386,12 +386,12 @@ namespace PlantaPiloto
             // 
             // tFG_DBDataSet
             // 
-            this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
-            this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.tFG_DBDataSet.DataSetName = "TFG_DBDataSet";
+            //this.tFG_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tFGDBDataSetBindingSource
             // 
-            this.tFGDBDataSetBindingSource.DataSource = this.tFG_DBDataSet;
+            //this.tFGDBDataSetBindingSource.DataSource = this.tFG_DBDataSet;
             this.tFGDBDataSetBindingSource.Position = 0;
             // 
             // MainForm
@@ -417,7 +417,7 @@ namespace PlantaPiloto
             this.gBoxProyect.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProVars)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProImg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.tFG_DBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tFGDBDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -458,7 +458,7 @@ namespace PlantaPiloto
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DataGridView dgvProVars;
         private BindingSource tFGDBDataSetBindingSource;
-        private TFG_DBDataSet tFG_DBDataSet;
+        //private TFG_DBDataSet tFG_DBDataSet;
         private Button btnRefreshPorts;
         private Label lblRWVariables;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
