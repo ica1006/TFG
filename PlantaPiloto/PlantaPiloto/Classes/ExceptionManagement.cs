@@ -79,8 +79,14 @@ namespace PlantaPiloto.Classes
         /// </summary>
         public void SaveVarsValue(string newLog)
         {
+            
+            if (!Directory.Exists(GlobalParameters.FilesPath))
+                Directory.CreateDirectory(GlobalParameters.FilesPath);
+            if (!File.Exists(_filePath))
+                File.Create(_filePath);
+
             using (StreamWriter fileWriter = new StreamWriter(_filePath, true))
-                fileWriter.WriteLine(DateTime.Now.ToString(System.Globalization.CultureInfo.InvariantCulture) + " - " + newLog);
+                fileWriter.WriteLine(DateTime.Now.ToString(CultureInfo.InvariantCulture) + " - " + newLog);
         }
         #endregion
     }

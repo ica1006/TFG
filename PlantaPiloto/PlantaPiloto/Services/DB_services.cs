@@ -71,13 +71,15 @@ namespace PlantaPiloto
             if (!dbExists)
             {
                 String str;
-                SqlConnection myConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
+                string mdfFile = Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + ".mdf");
+                string logFile = Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + "_Log.ldf");
+                SqlConnection myConn = new SqlConnection(@"Server = localhost\sqlexpress; Integrated Security = True");
                 str = "CREATE DATABASE " + GlobalParameters.DBName + " ON PRIMARY " +
                     "(NAME = " + GlobalParameters.DBName + ", " +
-                    "FILENAME = '" + Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + ".mdf") + "'," +
+                    "FILENAME = '" + mdfFile + "'," +
                     "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
                     "LOG ON (NAME = " + GlobalParameters.DBName + "_Log, " +
-                    "FILENAME = '" + Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + "_Log.ldf") + "', " +
+                    "FILENAME = '" + logFile + "', " +
                     "SIZE = 4MB, " +
                     "MAXSIZE = 20MB, " +
                     "FILEGROWTH = 10%)";
@@ -89,6 +91,10 @@ namespace PlantaPiloto
                         //Crear directorio y asignar permisos para poder crear archivos
                         if (!Directory.Exists(GlobalParameters.DBPath))
                             Directory.CreateDirectory(GlobalParameters.DBPath);
+                        if (File.Exists(mdfFile))
+                            File.Delete(mdfFile);
+                        if (File.Exists(logFile))
+                            File.Delete(logFile);
                         DirectorySecurity ds = Directory.GetAccessControl(GlobalParameters.DBPath);
                         ds.AddAccessRule(new FileSystemAccessRule(GlobalParameters.DBCreationUser, FileSystemRights.FullControl, AccessControlType.Allow));
                         Directory.SetAccessControl(GlobalParameters.DBPath, ds);
