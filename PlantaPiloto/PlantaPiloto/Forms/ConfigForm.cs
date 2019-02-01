@@ -250,6 +250,14 @@ namespace PlantaPiloto
             _variable.Cul = _cul;
         }
 
+        /// <summary>
+        /// Método que cambia el color de fondo del botón de guardar variable para avisar que está sin guardar
+        /// </summary>
+        private void ChangeSaveVarButtonBackColor()
+        {
+            this.btnAddVar.BackColor = Color.Gold;
+        }
+
         #region Validaciones
 
         /// <summary>
@@ -368,6 +376,7 @@ namespace PlantaPiloto
                         this.CleanForm(0);
                     }
                 }
+                this.btnAddVar.BackColor = Color.Green;
             }
             catch (FormatException ex)
             {
@@ -452,6 +461,7 @@ namespace PlantaPiloto
             {
                 _proyect.ImagePath = openFileDialog1.FileName;
                 this.btnLoadImage.BackColor = Color.LightGreen;
+                this.btnAddVar.BackColor = Color.Gold;
             }
         }
 
@@ -499,6 +509,7 @@ namespace PlantaPiloto
                 txtVarBoardUnits.Enabled = true;
                 txtVarInterfaceUnits.Enabled = true;
             }
+            this.btnAddVar.BackColor = Color.Gold;
         }
 
         /// <summary>
@@ -524,6 +535,8 @@ namespace PlantaPiloto
 
                 _lastVariable = (sender as ComboBox).SelectedValue.ToString();
                 this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
+
+                this.btnAddVar.BackColor = Color.Gainsboro;
             }
             catch (Exception ex)
             {

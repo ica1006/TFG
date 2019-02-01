@@ -206,6 +206,8 @@ namespace PlantaPiloto
                         for (int i = 0; i < _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).Count(); i++)
                             this.dgvProVars[0, i].Value = _proyect.Variables.Where(p => p.Access == EnumVarAccess.Escritura).ToList()[i].Name;
                     }
+
+                    this.ViewConnectionClose();
                 }
             }
             catch (Exception ex)
@@ -257,7 +259,8 @@ namespace PlantaPiloto
             try
             {
                 _lastRowSP = _sp_services.LastRow;
-                if (_lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
+                if (_lastRowSP.Variables.Count() == _proyect.Variables.Count() 
+                    && _lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
                 {
                     this.FillDataGridView(_lastRowSP);
                     this.ViewConnectionOpen();
@@ -344,13 +347,16 @@ namespace PlantaPiloto
         /// </summary>
         public void CloseSP_services()
         {
-            _sp_services.CloseConnection();
-            _timerRefreshDataGrid.Enabled = false;
-            if (_threadSaveRow != null)
-                _threadSaveRow.Join();
-            _sp_services.SaveFile = false;
-            LoadProyect();
-            this.ViewConnectionClose();
+            if (_sp_services.SerialPort.IsOpen)
+            {
+                _sp_services.CloseConnection();
+                _timerRefreshDataGrid.Enabled = false;
+                if (_threadSaveRow != null)
+                    _threadSaveRow.Join();
+                _sp_services.SaveFile = false;
+                LoadProyect();
+                this.ViewConnectionClose();
+            }
         }
 
         /// <summary>
@@ -488,7 +494,9 @@ namespace PlantaPiloto
                 {
                     btnStart.Enabled = false;
                     btnFinish.Enabled = true;
-                    if (_lastRowSP != null && _lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
+                    if (_lastRowSP != null 
+                        && _lastRowSP.Variables.Count() == _proyect.Variables.Count()
+                        && _lastRowSP.Variables.Where(p => p.Value == null).Count() == 0)
                     {
                         btnChart.Enabled = true;
                         btnVar.Enabled = true;
