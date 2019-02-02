@@ -116,6 +116,8 @@ namespace PlantaPiloto
                         c.Text = "";
                     }
                 }
+                this.txtVarLinearAdjA.Text = "1";
+                this.txtVarLinearAdjB.Text = "0";
                 _proyect = new Proyect();
             }
         }
@@ -255,7 +257,15 @@ namespace PlantaPiloto
         /// </summary>
         private void ChangeSaveVarButtonBackColor()
         {
-            this.btnAddVar.BackColor = Color.Gold;
+            try
+            {
+                this.btnAddVar.BackColor = Color.Gold;
+
+            }
+            catch (FormatException ex)
+            {
+                _exMg.HandleException(ex);
+            }
         }
 
         #region Validaciones
@@ -344,6 +354,8 @@ namespace PlantaPiloto
                 throw;
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -461,7 +473,7 @@ namespace PlantaPiloto
             {
                 _proyect.ImagePath = openFileDialog1.FileName;
                 this.btnLoadImage.BackColor = Color.LightGreen;
-                this.btnAddVar.BackColor = Color.Gold;
+                this.ChangeSaveVarButtonBackColor();
             }
         }
 
@@ -509,7 +521,8 @@ namespace PlantaPiloto
                 txtVarBoardUnits.Enabled = true;
                 txtVarInterfaceUnits.Enabled = true;
             }
-            this.btnAddVar.BackColor = Color.Gold;
+
+            this.ChangeSaveVarButtonBackColor();
         }
 
         /// <summary>
@@ -561,7 +574,15 @@ namespace PlantaPiloto
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Evento que cambia el color de fondo del botón de guardar variabla para informar de que se han hecho cambios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void varSettings_TextChanged(object sender, EventArgs e)
+        {
+            this.ChangeSaveVarButtonBackColor();
+        }
 
         #endregion
     }
