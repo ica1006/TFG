@@ -54,6 +54,7 @@ Reunión con Carlos López Nozal y Daniel Sarabia (las anteriores habían sido s
 	- Implementar distintos tipos de comunicación.
 	- Una vez que exista una conexión con el puerto serie, sin que hubiera un proyecto cargado, poder ver las variables que se están emitiendo desde la placa.
 	- Adición de idiomas.
+	- Implantar TDD.
 	- Actualizar valores en la ventana VarSelection cuando se muestran todas las variables y sus valores.
 	- Implementar variables PID.
 ### 15 de Enero de 2019
