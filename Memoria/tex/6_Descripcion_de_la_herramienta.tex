@@ -1,13 +1,121 @@
 \capitulo{6}{Descripción de la herramienta}
 
-También añadir capítulo "Descripción de la herramiento": descripción, funcionalidad y características...
+A lo largo de este capítulo el lector podrá conocer la descripción, las características y funcionalidad de la herramienta. De esta manera, éste tendrá un acercamiento a la misma previo a su ejecución.
 
 \section{Descripción}
 
+Se define este software como aquel encargado de proporcionar una interfaz a la comunicación serie entre una placa Freescale Freedom NXP FRDM-K64F y un ordenador, permitiendo a su vez realizar una serie de acciones sobre dichos datos que se verán en el siguiente apartado.
 
+La aplicación se compone de las siguientes ventanas:
+\begin{itemize}
+	\item Ventana principal.
+	\item Ventana para la creación de un nuevo proyecto.
+	\item Ventana para la modificación de un proyecto cargado.
+	\item Ventana para la selección de variables.
+	\item Ventana de graficado de valores de variables.
+	\item Ventana de valores de las variables cargadas en el proyecto.
+	\item Ventana de ayuda.
+	\item Ventana Acerca de.
+	\item Apertura del manual de usuario.
+\end{itemize}
 
 \section{Funcionalidad}
 
+La funcionalidad de esta aplicación está repartida en diferentes ventanas que serán vistas a continuación.
 
+\subsection{Ventana principal}
+
+La ventana principal de la aplicación es la primera que nos encontramos cuando esta es ejecutada y a partir de la cual se va a poder tener acceso al resto de las funcionalidades incluidas.
+
+Las principales divisiones que se encuentran en esta ventana son:
+
+\begin{itemize}
+	\item Menú: se encuentra en la parte superior de la ventana y contiene el acceso a las funcionalidades de configuración del proyecto, configuración de la conexión, internacionalización y ayuda.
+	\item Controles: son todos aquellos botones que se encuentran bajo la barra de menú y que permiten ejecutar órdenes directas sobre la aplicación.
+	\item Datos del proyecto: en la parte inferior izquierda de la ventana se muestran los datos del proyecto cargado.
+	\item Tabla editable con las variables de escritura cargadas a través del proyecto: en esta tabla se podrá ver el valor actual devuelto por la placa para cada variable y a su vez, se podrá modificar el valor de cada una.
+\end{itemize}
+
+\imagen{mainForm}{Ventana principal de la aplicación.}
+
+\subsection{Ventana para la creación de un nuevo proyecto}
+
+A través de la opción de menú ''Configuración - Crear configuración'' se podrá acceder a la ventana que permitirá crear y cargar un nuevo proyecto en la aplicación.
+
+Cabe destacar que, para el correcto guardado de cada variable que se quiera añadir al proyecto, hay que pulsar el botón ''Añadir variable'', si no esta no será tenida en cuenta.
+
+\imagen{createConfigForm}{Ventana para la creación de un nuevo proyecto.}
+
+En el caso de preferir cargar una configuración ya creada, se deberá seleccionar la opción de menú ''Configuración - Cargar configuración''.
+
+\subsection{Ventana para la modificación de un proyecto cargado}
+
+En el caso de que se desee modificar la configuración cargada en la aplicación, ya sean los datos del proyecto como sus variables, se podrá hacer a través de ''Configuración - Modificar configuración''.
+
+Para modificar los valores de cada variable cargada en el proyecto, se accederá a través del menú desplegable que se encuentra en la parte inferior de la ventana. Al igual que ocurría en la ventana anterior, los cambios no serán guardados hasta que  no se confirme a través del botón ''Guardar cambios en la variable''.
+
+\imagen{modifyConfigForm}{Ventana para la modificación de un proyecto cargado.}
+
+\subsection{Ventana para la selección de variables}
+
+Una vez que se tenga un proyecto cargado y la conexión con el puerto serie abierta, los valores devueltos por la placa se mostrarán en la tabla de la ventana principal, y los botones que antes se encontraban inactivos en el panel de controles, pasarán a estar activos. Si se pincha sobre cualquiera de los botones ''Gráfica'', ''Variables'' o ''Archivo'', la ventana que aparecerá será la que se muestra en la siguiente ilustración.
+
+\imagen{varSelectionForm}{Ventana para la selección de variables.}
+
+En esta ventana se procederá a la selección de las variables con las que se va a querer trabajar según el botón que se haya pulsado. 
+
+\subsubsection{Ventana de dibujado de gráficas}
+
+A través del botón ''Gráfica'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren graficar, se accederá a la siguiente ventana.
+
+\imagen{chartForm}{Ventana de graficado de valores de variables.}
+
+En esta ventana se podrá ver una gráfica con los valores de las variables que hayan sido seleccionadas, pudiendo modificar la cantidad de valores que se muestran. Se podrá seguir usando el resto de la aplicación mientras esta ventana permanece abierta.
+
+\subsubsection{Ventana de valores de las variables cargadas en el proyecto}
+
+A través del botón ''Variables'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren mostrar, se accederá a la siguiente ventana.
+
+\imagen{varsForm}{Ventana de dibujado de gráficas.}
+
+Esta ventana permite mostrar los valores actualizados de todas las variables, ya sean de lectura o de escritura. Se podrá seguir usando el resto de la aplicación mientras esta ventana permanece abierta.
+
+\subsubsection{Guardado del valor de las variables en un archivo}
+
+En el caso de haber pulsado el botón ''Archivo'' no aparecerá ninguna nueva ventana, sino que se volverá a la ventana principal, ejecutándose el guardado en archivo de los valores de las variables seleccionadas en segundo plano. Cuando esto ocurra, el texto de botón habrá cambiado a ''Detener guardado'', y se pinchará sobre él en el momento en el 	que se quiera finalizar el guardado.
+
+El archivo creado presentará el siguiente formato:
+
+\imagen{varSavedFile}{Contenido del archivo de guardado de variables.} 
+
+Se podrá seguir usando el resto de la aplicación mientras el guardado de valores esté activo.
+
+\subsection{Ventana de ayuda}
+
+En cada ventana de la aplicación se dispondrá de un acceso a la ayuda en línea de la aplicación. Se podrá acceder a esta ayuda desde la ventana principal ''Ayuda - Ayuda'', o pinchando el botón azul con una interrogación.
+
+\imagen{helpForm}{Ventana de ayuda.} 
+
+En esta ventana encontraremos un breve manual acerca de la utilización de la herramienta dividido en ventanas.
+
+\subsection{Ventana Acerca de}
+
+La aplicación contiene una ventana informativa sobre los datos de la aplicación. Se accederá a ella a través de la ventana principal ''Ayuda - Acerca de''.
+
+\imagen{aboutForm}{Ventana Acerca de.} 
+
+\subsection{Manual de usuario}
+
+También se dispone de un manual de usuario más completo que la ventana de ayuda en la que se explica con detenimiento las funcionalidades de la aplicación. Se podrá acceder a este archivo PDF a través de la opción de menú ''Ayuda - Manual de usuario''.
+
+\imagen{manualScreenShot}{PDF - Manual de usuario.} 
 
 \section{Características}
+
+El software desarrollado en este proyecto requiere para un correcto funcionamiento de:
+\begin{itemize}
+	\item Entorno Windows. La aplicación fue desarrollada en Windows 10, pero ha sido probada en Windows 8.1 y ha funcionado sin problema.
+	\item Driver P\&E: este driver permite la correcta comunicación a través del puerto serie con las placas NXP.
+	\item SQL Server 2017: la aplicación utilizará SQL Server como plataforma de base de datos.
+	\item .NET Framework 4.6.1: versión del framework de Microsoft que contiene las librerías necesarias para la ejecución de la aplicación.
+\end{itemize}
