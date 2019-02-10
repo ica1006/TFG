@@ -8,6 +8,10 @@
 \usepackage{lmodern} % Scalable font
 \usepackage{microtype}
 \usepackage{placeins}
+\usepackage[nouppercase]{scrpage2} % encabezados
+
+\pagestyle{scrheadings} %encabezados
+\setlength{\headheight}{1.1\baselineskip} %encabezados
 
 \RequirePackage{booktabs}
 \RequirePackage[table]{xcolor}
@@ -366,18 +370,15 @@
 \maketitle
 
 
-\newpage\null\thispagestyle{empty}\newpage
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \thispagestyle{empty}
 
 
 \noindent\includegraphics[width=\textwidth]{cabecera}\vspace{1cm}
 
-\noindent Dr. Daniel Sarabia Ortiz, profesro del departamento de Ingeniería Electromecánica, área de Ingeniería de Sistemas y Automática, y Dr. Alejandro Merino Gómez, profesor del departamento de Ingeniería Electromecánica, área de Ingeniería de Sistemas y Automática.
+\noindent Dr. Daniel Sarabia Ortiz, profesor del departamento de Ingeniería Electromecánica, área de Ingeniería de Sistemas y Automática, y Dr. Alejandro Merino Gómez, profesor del departamento de Ingeniería Electromecánica, área de Ingeniería de Sistemas y Automática.
 
-\noindent Expone:
+\noindent Exponen:
 
 \noindent Que el alumno D. \nombre, con DNI 71296830G, ha realizado el Trabajo final de Grado en Ingeniería Informática titulado "Desarrollo de una interfaz para planta piloto". 
 
@@ -413,10 +414,6 @@ D. Alejandro Merino Gómez
 %D. nombre tutor
 
 
-\newpage\null\thispagestyle{empty}\newpage
-
-
-
 
 \frontmatter
 
@@ -430,7 +427,7 @@ La placa Freescale FRDMK64F estará a su vez conecatada a una planta piloto en l
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-Interfaz hombre-máquina, monitorización, NXP, Freescale, FRDMK64F, .NET, Windows Forms, C\#\ldots
+Interfaz hombre-máquina, monitorización, NXP, Freescale, FRDMK64F, .NET, Windows Forms, C\#, SCADA.
 \end{abstract}
 
 \clearpage
@@ -445,7 +442,7 @@ The Freescale FRDMK64F board will, in turn, be connected to a pilot plant in whi
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-Man machine interface, monitoring, NXP, Freescale, FRDMK64F, .NET, Windows Forms, C\#\ldots
+Man machine interface, monitoring, NXP, Freescale, FRDMK64F, .NET, Windows Forms, C\#, SCADA.
 \end{abstract}
 
 \clearpage
@@ -473,7 +470,7 @@ Man machine interface, monitoring, NXP, Freescale, FRDMK64F, .NET, Windows Forms
 \include{./tex/8_Conclusiones_Lineas_de_trabajo_futuras}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
 \bibliography{bibliografia}
 
 \end{document}
