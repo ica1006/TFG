@@ -12,9 +12,9 @@ En este capítulo se expondrán los conceptos teóricos que se van a ver refleja
 	\item Ofrecer al programador coherencia entre tipos de aplicaciones muy diferentes, como las basadas en Windows o en Web.
 \end{itemize}
 
-.NET Framework tiene dos componentes principales: la biblioteca de clases de .NET Framework y Common Language Runtime (CLR). En la siguiente ilustración se puede apreciar la relación de Common Language Runtime y la biblioteca de clases con el sistema en su conjunto y las aplicaciones. Así mismo, la ilustración representa el funcionamiento del código administrado dentro de una arquitectura mayor \cite{web:docNet}.
+.NET Framework tiene dos componentes principales: la biblioteca de clases de .NET Framework y Common Language Runtime (CLR). En la figura 3.1 se puede apreciar la relación de Common Language Runtime y la biblioteca de clases con el sistema en su conjunto y las aplicaciones. Así mismo, la ilustración representa el funcionamiento del código administrado dentro de una arquitectura mayor \cite{web:01docNet}.
 
-\imagen{docNetContext}{Contexto .NET}
+\imagen{docNetContext}{Contexto .NET.}
 
 \subsection{Biblioteca de clases de .Net Framework}
 
@@ -26,7 +26,7 @@ Common Language Runtime gestiona la memoria, la ejecución de código, la ejecuc
 
 \section{Base de datos}
 
-Una base datos es una aplicación independiente que almacena una colección de datos pertenecientes a un mismo contexto organizados por registros, archivos y campos, permitiendo así un rápido acceso a dichos datos.
+Una base datos es una aplicación independiente que almacena una colección de datos pertenecientes a un mismo contexto organizados por registros, archivos y campos, permitiendo así un rápido acceso a dichos datos \cite{web:02bd}.
 
 \subsection{Base de datos relacional}
 
@@ -34,55 +34,83 @@ Una base de datos es relacional cuando cumple con el modelo relacional, el cual 
 
 \subsection{SQL}
 
-SQL (Structured Query Language, Lenguaje de Consulta Estructurado) es un lenguaje de alto nivel que, gracias al álgebra y a los cálculos relacionales, permite la inserción, actualización, consulta y borrado de datos, así como la creación y modificación de esquemas y el control de acceso a los datos dentro de una base de datos relacional. Es el lenguaje más habitual para construir las consultas a bases de datos relacionales.
+SQL (Structured Query Language, Lenguaje de Consulta Estructurado) es un lenguaje de alto nivel que, gracias al álgebra y a los cálculos relacionales, permite la inserción, actualización, consulta y borrado de datos, así como la creación y modificación de esquemas y el control de acceso a los datos dentro de una base de datos relacional. Es el lenguaje más habitual para construir las consultas a bases de datos relacionales \cite{web:03sql}.
 
 \section{Comunicación Serie}
 
-A diferencia de la comunicación en paralelo en la que todos los bits se envían al mismo tiempo, la comunicación serie o secuencial consiste en el envío de datos de un bit a la vez, de manera secuencial, sobre un canal de comunicación o un bus. A pesar de que a la misma frecuencia la comunicación paralela obtiene un mayor rendimiento, la transmisión en serie requiere de un menor número de líneas de trasmisión.
+A diferencia de la comunicación en paralelo que se muestra en la Figura 3.2 en la que todos los bits se envían al mismo tiempo, la comunicación serie o secuencial, mostrada en la Figura 3.3 consiste en el envío de datos de un bit a la vez, de manera secuencial, sobre un canal de comunicación o un bus. A pesar de que a la misma frecuencia la comunicación paralela obtiene un mayor rendimiento, la transmisión en serie requiere de un menor número de líneas de trasmisión, siendo muy sencillo su uso \cite{web:04ibmCom}.
 
-\imagen{paralelCom}{Ejemplo de puerto de comunicación paralelo \cite{web:ibmCom}.}
+\imagen{paralelCom}{Ejemplo de puerto de comunicación paralelo.}
 
-\imagen{serieCom}{Ejemplo de puerto de comunicación serie \cite{web:ibmCom}.}
+\imagen{serieCom}{Ejemplo de puerto de comunicación serie.}
+
+Dentro del amplio abanico de tipos de comunicación que ofrece la comunicación serie, en este proyecto se utilizará el tipo UART. El UART (Universal Asynchronous Receiver/Transmitter) es el dispositivo alojado en la placa que se encarga de controlar los puertos y dispositivos serie. Su principal función de este dispositivo consiste, como se muestra en la Figura 3.4, en manejar de forma asíncrona las interrupciones de los dispositivos conectados al puerto serie y convertir los datos en formato paralelo para que el bus del sistema pueda trabajar con ellos, y viceversa \cite{web:05uart}.
+
+\imagen{uart}{Ejemplo de comunicación UART.}
 
 \section{Planta piloto}
 
-Para llevar a cabo este proyecto, se parte de una planta piloto ya creada la cual requiere de una interfaz hombre-máquina para mejorar la interacción en la transmisión de datos, tanto para procesarlos como para modificarlos.
+Para llevar a cabo este proyecto, se parte de una planta piloto ya creada, mostrada en la Figura 3.5, la cual requiere de una interfaz hombre-máquina para mejorar la interacción en la transmisión de datos, tanto para procesarlos como para modificarlos.
 
-\imagen{plantaPilotoLab}{Serie de plantas piloto en el laboratorio\cite{tfgMaria}.}
+\imagen{plantaPilotoLab}{Serie de plantas piloto en el laboratorio de ingeniería de sistemas y automática de la UBU.}
 
 
-Esta planta piloto fue diseñada y construída por María Isabel Revilla Izquierdo, egresada en Ingeniería Electrónica Industrial y Automática, durante su trabajo de fin de grado, bajo la tutela del Dr. Daniel Sarabia Ortiz.
+El prototipo de esta planta, que se muestra en la Figura 3.7 fue diseñado por Rubén Zambrana Rodríguez en su TFG de electrónica \cite{06tfgRuben}, y fue mejorado a su versión actual por María Isabel Revilla Izquierdo, egresada en Ingeniería Electrónica Industrial y Automática, durante su trabajo de fin de grado\cite{07tfgMaria}, ambos bajo la tutela del Dr. Daniel Sarabia Ortiz.
 
-La planta piloto se compone de:
+La planta piloto se compone, como se muestra en la Figura 3.6, de:
 \begin{itemize}
 	\item Una planta.
-\imagen{planta}{Esquema del contenido de la planta \cite{tfgMaria}.}
+\imagen{planta}{Esquema del contenido de la planta.}
 	\item Un equipo de alimentación.
-	\item Un acondicionamiento.
-	\item Un control (ofrecido por la placa FRDM-K64F).
+	\item Varias etapas de acondicionamiento de las señales recibidas y enviadas a la planta, con la idea de poder suministrar la potencia requerida y ajustar los rangos de las señales a los requerimientos de la placa.
+	\item Un sistema empotrado o placa donde se implementa el sistema de control y permite la comunicación con la instrumentación de la planta piloto, sensores de caudal, temperatura y actuadores, tensión del ventilador y tensión de la resistencia (ofrecido por la placa FRDM-K64F).
 \end{itemize} 
 
-\imagen{plantaPiloto}{Repartición de los componentes de la planta piloto \cite{tfgMaria}.}
+\imagen{plantaPiloto}{Repartición de los componentes de la planta piloto.}
 
-\subsection{Freescale Freedom NXP FRDM-K64F}
+\subsection{NXP FRDM-K64F}
 
-La plataforma de desarrollo Freescale Freedom es un conjunto de herramientas software y hardware para el desarrollo y la evaluación de prototipos de aplicaciones basadas en microcontroladores. Concretamente, el hardware Freescale Freedom K64 (FRDM-K64F), es el que va a ser usado para el proyecto.
+La plataforma de desarrollo NXP es un conjunto de herramientas software y hardware para el desarrollo y la evaluación de prototipos de aplicaciones basadas en microcontroladores. Concretamente, el hardware NXP K64 (FRDM-K64F), mostrado en la Figura 3.8, es el que va a ser usado para el proyecto \cite{08frdmk64f_manual}.
 
-\imagen{frdmk64f}{Hardware Freescale Freedom K64 (FRDM-K64F) \cite{frdmk64f_manual}}
+\imagen{frdmk64f}{Hardware NXP K64 (FRDM-K64F).}
 
-Durante la ejecución del proyecto los componentes que se van a utilizar del hardware Freescale Freedom K64 (FRDM-K64F) serán "Power/OpenSDAv2 Micro USB" y el botón "Reset button", centrándose de esta manera en la programación de la interfaz hombre-máquina.
+La placa ya está programada con un sistema de control, centrándonos de esta manera en la programación de la interfaz hombre máquina. La comunicación de la aplicación con la placa se realiza mediante el puerto USB, que emula una comunicación serie con el driver ``Power/OpenSDAv2 Micro USB''.
+
+\subsection{Arquitectura de la planta}
+
+La planta mencionada anteriormente y que se muestra en la Figura 3.9, utilizará un sistema de control digital implementado en el microcontrolador NXP FRDM-K64F con el fin de controlar la velocidad del aire.
+
+\imagen{plantaLab}{Planta Piloto.}
+
+Como se puede ver en el esquema que muestra la Figura 3.10, el microcontrolador es el encargado de recibir los datos a través de referencia o setpoint, enviarlos a través la variable manipulada al proceso, el cual le devuelve la variable controlada. Para todo esto, el microcontrolador debe realizar la conversión de datos de analógico a digital y viceversa. 
+
+\imagen{esquemaPlaca}{Esquema del funcionamiento del microcontrolador.}
+
+Profundizando más en el acondicionamiento de señales, y como se puede ver en la Figura 3.11, es necesario realizar una acondicionamiento tanto de la señal que recibe el microcontrolador desde el proceso, como de la que calcula el microcontrolador y envía al proceso.
+
+\imagen{acondSignal}{Esquema acondicionamiento de señales.}
+
+En lo referente a la comunicación entre el usuario y la placa (Figura 3.12), y como ya se ha mencionado anteriorimente, se realizará a través de una conexión serie. La finalidad de esta conexión consistirá en tener la posibilidad de configurar y programar la placa, programar el regulador, debuggear el programa realizado e intercambiar información entre el usuario y la placa (por ejemplo, pasar el setpoint).
+
+\imagen{conSerie}{Esquema de la conexión entre la planta y el ordenador.}
+
+
+\section{SCADA}
+
+SCADA (Supervisory Control And Data Acquisition, Supervisión, Control Y Adquisición de Datos) hace referencia a toda aquella aplicación que obtenga datos de un "sistema" (por ejemplo, un caudalímetro en un proceso industrial) con el fin de controlar, supervisar y optimizar dichos datos a distancia \cite{web:09scada}.
+
+Para todo tipo de negocio, la automatización con SCADA ofrece una maximización del rendimiento de sus activos a través de la excelencia operativa. En concreto, la interfaz hombre-máquina desarrollada en este trabajo se corresponde con lo que a nivel industrial se denomina SCADA. 
+
+En la Figura 3.13 se puede ver un ejemplo de un esquema del funcionamiento a nivel industrial de un PLC implementando, además de la conexión con un SCADA (lo que en este trabajo equivaldría a la aplicación) que permite interactuar con el proceso, otras funcionalidades.
+
+\imagen{scada}{Ejemplo esquema implementación SCADA.}
+
+Básicamente, el PLC es donde reside el software de control de un proceso industrial, tiene una CPU, RAM y una serie de tarjetas de entrada y salida que se conectan mediante cables a los instrumentos del proceso (sería el equivalente a la placa NXP).
+
+La comunicación con el SCADA u otro dispositivos actualmente y a nivel industrial no se realiza mediante comunicación serie, sino, con protocolos basados en TCP/IP o protocolos de comunicaciones propietarios (modbus, fieldbus, profibus, etc.)
 
 \section{Entorno de desarrollo integrado (IDE)}
 
 Un IDE (Integrated Developement Enviroment) es una aplicación informática constituida por un editor de código fuente, un depurador y un constructor de interfaz gráfica (GUI). Algunos de estos IDEs se completan añadiendo un compilador, un intérprete o, incluso, un autocompletado de código (IntelliSense).
 
 La finalidad de esta aplicación es facilitar el desarrollo y la programación de software. Algunos ejemplos de entornos de desarrollo integrado actuales son \href{https://netbeans.org/}{NetBeans}, Visual Studio, \href{https://www.eclipse.org/}{Eclipse}, \href{https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}{JDK} (Java) y \href{https://www.kdevelop.org/}{KDevelop}, entre otros.
-
-
-\section{SCADA}
-
-SCADA (Supervisory Control And Data Acquisition, Supercisión, Control Y Adquisición de Datos) hace referencia a toda aquella aplicación que obtenga datos de un "sistema" (por ejemplo, un caudalímetro en un proceso industrial) con el fin de controlar, supervisar y optimizar dichos datos a distancia.
-
-Para todo tipo de negocio, la automatización con SCADA ofrece una maximización del rendimiento de sus activos a través de la excelencia operativa.
-
-\imagen{scada}{Ejemplo esquema implementación SCADA.}

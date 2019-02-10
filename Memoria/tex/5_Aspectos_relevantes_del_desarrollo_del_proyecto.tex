@@ -4,23 +4,23 @@ Este apartado pretende recoger los aspectos más importantes del desarrollo del 
 
 \section{Idea e inicio del proyecto}
 
-La elección de este proyecto se vio motivada por varias razones. Por un lado, el interés personal por desarrollar una aplicación que se comunicara con un dispositivo hardware programable siempre había sido un asunto pendiente. Por otro lado, la posibilidad de ayudar a futuros alumnos de la Universidad de Burgos a tener una facilidad más con la que pudieran contar a la hora de llevar a cabo sus estudios, y evitando de este modo, que el proyecto cayera en el olvido.
+La elección de este proyecto se vio motivada por varias razones. Por un lado, el interés personal por desarrollar una aplicación que se comunicara con un dispositivo hardware programable, siempre había sido un asunto pendiente. Por otro lado, la posibilidad de ayudar a futuros alumnos de la Universidad de Burgos a tener una facilidad más con la que pudieran contar a la hora de llevar a cabo sus estudios, y evitando de este modo, que el proyecto cayera en el olvido.
 
 Durante las primeras tomas de contacto con los tutores, se barajaron las posibilidades en las que el proyecto podría ser desarrollado, eligiendo en un principio trabajar en C++. Esta decisión se vio motivada porque la placa viene programada en ese lenguaje y por los conocimientos de los tutores en el mismo. Tras un pequeño periodo de formación en C++ y tras investigar las posibilidades que ofrecía C\# para cubrir las necesidades del proyecto, se replanteó el desarrollo del mismo, decidiendo cambiar a C\# y a la última versión de Visual Studio en la que me encontraba más cómodo.
 
-Una vez definido el lenguaje de desarrollo se trataron los temas relacionados con el repositorio que se iba a utilizar, en este caso GitHub. También se comentaron las herramientas y entornos de desarrollo que se iban a utilizar (ZenHub, Visual Studio 2017), y la S con la que se iban a realizar reuniones para tratar los avances del proyecto, siendo periodos de dos semanas.
+Una vez definido el lenguaje de desarrollo se trataron los temas relacionados con el repositorio que se iba a utilizar, en este caso GitHub. También se comentaron las herramientas y entornos de desarrollo que se iban a utilizar (ZenHub, Visual Studio 2017), y la frecuencia con la que se iban a realizar reuniones para tratar los avances del proyecto, siendo periodos de dos semanas.
 
 \section{Formación}
 
 Desde que el tema fue elegido, hasta prácticamente la entrega de toda la documentación, ha sido una formación continua. Los distintos problemas y lagunas personales que se iban encontrando durante el desarrollo de la aplicación han servido como base para buscar el conocimiento necesario para poder finalizar con éxito dicha aplicación.
 
-La mayoría de las herramientas utilizadas desde el inicio requirieron de una formación previa, ya fuera para ampliar conocimiento, como podría ser el caso de GitHub, o para crearlo, como en el caso de \LaTeX. Al igual que con las herramientas, también se realizó una investigación sobre el tema elegido, sumergiéndose así en el mundo del hardware NXP Freedom Freescale y las interfaces hombre-máquina.
+La mayoría de las herramientas utilizadas desde el inicio requirieron de una formación previa, ya fuera para ampliar conocimiento, como podría ser el caso de GitHub, o para crearlo, como en el caso de \LaTeX. Al igual que con las herramientas, también se realizó una investigación sobre el tema elegido, sumergiéndose así en el mundo del hardware NXP boards y las interfaces hombre-máquina.
 
 Dentro de todo el conocimiento adquirido, cabe destacar todo aquel relacionado con C\#, tanto en la forma de estructurar un proyecto desde cero, como a la hora de programar. Por ejemplo, muchas líneas de código han sido ahorradas gracias a las expresiones Lambda, potenciando así la lógica y el pensamiento racional ante la programación básica con la que se contaba hasta el momento. Los manuales más consultados durante todo este tiempo han sido los proporcionados por Microsoft para dar luz sobre dudas a la hora de implementar clases o instrucciones no conocidas o no utilizadas, ergo se podría concluir que el proceso de formación más notable y provechoso en este proyecto ha sido en lo referente a la programación en C\# y la utilización de la herramienta Visual Studio 2017.
 
 \section{Desarrollo de la interfaz y la internacionalización}
 
-Los primeros pasos llevados a cabo en el desarrollo de la aplicación fueron para construir las interfaces gráficas. Utilizando los conocimientos adquiridos durante mis estudios más los que se han ido añadiendo por los requerimientos del proyecto, se ha empezado la construcción de cada ventana definiendo su interfaz. Esto no implica que todas las interfaces fueran creadas en un inicio, sino que a la hora de crear una nueva ventana lo primero que se desarrollaba era la interfaz, pudiendo esta sufrir actualizaciones por posibles mejoras.
+Los primeros pasos llevados a cabo en el desarrollo de la aplicación fueron para construir las interfaces gráficas. Utilizando los conocimientos adquiridos durante mis estudios más los que se han ido añadiendo por los requerimientos del proyecto, se ha empezado la construcción de cada ventana definiendo su interfaz. Esto no implica que todas las interfaces fueran creadas en un inicio, sino que a la hora de crear una nueva ventana lo primero que se desarrollaba era la interfaz, pudiendo ésta sufrir actualizaciones por posibles mejoras.
 
 Aunque en un principio no se contempló en los requerimientos funcionales de la aplicación, me pareció útil y provechoso añadir multiculturalidad al proyecto dotándolo de la posibilidad de cambiar de idioma durante la ejecución del mismo. Visto que esta aplicación iba a ser utilizada por alumnos de la Universidad de Burgos y atendiendo al aumento de su internacionalidad recibiendo alumnos de otras universidades, resulta positivo para estos nuevos estudiantes ofrecer métodos de aprendizaje que tengan cierta flexibilidad que les ayude durante sus estudios. El método usado para implantar varios idiomas otorga facilidad en las líneas de trabajo futuras que quieran incluir nuevos idiomas, teniendo sólo que añadir las cadenas de texto traducidas a un archivo de recursos.
 
@@ -38,7 +38,7 @@ Tras los problemas encontrados en la primera versión, el desarrollo de todo aqu
 
 \section{Desarrollo de la comunicación con la base de datos}
 
-Se podría decir que el desarrollo de la comunicación con la base de datos ha sido la parte más problemática en la construcción de la aplicación, aunque a su vez, también ha sido la parte que nos ha mostrado las cadencias que presentaba el código, y que, si lo que se buscaba era implantar la herramienta para el uso docente, era necesario resolver.
+Se podría decir que el desarrollo de la comunicación con la base de datos ha sido la parte más problemática en la construcción de la aplicación, aunque a su vez, también ha sido la parte que nos ha mostrado las carencias que presentaba el código, y que, si lo que se buscaba era implantar la herramienta para el uso docente, era necesario resolver.
 
 Inicialmente, todo aquello relacionado con la conexión a la base de datos se encontraba en la misma clase que los servicios de conexión al puerto serie. Al poco tiempo, se decidió que era más eficiente tener ambas características separadas.
 
@@ -50,7 +50,7 @@ Esta primera versión fue muy útil para desarrollar la aplicación y hacer prue
 
 \subsection{Segunda versión}
 
-Para solucionar los problemas de que presentaban los ordenadores de los tutores, se automatizó la creación tanto de la base de datos necesaria como la conexión a esta. Los problemas persistieron por culpa de no haber eliminado de manera completa la conexión creada en la primera versión y por usar una versión distinta de SQL Server
+Para solucionar los problemas de que presentaban los ordenadores de los tutores, se automatizó la creación tanto de la base de datos necesaria como la conexión a esta. Los problemas persistieron por culpa de no haber eliminado de manera completa la conexión creada en la primera versión y por usar una versión distinta de SQL Server.
 
 Cabe añadir que durante este periodo, no sólo se trabajó con consultas de bases de datos, sino que también hubo que trabajar con los servicios de SQL Server y la asignación de permisos a usuarios concretos para crear los archivos necesarios para crear una base de datos de manera desasistida.
 

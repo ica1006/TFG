@@ -6,7 +6,7 @@ En este apartado se detallarán las técnicas y herramientas utilizadas para des
 
 \subsection{4.1.1. Scrum}
 
-\href{https://proyectosagiles.org/que-es-scrum/}{Scrum} es un marco de trabajo para el desarrollo de \textit{software} que se engloba dentro de las metodologías ágiles. Sus principales características son la adopción de una estrategia de desarrollo incremental, basar la calidad del resultado en el conocimiento tácito de los integrantes de equipos auto organizados, y en el solapamiento de las diferentes fases del desarrollo \cite{web:scrum}.
+\href{https://proyectosagiles.org/que-es-scrum/}{Scrum} es un marco de trabajo para el desarrollo de \textit{software} que se engloba dentro de las metodologías ágiles. Sus principales características son la adopción de una estrategia de desarrollo incremental, basar la calidad del resultado en el conocimiento tácito de los integrantes de equipos auto organizados, y en el solapamiento de las diferentes fases del desarrollo \cite{10web:scrum}.
 
 En este caso los \textit{sprints} han sido de dos semanas, tras los cuales se realizaba una reunión para definir las nuevas tareas del siguiente \textit{sprint} y realizar una retroalimentación del \textit{sprint} recién hecho.
 
@@ -32,7 +32,7 @@ La otra opción tenida en cuenta para este proyecto fue \href{https://subversion
 
 \subsection{4.4.1. GitHub}
 
-Una de las plataformas de desarrollo colaborativo más popular cuyo objetivo es alojar proyectos usando el sistema de control de versiones Git es \href{https://github.com/}{GitHub}. Ofrece un repositorio Git donde los desarrolladores pueden almacenar, compartir, testear y colaborar en proyectos web.
+Una de las plataformas de desarrollo colaborativo más popular cuyo objetivo es alojar proyectos usando el sistema de control de versiones Git es \href{https://github.com/}{GitHub}. Ofrece un repositorio Git donde los desarrolladores pueden almacenar, compartir, testear y colaborar en distintos tipos de proyectos.
 
 Al comenzar el proyecto también se tuvo en cuenta la posibilidad de utilizar \href{https://about.gitlab.com/}{GitLab} pero fue descartado por la compatibilidad de GitHub con otras herramientas usadas en el desarrollo del proyecto y por la familiaridad con dicho hosting de repositorio.
 
@@ -40,7 +40,7 @@ Al comenzar el proyecto también se tuvo en cuenta la posibilidad de utilizar \h
 
 \subsection{4.5.1. ZenHub}
 
-\href{https://www.zenhub.com/}{ZenHub} es una herramienta gratuita para proyectos pequeños u \textit{open source} cuya finalidad es la gestión de proyectos en GitHub. Esta herramienta trabaja de manera totalmente integrada ofreciendo un tablero canvas en el que cada \textit{issue} nativo de GitHub se representa como una tarea. A estas tareas se le pueden asignar prioridad, dependencias, estimaciones de tiempo de realización, colaboradores y el \textit{sprint} al que pertenece. ZenHub también permite graficar los avances llevados a cabo en el proyecto.
+\href{https://www.zenhub.com/}{ZenHub} es una herramienta gratuita para proyectos pequeños u \textit{open source} cuya finalidad es la gestión de proyectos en GitHub. Esta herramienta trabaja de manera totalmente integrada ofreciendo un tablero canvas \footnote{Tablero canvas: lienzo en el que se muestran las tareas pertenecientes a un proyecto ordenadas según el estado de la misma. Admite filtros, modificaciones y múltiples funcionalidades según la herramienta usada.} en el que cada \textit{issue} nativo de GitHub se representa como una tarea. A estas tareas se le pueden asignar prioridad, dependencias, estimaciones de tiempo de realización, colaboradores y el \textit{sprint} al que pertenece. ZenHub también permite graficar los avances llevados a cabo en el proyecto, como se puede apreciar en la Figura 4.14.
 
 \imagen{zenhubOverview}{ZenHub Overview}
 
@@ -50,7 +50,7 @@ En un principio también se barajó utilizar GitHub Proyect pero tras ver los v�
 
 \subsection{4.6.1. Microsoft Visual Studio 2017}
 
-\href{https://visualstudio.microsoft.com/es/vs/}{Microsoft Visual Studio 2017} es un entorno de desarrollo integrado para sistemas operativos Windows y macOs con todas las características para Android, iOS, Windows, la Wev y la nube. Este IDE permite escribir código de una manera eficiente y precisa sin perder el contexto del archivo, dotando al programador de facilidades en la programación \cite{web:visualstudio}.
+\href{https://visualstudio.microsoft.com/es/vs/}{Microsoft Visual Studio 2017} es un entorno de desarrollo integrado para sistemas operativos Windows y macOs con todas las características para Android, iOS, Windows, la Wev y la nube. Este IDE permite escribir código de una manera eficiente y precisa sin perder el contexto del archivo, dotando al programador de facilidades en la programación \cite{web:visualstudio}. En la Figura 4.15 se puede ver un ejemplo del IDE utilizado con la aplicación abierta.
 
 \imagen{visualStudio}{Ventana de desarrollo del proyecto en Visual Studio 2017}
 
@@ -65,7 +65,7 @@ La comunicación con los tutores se ha realizado a través de varias vías:
 	\item Canvas de ZenHub, donde se puede comentar cada tarea.
 \end{itemize}
 
-También se pensó en utilizar herramientas como \href{https://slack.com/intl/es-es/}{Slack} pero se descartaron porque se vieron innecesarias.
+También se pensó en utilizar herramientas como \href{https://slack.com/intl/es-es/}{Slack}\footnote{Slack: herramienta de comunicación a nivel empresarial que ofrece organización por temas, chats y grupos privados, así como integración en distintas herramientas software, como por ejemplo, Visual Studio.} pero se descartaron porque se vieron innecesarias.
 
 \section{Documentación}
 
@@ -79,7 +79,7 @@ En un principio se planteó la posibilidad de utilizar tanto Open Office Writter
 
 \subsection{4.8.2. HTML Help Workshop}
 
-\href{https://www.microsoft.com/en-us/download/details.aspx?id=21138}{HTML Help Workshop} es un programa que permite crear, editar y compilar archivos HTML para convertirlos en proyectos CHM. Este archivo CHM será el encargado de mostrar la ayuda presente en todas las ventanas de la aplicación.
+\href{https://www.microsoft.com/en-us/download/details.aspx?id=21138}{HTML Help Workshop} es un programa que permite crear, editar y compilar archivos HTML para convertirlos en proyectos CHM. Este archivo CHM será el encargado de, como se muestra en la Figura 4.16, mostrar la ayuda presente en todas las ventanas de la aplicación.
 
 \imagen{chmFile}{CHM File}
 
@@ -87,7 +87,7 @@ En un principio se planteó la posibilidad de utilizar tanto Open Office Writter
 
 \subsection{4.9.1. Codacy}
 
-Para llevar a cabo una revisión del código de la aplicación se utilizó \href{https://www.codacy.com/}{Codacy}, herramienta que ejecuta de manera automática exámenes sobre el código de cada \textit{commit} que se realice en Git. Codacy informa de los problemas de seguridad, de cobertura, de duplicidad y de complicidad que pueda tener el código, catalogando a este según los baremos de la propia aplicación y graficando los resultados.
+Para llevar a cabo una revisión del código de la aplicación se utilizó \href{https://www.codacy.com/}{Codacy}, herramienta que ejecuta de manera automática exámenes sobre el código de cada \textit{commit} que se realice en Git. Codacy informa de los problemas de seguridad, de cobertura, de duplicidad y de complicidad que pueda tener el código, catalogando a este según los baremos de la propia aplicación y graficando los resultados. En la Figura 4.17 se puede apreciar el avance de los errores en el proyecto en el último mes.
 
 \imagen{codacyDashboard}{Codacy Dashboard}
 
@@ -99,7 +99,7 @@ Para llevar a cabo una revisión del código de la aplicación se utilizó \href
 
 \subsection{4.10.2. Termite}
 
-\href{https://www.compuphase.com/software_termite.htm}{Termite} es un terminal \href{https://es.wikipedia.org/wiki/RS-232}{RS232} que actúa como una interfaz de chat teniendo un como canal un puerto serie. Cabe destacar la simplicidad de esta herramienta y su facilidad de instalación. Su uso permitió la comprobación de la comunicación con la placa y la realización de pruebas sobre la misma.
+\href{https://www.compuphase.com/software_termite.htm}{Termite} es un terminal \href{https://es.wikipedia.org/wiki/RS-232}{RS232} que actúa como una interfaz de chat teniendo como canal un puerto serie. Cabe destacar la simplicidad de esta herramienta y su facilidad de instalación. Su uso permitió la comprobación de la comunicación con la placa y la realización de pruebas sobre la misma.
 
 \subsection{4.10.3. Active Presenter}
 
@@ -107,7 +107,7 @@ Para llevar a cabo una revisión del código de la aplicación se utilizó \href
 
 \subsection{4.10.4. P\&E Driver}
 
-P\&E driver contiene el software que provee al equipo de los últimos drivers, aplicaciones y actualizaciones de firmware para los productos OpenSDA de NXP.
+\href{http://www.pemicro.com/opensda/}{P\&E driver} contiene el software que provee al equipo de los últimos drivers, aplicaciones y actualizaciones de firmware para los productos OpenSDA de NXP. Es el que permite que se emule una comunicación serie RS232 sobre un puerto UART. Tanto para programar la placa directamente como para comunicarse con ella online.
 
 Estos drivers fueron facilitados por los tutores al inicio del proyecto puesto que si no la comunicación con la placa era imposible, ni siquiera utilizando el programa Termite.
 

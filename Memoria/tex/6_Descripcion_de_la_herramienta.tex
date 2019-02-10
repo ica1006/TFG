@@ -4,7 +4,7 @@ A lo largo de este capítulo el lector podrá conocer la descripción, las carac
 
 \section{Descripción}
 
-Se define este software como aquel encargado de proporcionar una interfaz a la comunicación serie entre una placa Freescale Freedom NXP FRDM-K64F y un ordenador, permitiendo a su vez realizar una serie de acciones sobre dichos datos que se verán en el siguiente apartado.
+Se define este software como aquel encargado de proporcionar una interfaz a la comunicación serie entre una placa NXP FRDM-K64F y un ordenador, permitiendo a su vez realizar una serie de acciones sobre dichos datos que se verán en el siguiente apartado.
 
 La aplicación se compone de las siguientes ventanas:
 \begin{itemize}
@@ -25,7 +25,7 @@ La funcionalidad de esta aplicación está repartida en diferentes ventanas que 
 
 \subsection{Ventana principal}
 
-La ventana principal de la aplicación es la primera que nos encontramos cuando esta es ejecutada y a partir de la cual se va a poder tener acceso al resto de las funcionalidades incluidas.
+La ventana principal de la aplicación, que se puede ver en la Figura 6.18, es la primera que nos encontramos cuando esta es ejecutada y a partir de la cual se va a poder tener acceso al resto de las funcionalidades incluidas.
 
 Las principales divisiones que se encuentran en esta ventana son:
 
@@ -40,25 +40,25 @@ Las principales divisiones que se encuentran en esta ventana son:
 
 \subsection{Ventana para la creación de un nuevo proyecto}
 
-A través de la opción de menú ''Configuración - Crear configuración'' se podrá acceder a la ventana que permitirá crear y cargar un nuevo proyecto en la aplicación.
+A través de la opción de menú ``Configuración - Crear configuración'' se podrá acceder a la ventana que aparece en la Figura 6.19, la cual permitirá crear y cargar un nuevo proyecto en la aplicación.
 
-Cabe destacar que, para el correcto guardado de cada variable que se quiera añadir al proyecto, hay que pulsar el botón ''Añadir variable'', si no esta no será tenida en cuenta.
+Cabe destacar que, para el correcto guardado de cada variable que se quiera añadir al proyecto, hay que pulsar el botón ``Añadir variable'', si no esta no será tenida en cuenta.
 
 \imagen{createConfigForm}{Ventana para la creación de un nuevo proyecto.}
 
-En el caso de preferir cargar una configuración ya creada, se deberá seleccionar la opción de menú ''Configuración - Cargar configuración''.
+En el caso de preferir cargar una configuración ya creada, se deberá seleccionar la opción de menú ``Configuración - Cargar configuración''.
 
 \subsection{Ventana para la modificación de un proyecto cargado}
 
-En el caso de que se desee modificar la configuración cargada en la aplicación, ya sean los datos del proyecto como sus variables, se podrá hacer a través de ''Configuración - Modificar configuración''.
+En el caso de que se desee modificar la configuración cargada en la aplicación, ya sean los datos del proyecto como sus variables, se podrá hacer a través de ``Configuración - Modificar configuración'', como se muestra en la Figura 6.20.
 
-Para modificar los valores de cada variable cargada en el proyecto, se accederá a través del menú desplegable que se encuentra en la parte inferior de la ventana. Al igual que ocurría en la ventana anterior, los cambios no serán guardados hasta que  no se confirme a través del botón ''Guardar cambios en la variable''.
+Para modificar los valores de cada variable cargada en el proyecto, se accederá a través del menú desplegable que se encuentra en la parte inferior de la ventana. Al igual que ocurría en la ventana anterior, los cambios no serán guardados hasta que  no se confirme a través del botón ``Guardar cambios en la variable''.
 
 \imagen{modifyConfigForm}{Ventana para la modificación de un proyecto cargado.}
 
 \subsection{Ventana para la selección de variables}
 
-Una vez que se tenga un proyecto cargado y la conexión con el puerto serie abierta, los valores devueltos por la placa se mostrarán en la tabla de la ventana principal, y los botones que antes se encontraban inactivos en el panel de controles, pasarán a estar activos. Si se pincha sobre cualquiera de los botones ''Gráfica'', ''Variables'' o ''Archivo'', la ventana que aparecerá será la que se muestra en la siguiente ilustración.
+Una vez que se tenga un proyecto cargado y la conexión con el puerto serie abierta, los valores devueltos por la placa se mostrarán en la tabla de la ventana principal, y los botones que antes se encontraban inactivos en el panel de controles, pasarán a estar activos. Si se pincha sobre cualquiera de los botones ``Gráfica'', ``Variables'' o ``Archivo'', la ventana que aparecerá, mostrada en la Figura 6.21, será la que se muestra en la siguiente ilustración.
 
 \imagen{varSelectionForm}{Ventana para la selección de variables.}
 
@@ -66,7 +66,7 @@ En esta ventana se procederá a la selección de las variables con las que se va
 
 \subsubsection{Ventana de dibujado de gráficas}
 
-A través del botón ''Gráfica'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren graficar, se accederá a la siguiente ventana.
+A través del botón ``Gráfica'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren graficar, se accederá a la ventana que se muestra en la Figura 6.22.
 
 \imagen{chartForm}{Ventana de graficado de valores de variables.}
 
@@ -74,7 +74,7 @@ En esta ventana se podrá ver una gráfica con los valores de las variables que 
 
 \subsubsection{Ventana de valores de las variables cargadas en el proyecto}
 
-A través del botón ''Variables'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren mostrar, se accederá a la siguiente ventana.
+A través del botón ``Variables'' que se encuentra en la ventana principal, y habiendo seleccionado las variables que se quieren mostrar, se accederá a la ventana que se muestra en la Figura 6.23.
 
 \imagen{varsForm}{Ventana de dibujado de gráficas.}
 
@@ -82,9 +82,9 @@ Esta ventana permite mostrar los valores actualizados de todas las variables, ya
 
 \subsubsection{Guardado del valor de las variables en un archivo}
 
-En el caso de haber pulsado el botón ''Archivo'' no aparecerá ninguna nueva ventana, sino que se volverá a la ventana principal, ejecutándose el guardado en archivo de los valores de las variables seleccionadas en segundo plano. Cuando esto ocurra, el texto de botón habrá cambiado a ''Detener guardado'', y se pinchará sobre él en el momento en el 	que se quiera finalizar el guardado.
+En el caso de haber pulsado el botón ``Archivo'' no aparecerá ninguna nueva ventana, sino que se volverá a la ventana principal, ejecutándose el guardado en archivo de los valores de las variables seleccionadas en segundo plano. Cuando esto ocurra, el texto de botón habrá cambiado a ``Detener guardado'', y se pinchará sobre él en el momento en el que se quiera finalizar el guardado.
 
-El archivo creado presentará el siguiente formato:
+El archivo creado presentará el formato visible en la Figura 6.24:
 
 \imagen{varSavedFile}{Contenido del archivo de guardado de variables.} 
 
@@ -92,7 +92,7 @@ Se podrá seguir usando el resto de la aplicación mientras el guardado de valor
 
 \subsection{Ventana de ayuda}
 
-En cada ventana de la aplicación se dispondrá de un acceso a la ayuda en línea de la aplicación. Se podrá acceder a esta ayuda desde la ventana principal ''Ayuda - Ayuda'', o pinchando el botón azul con una interrogación.
+En cada ventana de la aplicación se dispondrá de un acceso a la ayuda en línea de la aplicación. Se podrá acceder a esta ayuda, mostrada en la Figura 6.25, desde la ventana principal ``Ayuda - Ayuda'', o pinchando el botón azul con una interrogación.
 
 \imagen{helpForm}{Ventana de ayuda.} 
 
@@ -100,13 +100,13 @@ En esta ventana encontraremos un breve manual acerca de la utilización de la he
 
 \subsection{Ventana Acerca de}
 
-La aplicación contiene una ventana informativa sobre los datos de la aplicación. Se accederá a ella a través de la ventana principal ''Ayuda - Acerca de''.
+La aplicación contiene una ventana informativa sobre los datos de la aplicación. Se accederá a ella a través de la ventana principal ``Ayuda - Acerca de'', mostrada en la Figura 6.26.
 
 \imagen{aboutForm}{Ventana Acerca de.} 
 
 \subsection{Manual de usuario}
 
-También se dispone de un manual de usuario más completo que la ventana de ayuda en la que se explica con detenimiento las funcionalidades de la aplicación. Se podrá acceder a este archivo PDF a través de la opción de menú ''Ayuda - Manual de usuario''.
+También se dispone de un manual de usuario más completo que la ventana de ayuda en la que se explica con detenimiento las funcionalidades de la aplicación. Se podrá acceder a este archivo PDF a través de la opción de menú ``Ayuda - Manual de usuario'', mostrado en la Figura 6.27.
 
 \imagen{manualScreenShot}{PDF - Manual de usuario.} 
 
