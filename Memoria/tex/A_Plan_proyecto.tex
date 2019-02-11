@@ -52,7 +52,7 @@ A lo largo de este \textit{sprint} pre-inicial se realizó una lectura e investi
 
 \subsection{Sprint \#1 (14/10/2018 - 27/10/2018)}
 
-En este \textit{sprint} acontece el primer contacto con los doctores Merino y Sarabia. Se comenzó con una presentación de los materiales que se iban a utilizar en el proyecto, expresando las primeras ideas y conjeturas que cada uno tenía sobre el mismo. También se definieron el tipo de repositorio a utilizar, así como la metodología y el formato de la documentación. Tras la reunión se decidió que la próxima semana se dedicaría a la investigación sobre el lenguaje a utilizar para el desarrollo del proyecto, buscando facilitar la comunicación serie con la placa NXP FRDM K64F. En la Figura A.2 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/2?closed=1}{\textit{sprint} \#1}.
+En este \textit{sprint} acontece el primer contacto con los doctores Merino y Sarabia. Se comenzó con una presentación de los materiales que se iban a utilizar en el proyecto, expresando las primeras ideas y conjeturas que cada uno tenía sobre el mismo. También se definieron el tipo de repositorio a utilizar, así como la metodología y el formato de la documentación. Tras la reunión se decidió que la próxima semana se dedicaría a la investigación sobre el lenguaje a utilizar para el desarrollo del proyecto, buscando facilitar la comunicación serie con la placa NXP FRDM K64F. En la Figura A.2 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/2?closed=1}{\textit{sprint} \#1}.  A este \textit{sprint} se dedicaron 13 \textit{story points}, lo que se traduciría a 18 horas reales.
 
 \imagen{sprint1}{\textit{Sprint} \#1.}
 
@@ -115,7 +115,7 @@ A lo largo de este \textit{sprint} y tras reunirme con los tutores y evaluar la 
 
 \subsection{Sprint \#8 (19/01/2019 - 02/02/2019)}
 
-Durante este \textit{sprint} se trabaja sobre la mejora de pequeños detalles de la aplicación, así como el problema que se comentó en el \textit{sprint \#4} sobre los problemas que se encontraban al ejecutar la aplicación en otro ordenador. Tras una ardua investigación se consiguió disipar la duda y solventar dicho error, pudiendo así testear la aplicación sin problema. En consecuencia a esta investigación se liberaron diferentes \textit{releases} a partir de las cuales se pudieran hacer pruebas. En la Figura A.9 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/9?closed=1}{\textit{sprint} \#8}. A este \textit{sprint} se dedicaron 38 \textit{story points}, lo que se traduciría a 48 horas reales.
+Durante este \textit{sprint} se trabaja sobre la mejora de pequeños detalles de la aplicación, así como el problema que se comentó en el \textit{sprint \#4} sobre los problemas que se encontraban al ejecutar la aplicación en otro ordenador. Tras una ardua investigación se consiguió disipar la duda y solventar dicho error, pudiendo así testear la aplicación sin problema. En consecuencia a esta investigación se liberaron diferentes \textit{releases} en las que se añadió la creación de la base de datos desde código y a partir de las cuales se pudieran hacer pruebas. En la Figura A.9 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/9?closed=1}{\textit{sprint} \#8}. A este \textit{sprint} se dedicaron 38 \textit{story points}, lo que se traduciría a 48 horas reales.
 
 \imagen{sprint8}{\textit{Sprint} \#8.}
 
@@ -134,12 +134,62 @@ Gracias a la herramienta ZenHub se puede obtener un gráfico con el que se infor
 \section{Estudio de viabilidad}
 
 \subsection{Viabilidad económica}
-Viabilidad economica: donde se estiman los costes y los benecios
-que puede suponer la realizacion del proyecto.
+
+En el siguiente apartado se analizarán los costes y beneficios que podría haber supuesto el proyecto en el caso de que se hubiese realizado en un entorno empresarial real.
+
+\subsubsection{Coste de personal}
+
+El proyecto se lleva a cabo por un desarrollador junior empleado a tiempo parcial (30 horas semanales) durante cuatro meses, ergo se considera el siguiente salario \cite{web:irpf}:
+
+\tablaSmallSinColores{Coste de personal.}{l r}{costePersonal}{Concepto & Coste \\}{
+Salario neto & 1000.00\euro\\
+Retención IRPF (19\%) & 360.53\euro\\
+Seguridad social (28,30\%) & 537.00\euro\\
+Salario bruto & 1897.53\euro\\
+\textbf{Total} & \textbf{5692.59\euro}\\
+}
+
+\subsubsection{Costes de material}
+
+El material utilizado para el proyecto ha sido un ordenador valorado en 700\euro, del cual se pondrá el coste amortizado a cuatro años, y una placa NXP FRDM K64F valorada en 50\euro:
+
+\tablaSmallSinColores{Coste de material.}{l r}{costeMaterial}{Concepto & Coste (\euro) \\}{
+Ordenador & 58.33\euro\\
+NXP FRDM K64F & 50.00\euro\\
+\textbf{Total} & \textbf{108.33\euro}\\
+}
+
+\subsubsection{Costes de \textit{software}}
+
+El software utilizado para el proyecto, aplicando la amortización por el tiempo usado, ha sido el siguiente:
+
+\tablaSmallSinColores{Coste de \textit{software}.}{l r}{costeSoft}{Concepto & Coste (\euro) \\}{
+Microsoft Windows 10 Pro & 21.58\euro\\
+Microsoft Visual Studio 2017 & 160.00\euro\\
+Microsoft SQL Server & 75.00\euro\\
+\textbf{Total} & \textbf{256.58\euro}\\
+}
+
+\subsubsection{Costes totales}
+
+El sumatorio de todos los costes ha sido el siguiente:
+
+\tablaSmallSinColores{Coste totales.}{l r}{costeTot}{Concepto & Coste (\euro) \\}{
+Personal & 5692.59\euro\\
+Materiales & 108.33\euro\\
+\textit{Software} & 256.98\euro\\
+\textbf{Total} & \textbf{6057.09\euro}\\
+}
+
+\subsubsection{Beneficios}
+
+Debido a que la finalidad de esta aplicación es la utilización por parte de los alumnos de Grado en Ingeniería Electrónica y Automática de la Universidad de Burgos, no se considera en ningún momento obtener beneficio alguno, siempre y cuando la institución no quiera otorgar cierta cuantía por los servicios prestado, en cuyo caso se aceptarán gustosos.
 
 \subsection{Viabilidad legal}
-Viabilidad legal: el contexto en el que se ejecuta el proyecto esta regulado
-por una serie de leyes. Se deben analizar todas aquellas que afecten
-al proyecto. En el caso del software, las licencias y la Ley de Proteccion
-de Datos pueden ser los temas mas relevantes.
+
+En este apartado se realiza un estudio sobre las leyes vigentes que puedan afectar al proyecto desarrollado y cómo se solucionarán los posibles problemas que surjan.
+
+Gracias a haber desarrollado toda la aplicación con software de Microsoft, del cual ya se han pagado las licencias pertinentes, no es necesario atender a la utilización de más licencias de terceros.
+
+Añadiendo a lo anterior, cabe mencionar que al tratarse de una aplicación con finalidad no comercial, las restricciones sobre el software creado son mucho menores.
 
