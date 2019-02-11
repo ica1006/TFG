@@ -44,6 +44,93 @@ Cabe comentar que la estimación se realizó a través de \textit{story points} 
 
 \textit{Sprints} llevados a cabo:
 
+\subsection{Sprint \#0 (01/10/2018 - 14/10/2018)}
+
+A lo largo de este \textit{sprint} pre-inicial se realizó una lectura e investigación sobre los diferentes Trabajos de Fin de Grado disponibles  y se tuvo la primera toma de contacto con la plantilla \LaTeX que se está utilizando para realizar esta documentación. Aún no se controlaba bien la asignación de tareas ni la estimación de tiempos, como se puede ver en la Figura A.1 o en enlace a el \href{https://github.com/FranBurgos/TFG/milestone/1?closed=1}{\textit{sprint} \#0}.
+
+\imagen{sprint0}{\textit{Sprint} \#0.}
+
+\subsection{Sprint \#1 (14/10/2018 - 27/10/2018)}
+
+En este \textit{sprint} acontece el primer contacto con los doctores Merino y Sarabia. Se comenzó con una presentación de los materiales que se iban a utilizar en el proyecto, expresando las primeras ideas y conjeturas que cada uno tenía sobre el mismo. También se definieron el tipo de repositorio a utilizar, así como la metodología y el formato de la documentación. Tras la reunión se decidió que la próxima semana se dedicaría a la investigación sobre el lenguaje a utilizar para el desarrollo del proyecto, buscando facilitar la comunicación serie con la placa NXP FRDM K64F. En la Figura A.2 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/2?closed=1}{\textit{sprint} \#1}.
+
+\imagen{sprint1}{\textit{Sprint} \#1.}
+
+Debido a las dudas que se presentaban al principio de este proyecto tuvo lugar una segunda reunión en la que se abordaron los siguientes temas:
+\begin{itemize}
+	\item Préstamo de la placa FRDM K64F al estudiante.
+	\item Conexión de la placa mediante puerto serie y visualización de los datos a través del programa Termite.
+	\item Explicación del documento ``Especificaciones Interfaz planta piloto.docx".
+	\item Pasos siguientes:
+	\begin{itemize}
+		\item Crear una aplicación sencilla que se comunique con la placa a través del puerto serie en C++.
+		\item Definir un formato del archivo de configuración, donde se guardan los valores de las variables que se van a utilizar en la placa. La aplicación no tiene porqué trabajar siempre con las mismas variables, depende de cómo se configure la placa, por lo que deberá permitir introducir las variables que el usuario considere y trabajar con ellas.
+	\end{itemize}
+	\item Se decide utilizar Visual Studio 2015 como IDE por mejor usabilidad con C++ y Windows Form.
+\end{itemize}
+
+\subsection{Sprint \#2 (28/10/2018 - 10/11/2018)}
+
+Durante estas dos semanas, y debido a que la elección primera del lenguaje de desarrollo iba a ser C++, se realizaron una serie de tutoriales sobre dicho lenguaje y sobre su uso en Visual Studio 2017. En la Figura A.3 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/3?closed=1}{\textit{sprint} \#2}. A este \textit{sprint} se dedicaron 82 \textit{story points}, lo que se traduciría a 100 horas reales.
+
+\imagen{sprint2}{\textit{Sprint} \#2.}
+
+Tras realizar varias investigaciones sobre la comunicación serie en otros lenguajes se tomó la decisión de cambiar de C++ a C\# en el lenguaje en el que se iba a desarrollar la herramienta, puesto que ofrecía un gran abanico de facilidades y un servidor tiene más experiencia de uso en este segundo lenguaje.
+
+\subsection{Sprint \#3 (10/11/2018 - 24/11/2018)}
+
+En este periodo se comenzó a programar de una manera más eficiente, consiguiendo notables avances sobre el código y a su vez, comunicando la aplicación con la placa NXP. A su vez, se diseñó un icono para personalizar la aplicación y el formato en el que las configuraciones que iban a ser cargadas en la aplicación se guardaban en un archivo de texto. En la Figura A.4 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/4?closed=1}{\textit{sprint} \#3}. A este \textit{sprint} se dedicaron 29 \textit{story points}, lo que se traduciría a 36 horas reales.
+
+\imagen{sprint3}{\textit{Sprint} \#3.}
+
+Cabe añadir que a partir de este momento se tuvo presente la adición de varios idiomas a la aplicación para dotarla de mayor apertura cultural.
+
+\subsection{Sprint \#4 (24/11/2018 - 08/12/2018)}
+
+A lo largo de este \textit{sprint} se llevaron acabo diversas mejoras en la interfaz de la aplicación y en el tratamiento de datos recibidos a través del puerto serie. No obstante, se podría definir como la principal mejora la implementación de una base de datos, con su correspondiente investigación previa, y la conexión de la misma a Visual Studio y al proyecto. 
+
+El método utilizado para la conexión fue creado a partir de un asistente del IDE mencionado, el cual facilitó esta implementación, pero a su vez creó el mayor quebradero de cabeza que ha aparecido durante todo el desarrollo. En el momento de querer ejecutar la aplicación en otro ordenador, y, debido a haber creado la conexión de manera local en mi equipo, la aplicación no conseguía funcionar correctamente. Este problema continuó hasta el último \textit{sprint}. En la Figura A.5 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/5?closed=1}{\textit{sprint} \#4}. A este \textit{sprint} se dedicaron 44 \textit{story points}, lo que se traduciría a 55 horas reales.
+
+\imagen{sprint4}{\textit{Sprint} \#4.}
+
+\subsection{Sprint \#5 (08/12/2018 - 22/12/2018)}
+
+Durante este \textit{sprint} se mostró a los tutores una primera versión de la interfaz de la aplicación, quienes reportaron una serie de mejoras que fueron añadidas al \textit{sprint} que estamos tratando, como podrían ser el archivo de ayuda en la aplicación, etiquetas faltantes o funcionalidades no tenidas en cuenta (por ejemplo, que el usuario pudiera definir la cantidad de datos mostrados en la gráfica en tiempo real). A lo largo de este periodo se libera la primera \textit{pre-release V0.0} de la aplicación. En la Figura A.6 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/6?closed=1}{\textit{sprint} \#5}. A este \textit{sprint} se dedicaron 103 \textit{story points}, lo que se traduciría a 128 horas reales.
+
+\imagen{sprint5}{\textit{Sprint} \#5.}
+
+\subsection{Sprint \#6 (22/12/2018 - 05/01/2019)}
+
+En este \textit{sprint} se lleva a cabo una reunión en la que se incluye al Dr. López Nozal, quien aporta nuevas ideas para mejorar tanto el código como la gestión de proyecto, como por ejemplo, la inclusión de la herramienta Codacy en el mismo. También se plantea la posibilidad de añadir un archivo de log a la aplicación, haciendo más fácil la detección de errores. En la Figura A.7 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/7?closed=1}{\textit{sprint} \#6}. A este \textit{sprint} se dedicaron 54 \textit{story points}, lo que se traduciría a 68 horas reales.
+
+\imagen{sprint6}{\textit{Sprint} \#6.}
+
+En este momento se vaticina cuáles van a ser las funciones que se va a poder cubrir a lo largo de este proyecto y comienzan a barajarse ideas de trabajo futuras. 
+
+\subsection{Sprint \#7 (05/01/2019 - 19/01/2019)}
+
+A lo largo de este \textit{sprint} y tras reunirme con los tutores y evaluar la \textit{pre-release V0.1} se definen los siguientes pasos a seguir en el proyecto. La mayor parte del tiempo invertido en este \textit{sprint} está dedicado a resolver las puntualizaciones que los tutores comentaron sobre dicha \textit{pre-release}, y que se puede encontrar en el \textit{issue} \href{https://github.com/franburgos/tfg/issues/57}{57}. En la Figura A.8 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/8?closed=1}{\textit{sprint} \#7}. A este \textit{sprint} se dedicaron 28 \textit{story points}, lo que se traduciría a 34 horas reales.
+
+\imagen{sprint7}{\textit{Sprint} \#7.}
+
+\subsection{Sprint \#8 (19/01/2019 - 02/02/2019)}
+
+Durante este \textit{sprint} se trabaja sobre la mejora de pequeños detalles de la aplicación, así como el problema que se comentó en el \textit{sprint \#4} sobre los problemas que se encontraban al ejecutar la aplicación en otro ordenador. Tras una ardua investigación se consiguió disipar la duda y solventar dicho error, pudiendo así testear la aplicación sin problema. En consecuencia a esta investigación se liberaron diferentes \textit{releases} a partir de las cuales se pudieran hacer pruebas. En la Figura A.9 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/9?closed=1}{\textit{sprint} \#8}. A este \textit{sprint} se dedicaron 38 \textit{story points}, lo que se traduciría a 48 horas reales.
+
+\imagen{sprint8}{\textit{Sprint} \#8.}
+
+\subsection{Sprint \#9 (02/02/2019 - 14/02/2019)}
+
+Este \textit{sprint} se ha dedicado en su totalidad a la documentación del proyecto y a preparar los archivos y ejecutables necesarios para concluir el desarrollo del proyecto. En la Figura A.10 se puede observar el avance sobre el \href{https://github.com/FranBurgos/TFG/milestone/10?closed=1}{\textit{sprint} \#9}. A este \textit{sprint} se dedicaron 80 \textit{story points}, lo que se traduciría a 100 horas reales.
+
+\imagen{sprint9}{\textit{Sprint} \#9.}
+
+\subsection{Seguimiento de velocidad}
+
+Gracias a la herramienta ZenHub se puede obtener un gráfico con el que se informa de la velocidad que se ha tenido en cada \textit{sprint} del proyecto, aportándonos una media de trabajo y una imagen global de nuestros avances, como podemos ver en la Figura A.11.
+
+\imagen{velTrack}{Seguimiento de velocidad.}
+
 \section{Estudio de viabilidad}
 
 \subsection{Viabilidad económica}
