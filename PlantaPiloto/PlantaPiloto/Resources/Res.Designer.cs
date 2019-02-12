@@ -736,7 +736,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interfaz Planta Piloto.
+        ///   Looks up a localized string similar to Lab Plant Interface.
         /// </summary>
         public static string MainForm_txt {
             get {
