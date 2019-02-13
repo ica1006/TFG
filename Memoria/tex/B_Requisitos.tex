@@ -65,7 +65,9 @@ Para llevar a cabo esta tarea se han seguido las recomendaciones del estándar I
 
 \section{Especificación de requisitos}
 
-En esta sección se desarrollarán los distintos casos de uso, los cuales cubren los requisitos funcionales presentados en la sección anterior.
+En esta sección se desarrollarán los distintos casos de uso, los cuales cubren los requisitos funcionales presentados en la sección anterior, como se puede ver en la Figura B.1.
+
+\imagen{diagramaCU}{Diagrama Casos de Uso.}
 
 \tablaSinColores{CU-01 Crear proyecto}{l l}{2}{cu01}{\textbf{CU-01} & \textbf{Crear proyecto} \\}{
 \textbf{Autor} & Francisco Crespo Diez \\
@@ -217,29 +219,25 @@ En esta sección se desarrollarán los distintos casos de uso, los cuales cubren
 \textbf{Postcondición} & Se abrirá una nueva ventana en la que \\
  			& aparecen los últimos valores de las \\
  			& variables seleccionadas guardados en BD.\\
- 			& La cantidad de valores mostrados se \\
- 			& puede modificar.\\
 \textbf{Excepciones} & La tabla no tiene valores.\\
 \textbf{Importancia} & Media \\
 }
 
-\tablaSinColores{CU-09 Guardar valores en }{l l}{2}{cu09}{\textbf{CU-09} & \textbf{Mostrar valores}\\}{
+\tablaSinColores{CU-09 Guardar valores en archivo}{l l}{2}{cu09}{\textbf{CU-09} & \textbf{Guardar valores en archivo}\\}{
 \textbf{Autor} & Francisco Crespo Diez \\
-\textbf{Requisitos asociados} & RF-4.2 \\
-\textbf{Descripción} & Permite al usuario ver los valores de las  \\ 
-			& variables seleccionadas en una ventana. \\
+\textbf{Requisitos asociados} & RF-4.3 \\
+\textbf{Descripción} & Permite al usuario guardar los valores de las  \\ 
+			& variables seleccionadas en un archivo de texto. \\
 \textbf{Precondiciones} & Debe haber un proyecto cargado en la\\
 			& aplicación.\\
 			& La comunicación a través del puerto serie debe\\
 			& estar abierta.\\
 \textbf{Acciones} & El usuario selecciona las variables que quiere\\ 
 			& mostrar en la ventana ``Selección de variables"\\
-			& y pulsa el botón ``Mostrar valores". \\
-\textbf{Postcondición} & Se abrirá una nueva ventana en la que \\
- 			& aparecen los últimos valores de las \\
- 			& variables seleccionadas guardados en BD.\\
- 			& La cantidad de valores mostrados se \\
- 			& puede modificar.\\
+			& y pulsa el botón ``Crear archivo". \\
+\textbf{Postcondición} & Se volverá a la ventana principal \\
+ 			& y botón ``Archivo" habrá cambiado a \\
+ 			& ``Detener guardado".\\
 \textbf{Excepciones} & La tabla no tiene valores.\\
 \textbf{Importancia} & Media \\
 }

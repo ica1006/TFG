@@ -2,10 +2,59 @@
 
 \section{Introducción}
 
+A lo largo de este apéndice se resuelven los objetivos y especificaciones expuestos con anterioridad. Se definen los datos que va a utilizar la aplicación, el diseño de interfaces, detalles procedimentales, arquitectura, etc.
+
 \section{Diseño de datos}
+
+La aplicación no cuenta con una entidad fija en la que se guarden los datos, sino que según las variables que contenga el proyecto cargado se crearán los campos correspondientes en la tabla. En la Figura C.1 se puede ver un ejemplo.
+
+\imagen{ejTabla}{Ejemplo construcción de una tabla.}
+
+Lo que se consigue de esta manera es un almacenamiento temporal de los datos transmitidos durante la comunicación, como se indicaba en el documento funcional.
 
 \section{Diseño procedimental}
 
+En este apartado se muestran los detalles más relevantes de la ejecución de la aplicación conectada a la placa NXP FRDM K64F y a SQL Server.
+
+En el diagrama de secuencia que se muestra en la Figura C.2 se puede apreciar las diferentes interaciones entre los distintos objetos que componen la aplicación para la monitorización y guardado de los datos recibidos desde la placa NXP.
+
+\imagen{seqDiag}{Diagrama de secuencia de la aplicación.}
+
 \section{Diseño arquitectónico}
 
+En esta sección se expondrá todo aquello relacionado con el diseño de la arquitectura que sigue la aplicación.
 
+\subsection{Modelo - Vista - Controlador (MVC)}
+
+En la búsqueda de facilitar la escalabilidad de la herramienta se ha optado por utilizar la arquitectura Modelo Vista Controlador o MVC. A través de esta arquitectura se pretende separar la vista con la que interacionará el usuario, con la lógica de la aplicación, como se muestra en la Figura C.3 \cite{web:mvc}.
+
+\imagen{mvc}{Modelo - Vista - Controlador.}
+
+Traducido a este proyecto:
+\begin{itemize}
+	\item El controlador correspondería a la aplicación, la cual se encarga de abrir las comunicaciones e invocar los métodos necesarios.
+	\item La vista correspondería con las ventanas con las que el usuario interactua.
+	\item El modelo correspondería a los datos guardados en la base de datos que se van obteniendo a lo largo del tiempo.
+\end{itemize}
+
+\section{Diseño de paquetes}
+
+A la hora de organizar los archivos que componen la aplicación no se ha seguido la estrategia convencional de paquete por capa (\textit{package by layer approach}), sino que se usó una estrategia de paquete por característica (\textit{package per feature approach}).
+
+En la Figura C.4 se puede apreciar la organización de los archivos según sus distintas funcionalidades. La toma de esta decisión se vio motivada por facilitar la legibilidad y comprensión del proyecto.
+
+\imagen{paqDes}{Diagrama de paquetes.}
+
+\section{Diseño de clases}
+
+Para conseguir la funcionalidad deseada en la aplicación se han construido una serie de clases cuya relación entre ellas puede verse en la Figura C.5.
+
+\begin{itemize}
+	\item \textbf{ExceptionManagement:} clase encargada de controlar las excepciones que acontecen en la ejecución de la aplicación y guardarlas en un archivo de log.
+	\item \textbf{FileSaver:} clase que contiene el método para crear la cabecera de un archivo de texto en el que se guarde tanto el proyecto como los valores de las variables seleccionadas.
+	\item \textbf{Program:} clase que arranca la ejecución del programa.
+	\item \textbf{Proyect:} clase que define las propiedades que va a tener un proyecto.
+	\item \textbf{Variable:} clase que define las propiedades que va a tener una variable.
+\end{itemize}
+
+\imagen{classDes}{Diagrama de clases.}
