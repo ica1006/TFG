@@ -33,7 +33,7 @@ En esta sección se explicará el contenido del proyecto de una manera en la que
 A continuación se expondrán el \textit{software} necesario con los enlaces para su descarga:
 \begin{itemize}
 	\item \href{https://www.microsoft.com/es-es/download/details.aspx?id=49982}{.NET Framework 4.6.1.} Será necesario para tener todas las librerías necesarias para la ejecución de la aplicación. Si la versión es superior también valdría.
-	\item \href{https://www.microsoft.com/es-es/sql-server/sql-server-downloads}{SQL Server 17.} Será utilizado para guardar los datos durante la ejecución de la aplicación. Es importante configurar el nombre de la conexión como \textit{``localhost$\slash$sqlexpress"}, sino habría que cambiar las cadenas de conexión dentro de la clase DB$\_$services.
+	\item \href{https://www.microsoft.com/es-es/sql-server/sql-server-downloads}{SQL Server 17.} Será utilizado para guardar los datos durante la ejecución de la aplicación. Es importante configurar el nombre de la conexión como \textit{``localhost$\slash$sqlexpress''}, sino habría que cambiar las cadenas de conexión dentro de la clase DB$\_$services.
 	\item \href{https://git-scm.com/downloads}{Git.} Será necesario para la descarga de la última versión del proyecto.
 	\item \href{https://visualstudio.microsoft.com/es/downloads/}{Visual Studio 2017.} Es el IDE recomendado para trabajar con el proyecto.
 \end{itemize}
@@ -58,13 +58,29 @@ Y en tercer lugar, desde el IDE de Visual Studio, en la ventana de Team Explorer
 
 Se ruega que se cree a través de Git una nueva rama para los cambios que se quieran llevar a cabo sobre el proyecto.
 
+\section{Formato de los archivos creados desde la aplicación}
+
+Durante el uso de la aplicación se pueden crear dos tipos de archivos.
+
+\subsection{Archivo con la configuración de un proyecto}
+
+Al crear una nueva configuración, la aplicación crea un archivo de texto con esa configuración. Dicho archivo muestra el formato que se puede ver en la Figura D.3.
+
+\imagen{fileProyectFormat}{Formato del archivo con la configuración del proyecto.}
+
+\subsection{Archivo con los valores de variables guardados}
+
+En el caso de que el usuario quiera almacenar los datos recibidos en un archivo de texto, la aplicación permite hacerlo a través del botón ``Archivo''. Dicho archivo muestra el formato que se puede ver en la Figura D.4.
+
+\imagen{fileValuesFormat}{Formato del archivo que guarda los valores de las variables.}
+
 \section{Compilación, instalación y ejecución del proyecto}
 
-Una vez que se tenga cargado el proyecto en Visual Studio 2017 la compilación y ejecución del proyecto se realizará a través del botón ``Start" que se muestra en la Figura D.3.
+Una vez que se tenga cargado el proyecto en Visual Studio 2017 la compilación y ejecución del proyecto se realizará a través del botón ``Start'' que se muestra en la Figura D.5.
 
 \imagen{vsStart}{Botón de inicio de la compilación del proyecto.}
 
-En el caso de que se quiera descargar la última versión de la aplicación para ejecutarla, se deberá ir al apartado de ``Release" en el repositorio \href{https://github.com/FranBurgos/TFG/releases}{GitHub} y descargar la más reciente. Al descomprimir los archivos descargados se tendrá lo suficiente para ejecutar la aplicación.
+En el caso de que se quiera descargar la última versión de la aplicación para ejecutarla, se deberá ir al apartado de ``Release'' en el repositorio \href{https://github.com/FranBurgos/TFG/releases}{GitHub} y descargar la más reciente. Al descomprimir los archivos descargados se tendrá lo suficiente para ejecutar la aplicación.
 
 \section{Pruebas del sistema}
 

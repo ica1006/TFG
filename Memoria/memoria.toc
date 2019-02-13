@@ -92,4 +92,5 @@
 \contentsline {subsection}{Variables PID}{51}{section*.55}% 
 \contentsline {subsection}{Estilos}{51}{section*.56}% 
 \contentsline {subsection}{Mejoras en las opciones de configuraci\IeC {\'o}n}{51}{section*.57}% 
-\contentsline {chapter}{Bibliograf\'{\i }a}{53}{chapter*.58}% 
+\contentsline {subsection}{Instalador personalizado}{51}{section*.58}% 
+\contentsline {chapter}{Bibliograf\'{\i }a}{53}{chapter*.59}% 
