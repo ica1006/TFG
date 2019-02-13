@@ -2,10 +2,72 @@
 
 \section{Introducción}
 
+En este apéndice se describirá toda aquella documentación técnica relacionada con la programación de la aplicación, incluyendo la estructura de directorios, la instalación en el entorno de desarrollo y un manual para el programador.
+
 \section{Estructura de directorios}
+
+El contenido del repositorio del proyecto es el siguiente:
+
+\begin{itemize}
+	\item \texttt{$\slash$:} es el directorio raíz, contiene el archivo de licencia, el archivo README.md, el archivo que ha ido guardando un resumen de las reuniones que se han tenido con los tutores y el archivo de dudas en el que se anotaban las dudas para preguntar a los tutores.
+	\item \texttt{$\slash$Memoria:} este directorio contiene todo lo referente a la documentación que está leyendo. Todos los archivos \LaTeX, imágenes, etc. están aquí recogidos.
+	\item \texttt{$\slash$PlantaPiloto:} es el directorio que recoge la aplicación. Dentro está el archivo .sln (solución del proyecto) y la carpeta con todos los archivos.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto:} contiene todas las carpetas en las que el proyecto está dividido.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$ApplicationData:} directorio que contiene todos los archivos necesarios durante la ejecución de la aplicación, como por ejemplo el archivo de log o el manual de usuario.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Classes:} contiene las clases explicadas en el apéndice C-Diseño de clases.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Enums:} contiene los enumerables que van a ser usados por la aplicación.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Forms:} contiene todos los formularios que aparecen en la aplicación.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Properties:} contiene las propiedades del proyecto.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Resources:} contiene las fuentes del proyecto (diferentes idiomas).
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$Services:} contiene los servicios que actúan contra la base de datos y contra la comunicación por el puerto serie.
+	\item \texttt{$\slash$PlantaPiloto$\slash$PlantaPiloto$\slash$images:} directorio que contiene las imágenes que se utilizan en la aplicación.
+	
+\end{itemize}
 
 \section{Manual del programador}
 
+En esta sección se explicará el contenido del proyecto de una manera en la que el lector sea un programador que quiera trabajar sobre la aplicación.
+
+\subsection{Entorno de desarrollo}
+
+A continuación se expondrán el \textit{software} necesario con los enlaces para su descarga:
+\begin{itemize}
+	\item \href{https://www.microsoft.com/es-es/download/details.aspx?id=49982}{.NET Framework 4.6.1.} Será necesario para tener todas las librerías necesarias para la ejecución de la aplicación. Si la versión es superior también valdría.
+	\item \href{https://www.microsoft.com/es-es/sql-server/sql-server-downloads}{SQL Server 17.} Será utilizado para guardar los datos durante la ejecución de la aplicación. Es importante configurar el nombre de la conexión como \textit{``localhost$\slash$sqlexpress"}, sino habría que cambiar las cadenas de conexión dentro de la clase DB$\_$services.
+	\item \href{https://git-scm.com/downloads}{Git.} Será necesario para la descarga de la última versión del proyecto.
+	\item \href{https://visualstudio.microsoft.com/es/downloads/}{Visual Studio 2017.} Es el IDE recomendado para trabajar con el proyecto.
+\end{itemize}
+
+\subsection{Descarga del código fuente}
+
+Para descargar el código fuente se disponen de varios métodos. El primero de ellos desde Git Bash:
+\begin{enumerate}
+	\item Abrir Git Bash.
+	\item Desplazarse al directorio donde se desee copiar el repositorio con el comando \texttt{cd}.
+	\item Clonar el repositorio con el comando:\\ \texttt{git clone https:$\slash\slash$github.com$\slash$FranBurgos$\slash$TFG.git}
+\end{enumerate}
+El segundo es directamente desde GitHub donde se aloja el repositorio como se muestra en la Figura D.1.
+
+\imagen{getGitHub}{Descarga de repositorio desde GitHub.}
+
+Esto nos cargaría directamente el proyecto en Visual Studio y crearía los directorios necesarios una vez elijamos el destino del proyecto.
+
+Y en tercer lugar, desde el IDE de Visual Studio, en la ventana de Team Explorer podemos clonar directamente el repositorio indicando el directorio donde queremos que se descargue el proyecto, como se muestra en la imagen D.2.
+
+\imagen{getVS}{Descarga de repositorio desde Visual Studio 2017.}
+
+Se ruega que se cree a través de Git una nueva rama para los cambios que se quieran llevar a cabo sobre el proyecto.
+
 \section{Compilación, instalación y ejecución del proyecto}
 
+Una vez que se tenga cargado el proyecto en Visual Studio 2017 la compilación y ejecución del proyecto se realizará a través del botón ``Start" que se muestra en la Figura D.3.
+
+\imagen{vsStart}{Botón de inicio de la compilación del proyecto.}
+
+En el caso de que se quiera descargar la última versión de la aplicación para ejecutarla, se deberá ir al apartado de ``Release" en el repositorio \href{https://github.com/FranBurgos/TFG/releases}{GitHub} y descargar la más reciente. Al descomprimir los archivos descargados se tendrá lo suficiente para ejecutar la aplicación.
+
 \section{Pruebas del sistema}
+
+Las pruebas sobre la aplicación se han realizado de manera manual por lo que futuros desarrolladores deberán seguir este método o incluir algún otro más eficiente.
+
+En cuanto a las pruebas sobre el código y su calidad, se utiliza la herramienta Codacy, la cual en cada \textit{commit} comprueba el estado del proyecto.
