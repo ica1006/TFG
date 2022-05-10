@@ -24,6 +24,8 @@ namespace PlantaPiloto
 
         private CultureInfo _cul;
 
+        private Boolean dbExiste = false;
+
         public CultureInfo Cul
         {
             get { return _cul; }
@@ -46,94 +48,26 @@ namespace PlantaPiloto
         #region Methods
 
         /// <summary>
-        /// Método que crea una Base de Datos en SQL Server
-        /// </summary>
-        public void CreateDB()
-        {
-            //Comprobar si la DB existe
-            bool dbExists = false;
-            SqlConnection tmpConn = new SqlConnection("Server=localhost\\sqlexpress;Integrated security=SSPI;database=master");
-            string sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", GlobalParameters.DBName);
-            using (tmpConn)
-            {
-                using (SqlCommand sqlCmd = new SqlCommand(sqlCreateDBQuery, tmpConn))
-                {
-                    tmpConn.Open();
-                    object resultObj = sqlCmd.ExecuteScalar();
-                    int databaseID = 0;
-                    if (resultObj != null)
-                        int.TryParse(resultObj.ToString(), out databaseID);                    
-                    tmpConn.Close();
-                    dbExists = (databaseID > 0);
-                }
-            }
-            //Si la DB no existe se crea
-            if (!dbExists)
-            {
-                String str;
-                string mdfFile = Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + ".mdf");
-                string logFile = Path.Combine(GlobalParameters.DBPath, "" + GlobalParameters.DBName + "_Log.ldf");
-                SqlConnection myConn = new SqlConnection(@"Server = localhost\sqlexpress; Integrated Security = True");
-                str = "CREATE DATABASE " + GlobalParameters.DBName + " ON PRIMARY " +
-                    "(NAME = " + GlobalParameters.DBName + ", " +
-                    "FILENAME = '" + mdfFile + "'," +
-                    "SIZE = 16MB, MAXSIZE = 20MB, FILEGROWTH = 10%) " +
-                    "LOG ON (NAME = " + GlobalParameters.DBName + "_Log, " +
-                    "FILENAME = '" + logFile + "', " +
-                    "SIZE = 4MB, " +
-                    "MAXSIZE = 20MB, " +
-                    "FILEGROWTH = 10%)";
-                using (SqlCommand myCommand = new SqlCommand(str, myConn))
-                {
-                    try
-                    {
-                        myConn.Open();
-                        //Crear directorio y asignar permisos para poder crear archivos
-                        if (!Directory.Exists(GlobalParameters.DBPath))
-                            Directory.CreateDirectory(GlobalParameters.DBPath);
-                        if (File.Exists(mdfFile))
-                            File.Delete(mdfFile);
-                        if (File.Exists(logFile))
-                            File.Delete(logFile);
-                        DirectorySecurity ds = Directory.GetAccessControl(GlobalParameters.DBPath);
-                        ds.AddAccessRule(new FileSystemAccessRule(GlobalParameters.DBCreationUser, FileSystemRights.FullControl, AccessControlType.Allow));
-                        Directory.SetAccessControl(GlobalParameters.DBPath, ds);
-                        //Ejecutar sentencia SQL
-                        myCommand.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        _exMg.HandleException(ex);
-                    }
-                    finally
-                    {
-                        if (myConn.State == ConnectionState.Open)
-                        {
-                            myConn.Close();
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Método que crea la tabla donde se van a guardar los datos a partir de las variables del proyecto
         /// </summary>
         /// <param name="pr">Proyecto del que toma los datos</param>
         public void CreateTableDB(Proyect proyect)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            //using (SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Iván\Documents\TFG-PlantaPiloto.mdf; Integrated Security = True"))
             {
                 try
                 {
                     // Open the SqlConnection.
+                    //con.Close();
                     con.Open();
 
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("DROP TABLE dbo." + proyect.Name, con))
                             command.ExecuteNonQuery();
 
-                    // Create table string
+                    // Create table string (cambiado - doble id)
                     StringBuilder sqlStr = new StringBuilder("CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [nvarchar](20) NOT NULL");
                     foreach (Variable v in proyect.Variables)
                     {
@@ -148,10 +82,12 @@ namespace PlantaPiloto
                     // The following code uses an SqlCommand based on the SqlConnection.
                     using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         command.ExecuteNonQuery();
+                    this.dbExiste = true;
                 }
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método CreateTableDB()" + ex.Message + ex.StackTrace);
                 }
                 finally
                 {
@@ -168,7 +104,8 @@ namespace PlantaPiloto
         public string GetLastRowValue(Proyect proyect, List<string> vars)
         {
             StringBuilder row = new StringBuilder("");
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
             {
                 try
                 {
@@ -176,7 +113,8 @@ namespace PlantaPiloto
                     con.Open();
                     StringBuilder sqlStr = new StringBuilder("SELECT TOP 1 [Time]");
                     vars.ForEach(f => sqlStr.Append(",[" + f + "]"));
-                    sqlStr.Append(" FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ");
+                    //sqlStr.Append(" FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ");
+                    sqlStr.Append(" FROM " + proyect.Name + " ORDER BY [Id] DESC ");
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         {
@@ -192,6 +130,7 @@ namespace PlantaPiloto
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método GetLastRowValue()" + ex.Message + ex.StackTrace);
                     return row.ToString();
                 }
                 finally
@@ -207,7 +146,8 @@ namespace PlantaPiloto
         /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
         public void SaveRow(Proyect proyect, float time)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
             {
                 try
                 {
@@ -215,7 +155,7 @@ namespace PlantaPiloto
                     con.Open();
 
                     // Cadena para insertar una nueva fila
-                    StringBuilder insertCmd = new StringBuilder("INSERT INTO [dbo].[" + proyect.Name + "]([Time]");
+                    StringBuilder insertCmd = new StringBuilder("INSERT INTO " + proyect.Name + "([Time]");
                     foreach (Variable v in proyect.Variables)
                         insertCmd.Append(",[" + v.Name + "]");
                     insertCmd.Append(") VALUES ('" + time + "'");
@@ -234,6 +174,7 @@ namespace PlantaPiloto
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método SaveRow()" + ex.Message + ex.StackTrace);
                 }
                 finally
                 {
@@ -251,7 +192,8 @@ namespace PlantaPiloto
         /// <returns></returns>
         public List<Variable> GetVarValue(Proyect proyect, Variable var, int amount)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
             {
                 List<Variable> result = new List<Variable>();
                 try
@@ -261,7 +203,7 @@ namespace PlantaPiloto
 
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + "[" + var.Name + "] " +
-                            "FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                            "FROM " + proyect.Name + " ORDER BY ID DESC ", con))
                         {
                             SqlDataReader varDataReader = command.ExecuteReader();
                             while (varDataReader.Read())
@@ -282,6 +224,7 @@ namespace PlantaPiloto
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método GetVarValue()" + ex.Message + ex.StackTrace);
                     return result;
                 }
                 finally
@@ -300,7 +243,8 @@ namespace PlantaPiloto
         /// <returns></returns>
         public List<float> GetTime(Proyect proyect, int amount)
         {
-            using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
             {
                 List<float> result = new List<float>();
                 try
@@ -310,7 +254,7 @@ namespace PlantaPiloto
 
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand("SELECT TOP " + amount + "[Time] " +
-                            "FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ", con))
+                            "FROM " + proyect.Name + " ORDER BY [Id] DESC ", con))
                         {
                             SqlDataReader columnsDataReader = command.ExecuteReader();
                             while (columnsDataReader.Read())
@@ -321,6 +265,7 @@ namespace PlantaPiloto
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método GetTime()" + ex.Message + ex.StackTrace);
                     return result;
                 }
                 finally
@@ -339,21 +284,31 @@ namespace PlantaPiloto
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+                //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
+                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
                 {
                     con.Open();
 
-                    string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + GlobalParameters.DBName + "'" +
-                           " AND TABLE_NAME = '" + proyect.Name + "'";
+                    /* string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + GlobalParameters.DBName + "'" +
+                            " AND TABLE_NAME = '" + proyect.Name + "'";*/
+
+                    string sCmd = "SELECT [Id] FROM " + proyect.Name;
 
                     SqlCommand cmd = new SqlCommand(sCmd, con);
-
-                    return ((int)cmd.ExecuteScalar() == 1);
+                    cmd.ExecuteScalar();
+                    return true;
+                    //return ((int)cmd.ExecuteScalar() == 1);
                 }
+            }
+            catch (SqlException)
+            {
+                // No existe la base de datos
+                return false;
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                MessageBox.Show("Excepcion en el método CheckDBExists()" + ex.Message + ex.StackTrace + ex.GetType().FullName);
                 return false;
             }
         }

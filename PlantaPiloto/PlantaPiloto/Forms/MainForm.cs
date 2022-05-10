@@ -16,6 +16,7 @@ using System.Threading;
 using System.Timers;
 using System.Diagnostics;
 using PlantaPiloto.Classes;
+using PlantaPiloto.Forms;
 
 namespace PlantaPiloto
 {
@@ -187,7 +188,7 @@ namespace PlantaPiloto
                 if (_proyect.Name != null)
                 {
                     //Creamos la BD y la tabla en la BD para el proyecto
-                    _db_services.CreateDB();
+                    //_db_services.CreateDB();
                     _db_services.CreateTableDB(_proyect);
 
                     //Mostramos datos
@@ -711,6 +712,17 @@ namespace PlantaPiloto
         {
             AboutForm _aboutForm = new AboutForm(_cul);
             _aboutForm.Show();
+        }
+
+        /// <summary>
+        /// Evento que recoge el clic sobre el elemento del menú "DB2"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripMenuItemDB2_Click(object sender, EventArgs e)
+        {
+            DataForm _dataform = new DataForm();
+            _dataform.Show();
         }
 
         /// <summary>
