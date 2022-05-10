@@ -240,5 +240,45 @@ namespace PlantaPiloto
 
         #endregion
 
+        public SerialPort getOpened(List<SerialPort> candidates, float time)
+        {
+            try
+            {
+                DateTime first = DateTime.Now;
+                double diference;
+
+                while (true)
+                {
+                    foreach(SerialPort i in candidates)
+                    {
+                        i.Open();
+                        i.ReadTimeout = 100;
+                        string read = i.ReadExisting();
+                    
+                        if (read != null && read != "")
+                        {
+                            i.Close();
+                            return i;
+                        }
+                        i.Close();
+                    }
+
+                    diference = (DateTime.Now - first).TotalSeconds;
+
+                    if (diference >= time)
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+                return null;
+            }
+            
+        }
+
+
     }
 }

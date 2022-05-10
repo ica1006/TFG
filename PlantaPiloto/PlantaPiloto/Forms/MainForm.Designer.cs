@@ -41,6 +41,9 @@ namespace PlantaPiloto
             this.toolStripMenuItemCreateConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLoadConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemModifyConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSerie = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSpanish = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +59,7 @@ namespace PlantaPiloto
             this.btnFinish = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.gBoxProyect = new System.Windows.Forms.GroupBox();
+            this.btnSearchPort = new System.Windows.Forms.Button();
             this.lblRWVariables = new System.Windows.Forms.Label();
             this.dgvProVars = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,9 +71,6 @@ namespace PlantaPiloto
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripMenuItemSerie = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemOthers = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
@@ -148,6 +149,27 @@ namespace PlantaPiloto
             this.toolStripMenuItemModifyConfig.Text = "Modificar configuración";
             this.toolStripMenuItemModifyConfig.Click += new System.EventHandler(this.toolStripMenuItemModifyConfig_Click);
             // 
+            // toolStripMenuItemCommunication
+            // 
+            this.toolStripMenuItemCommunication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSerie,
+            this.toolStripMenuItemOthers});
+            this.toolStripMenuItemCommunication.Name = "toolStripMenuItemCommunication";
+            this.toolStripMenuItemCommunication.Size = new System.Drawing.Size(108, 22);
+            this.toolStripMenuItemCommunication.Text = "Comunicaciones";
+            // 
+            // toolStripMenuItemSerie
+            // 
+            this.toolStripMenuItemSerie.Name = "toolStripMenuItemSerie";
+            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItemSerie.Text = "Serie";
+            // 
+            // toolStripMenuItemOthers
+            // 
+            this.toolStripMenuItemOthers.Name = "toolStripMenuItemOthers";
+            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItemOthers.Text = "Otros";
+            // 
             // toolStripMenuItemLanguage
             // 
             this.toolStripMenuItemLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -160,14 +182,14 @@ namespace PlantaPiloto
             // toolStripMenuItemEnglish
             // 
             this.toolStripMenuItemEnglish.Name = "toolStripMenuItemEnglish";
-            this.toolStripMenuItemEnglish.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemEnglish.Size = new System.Drawing.Size(115, 22);
             this.toolStripMenuItemEnglish.Text = "English";
             this.toolStripMenuItemEnglish.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // toolStripMenuItemSpanish
             // 
             this.toolStripMenuItemSpanish.Name = "toolStripMenuItemSpanish";
-            this.toolStripMenuItemSpanish.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemSpanish.Size = new System.Drawing.Size(115, 22);
             this.toolStripMenuItemSpanish.Text = "Español";
             this.toolStripMenuItemSpanish.Click += new System.EventHandler(this.toolStripMenuItemSpanish_Click);
             // 
@@ -291,6 +313,7 @@ namespace PlantaPiloto
             // 
             // gBoxProyect
             // 
+            this.gBoxProyect.Controls.Add(this.btnSearchPort);
             this.gBoxProyect.Controls.Add(this.lblRWVariables);
             this.gBoxProyect.Controls.Add(this.dgvProVars);
             this.gBoxProyect.Controls.Add(this.pbProImg);
@@ -304,6 +327,16 @@ namespace PlantaPiloto
             this.gBoxProyect.TabIndex = 20;
             this.gBoxProyect.TabStop = false;
             this.gBoxProyect.Text = "groupBox2";
+            // 
+            // btnSearchPort
+            // 
+            this.btnSearchPort.Location = new System.Drawing.Point(13, 93);
+            this.btnSearchPort.Name = "btnSearchPort";
+            this.btnSearchPort.Size = new System.Drawing.Size(94, 23);
+            this.btnSearchPort.TabIndex = 23;
+            this.btnSearchPort.Text = "Buscar Puerto";
+            this.btnSearchPort.UseVisualStyleBackColor = true;
+            this.btnSearchPort.Click += new System.EventHandler(this.btnSearchPort_Click);
             // 
             // lblRWVariables
             // 
@@ -379,27 +412,6 @@ namespace PlantaPiloto
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // toolStripMenuItemSerie
-            // 
-            this.toolStripMenuItemSerie.Name = "toolStripMenuItemSerie";
-            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemSerie.Text = "Serie";
-            // 
-            // toolStripMenuItemOthers
-            // 
-            this.toolStripMenuItemOthers.Name = "toolStripMenuItemOthers";
-            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemOthers.Text = "Otros";
-            // 
-            // toolStripMenuItemCommunication
-            // 
-            this.toolStripMenuItemCommunication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSerie,
-            this.toolStripMenuItemOthers});
-            this.toolStripMenuItemCommunication.Name = "toolStripMenuItemCommunication";
-            this.toolStripMenuItemCommunication.Size = new System.Drawing.Size(108, 22);
-            this.toolStripMenuItemCommunication.Text = "Comunicaciones";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,6 +482,7 @@ namespace PlantaPiloto
         private ToolStripMenuItem toolStripMenuItemCommunication;
         private ToolStripMenuItem toolStripMenuItemSerie;
         private ToolStripMenuItem toolStripMenuItemOthers;
+        private Button btnSearchPort;
     }
 }
 

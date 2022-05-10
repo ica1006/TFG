@@ -790,6 +790,7 @@ namespace PlantaPiloto
                 _threadSaveRow.Start();
                 this.ViewConnectionOpen();
                 this._timerRefreshDataGrid.Enabled = true;
+                this.btnSearchPort.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -808,6 +809,7 @@ namespace PlantaPiloto
             try
             {
                 CloseSP_services();
+                this.btnSearchPort.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -836,5 +838,36 @@ namespace PlantaPiloto
         }
 
         #endregion
+
+        private void btnSearchPort_Click(object sender, EventArgs e)
+        {
+            _sp_services = new SP_services(_proyect, _cul);
+            List<SerialPort> ports = new List<SerialPort>();
+            SerialPort port;
+            this.btnSearchPort.Text = "Buscando...";
+            this.btnSearchPort.Enabled = false;
+
+            foreach(string s in _sp_services.Ports)
+            {
+                SerialPort p = new SerialPort();
+                p.PortName = s;
+                ports.Add(p);
+            }
+
+            port = _sp_services.getOpened(ports, 20);
+
+            if (port == null)
+            {
+                MessageBox.Show("No se ha encontrado ningun puerto abierto");
+            }
+            else
+            {
+                cboPort.Text = port.PortName;
+                MessageBox.Show("El puerto abierto es el " + port.PortName);
+            }
+
+            this.btnSearchPort.Text = "Buscar Puerto";
+            this.btnSearchPort.Enabled = true;
+        }
     }
 }
