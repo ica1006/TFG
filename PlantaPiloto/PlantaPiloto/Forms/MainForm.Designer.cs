@@ -41,9 +41,6 @@ namespace PlantaPiloto
             this.toolStripMenuItemCreateConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLoadConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemModifyConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemSerie = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemOthers = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSpanish = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +67,9 @@ namespace PlantaPiloto
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dB2ToolStripMenuItemDB2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSerie = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
@@ -94,7 +93,7 @@ namespace PlantaPiloto
             this.cboPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPort.FormattingEnabled = true;
             this.cboPort.Location = new System.Drawing.Point(56, 27);
-            this.cboPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(2);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(82, 21);
             this.cboPort.TabIndex = 1;
@@ -148,28 +147,6 @@ namespace PlantaPiloto
             this.toolStripMenuItemModifyConfig.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItemModifyConfig.Text = "Modificar configuración";
             this.toolStripMenuItemModifyConfig.Click += new System.EventHandler(this.toolStripMenuItemModifyConfig_Click);
-            // 
-            // toolStripMenuItemCommunication
-            // 
-            this.toolStripMenuItemCommunication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSerie,
-            this.toolStripMenuItemOthers,
-            this.dB2ToolStripMenuItemDB2});
-            this.toolStripMenuItemCommunication.Name = "toolStripMenuItemCommunication";
-            this.toolStripMenuItemCommunication.Size = new System.Drawing.Size(108, 22);
-            this.toolStripMenuItemCommunication.Text = "Comunicaciones";
-            // 
-            // toolStripMenuItemSerie
-            // 
-            this.toolStripMenuItemSerie.Name = "toolStripMenuItemSerie";
-            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemSerie.Text = "Serie";
-            // 
-            // toolStripMenuItemOthers
-            // 
-            this.toolStripMenuItemOthers.Name = "toolStripMenuItemOthers";
-            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemOthers.Text = "Otros";
             // 
             // toolStripMenuItemLanguage
             // 
@@ -236,9 +213,9 @@ namespace PlantaPiloto
             this.gBoxControls.Controls.Add(this.cboPort);
             this.gBoxControls.Controls.Add(this.lblPorts);
             this.gBoxControls.Location = new System.Drawing.Point(8, 33);
-            this.gBoxControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxControls.Margin = new System.Windows.Forms.Padding(2);
             this.gBoxControls.Name = "gBoxControls";
-            this.gBoxControls.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxControls.Padding = new System.Windows.Forms.Padding(2);
             this.gBoxControls.Size = new System.Drawing.Size(601, 65);
             this.gBoxControls.TabIndex = 19;
             this.gBoxControls.TabStop = false;
@@ -248,7 +225,7 @@ namespace PlantaPiloto
             // 
             this.btnRefreshPorts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefreshPorts.Location = new System.Drawing.Point(144, 26);
-            this.btnRefreshPorts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRefreshPorts.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefreshPorts.Name = "btnRefreshPorts";
             this.btnRefreshPorts.Size = new System.Drawing.Size(63, 24);
             this.btnRefreshPorts.TabIndex = 22;
@@ -260,7 +237,7 @@ namespace PlantaPiloto
             // btnFile
             // 
             this.btnFile.Location = new System.Drawing.Point(471, 26);
-            this.btnFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFile.Margin = new System.Windows.Forms.Padding(2);
             this.btnFile.Name = "btnFile";
             this.btnFile.Size = new System.Drawing.Size(112, 24);
             this.btnFile.TabIndex = 21;
@@ -271,7 +248,7 @@ namespace PlantaPiloto
             // btnVar
             // 
             this.btnVar.Location = new System.Drawing.Point(402, 26);
-            this.btnVar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVar.Margin = new System.Windows.Forms.Padding(2);
             this.btnVar.Name = "btnVar";
             this.btnVar.Size = new System.Drawing.Size(65, 24);
             this.btnVar.TabIndex = 20;
@@ -282,7 +259,7 @@ namespace PlantaPiloto
             // btnChart
             // 
             this.btnChart.Location = new System.Drawing.Point(348, 26);
-            this.btnChart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChart.Margin = new System.Windows.Forms.Padding(2);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(51, 24);
             this.btnChart.TabIndex = 19;
@@ -293,7 +270,7 @@ namespace PlantaPiloto
             // btnFinish
             // 
             this.btnFinish.Location = new System.Drawing.Point(277, 26);
-            this.btnFinish.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(2);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(51, 24);
             this.btnFinish.TabIndex = 18;
@@ -304,7 +281,7 @@ namespace PlantaPiloto
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(222, 26);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(51, 24);
             this.btnStart.TabIndex = 17;
@@ -320,9 +297,9 @@ namespace PlantaPiloto
             this.gBoxProyect.Controls.Add(this.lblProDesc);
             this.gBoxProyect.Controls.Add(this.lblProName);
             this.gBoxProyect.Location = new System.Drawing.Point(8, 102);
-            this.gBoxProyect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxProyect.Margin = new System.Windows.Forms.Padding(2);
             this.gBoxProyect.Name = "gBoxProyect";
-            this.gBoxProyect.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gBoxProyect.Padding = new System.Windows.Forms.Padding(2);
             this.gBoxProyect.Size = new System.Drawing.Size(601, 327);
             this.gBoxProyect.TabIndex = 20;
             this.gBoxProyect.TabStop = false;
@@ -349,7 +326,7 @@ namespace PlantaPiloto
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.dgvProVars.Location = new System.Drawing.Point(222, 41);
-            this.dgvProVars.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvProVars.Margin = new System.Windows.Forms.Padding(2);
             this.dgvProVars.Name = "dgvProVars";
             this.dgvProVars.RowTemplate.Height = 28;
             this.dgvProVars.Size = new System.Drawing.Size(361, 273);
@@ -372,7 +349,7 @@ namespace PlantaPiloto
             // 
             this.pbProImg.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbProImg.InitialImage")));
             this.pbProImg.Location = new System.Drawing.Point(13, 132);
-            this.pbProImg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbProImg.Margin = new System.Windows.Forms.Padding(2);
             this.pbProImg.Name = "pbProImg";
             this.pbProImg.Size = new System.Drawing.Size(191, 182);
             this.pbProImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -402,12 +379,26 @@ namespace PlantaPiloto
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // dB2ToolStripMenuItemDB2
+            // toolStripMenuItemSerie
             // 
-            this.dB2ToolStripMenuItemDB2.Name = "dB2ToolStripMenuItemDB2";
-            this.dB2ToolStripMenuItemDB2.Size = new System.Drawing.Size(180, 22);
-            this.dB2ToolStripMenuItemDB2.Text = "DB2";
-            this.dB2ToolStripMenuItemDB2.Click += new System.EventHandler(this.toolStripMenuItemDB2_Click);
+            this.toolStripMenuItemSerie.Name = "toolStripMenuItemSerie";
+            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemSerie.Text = "Serie";
+            // 
+            // toolStripMenuItemOthers
+            // 
+            this.toolStripMenuItemOthers.Name = "toolStripMenuItemOthers";
+            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemOthers.Text = "Otros";
+            // 
+            // toolStripMenuItemCommunication
+            // 
+            this.toolStripMenuItemCommunication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSerie,
+            this.toolStripMenuItemOthers});
+            this.toolStripMenuItemCommunication.Name = "toolStripMenuItemCommunication";
+            this.toolStripMenuItemCommunication.Size = new System.Drawing.Size(108, 22);
+            this.toolStripMenuItemCommunication.Text = "Comunicaciones";
             // 
             // MainForm
             // 
@@ -419,7 +410,7 @@ namespace PlantaPiloto
             this.Controls.Add(this.gBoxControls);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Interfaz Planta Piloto";
@@ -449,9 +440,6 @@ namespace PlantaPiloto
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLoadConfig;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemModifyConfig;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCommunication;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSerie;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOthers;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem userManualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHelpHelp;
@@ -479,7 +467,9 @@ namespace PlantaPiloto
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private ToolStripMenuItem dB2ToolStripMenuItemDB2;
+        private ToolStripMenuItem toolStripMenuItemCommunication;
+        private ToolStripMenuItem toolStripMenuItemSerie;
+        private ToolStripMenuItem toolStripMenuItemOthers;
     }
 }
 

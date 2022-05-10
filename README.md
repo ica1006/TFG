@@ -4,7 +4,8 @@
 
 Trabajo de Fin de Grado - Desarrollo de una interfaz para planta piloto
 ## Autor
-Francisco Crespo Diez
+Iván Cortés Aliende (2021-2022)
+Francisco Crespo Diez (2018-2019)
 ## Universidad
 Universidad de Burgos - España
 ## Tutor por la Universidad de Burgos

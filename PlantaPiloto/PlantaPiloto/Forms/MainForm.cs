@@ -715,17 +715,6 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Evento que recoge el clic sobre el elemento del menú "DB2"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void toolStripMenuItemDB2_Click(object sender, EventArgs e)
-        {
-            DataForm _dataform = new DataForm();
-            _dataform.Show();
-        }
-
-        /// <summary>
         /// Evento que atiende al botón de gráfica. Abre una ventana donde se seleccionan las variables a mostrar en gráficas
         /// </summary>
         /// <param name="sender"></param>
