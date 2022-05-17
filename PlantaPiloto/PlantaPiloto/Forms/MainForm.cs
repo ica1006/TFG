@@ -46,6 +46,8 @@ namespace PlantaPiloto
         readonly string _configsPath;
         private string _saveFilePath;
 
+        public static MainForm instance;
+
         #endregion
 
         #region Constructor
@@ -76,6 +78,7 @@ namespace PlantaPiloto
             _pdfPath = Path.Combine(_filesPath, "Manual_Usuario.pdf");
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
+            instance = this;
         }
 
         #endregion
@@ -841,6 +844,7 @@ namespace PlantaPiloto
 
         private void btnSearchPort_Click(object sender, EventArgs e)
         {
+            this.btnRefreshPorts_Click(sender, e);
             _sp_services = new SP_services(_proyect, _cul);
             List<SerialPort> ports = new List<SerialPort>();
             SerialPort port;
@@ -868,6 +872,22 @@ namespace PlantaPiloto
 
             this.btnSearchPort.Text = "Buscar Puerto";
             this.btnSearchPort.Enabled = true;
+        }
+
+        private void webServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        public Proyect getProyect()
+        {
+            return this._proyect;
+        }
+
+        private void btnConStrin_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(_db_services.getConnectionString());
+            MessageBox.Show("Contenido compiado al portapapeles");
         }
     }
 }

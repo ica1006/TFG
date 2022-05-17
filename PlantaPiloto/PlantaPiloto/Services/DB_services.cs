@@ -24,7 +24,7 @@ namespace PlantaPiloto
 
         private CultureInfo _cul;
 
-        private Boolean dbExiste = false;
+        private String _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True";
 
         public CultureInfo Cul
         {
@@ -43,6 +43,13 @@ namespace PlantaPiloto
             _cul = cul;
             _exMg = new ExceptionManagement(_cul);
         }
+
+        public DB_services(CultureInfo cul, String connectionString)
+        {
+            _cul = cul;
+            _exMg = new ExceptionManagement(_cul);
+            _connectionString = connectionString;
+        }
         #endregion
 
         #region Methods
@@ -54,7 +61,7 @@ namespace PlantaPiloto
         public void CreateTableDB(Proyect proyect)
         {
             //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(_connectionString))
             //using (SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Iván\Documents\TFG-PlantaPiloto.mdf; Integrated Security = True"))
             {
                 try
@@ -82,7 +89,6 @@ namespace PlantaPiloto
                     // The following code uses an SqlCommand based on the SqlConnection.
                     using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         command.ExecuteNonQuery();
-                    this.dbExiste = true;
                 }
                 catch (Exception ex)
                 {
@@ -105,7 +111,7 @@ namespace PlantaPiloto
         {
             StringBuilder row = new StringBuilder("");
             //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -147,7 +153,7 @@ namespace PlantaPiloto
         public void SaveRow(Proyect proyect, float time)
         {
             //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -193,7 +199,7 @@ namespace PlantaPiloto
         public List<Variable> GetVarValue(Proyect proyect, Variable var, int amount)
         {
             //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 List<Variable> result = new List<Variable>();
                 try
@@ -244,7 +250,7 @@ namespace PlantaPiloto
         public List<float> GetTime(Proyect proyect, int amount)
         {
             //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-            using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 List<float> result = new List<float>();
                 try
@@ -285,7 +291,7 @@ namespace PlantaPiloto
             try
             {
                 //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
-                using (SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True"))
+                using (SqlConnection con = new SqlConnection(_connectionString))
                 {
                     con.Open();
 
@@ -321,6 +327,11 @@ namespace PlantaPiloto
         {
             con.Close();
             con.Dispose();
+        }
+
+        public String getConnectionString()
+        {
+            return _connectionString;
         }
         #endregion
     }

@@ -44,6 +44,7 @@ namespace PlantaPiloto
             this.toolStripMenuItemCommunication = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSerie = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.webServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSpanish = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@ namespace PlantaPiloto
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tFGDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnConStrin = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.gBoxControls.SuspendLayout();
             this.gBoxProyect.SuspendLayout();
@@ -153,7 +155,8 @@ namespace PlantaPiloto
             // 
             this.toolStripMenuItemCommunication.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemSerie,
-            this.toolStripMenuItemOthers});
+            this.toolStripMenuItemOthers,
+            this.webServerToolStripMenuItem});
             this.toolStripMenuItemCommunication.Name = "toolStripMenuItemCommunication";
             this.toolStripMenuItemCommunication.Size = new System.Drawing.Size(108, 22);
             this.toolStripMenuItemCommunication.Text = "Comunicaciones";
@@ -161,14 +164,21 @@ namespace PlantaPiloto
             // toolStripMenuItemSerie
             // 
             this.toolStripMenuItemSerie.Name = "toolStripMenuItemSerie";
-            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItemSerie.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItemSerie.Text = "Serie";
             // 
             // toolStripMenuItemOthers
             // 
             this.toolStripMenuItemOthers.Name = "toolStripMenuItemOthers";
-            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItemOthers.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItemOthers.Text = "Otros";
+            // 
+            // webServerToolStripMenuItem
+            // 
+            this.webServerToolStripMenuItem.Name = "webServerToolStripMenuItem";
+            this.webServerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.webServerToolStripMenuItem.Text = "Web Server";
+            this.webServerToolStripMenuItem.Click += new System.EventHandler(this.webServerToolStripMenuItem_Click);
             // 
             // toolStripMenuItemLanguage
             // 
@@ -313,6 +323,7 @@ namespace PlantaPiloto
             // 
             // gBoxProyect
             // 
+            this.gBoxProyect.Controls.Add(this.btnConStrin);
             this.gBoxProyect.Controls.Add(this.btnSearchPort);
             this.gBoxProyect.Controls.Add(this.lblRWVariables);
             this.gBoxProyect.Controls.Add(this.dgvProVars);
@@ -412,6 +423,16 @@ namespace PlantaPiloto
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnConStrin
+            // 
+            this.btnConStrin.Location = new System.Drawing.Point(113, 93);
+            this.btnConStrin.Name = "btnConStrin";
+            this.btnConStrin.Size = new System.Drawing.Size(75, 23);
+            this.btnConStrin.TabIndex = 24;
+            this.btnConStrin.Text = "Con String";
+            this.btnConStrin.UseVisualStyleBackColor = true;
+            this.btnConStrin.Click += new System.EventHandler(this.btnConStrin_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +504,8 @@ namespace PlantaPiloto
         private ToolStripMenuItem toolStripMenuItemSerie;
         private ToolStripMenuItem toolStripMenuItemOthers;
         private Button btnSearchPort;
+        private ToolStripMenuItem webServerToolStripMenuItem;
+        private Button btnConStrin;
     }
 }
 
