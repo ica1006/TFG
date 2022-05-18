@@ -237,6 +237,7 @@ namespace PlantaPiloto
         public void LoadPorts()
         {
             _sp_services = new SP_services();
+            //_sp_services.setInstance(_sp_services);
             string[] ports = _sp_services.Ports;
             cboPort.Items.Clear();
             cboPort.Items.AddRange(ports);

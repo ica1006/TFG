@@ -19,6 +19,7 @@ namespace PlantaPiloto
         #region Properties
 
         private SerialPort _serialPort;
+        private static SP_services instance;
 
         /// <summary>
         /// Conexión a puerto serie
@@ -115,6 +116,7 @@ namespace PlantaPiloto
             _exMg = new ExceptionManagement(_cul);
             _time = 0;
             _ts = GlobalParameters.DefaultTs;
+            instance = this;
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
@@ -130,6 +132,7 @@ namespace PlantaPiloto
             _lastRow = new Proyect();
             _saveFile = false;
             _exMg = new ExceptionManagement(_cul);
+            instance = this;
         }
         #endregion
 
@@ -279,6 +282,15 @@ namespace PlantaPiloto
             
         }
 
+        public void setInstance (SP_services i)
+        {
+            instance = i;
+        }
+
+        public SP_services getInstance()
+        {
+            return instance;
+        }
 
     }
 }
