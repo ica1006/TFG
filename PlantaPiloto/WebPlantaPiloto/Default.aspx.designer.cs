@@ -60,33 +60,6 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Label lbl_3;
 
         /// <summary>
-        /// Control lbl_6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_6;
-
-        /// <summary>
-        /// Control cbl_1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cbl_1;
-
-        /// <summary>
-        /// Control btn_grafico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_grafico;
-
-        /// <summary>
         /// Control Table1.
         /// </summary>
         /// <remarks>
@@ -96,22 +69,13 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Table Table1;
 
         /// <summary>
-        /// Control Chart1.
+        /// Control btn_grafico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
-
-        /// <summary>
-        /// Control SqlDataSource1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Button btn_grafico;
 
         /// <summary>
         /// Control GridView1.

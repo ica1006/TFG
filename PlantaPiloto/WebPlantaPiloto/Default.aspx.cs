@@ -29,7 +29,6 @@ namespace WebPlantaPiloto
             if (!IsPostBack)
             {
                 lbl_error.Visible = false;
-                cbl_1.Visible = false;
                 Table1.Visible = false;
                 GridView1.Visible = false;
                 ddList_1.Visible = false;
@@ -37,8 +36,6 @@ namespace WebPlantaPiloto
                 txtIn_2.Visible = false;
                 lbl_5.Visible = false;
                 btn_actualizar.Visible = false;
-                Chart1.Visible = false;
-                lbl_6.Visible = false;
                 btn_grafico.Visible = false;
             }
         }
@@ -46,8 +43,11 @@ namespace WebPlantaPiloto
         protected void btn_Conectar_Click(object sender, EventArgs e)
         {
             _proyect = loadProyect();
+            Application["proyect"] = _proyect;
             conString = txtIn_1.Text;
             _db = new DB_services(_proyect.Cul, conString);
+
+            Application["db"] = _db;
 
             if (_db.CheckDBExists(_proyect))
             {
@@ -84,12 +84,10 @@ namespace WebPlantaPiloto
                     {
                         _varList.Add(v.Name);
                         _variables.Add(v);
-                        cbl_1.Items.Add(new ListItem(v.Name, v.Name));
                     }
                     else
                     {
                         _variables.Add(v);
-                        cbl_1.Items.Add(new ListItem(v.Name, v.Name));
                     }
                 }
 
@@ -106,12 +104,9 @@ namespace WebPlantaPiloto
 
                 this.loadTable(_proyect, _varList, _db);
                 Table1.Visible = true;
-
-                lbl_6.Visible = true;
                 btn_grafico.Visible = true;
                 //cbl_1.DataSource = _variables;
                 //cbl_1.DataBind();
-                cbl_1.Visible = true;
 
 
                 //LoadCharts(_variables, _db, _proyect);
@@ -227,74 +222,9 @@ namespace WebPlantaPiloto
             }
         }
 
-        private void LoadCharts(List<Variable> _variables, DB_services _db_services, Proyect _proyect)
-        {
-            List<List<Variable>> _sqlData = new List<List<Variable>>();
-            int _chartAmount = 100;
-            List<float> _sqlTime = new List<float>();
-            ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-
-            try
-            {
-                Chart1.Series.Clear();
-                //Se recogen los valores de las variables seleccionadas
-                foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
-                {
-                    _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
-                    Chart1.Legends.Add(v.Name);
-                }
-
-                //Se obtienen los valores de tiempo
-                _sqlTime.Clear();
-                _sqlTime = _db_services.GetTime(_proyect, _chartAmount);
-
-                for (int i = 0; i < _sqlData.Count(); i++)
-                {
-                    Series series = new Series(_sqlData[i].First().Name);
-                    series.Points.DataBindXY(_sqlTime, "Time", _sqlData[i].Select(p => Double.Parse(p.Value)).ToList(), "Value");
-                    series.ChartType = SeriesChartType.Line;
-                    series.BorderWidth = 3;
-                    Chart1.Series.Add(series);
-                    Chart1.ChartAreas[0].AxisX.Interval = 10;
-                    Chart1.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _proyect.Cul);
-                    Chart1.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
-                    Chart1.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
-                }
-                Chart1.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                lbl_error.Text = "Excepcion cargando grafico \n" + ex.Message + "\n" + ex.StackTrace;
-                lbl_error.Visible = true;
-            }
-
-        }
-
         protected void btn_grafico_Click(object sender, EventArgs e)
         {
-            List<String> selected = new List<String>();
-            List<Variable> varsSelected = new List<Variable>();
-
-            foreach (ListItem i in cbl_1.Items)
-            {
-                if (i.Selected)
-                {
-                    selected.Add(i.Text);
-                }
-            }
-
-            foreach (String s in selected)
-            {
-                foreach(Variable v in _proyect.Variables)
-                {
-                    if (v.Name.Equals(s))
-                    {
-                        varsSelected.Add(v);
-                    }
-                }
-            }
-
-            LoadCharts(varsSelected, _db, _proyect);
+            Server.Transfer("Grafico.aspx", true);
         }
     }
 

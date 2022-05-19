@@ -90,8 +90,7 @@
                     <asp:Label ID="lbl_3" runat="server" ForeColor="Red" Text="false"></asp:Label>
                 </td>
                 <td style="width: 911px; height: 20px">
-                    <asp:Label ID="lbl_6" runat="server" Text="Cargar Gráfico"></asp:Label>
-                </td>
+                    &nbsp;</td>
                 <td style="height: 20px; width: 187px;"></td>
                 <td style="height: 20px; width: 171px;"></td>
                 <td style="height: 20px"></td>
@@ -101,10 +100,7 @@
                 <td style="height: 20px; width: 313px;"></td>
                 <td style="width: 493px; height: 20px"></td>
                 <td style="width: 911px; height: 20px">
-                    <asp:CheckBoxList ID="cbl_1" runat="server">
-                    </asp:CheckBoxList>
-                    <asp:Button ID="btn_grafico" runat="server" OnClick="btn_grafico_Click" Text="Mostrar" />
-                </td>
+                    &nbsp;</td>
                 <td style="height: 20px; width: 187px;"></td>
                 <td style="height: 20px; width: 171px;"></td>
                 <td style="height: 20px"></td>
@@ -117,17 +113,7 @@
                     </asp:Table>
                 </td>
                 <td style="width: 911px; height: 20px">
-                    <asp:Chart ID="Chart1" runat="server" Width="744px">
-                        <series>
-                            <asp:Series ChartType="Line" Name="Series1">
-                            </asp:Series>
-                        </series>
-                        <chartareas>
-                            <asp:ChartArea Name="ChartArea1">
-                            </asp:ChartArea>
-                        </chartareas>
-                    </asp:Chart>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+                    <asp:Button ID="btn_grafico" runat="server" OnClick="btn_grafico_Click" Text="Ver gráfico" />
                 </td>
                 <td style="height: 20px; width: 187px;">
                     <asp:GridView ID="GridView1" runat="server">
