@@ -37,7 +37,10 @@ namespace WebPlantaPiloto
 
                 Chart1.Visible = true;
                 lbl_error.Visible = false;
+                Session["DatosMostrados"] = 100;
                 LoadCharts(_variables, _db, _proyect);
+                loadTable();
+                txtIn_1.Text = "100";
                 //btn_variables_Click(sender, e);
                 //Thread hiloGrafico = new Thread(() => LoadCharts(_variables, _db, _proyect));
                 //Application["hiloGrafico"] = hiloGrafico;
@@ -49,7 +52,7 @@ namespace WebPlantaPiloto
         private void LoadCharts(List<Variable> _variables, DB_services _db_services, Proyect _proyect)
         {
                 List<List<Variable>> _sqlData = new List<List<Variable>>();
-                int _chartAmount = 100;
+                int _chartAmount = (int) Session["DatosMostrados"];
                 List<float> _sqlTime = new List<float>();
                 ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
 
@@ -80,12 +83,12 @@ namespace WebPlantaPiloto
                         Chart1.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
                         Chart1.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
                     }
-                    Chart1.Visible = true;
+                    //Chart1.Visible = true;
                 }
                 catch (Exception ex)
                 {
                     lbl_error.Text = "Excepcion cargando grafico \n" + ex.Message + "\n" + ex.StackTrace;
-                    lbl_error.Visible = true;
+                    lbl_error.Visible = false;
                 }
             
 
@@ -118,13 +121,74 @@ namespace WebPlantaPiloto
                     }
 
                     LoadCharts(varsSelected, _db, _proyect);
-                    
-            }catch (Exception ex)
+                    loadTable();
+
+            }
+            catch (Exception ex)
             {
                 lbl_error.Text = "Error al actualizar el grafico \n" + ex.Message + "\n" + ex.StackTrace;
                 lbl_error.Visible = true;
             }
         }
 
+        protected void loadTable()
+        {
+            TableRowCollection tRows = Table1.Rows;
+
+            foreach (TableRow t in tRows)
+            {
+                Table1.Rows.Remove(t);
+            }
+
+            TableRow row1 = new TableRow();
+            TableCell cell1_1 = new TableCell();
+            TableCell cell1_2 = new TableCell();
+            cell1_1.Text = "Variables";
+            cell1_1.Font.Bold = true;
+            cell1_2.Text = "Valores";
+            cell1_2.Font.Bold = true;
+            row1.Cells.Add(cell1_1);
+            row1.Cells.Add(cell1_2);
+            Table1.Rows.Add(row1);
+
+            List<String> _v = new List<string>();
+
+            foreach (Variable v in _variables)
+                    _v.Add(v.Name);
+
+            String _lastValues = _db.GetLastRowValue(_proyect, _v);
+
+            string[] values = _lastValues.Split(';');
+
+            for (int i = 0; i < _v.Count; i++)
+            {
+                TableRow nRow = new TableRow();
+                TableCell nCell1 = new TableCell();
+                TableCell nCell2 = new TableCell();
+
+                nCell1.Text = _v[i];
+                nCell2.Text = values[i + 1];
+
+                nRow.Cells.Add(nCell1);
+                nRow.Cells.Add(nCell2);
+                Table1.Rows.Add(nRow);
+            }
+
+        }
+
+        protected void btn_datos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int datos = int.Parse(txtIn_1.Text);
+                Session["DatosMostrados"] = datos;
+                lbl_error.Visible = false;
+            }
+            catch(Exception ex)
+            {
+                lbl_error.Text = "Entrada no válida";
+                lbl_error.Visible = true;
+            }
+        }
     }
 }

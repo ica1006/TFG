@@ -28,6 +28,17 @@
             height: 23px;
             width: 191px;
         }
+        .auto-style16 {
+            height: 22px;
+            width: 191px;
+        }
+        .auto-style17 {
+            height: 22px;
+            width: auto;
+        }
+        .auto-style18 {
+            height: 22px;
+        }
     </style>
 </head>
 <body>
@@ -73,31 +84,36 @@
                                         </asp:ChartArea>
                                     </ChartAreas>
                                 </asp:Chart>
+                                <asp:Table ID="Table1" runat="server">
+                                </asp:Table>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18"></td>
+                </tr>
+                <tr>
                     <td class="auto-style11">&nbsp;</td>
-                    <td class="auto-style12">&nbsp;</td>
+                    <td class="auto-style12">
+                        <asp:Label ID="lbl_2" runat="server" Text="Cantidad de datos mostrados"></asp:Label>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style11">&nbsp;</td>
                     <td class="auto-style12">
-                        &nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style11">&nbsp;</td>
-                    <td class="auto-style12">
-                        &nbsp;</td>
+                        <asp:TextBox ID="txtIn_1" runat="server"></asp:TextBox>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style15"></td>
                     <td class="auto-style13">
+                        <asp:Button ID="btn_datos" runat="server" OnClick="btn_datos_Click" Text="Actualizar" />
                         </td>
                     <td class="auto-style3"></td>
                 </tr>

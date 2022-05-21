@@ -226,6 +226,11 @@ namespace WebPlantaPiloto
         {
             Server.Transfer("Grafico.aspx", true);
         }
+
+        protected void btn_Main_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Main.aspx", true);
+        }
     }
 
 }

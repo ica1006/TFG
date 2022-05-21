@@ -100,7 +100,8 @@
                 <td style="height: 20px; width: 313px;"></td>
                 <td style="width: 493px; height: 20px"></td>
                 <td style="width: 911px; height: 20px">
-                    &nbsp;</td>
+                    <asp:Button ID="btn_Main" runat="server" OnClick="btn_Main_Click" Text="Main" />
+                </td>
                 <td style="height: 20px; width: 187px;"></td>
                 <td style="height: 20px; width: 171px;"></td>
                 <td style="height: 20px"></td>
