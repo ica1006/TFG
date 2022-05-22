@@ -14,16 +14,26 @@ namespace WebPlantaPiloto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.updateTable(sender, e);
+        }
+
+        protected void updateTable(object sender, EventArgs e)
+        {
             string connectionString = (string)Session["connectionString"];
             Proyect project = (Proyect)Session["proyect"];
 
             SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("select * from Web" + project.Name, con);
+            SqlCommand cmd = new SqlCommand("select * from " + project.Name, con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             sda.Fill(ds);
             GridView1.DataSource = ds;
             GridView1.DataBind();
+        }
+
+        protected void btn_back_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Main.aspx");
         }
     }
 }

@@ -403,7 +403,7 @@
                                         <asp:Label ID="lbl_Language" runat="server" Font-Names="helvetica" Text="Language" Visible="False"></asp:Label>
                                     </td>
                                     <td class="auto-style40">
-                                        <asp:DropDownList ID="ddlist_lang" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="30px" Visible="False" Width="102px">
+                                        <asp:DropDownList ID="ddlist_lang" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="30px" Visible="False" Width="102px" AutoPostBack="True" OnSelectedIndexChanged="ddlist_lang_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
                                     <td class="auto-style41">

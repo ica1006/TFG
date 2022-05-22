@@ -60,6 +60,7 @@ namespace WebPlantaPiloto
                     this.setTagsVisible();
                     this.loadGridView();
                     this.LoadChart(sender, e);
+                    this.ddlist_lang_SelectedIndexChanged(sender, e);
                     Timer1.Enabled = true;
                 }
 
@@ -411,6 +412,47 @@ namespace WebPlantaPiloto
             {
                 lbl_err_ChangeVar.Text = "Por favor, introduce únicamente números naturales o decimales";
                 lbl_err_ChangeVar.Visible = true;
+            }
+        }
+
+        protected void ddlist_lang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlist_lang.SelectedValue.Equals("Español") || ddlist_lang.SelectedValue.Equals("Spanish"))
+            {
+                lbl_ConString.Text = SpanishText.lbl_ConString;
+                lbl_Connection.Text = SpanishText.lbl_Connection;
+                btn_ConnString.Text = SpanishText.btn_ConnString;
+                linkButtonFullDB.Text = SpanishText.linkButtonFullDB;
+                lbl_Project.Text = SpanishText.lbl_Project;
+                gview1.HeaderRow.Cells[1].Text = SpanishText.gview1Col1;
+                gview1.HeaderRow.Cells[2].Text = SpanishText.gview1Col2;
+                lbl_ChangeVariable.Text = SpanishText.lbl_ChangeVariable;
+                btn_ChangeVar.Text = SpanishText.btn_ChangeVar;
+                lbl_ChangeData.Text = SpanishText.lbl_ChangeData;
+                btn_ChangeData.Text = SpanishText.btn_ChangeData;
+                lbl_Options.Text = SpanishText.lbl_Options;
+                lbl_Language.Text = SpanishText.lbl_Language;
+                lbl_Theme.Text = SpanishText.lbl_Theme;
+                ddlist_lang.Items[0].Text = "Español";
+                ddlist_lang.Items[1].Text = "Inglés";
+            }else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
+            {
+                lbl_ConString.Text = EnglishText.lbl_ConString;
+                lbl_Connection.Text = EnglishText.lbl_Connection;
+                btn_ConnString.Text = EnglishText.btn_ConnString;
+                linkButtonFullDB.Text = EnglishText.linkButtonFullDB;
+                lbl_Project.Text = EnglishText.lbl_Project;
+                gview1.HeaderRow.Cells[1].Text = EnglishText.gview1Col1;
+                gview1.HeaderRow.Cells[2].Text = EnglishText.gview1Col2;
+                lbl_ChangeVariable.Text = EnglishText.lbl_ChangeVariable;
+                btn_ChangeVar.Text = EnglishText.btn_ChangeVar;
+                lbl_ChangeData.Text = EnglishText.lbl_ChangeData;
+                btn_ChangeData.Text = EnglishText.btn_ChangeData;
+                lbl_Options.Text = EnglishText.lbl_Options;
+                lbl_Language.Text = EnglishText.lbl_Language;
+                lbl_Theme.Text = EnglishText.lbl_Theme;
+                ddlist_lang.Items[0].Text = "Spanish";
+                ddlist_lang.Items[1].Text = "English";
             }
         }
     }
