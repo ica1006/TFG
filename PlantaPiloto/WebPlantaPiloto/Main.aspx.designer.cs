@@ -159,13 +159,13 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Label lbl_err_table;
 
         /// <summary>
-        /// Control tbl_vars.
+        /// Control gview1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbl_vars;
+        protected global::System.Web.UI.WebControls.GridView gview1;
 
         /// <summary>
         /// Control lbl_ChangeVariable.

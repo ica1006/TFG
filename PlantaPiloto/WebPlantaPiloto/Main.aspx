@@ -299,8 +299,15 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Table ID="tbl_vars" runat="server" CellPadding="12" CellSpacing="0" HorizontalAlign="Center" Width="474px">
-                                        </asp:Table>
+                                        <asp:GridView ID="gview1" runat="server" BorderWidth="0px" CellPadding="12" Font-Names="helvetica" Font-Size="14pt" HorizontalAlign="Center" Width="474px">
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="cboxGV" runat="server" OnCheckedChanged="cboxGV_CheckedChanged" AutoPostBack="true"/>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
                                     </td>
                                 </tr>
                             </table>

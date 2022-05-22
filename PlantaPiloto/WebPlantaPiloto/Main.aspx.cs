@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -15,13 +16,11 @@ namespace WebPlantaPiloto
     public partial class Main : System.Web.UI.Page
     {
         private static Proyect _proyect;
-        private static String conString;
         private static DB_services _db;
         private static List<String> _varNameList;
         private static List<String> _onlyWritableVarNameList;
         private static List<Variable> _varList;
-        private static CheckBoxList cbl_vars;
-        private static TableRowCollection tableRows;
+        private static List<CheckBox> cboxGviewList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,8 +49,7 @@ namespace WebPlantaPiloto
                     this.setTagsVisible();
                     Timer1.Enabled = true;
                     //Timer2.Enabled = true;
-                    this.loadTable();
-                    tableRows = tbl_vars.Rows;
+                    this.loadGridView();
                     this.LoadChart(sender, e);
                 }
 
@@ -76,7 +74,6 @@ namespace WebPlantaPiloto
                 _onlyWritableVarNameList = new List<string>();
                 _varList = new List<Variable>();
 
-                conString = txtIn_ConnString.Text;
                 lbl_ProjectName.Text = _proyect.Name;
                 lbl_ConnectionStatus.Text = "true";
                 lbl_ConnectionStatus.ForeColor = System.Drawing.Color.Green;
@@ -100,7 +97,7 @@ namespace WebPlantaPiloto
             //div variable table
             lbl_Project.Visible = true;
             lbl_ProjectName.Visible = true;
-            tbl_vars.Visible = true;
+            gview1.Visible = true;
 
             //div change variable
             lbl_ChangeVariable.Visible = true;
@@ -190,80 +187,81 @@ namespace WebPlantaPiloto
             return _proyect;
         }
 
-        private void loadTable()
+
+        private void loadGridView()
         {
-            cbl_vars = new CheckBoxList();
-            List<CheckBox> cb_list = new List<CheckBox>();
-            TableRowCollection tRows = tbl_vars.Rows;
-
-            // Si la tabla está llena, la vaciamos
-            foreach (TableRow t in tRows)
-                tbl_vars.Rows.Remove(t);
-
-            // Introducimos la primera fila, el encabezado
-            TableRow row1 = new TableRow();
-            TableCell cell1_2 = new TableCell();
-            TableCell cell1_3 = new TableCell();
-
-            cell1_2.Text = "Variables";
-            cell1_2.BackColor = System.Drawing.Color.FromArgb(227,227,227);
-            cell1_2.Font.Bold = true;
-            cell1_3.Text = "Valores";
-            cell1_3.BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
-            cell1_3.Font.Bold = true;
-
-            row1.Cells.Add(new TableCell());
-            row1.Cells.Add(cell1_2);
-            row1.Cells.Add(cell1_3);
-            tbl_vars.Rows.Add(row1);
-
-            // Recogemos los valores actuales de las variables de la base de datos
-            String _lastValues = _db.GetLastRowValue(_proyect, _varNameList);
-            string[] values = _lastValues.Split(';');
-
-            for (int i = 0; i < _varNameList.Count; i++)
+            try
             {
-                TableRow nRow = new TableRow();
-                TableCell nCell1 = new TableCell();
-                TableCell nCell2 = new TableCell();
-                TableCell nCell3 = new TableCell();
+                DataTable dtTable = new DataTable();
+                dtTable.Columns.Add("Variable");
+                dtTable.Columns.Add("Value");
 
-                CheckBox cbox = new CheckBox();
-                cbox.Checked = true;
-                cb_list.Add(cbox);
-                nCell1.Controls.Add(cbox);
-                nCell1.BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
+                // Recogemos los valores actuales de las variables de la base de datos
+                String _lastValues = _db.GetLastRowValue(_proyect, _varNameList);
+                string[] values = _lastValues.Split(';');
 
-                if (_varList[i].Access.Equals(EnumVarAccess.Escritura))
+                for (int i = 0; i < _varNameList.Count; i++)
                 {
-                    nCell2.BackColor = System.Drawing.Color.White;
-                    nCell3.BackColor = System.Drawing.Color.White;
+                    DataRow dRow = dtTable.NewRow();
+                    dRow[0] = _varNameList[i];
+                    dRow[1] = values[i + 1];
+                    dtTable.Rows.Add(dRow);
+
+                }
+
+                gview1.DataSource = dtTable;
+                gview1.DataBind();
+
+                cboxGviewList = new List<CheckBox>();
+                foreach (GridViewRow row in gview1.Rows)
+                {
+                    CheckBox cbox = (CheckBox)row.FindControl("cboxGV");
+                    if (cbox != null)
+                    {
+                        cbox.Checked = true;
+                        cboxGviewList.Add(cbox);
+                    }
+                }
+                gridViewAesthetics();
+                lbl_err_table.Visible = false;
+            }catch(Exception ex)
+            {
+                lbl_err_table.Text = "Error al cargar la tabla. " + ex.Message + ex.StackTrace;
+                lbl_err_table.Visible = true;
+            }
+        }
+
+        private void gridViewAesthetics()
+        {
+            gview1.HeaderRow.Cells[1].BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
+            gview1.HeaderRow.Cells[2].BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
+
+            gview1.HeaderRow.Cells[0].BorderWidth = 0;
+            gview1.HeaderRow.Cells[1].BorderWidth = 0;
+            gview1.HeaderRow.Cells[2].BorderWidth = 0;
+
+            foreach (GridViewRow row in gview1.Rows)
+            {
+                if (_onlyWritableVarNameList.Contains(row.Cells[1].Text))
+                {
+                    row.Cells[1].BackColor = System.Drawing.Color.White;
+                    row.Cells[2].BackColor = System.Drawing.Color.White;
                 }
                 else
                 {
-                    nCell2.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
-                    nCell3.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
+                    row.Cells[1].BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
+                    row.Cells[2].BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
                 }
+                row.Cells[0].BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
 
-                nCell2.Text = _varNameList[i];
-                nCell3.Text = values[i + 1];
+                row.Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                row.Cells[1].HorizontalAlign = HorizontalAlign.Center;
+                row.Cells[2].HorizontalAlign = HorizontalAlign.Center;
 
-                nRow.Cells.Add(nCell1);
-                nRow.Cells.Add(nCell2);
-                nRow.Cells.Add(nCell3);
-                tbl_vars.Rows.Add(nRow);
+                row.Cells[0].BorderWidth = 0;
+                row.Cells[1].BorderWidth = 0;
+                row.Cells[2].BorderWidth = 0;
             }
-
-            foreach (TableRow row in tbl_vars.Rows)
-                foreach(TableCell cell in row.Cells)
-                {
-                    cell.Font.Name = "helvetica";
-                    cell.Font.Size = 14;
-                    cell.HorizontalAlign = HorizontalAlign.Center;
-                }
-
-            cbl_vars.DataSource = cb_list;
-            cbl_vars.DataBind();
         }
 
         protected void LoadChart(object sender, EventArgs e)
@@ -322,62 +320,28 @@ namespace WebPlantaPiloto
         private List<Variable> checkedVariables()
         {
             List<Variable> checkedList = new List<Variable>();
-            //int i = 0;
             try
             {
-                for (int i = 1; i < tableRows.Count; i++)
+                for (int i = 0; i < cboxGviewList.Count; i++)
                 {
-                    CheckBox cbox = (CheckBox)tableRows[i].Cells[0].Controls[0];
-
-                    if (cbox.Checked)
-                    {
-                        checkedList.Add(_varList[i - 1]);
-                    }
+                    if (cboxGviewList[i].Checked)
+                        checkedList.Add(_varList[i]);
                 }
-            }catch(Exception ex)
-            {
-
             }
-
-           /* foreach (ListItem cbox in cbl_vars.Items)
+            catch (Exception ex)
             {
-                if (cbox.Selected)
-                {
-                    checkedList.Add(_varList[i]);
-                }
-                i++;
-            }*/
-
+                lbl_err_Chart.Text = "Error intentando obtener las casillas marcadas " + ex.Message + ex.StackTrace;
+                lbl_err_Chart.Visible = true;
+            }
             return checkedList;
         }
 
-        protected void refreshTable(object sender, EventArgs e)
+        protected void cboxGV_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (_db == null)
-                {
-                    lbl_Options.Text = "Entra refresh table";
-                    lbl_Options.Visible = true;
-                    loadInitialValues();
-                    //return;
-                }
-                tbl_vars.Visible = true;
-                //DB_services db = (DB_services) Session["_db"];
-                //Proyect proyect = (Proyect) Session["_proyect"];
-                string[] values = _db.GetLastRowValue(_proyect, _varNameList).Split(';');
-                int i = 1;
-
-                foreach (TableRow row in tbl_vars.Rows)
-                {
-                    row.Cells[2].Text = values[i];
-                    i++;
-                }
-            }catch(Exception ex)
-            {
-                lbl_err_table.Text = "Excepción al refrescar la tabla " + ex.Message + ex.StackTrace;
-                lbl_err_table.Visible = true;
-            }
+            CheckBox cbox = (CheckBox)sender;
+            GridViewRow grow = (GridViewRow)cbox.NamingContainer;
+            int rIndex = grow.RowIndex;
+            cboxGviewList[rIndex].Checked = cbox.Checked;
         }
     }
 }
