@@ -27,7 +27,6 @@ namespace WebPlantaPiloto
             if (!IsPostBack)
             {
                 Timer1.Enabled = false;
-                //Timer2.Enabled = false;
             }
         }
 
@@ -47,10 +46,9 @@ namespace WebPlantaPiloto
 
                     this.loadOptions();
                     this.setTagsVisible();
-                    Timer1.Enabled = true;
-                    //Timer2.Enabled = true;
                     this.loadGridView();
                     this.LoadChart(sender, e);
+                    Timer1.Enabled = true;
                 }
 
             }catch (Exception)
@@ -187,7 +185,6 @@ namespace WebPlantaPiloto
             return _proyect;
         }
 
-
         private void loadGridView()
         {
             try
@@ -311,9 +308,12 @@ namespace WebPlantaPiloto
                     chart_Var.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
                     chart_Var.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
                 }
-            }catch (Exception ex) {
-                lbl_err_ChangeData.Text = "Excepcion cargando grafico " + ex.Message + ex.StackTrace;
-                lbl_err_ChangeData.Visible = true;
+                updateGridView(sender, e);
+                lbl_err_Chart.Visible = false;
+            }
+            catch (Exception ex) {
+                lbl_err_Chart.Text = "Excepcion cargando grafico " + ex.Message + ex.StackTrace;
+                lbl_err_Chart.Visible = true;
             }
         }
 
@@ -342,6 +342,29 @@ namespace WebPlantaPiloto
             GridViewRow grow = (GridViewRow)cbox.NamingContainer;
             int rIndex = grow.RowIndex;
             cboxGviewList[rIndex].Checked = cbox.Checked;
+        }
+
+        protected void updateGridView(object sender, EventArgs e)
+        {
+            try
+            {
+                // Recogemos los valores actuales de las variables de la base de datos
+                String _lastValues = _db.GetLastRowValue(_proyect, _varNameList);
+                string[] values = _lastValues.Split(';');
+
+                for (int i = 0; i < gview1.Rows.Count; i++)
+                {
+                    gview1.Rows[i].Cells[2].Text = values[i + 1].ToString();
+
+                    lbl_err_table.Visible = true;
+                }
+                lbl_err_table.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                lbl_err_table.Text = "Excepción actualizando la tabla " + ex.Message + ex.StackTrace;
+                lbl_err_table.Visible = true;
+            }
         }
     }
 }

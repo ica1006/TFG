@@ -289,28 +289,32 @@
                     <td class="auto-style45"></td>
                     <td class="auto-style46">
                         <div id="div_Table" class="rectanguloRedondeado">
-                            <asp:Label ID="lbl_Project" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Project: " Visible="False"></asp:Label>
-                            <asp:Label ID="lbl_ProjectName" runat="server" Font-Names="helvetica" Font-Size="24pt" Text="ProjectName" Visible="False"></asp:Label>
-                            <table class="auto-style48">
-                                <tr>
-                                    <td class="auto-style14">
-                                        <asp:Label ID="lbl_err_table" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_table" Visible="False"></asp:Label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:GridView ID="gview1" runat="server" BorderWidth="0px" CellPadding="12" Font-Names="helvetica" Font-Size="14pt" HorizontalAlign="Center" Width="474px">
-                                            <Columns>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="cboxGV" runat="server" OnCheckedChanged="cboxGV_CheckedChanged" AutoPostBack="true"/>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
+                                    <asp:Label ID="lbl_Project" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Project: " Visible="False"></asp:Label>
+                                    <asp:Label ID="lbl_ProjectName" runat="server" Font-Names="helvetica" Font-Size="24pt" Text="ProjectName" Visible="False"></asp:Label>
+                                    <table class="auto-style48">
+                                        <tr>
+                                            <td class="auto-style14">
+                                                <asp:Label ID="lbl_err_table" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_table" Visible="False"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:GridView ID="gview1" runat="server" BorderWidth="0px" CellPadding="12" Font-Names="helvetica" Font-Size="14pt" HorizontalAlign="Center" Width="474px">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:CheckBox ID="cboxGV" runat="server" AutoPostBack="true" OnCheckedChanged="cboxGV_CheckedChanged" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                     </td>
                     <td class="auto-style47"></td>
