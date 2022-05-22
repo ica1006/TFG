@@ -204,10 +204,6 @@
             width: 169px;
         }
 
-        .auto-style48 {
-            width: 92%;
-        }
-
         .auto-style49 {
             height: 23px;
             width: 533px;
@@ -238,28 +234,30 @@
                     <td class="auto-style4"></td>
                     <td class="auto-style7">
                         <div id="div_ConnString" class="rectanguloRedondeado">
-                            <asp:Label ID="lbl_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Data Base - Connection String"></asp:Label>
-                            <table class="auto-style10">
-                                <tr>
-                                    <td class="auto-style11">
-                                        <asp:TextBox ID="txtIn_ConnString" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="28px" Width="456px"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:Button ID="btn_ConnString" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Connect" Width="70px" OnClick="btn_ConnString_Click" />
-                                    </td>
-                                </tr>
-                            </table>
-                            <table class="auto-style10">
-                                <tr>
-                                    <td class="auto-style15">
-                                        <asp:Label ID="lbl_Connection" runat="server" Font-Names="helvetica" Font-Size="10pt" Text="Data Base connected: " Font-Bold="True"></asp:Label>
-                                        <asp:Label ID="lbl_ConnectionStatus" runat="server" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="false" Font-Bold="True"></asp:Label>
-                                    </td>
-                                    <td class="auto-style16">
-                                        <asp:HyperLink ID="hlink_fulldb" runat="server" Font-Names="helvetica" Font-Size="10pt" Font-Underline="True" ForeColor="Blue" Font-Bold="True" Visible="False">View full db</asp:HyperLink>
-                                    </td>
-                                </tr>
-                            </table>
+                            <asp:Panel ID="panelConnectionString" runat="server" DefaultButton="btn_ConnString">
+                                <asp:Label ID="lbl_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Data Base - Connection String"></asp:Label>
+                                <table class="auto-style10">
+                                    <tr>
+                                        <td class="auto-style11">
+                                            <asp:TextBox ID="txtIn_ConnString" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="28px" Width="456px"></asp:TextBox>
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btn_ConnString" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Connect" Width="70px" OnClick="btn_ConnString_Click" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="auto-style10">
+                                    <tr>
+                                        <td class="auto-style15">
+                                            <asp:Label ID="lbl_Connection" runat="server" Font-Names="helvetica" Font-Size="10pt" Text="Data Base connected: " Font-Bold="True"></asp:Label>
+                                            <asp:Label ID="lbl_ConnectionStatus" runat="server" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="false" Font-Bold="True"></asp:Label>
+                                        </td>
+                                        <td class="auto-style16">
+                                            <asp:LinkButton ID="linkButtonFullDB" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" OnClick="hlink_fulldb_DataBinding" Visible="False">View Full db</asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
                         </div>
                     </td>
                     <td class="auto-style21"></td>
@@ -342,28 +340,28 @@
                     <td class="auto-style25"></td>
                     <td class="auto-style26">
                         <div id="div_ChangeVariable" class="auto-style42">
-                            <asp:Label ID="lbl_ChangeVariable" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Variable Value" Visible="False"></asp:Label>
-                            <table class="auto-style10">
-                                <tr>
-                                    <td class="auto-style29">
-                                        <asp:Label ID="lbl_err_ChangeVar" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeVar" Visible="False"></asp:Label>
-                                    </td>
-                                    <td class="auto-style30">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td class="auto-style29">
-                                        <asp:DropDownList ID="ddList_ChangeVar" runat="server" Height="30px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False">
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td class="auto-style30">
-                                        <asp:TextBox ID="txtIn_ChangeVar" runat="server" Height="28px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:Button ID="btn_ChangeVar" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" />
-                                    </td>
-                                </tr>
-                            </table>
+                            <asp:Panel ID="panelChangeVariable" runat="server" DefaultButton="btn_ChangeVar">
+                                <asp:Label ID="lbl_ChangeVariable" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Variable Value" Visible="False"></asp:Label>
+                                <table class="auto-style10">
+                                    <tr>
+                                        <td colspan="3">
+                                            <asp:Label ID="lbl_err_ChangeVar" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeVar" Visible="False"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style29">
+                                            <asp:DropDownList ID="ddList_ChangeVar" runat="server" Height="30px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False">
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td class="auto-style30">
+                                            <asp:TextBox ID="txtIn_ChangeVar" runat="server" Height="28px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btn_ChangeVar" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" OnClick="btn_ChangeVar_Click" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
                         </div>
                     </td>
                     <td class="auto-style27"></td>

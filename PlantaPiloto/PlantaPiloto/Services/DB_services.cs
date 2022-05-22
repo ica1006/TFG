@@ -60,9 +60,7 @@ namespace PlantaPiloto
         /// <param name="pr">Proyecto del que toma los datos</param>
         public void CreateTableDB(Proyect proyect)
         {
-            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             using (SqlConnection con = new SqlConnection(_connectionString))
-            //using (SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Iván\Documents\TFG-PlantaPiloto.mdf; Integrated Security = True"))
             {
                 try
                 {
@@ -71,10 +69,10 @@ namespace PlantaPiloto
                     con.Open();
 
                     if (CheckDBExists(proyect))
-                        using (SqlCommand command = new SqlCommand("DROP TABLE dbo." + proyect.Name, con))
+                        using (SqlCommand command = new SqlCommand("DROP TABLE " + proyect.Name, con))
                             command.ExecuteNonQuery();
 
-                    // Create table string (cambiado - doble id)
+                    // Create table string
                     StringBuilder sqlStr = new StringBuilder("CREATE TABLE " + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [nvarchar](20) NOT NULL");
                     foreach (Variable v in proyect.Variables)
                     {
@@ -89,11 +87,44 @@ namespace PlantaPiloto
                     // The following code uses an SqlCommand based on the SqlConnection.
                     using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
                         command.ExecuteNonQuery();
+                    this.CreateWebTableDB(proyect);
                 }
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método CreateTableDB()" + ex.Message + ex.StackTrace);
+                }
+                finally
+                {
+                    CloseConnection(con);
+                }
+            }
+
+        }
+
+        public void CreateWebTableDB(Proyect proyect)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    if (CheckWebDBExists(proyect))
+                        using (SqlCommand command = new SqlCommand("DROP TABLE Web" + proyect.Name, con))
+                            command.ExecuteNonQuery();
+
+                    // Create table string
+                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE Web" + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Variable] [nvarchar](20), [NuevoValor] [nvarchar](20) NOT NULL)");
+
+                    // The following code uses an SqlCommand based on the SqlConnection.
+                    using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
+                        command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método CreateWebTableDB()" + ex.Message + ex.StackTrace);
                 }
                 finally
                 {
@@ -181,6 +212,74 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método SaveRow()" + ex.Message + ex.StackTrace);
+                }
+                finally
+                {
+                    CloseConnection(con);
+                }
+            }
+        }
+
+        public void InsertModifyValue(Proyect proyect, string variable, string value)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    // Open the SqlConnection.
+                    con.Open();
+
+                    if (CheckWebDBExists(proyect))
+                    {
+                        // Cadena para insertar una nueva fila
+                        StringBuilder insertCmd = new StringBuilder("INSERT INTO Web" + proyect.Name + "([Variable],[NuevoValor]) VALUES ('" + variable + "', '" + value + "')");
+
+                        using (SqlCommand command = new SqlCommand(insertCmd.ToString(), con))
+                            command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //_exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método InsertModifyValue()" + ex.Message + ex.StackTrace);
+                }
+                finally
+                {
+                    CloseConnection(con);
+                }
+            }
+        }
+
+        public string GetLastRowValueWeb(Proyect proyect)
+        {
+            StringBuilder row = new StringBuilder("");
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    if (CheckWebDBExists(proyect))
+                    {
+                        StringBuilder sqlStr = new StringBuilder("SELECT TOP 1 [Variable],[NuevoValor] FROM Web" + proyect.Name + " ORDER BY [Id] DESC");
+                        using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
+                        {
+                            SqlDataReader columnsDataReader = command.ExecuteReader();
+                            while (columnsDataReader.Read())
+                            {
+                                for (int i = 0; i < columnsDataReader.FieldCount; i++)
+                                    row.Append(String.Format("{0};", columnsDataReader[i]));
+                            }
+                        }
+                        return row.ToString();
+                    }
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    _exMg.HandleException(ex);
+                    MessageBox.Show("Excepcion en el método GetLastRowValue()" + ex.Message + ex.StackTrace);
+                    return row.ToString();
                 }
                 finally
                 {
@@ -299,6 +398,35 @@ namespace PlantaPiloto
                             " AND TABLE_NAME = '" + proyect.Name + "'";*/
 
                     string sCmd = "SELECT [Id] FROM " + proyect.Name;
+
+                    SqlCommand cmd = new SqlCommand(sCmd, con);
+                    cmd.ExecuteScalar();
+                    return true;
+                    //return ((int)cmd.ExecuteScalar() == 1);
+                }
+            }
+            catch (SqlException)
+            {
+                // No existe la base de datos
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+                MessageBox.Show("Excepcion en el método CheckDBExists()" + ex.Message + ex.StackTrace + ex.GetType().FullName);
+                return false;
+            }
+        }
+
+        public bool CheckWebDBExists(Proyect proyect)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    con.Open();
+
+                    string sCmd = "SELECT [Id] FROM Web" + proyect.Name;
 
                     SqlCommand cmd = new SqlCommand(sCmd, con);
                     cmd.ExecuteScalar();

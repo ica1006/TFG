@@ -45,6 +45,8 @@ namespace PlantaPiloto
         readonly string _filesPath;
         readonly string _configsPath;
         private string _saveFilePath;
+        private bool _readWebDB;
+        private Thread _threadWebDB;
 
         public static MainForm instance;
 
@@ -79,6 +81,7 @@ namespace PlantaPiloto
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
             instance = this;
+            _readWebDB = true;
         }
 
         #endregion
@@ -358,6 +361,9 @@ namespace PlantaPiloto
                 _timerRefreshDataGrid.Enabled = false;
                 if (_threadSaveRow != null)
                     _threadSaveRow.Join();
+                _readWebDB = false;
+                if (_threadWebDB != null)
+                    _threadWebDB.Join();
                 _sp_services.SaveFile = false;
                 LoadProyect();
                 this.ViewConnectionClose();
@@ -792,6 +798,8 @@ namespace PlantaPiloto
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
                 _threadSaveRow.Start();
+                _threadWebDB = new Thread(() => this.checkNewWebVariables());
+                _threadWebDB.Start();
                 this.ViewConnectionOpen();
                 this._timerRefreshDataGrid.Enabled = true;
                 this.btnSearchPort.Enabled = false;
@@ -800,6 +808,32 @@ namespace PlantaPiloto
             {
                 this.ViewConnectionClose();
                 _exMg.HandleException(ex);
+            }
+        }
+
+        public void checkNewWebVariables()
+        {
+            string lastValue = "";
+
+            try
+            {
+                while (_readWebDB)
+                {
+                    if (_db_services.CheckWebDBExists(_proyect) && _sp_services.SerialPort != null)
+                    {
+                        string webValue = _db_services.GetLastRowValueWeb(_proyect);
+                        if (lastValue != webValue)
+                        {
+                            lastValue = webValue;
+                            webValue.Replace('.', ',');
+                            _sp_services.SerialPort.WriteLine(webValue);
+                        }
+                    }
+                }
+            }catch(Exception ex)
+            {
+                _exMg.HandleException(ex);
+                MessageBox.Show("Excepción en el metodo checkNewWebVariables " + ex.Message + ex.StackTrace);
             }
         }
 

@@ -42,6 +42,15 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Label lbl_err_ConString;
 
         /// <summary>
+        /// Control panelConnectionString.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelConnectionString;
+
+        /// <summary>
         /// Control lbl_ConString.
         /// </summary>
         /// <remarks>
@@ -87,13 +96,13 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Label lbl_ConnectionStatus;
 
         /// <summary>
-        /// Control hlink_fulldb.
+        /// Control linkButtonFullDB.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlink_fulldb;
+        protected global::System.Web.UI.WebControls.LinkButton linkButtonFullDB;
 
         /// <summary>
         /// Control UpdatePanel1.
@@ -175,6 +184,15 @@ namespace WebPlantaPiloto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gview1;
+
+        /// <summary>
+        /// Control panelChangeVariable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelChangeVariable;
 
         /// <summary>
         /// Control lbl_ChangeVariable.

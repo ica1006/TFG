@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -44,8 +45,16 @@ namespace WebPlantaPiloto
                     ddList_ChangeVar.DataSource = _onlyWritableVarNameList;
                     ddList_ChangeVar.DataBind();
 
-                    txtIn_ChangeData.Text = "100";
-                    Session["dataAmount"] = 100;
+                    Session["connectionString"] = conString;
+                    Session["proyect"] = _proyect;
+
+                    if (Session["dataAmount"] != null)
+                        txtIn_ChangeData.Text = (string) Session["dataAmount"];
+                    else
+                    {
+                        txtIn_ChangeData.Text = "100";
+                        Session["dataAmount"] = 100;
+                    }
 
                     this.loadOptions();
                     this.setTagsVisible();
@@ -93,7 +102,7 @@ namespace WebPlantaPiloto
         private void setTagsVisible()
         {
             //hlink full db
-            hlink_fulldb.Visible = true;
+            linkButtonFullDB.Visible = true;
 
             //div variable table
             lbl_Project.Visible = true;
@@ -375,6 +384,34 @@ namespace WebPlantaPiloto
                 Session["dataAmount"] = dataAmount;
             }
 
+        }
+
+        protected void hlink_fulldb_DataBinding(object sender, EventArgs e)
+        {
+            Server.Transfer("FullDB.aspx");
+        }
+
+        protected void btn_ChangeVar_Click(object sender, EventArgs e)
+        {
+            string variable = ddList_ChangeVar.SelectedValue;
+            string value = txtIn_ChangeVar.Text;
+            value = value.Replace(',', '.');
+            value = value.Trim();
+            bool illegalChar = false;
+
+            lbl_err_ChangeVar.Visible = false;
+
+            foreach(Char c in value)
+                if (!char.IsDigit(c) && !c.Equals('.'))
+                    illegalChar = true;
+
+            if (!illegalChar)
+                _db.InsertModifyValue(_proyect, variable, value);
+            else
+            {
+                lbl_err_ChangeVar.Text = "Por favor, introduce únicamente números naturales o decimales";
+                lbl_err_ChangeVar.Visible = true;
+            }
         }
     }
 }
