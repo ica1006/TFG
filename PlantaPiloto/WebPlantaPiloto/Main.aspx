@@ -207,6 +207,15 @@
         .auto-style48 {
             width: 92%;
         }
+
+        .auto-style49 {
+            height: 23px;
+            width: 533px;
+        }
+
+        .auto-style50 {
+            width: 533px;
+        }
     </style>
 </head>
 <body>
@@ -233,7 +242,7 @@
                             <table class="auto-style10">
                                 <tr>
                                     <td class="auto-style11">
-                                        <asp:TextBox ID="txtIn_ConnString" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="30px" Width="456px"></asp:TextBox>
+                                        <asp:TextBox ID="txtIn_ConnString" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="28px" Width="456px"></asp:TextBox>
                                     </td>
                                     <td>
                                         <asp:Button ID="btn_ConnString" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Connect" Width="70px" OnClick="btn_ConnString_Click" />
@@ -293,15 +302,15 @@
                                 <ContentTemplate>
                                     <asp:Label ID="lbl_Project" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Project: " Visible="False"></asp:Label>
                                     <asp:Label ID="lbl_ProjectName" runat="server" Font-Names="helvetica" Font-Size="24pt" Text="ProjectName" Visible="False"></asp:Label>
-                                    <table class="auto-style48">
+                                    <table class="auto-style38">
                                         <tr>
-                                            <td class="auto-style14">
+                                            <td class="auto-style49">
                                                 <asp:Label ID="lbl_err_table" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_table" Visible="False"></asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <asp:GridView ID="gview1" runat="server" BorderWidth="0px" CellPadding="12" Font-Names="helvetica" Font-Size="14pt" HorizontalAlign="Center" Width="474px">
+                                            <td class="auto-style50">
+                                                <asp:GridView ID="gview1" runat="server" BorderWidth="0px" CellPadding="12" Font-Names="helvetica" Font-Size="14pt" HorizontalAlign="Center" Width="500px">
                                                     <Columns>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
@@ -348,7 +357,7 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td class="auto-style30">
-                                        <asp:TextBox ID="txtIn_ChangeVar" runat="server" Height="30px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
+                                        <asp:TextBox ID="txtIn_ChangeVar" runat="server" Height="28px" Width="215px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
                                     </td>
                                     <td>
                                         <asp:Button ID="btn_ChangeVar" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" />
@@ -360,23 +369,25 @@
                     <td class="auto-style27"></td>
                     <td class="auto-style35">
                         <div id="div_ChangeData" class="auto-style43">
-                            <asp:Label ID="lbl_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Data Amount" Visible="False"></asp:Label>
-                            <table class="auto-style10">
-                                <tr>
-                                    <td class="auto-style37">
-                                        <asp:Label ID="lbl_err_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeData" Visible="False"></asp:Label>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td class="auto-style37">
-                                        <asp:TextBox ID="txtIn_ChangeData" runat="server" Height="30px" Width="398px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
-                                    </td>
-                                    <td>
-                                        <asp:Button ID="btn_ChangeData" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" />
-                                    </td>
-                                </tr>
-                            </table>
+                            <asp:Panel ID="panelChangeAmount" runat="server" DefaultButton="btn_ChangeData">
+                                <asp:Label ID="lbl_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Data Amount" Visible="False"></asp:Label>
+                                <table class="auto-style10">
+                                    <tr>
+                                        <td class="auto-style37">
+                                            <asp:Label ID="lbl_err_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeData" Visible="False"></asp:Label>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style37">
+                                            <asp:TextBox ID="txtIn_ChangeData" runat="server" Height="28px" Width="398px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btn_ChangeData" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" OnClick="btn_ChangeData_Click" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </asp:Panel>
                         </div>
                     </td>
                     <td class="auto-style27"></td>

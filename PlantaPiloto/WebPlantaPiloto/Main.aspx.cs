@@ -17,6 +17,7 @@ namespace WebPlantaPiloto
     {
         private static Proyect _proyect;
         private static DB_services _db;
+        private static string conString;
         private static List<String> _varNameList;
         private static List<String> _onlyWritableVarNameList;
         private static List<Variable> _varList;
@@ -32,17 +33,19 @@ namespace WebPlantaPiloto
 
         protected void btn_ConnString_Click(object sender, EventArgs e)
         {
-            Session["conString"] = txtIn_ConnString.Text;
-            lbl_err_ConString.Visible = false;
-
             try
             {
+                conString = txtIn_ConnString.Text;
+                lbl_err_ConString.Visible = false;
                 loadInitialValues();
 
                 if (_db.CheckDBExists(_proyect))
                 {
                     ddList_ChangeVar.DataSource = _onlyWritableVarNameList;
                     ddList_ChangeVar.DataBind();
+
+                    txtIn_ChangeData.Text = "100";
+                    Session["dataAmount"] = 100;
 
                     this.loadOptions();
                     this.setTagsVisible();
@@ -61,7 +64,7 @@ namespace WebPlantaPiloto
         private void loadInitialValues()
         {
             Proyect proyect = loadProyect();
-            DB_services db = new DB_services(proyect.Cul, (string) Session["conString"]);
+            DB_services db = new DB_services(proyect.Cul, conString);
 
             if (db.CheckDBExists(proyect))
             {
@@ -263,21 +266,10 @@ namespace WebPlantaPiloto
 
         protected void LoadChart(object sender, EventArgs e)
         {
-            if (_db == null)
-            {
-                lbl_err_Chart.Text = "Entra load chart";
-                lbl_err_Chart.Visible = true;
-                loadInitialValues();
-                //return;
-            }
-
-            //DB_services db = (DB_services) Session["_db"];
-            //Proyect proyect = (Proyect) Session["_proyect"];
-            chart_Var.Visible = true;
             List<List<Variable>> _sqlData = new List<List<Variable>>();
             List<Variable> _variables = checkedVariables();
 
-            int _chartAmount = 100;
+            int _chartAmount = (int) Session["dataAmount"];
             List<float> _sqlTime = new List<float>();
             ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
 
@@ -365,6 +357,24 @@ namespace WebPlantaPiloto
                 lbl_err_table.Text = "Excepción actualizando la tabla " + ex.Message + ex.StackTrace;
                 lbl_err_table.Visible = true;
             }
+        }
+
+        protected void btn_ChangeData_Click(object sender, EventArgs e)
+        {
+            int dataAmount;
+            bool isNumber = int.TryParse(txtIn_ChangeData.Text, out dataAmount);
+
+            if (!isNumber)
+            {
+                lbl_err_ChangeData.Text = "Error, por favor introduce un valor numérico válido";
+                lbl_err_ChangeData.Visible = true;
+            }
+            else
+            {
+                lbl_err_ChangeData.Visible = false;
+                Session["dataAmount"] = dataAmount;
+            }
+
         }
     }
 }
