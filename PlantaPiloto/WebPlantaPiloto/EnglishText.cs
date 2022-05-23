@@ -7,6 +7,7 @@ namespace WebPlantaPiloto
 {
     public static class EnglishText
     {
+        // Labels
         public static string lbl_ConString { get; } = "Data Base - Connection String";
         public static string lbl_Connection { get; } = "Data Base connected: ";
         public static string btn_ConnString { get; } = "Connect";
@@ -21,5 +22,20 @@ namespace WebPlantaPiloto
         public static string lbl_Options { get; } = "Options";
         public static string lbl_Language { get; } = "Language";
         public static string lbl_Theme { get; } = "Theme";
+        public static string ddlist_langLang1 { get; } = "Spanish";
+        public static string ddlist_langLang2 { get; } = "English";
+        public static string ddlist_themeTheme1 { get; } = "Light";
+        public static string ddlist_themeTheme2 { get; } = "Dark";
+
+        // Exceptions && Errors
+        public static string lbl_err_ConStringEx1 { get; } = "Error, use a valid connection string please";
+        public static string lbl_err_ConStringEx2 { get; } = "Error loading the proyect ";
+        public static string lbl_err_tableEx1 { get; } = "Error loading the table ";
+        public static string lbl_err_tableEx2 { get; } = "Error refreshing the table ";
+        public static string lbl_err_ChartEx1 { get; } = "Error loading the chart ";
+        public static string lbl_err_ChartEx2 { get; } = "Error trying to get the checked boxes ";
+        public static string lbl_err_ChangeDataEx1 { get; } = "Error, please enter a valid positive numeric value";
+        public static string lbl_err_ChangeVarEx1 { get; } = "Error, please enter only natural or decimal numbers";
+        public static string lbl_err_ChangeVarEx2 { get; } = "Error changing the variable ";
     }
 }

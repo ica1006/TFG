@@ -37,7 +37,6 @@ namespace WebPlantaPiloto
             try
             {
                 conString = txtIn_ConnString.Text;
-                lbl_err_ConString.Visible = false;
                 loadInitialValues();
 
                 if (_db.CheckDBExists(_proyect))
@@ -62,11 +61,15 @@ namespace WebPlantaPiloto
                     this.LoadChart(sender, e);
                     this.ddlist_lang_SelectedIndexChanged(sender, e);
                     Timer1.Enabled = true;
+                    lbl_err_ConString.Visible = false;
                 }
 
             }catch (Exception)
             {
-                lbl_err_ConString.Text = "Error, por favor introduce un connection string válido";
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx1;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx1;
                 lbl_err_ConString.Visible = true;
             }
         }
@@ -137,10 +140,10 @@ namespace WebPlantaPiloto
             List<String> languages = new List<string>();
             List<String> themes = new List<string>();
 
-            languages.Add("Español");
+            languages.Add("Spanish");
             languages.Add("English");
-            themes.Add("Claro");
-            themes.Add("Oscuro");
+            themes.Add("Light");
+            themes.Add("Dark");
 
             ddlist_lang.DataSource = languages;
             ddlist_lang.DataBind();
@@ -152,7 +155,6 @@ namespace WebPlantaPiloto
         {
             Proyect _proyect = new Proyect();
             Variable _variable;
-            lbl_err_ConString.Visible = false;
 
             try
             {
@@ -188,11 +190,15 @@ namespace WebPlantaPiloto
                     }
                 } while (true);
                 sr.Close();
+                lbl_err_ConString.Visible = false;
             }
             catch (Exception ex)
             {
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx2 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_ConString.Visible = true;
-                lbl_err_ConString.Text = "Ha saltado una excepción en loadProyect\n" + ex.Message + "\n" + ex.StackTrace;
             }
 
             return _proyect;
@@ -236,7 +242,10 @@ namespace WebPlantaPiloto
                 lbl_err_table.Visible = false;
             }catch(Exception ex)
             {
-                lbl_err_table.Text = "Error al cargar la tabla. " + ex.Message + ex.StackTrace;
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_table.Text = SpanishText.lbl_err_tableEx1 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_table.Text = EnglishText.lbl_err_tableEx1 + ex.Message + " " + ex.StackTrace;
                 lbl_err_table.Visible = true;
             }
         }
@@ -276,15 +285,15 @@ namespace WebPlantaPiloto
 
         protected void LoadChart(object sender, EventArgs e)
         {
-            List<List<Variable>> _sqlData = new List<List<Variable>>();
-            List<Variable> _variables = checkedVariables();
-
-            int _chartAmount = (int) Session["dataAmount"];
-            List<float> _sqlTime = new List<float>();
-            ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-
             try
             {
+                List<List<Variable>> _sqlData = new List<List<Variable>>();
+                List<Variable> _variables = checkedVariables();
+
+                int _chartAmount = (int) Session["dataAmount"];
+                List<float> _sqlTime = new List<float>();
+                ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
+
                 chart_Var.Series.Clear();
                 chart_Var.Legends.Clear();
                 //Se recogen los valores de las variables seleccionadas
@@ -314,7 +323,10 @@ namespace WebPlantaPiloto
                 lbl_err_Chart.Visible = false;
             }
             catch (Exception ex) {
-                lbl_err_Chart.Text = "Excepcion cargando grafico " + ex.Message + ex.StackTrace;
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
                 lbl_err_Chart.Visible = true;
             }
         }
@@ -329,10 +341,14 @@ namespace WebPlantaPiloto
                     if (cboxGviewList[i].Checked)
                         checkedList.Add(_varList[i]);
                 }
+                lbl_err_Chart.Visible = false;
             }
             catch (Exception ex)
             {
-                lbl_err_Chart.Text = "Error intentando obtener las casillas marcadas " + ex.Message + ex.StackTrace;
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx2 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_Chart.Visible = true;
             }
             return checkedList;
@@ -364,19 +380,25 @@ namespace WebPlantaPiloto
             }
             catch (Exception ex)
             {
-                lbl_err_table.Text = "Excepción actualizando la tabla " + ex.Message + ex.StackTrace;
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_table.Text = SpanishText.lbl_err_tableEx2 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_table.Text = EnglishText.lbl_err_tableEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_table.Visible = true;
             }
         }
 
         protected void btn_ChangeData_Click(object sender, EventArgs e)
         {
-            int dataAmount;
+            int dataAmount = -1;
             bool isNumber = int.TryParse(txtIn_ChangeData.Text, out dataAmount);
 
-            if (!isNumber)
+            if (!isNumber || dataAmount < 0)
             {
-                lbl_err_ChangeData.Text = "Error, por favor introduce un valor numérico válido";
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_ChangeData.Text = SpanishText.lbl_err_ChangeDataEx1;
+                else if (this.getLanugage().EndsWith("English"))
+                    lbl_err_ChangeData.Text = EnglishText.lbl_err_ChangeDataEx1;
                 lbl_err_ChangeData.Visible = true;
             }
             else
@@ -394,24 +416,37 @@ namespace WebPlantaPiloto
 
         protected void btn_ChangeVar_Click(object sender, EventArgs e)
         {
-            string variable = ddList_ChangeVar.SelectedValue;
-            string value = txtIn_ChangeVar.Text;
-            value = value.Replace(',', '.');
-            value = value.Trim();
-            bool illegalChar = false;
-
-            lbl_err_ChangeVar.Visible = false;
-
-            foreach(Char c in value)
-                if (!char.IsDigit(c) && !c.Equals('.'))
-                    illegalChar = true;
-
-            if (!illegalChar)
-                _db.InsertModifyValue(_proyect, variable, value);
-            else
+            try
             {
-                lbl_err_ChangeVar.Text = "Por favor, introduce únicamente números naturales o decimales";
-                lbl_err_ChangeVar.Visible = true;
+                string variable = ddList_ChangeVar.SelectedValue;
+                string value = txtIn_ChangeVar.Text;
+                value = value.Replace(',', '.');
+                value = value.Trim();
+                bool illegalChar = false;
+
+                lbl_err_ChangeVar.Visible = false;
+
+                foreach (Char c in value)
+                    if (!char.IsDigit(c) && !c.Equals('.'))
+                        illegalChar = true;
+
+                if (!illegalChar)
+                    _db.InsertModifyValue(_proyect, variable, value);
+                else
+                {
+                    if (this.getLanugage().Equals("Spanish"))
+                        lbl_err_ChangeVar.Text = SpanishText.lbl_err_ChangeVarEx1;
+                    else if (this.getLanugage().Equals("English"))
+                        lbl_err_ChangeVar.Text = EnglishText.lbl_err_ChangeVarEx1;
+                    lbl_err_ChangeVar.Visible = true;
+                }
+            }catch(Exception ex)
+            {
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_ChangeVar.Text = SpanishText.lbl_err_ChangeVarEx2 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_ChangeVar.Text = EnglishText.lbl_err_ChangeVarEx2 + ex.Message + " " + ex.StackTrace;
+                lbl_err_table.Visible = true;
             }
         }
 
@@ -433,9 +468,12 @@ namespace WebPlantaPiloto
                 lbl_Options.Text = SpanishText.lbl_Options;
                 lbl_Language.Text = SpanishText.lbl_Language;
                 lbl_Theme.Text = SpanishText.lbl_Theme;
-                ddlist_lang.Items[0].Text = "Español";
-                ddlist_lang.Items[1].Text = "Inglés";
-            }else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
+                ddlist_lang.Items[0].Text = SpanishText.ddlist_langLang1;
+                ddlist_lang.Items[1].Text = SpanishText.ddlist_langLang2;
+                ddlist_theme.Items[0].Text = SpanishText.ddlist_themeTheme1;
+                ddlist_theme.Items[1].Text = SpanishText.ddlist_themeTheme2;
+            }
+            else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
             {
                 lbl_ConString.Text = EnglishText.lbl_ConString;
                 lbl_Connection.Text = EnglishText.lbl_Connection;
@@ -451,9 +489,21 @@ namespace WebPlantaPiloto
                 lbl_Options.Text = EnglishText.lbl_Options;
                 lbl_Language.Text = EnglishText.lbl_Language;
                 lbl_Theme.Text = EnglishText.lbl_Theme;
-                ddlist_lang.Items[0].Text = "Spanish";
-                ddlist_lang.Items[1].Text = "English";
+                ddlist_lang.Items[0].Text = EnglishText.ddlist_langLang1;
+                ddlist_lang.Items[1].Text = EnglishText.ddlist_langLang2;
+                ddlist_theme.Items[0].Text = EnglishText.ddlist_themeTheme1;
+                ddlist_theme.Items[1].Text = EnglishText.ddlist_themeTheme2;
             }
+        }
+
+        private string getLanugage()
+        {
+            if (ddlist_lang.SelectedValue.Equals("Español") || ddlist_lang.SelectedValue.Equals("Spanish"))
+                return "Spanish";
+            if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
+                return "English";
+
+            return "";
         }
     }
 }
