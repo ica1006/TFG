@@ -41,6 +41,8 @@ namespace WebPlantaPiloto
 
                 if (_db.CheckDBExists(_proyect))
                 {
+                    lbl_ConnectionStatus.Text = "true";
+                    lbl_ConnectionStatus.ForeColor = System.Drawing.Color.FromArgb(52, 178, 60);
                     ddList_ChangeVar.DataSource = _onlyWritableVarNameList;
                     ddList_ChangeVar.DataBind();
 
@@ -48,7 +50,7 @@ namespace WebPlantaPiloto
                     Session["proyect"] = _proyect;
 
                     if (Session["dataAmount"] != null)
-                        txtIn_ChangeData.Text = (string) Session["dataAmount"];
+                        txtIn_ChangeData.Text = Session["dataAmount"].ToString();
                     else
                     {
                         txtIn_ChangeData.Text = "100";
@@ -60,14 +62,20 @@ namespace WebPlantaPiloto
                     this.loadGridView();
                     this.LoadChart(sender, e);
                     this.ddlist_lang_SelectedIndexChanged(sender, e);
+                    this.ddlist_theme_SelectedIndexChanged(sender, e);
                     Timer1.Enabled = true;
                     lbl_err_ConString.Visible = false;
                 }
+                else
+                {
+                    lbl_ConnectionStatus.Text = "false";
+                    lbl_ConnectionStatus.ForeColor = System.Drawing.Color.Red;
+                }
 
-            }catch (Exception)
+            }catch (Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx1;
+                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx1 + ex.Message + ex.StackTrace;
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx1;
                 lbl_err_ConString.Visible = true;
@@ -89,8 +97,6 @@ namespace WebPlantaPiloto
                 _varList = new List<Variable>();
 
                 lbl_ProjectName.Text = _proyect.Name;
-                lbl_ConnectionStatus.Text = "true";
-                lbl_ConnectionStatus.ForeColor = System.Drawing.Color.Green;
 
                 foreach (Variable v in _proyect.Variables)
                 {
@@ -504,6 +510,38 @@ namespace WebPlantaPiloto
                 return "English";
 
             return "";
+        }
+
+        protected void ddlist_theme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlist_theme.SelectedValue.Equals("Light") || ddlist_theme.SelectedValue.Equals("Claro"))
+            {
+                div_ConnString.Attributes["class"] = "rectanguloRedondeado";
+                div_Table.Attributes["class"] = "rectanguloRedondeado";
+                div_ChangeVariable.Attributes["class"] = "rectanguloRedondeado";
+                div_ChangeData.Attributes["class"] = "rectanguloRedondeado";
+                div_Options.Attributes["class"] = "rectanguloRedondeado";
+                div_Chart.Attributes["class"] = "rectanguloRedondeado";
+
+                bodyTag.Attributes.Clear();
+                bodyTag.Attributes.Add("bgcolor", "white");
+
+                gview1.ForeColor = System.Drawing.Color.Black;
+            }
+            else if (ddlist_theme.SelectedValue.Equals("Dark") || ddlist_theme.SelectedValue.Equals("Oscuro"))
+            {
+                div_ConnString.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_Table.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_ChangeVariable.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_ChangeData.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_Options.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_Chart.Attributes["class"] = "rectanguloRedondeadoOscuro";
+
+                bodyTag.Attributes.Clear();
+                bodyTag.Attributes.Add("bgcolor", "#2C2C2C");
+
+                gview1.ForeColor = System.Drawing.Color.Black;
+            }
         }
     }
 }

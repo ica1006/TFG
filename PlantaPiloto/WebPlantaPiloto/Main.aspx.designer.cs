@@ -15,6 +15,15 @@ namespace WebPlantaPiloto
     {
 
         /// <summary>
+        /// Control bodyTag.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bodyTag;
+
+        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace WebPlantaPiloto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_err_ConString;
+
+        /// <summary>
+        /// Control div_ConnString.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_ConnString;
 
         /// <summary>
         /// Control panelConnectionString.
@@ -105,6 +123,15 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.LinkButton linkButtonFullDB;
 
         /// <summary>
+        /// Control div_Chart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Chart;
+
+        /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
         /// <remarks>
@@ -139,6 +166,15 @@ namespace WebPlantaPiloto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_err_Chart;
+
+        /// <summary>
+        /// Control div_Table.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Table;
 
         /// <summary>
         /// Control UpdatePanel2.
@@ -184,6 +220,15 @@ namespace WebPlantaPiloto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gview1;
+
+        /// <summary>
+        /// Control div_ChangeVariable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_ChangeVariable;
 
         /// <summary>
         /// Control panelChangeVariable.
@@ -240,6 +285,15 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.Button btn_ChangeVar;
 
         /// <summary>
+        /// Control div_ChangeData.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_ChangeData;
+
+        /// <summary>
         /// Control panelChangeAmount.
         /// </summary>
         /// <remarks>
@@ -283,6 +337,15 @@ namespace WebPlantaPiloto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_ChangeData;
+
+        /// <summary>
+        /// Control div_Options.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Options;
 
         /// <summary>
         /// Control lbl_Options.
