@@ -28,7 +28,7 @@
         }
 
         .auto-style10 {
-            width: 93%;
+            width: 500px;
         }
 
         .auto-style11 {
@@ -84,13 +84,6 @@
             width: 71px;
         }
 
-        .auto-style42 {
-            border-radius: 25px;
-            background: #F7F7F7;
-            padding: 20px;
-            height: 104px;
-        }
-
         .auto-style46 {
             height: 438px;
             width: 530px;
@@ -105,16 +98,6 @@
             width: 533px;
         }
 
-        .auto-style52 {
-            width: 71%;
-        }
-        .auto-style53 {
-            border-radius: 25px;
-            background: #F7F7F7;
-            padding: 20px;
-            height: 104px;
-            width: 400px;
-        }
         .auto-style54 {
             height: 100%;
             width: 530px;
@@ -135,6 +118,13 @@
         .auto-style61 {
             height: 26px;
             width: 227px;
+        }
+        .auto-style62 {
+            width: 432px;
+            height: 23px;
+        }
+        .auto-style63 {
+            width: 70px;
         }
         </style>
 </head>
@@ -252,7 +242,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style59">
-                        <div id="div_ChangeVariable" class="auto-style42" runat="server">
+                        <div id="div_ChangeVariable" class="rectanguloRedondeado" runat="server">
                             <asp:Panel ID="panelChangeVariable" runat="server" DefaultButton="btn_ChangeVar">
                                 <asp:Label ID="lbl_ChangeVariable" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Variable Value" Visible="False"></asp:Label>
                                 <table class="auto-style58">
@@ -279,21 +269,20 @@
                     </td>
                     <td class="blankCell"></td>
                     <td class="auto-style35">
-                        <div id="div_ChangeData" class="auto-style53" runat="server">
+                        <div id="div_ChangeData" class="rectanguloRedondeado" runat="server">
                             <asp:Panel ID="panelChangeAmount" runat="server" DefaultButton="btn_ChangeData" Width="500px">
                                 <asp:Label ID="lbl_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Data Amount" Visible="False"></asp:Label>
                                 <table class="auto-style10">
                                     <tr>
-                                        <td class="auto-style37">
+                                        <td colspan="2" class="auto-style14">
                                             <asp:Label ID="lbl_err_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeData" Visible="False"></asp:Label>
                                         </td>
-                                        <td>&nbsp;</td>
                                     </tr>
                                     <tr>
                                         <td class="auto-style37">
                                             <asp:TextBox ID="txtIn_ChangeData" runat="server" Height="28px" Width="302px" Font-Names="helvetica" Font-Size="14pt" Visible="False"></asp:TextBox>
                                         </td>
-                                        <td>
+                                        <td class="auto-style63">
                                             <asp:Button ID="btn_ChangeData" runat="server" BackColor="White" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" Font-Names="helvetica" Height="32px" Text="Change" Width="70px" Visible="False" OnClick="btn_ChangeData_Click" />
                                         </td>
                                     </tr>
@@ -303,11 +292,11 @@
                     </td>
                     <td class="blankCell"></td>
                     <td class="auto-style35">
-                        <div id="div_Options" class="auto-style53" runat="server">
+                        <div id="div_Options" class="rectanguloRedondeado" runat="server">
                             <asp:Label ID="lbl_Options" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Options" Visible="False"></asp:Label>
                             <table class="auto-style10">
                                 <tr>
-                                    <td class="auto-style37" colspan="4">
+                                    <td class="auto-style62" colspan="4">
                                         <asp:Label ID="lbl_err_Options" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_Options" Visible="False"></asp:Label>
                                     </td>
                                 </tr>

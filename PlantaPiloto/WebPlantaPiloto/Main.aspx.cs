@@ -29,6 +29,12 @@ namespace WebPlantaPiloto
             if (!IsPostBack)
             {
                 Timer1.Enabled = false;
+
+                if (Session["connectionString"] != null)
+                {
+                    txtIn_ConnString.Text = (string)Session["connectionString"];
+                    this.btn_ConnString_Click(sender, e);
+                }
             }
         }
 
@@ -333,7 +339,7 @@ namespace WebPlantaPiloto
                     lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
-                lbl_err_Chart.Visible = true;
+                lbl_err_Chart.Visible = false;
             }
         }
 
@@ -417,7 +423,8 @@ namespace WebPlantaPiloto
 
         protected void hlink_fulldb_DataBinding(object sender, EventArgs e)
         {
-            Server.Transfer("FullDB.aspx");
+            //Server.Transfer("FullDB.aspx");
+            Response.Redirect("FullDB.aspx");
         }
 
         protected void btn_ChangeVar_Click(object sender, EventArgs e)
@@ -478,6 +485,8 @@ namespace WebPlantaPiloto
                 ddlist_lang.Items[1].Text = SpanishText.ddlist_langLang2;
                 ddlist_theme.Items[0].Text = SpanishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = SpanishText.ddlist_themeTheme2;
+
+                Session["language"] = "Spanish";
             }
             else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
             {
@@ -499,6 +508,8 @@ namespace WebPlantaPiloto
                 ddlist_lang.Items[1].Text = EnglishText.ddlist_langLang2;
                 ddlist_theme.Items[0].Text = EnglishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = EnglishText.ddlist_themeTheme2;
+
+                Session["language"] = "English";
             }
         }
 
@@ -527,6 +538,7 @@ namespace WebPlantaPiloto
                 bodyTag.Attributes.Add("bgcolor", "white");
 
                 gview1.ForeColor = System.Drawing.Color.Black;
+                Session["theme"] = "Light";
             }
             else if (ddlist_theme.SelectedValue.Equals("Dark") || ddlist_theme.SelectedValue.Equals("Oscuro"))
             {
@@ -541,6 +553,7 @@ namespace WebPlantaPiloto
                 bodyTag.Attributes.Add("bgcolor", "#2C2C2C");
 
                 gview1.ForeColor = System.Drawing.Color.Black;
+                Session["them"] = "Dark";
             }
         }
     }

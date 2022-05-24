@@ -26,6 +26,11 @@ namespace WebPlantaPiloto
         public static string ddlist_langLang2 { get; } = "Inglés";
         public static string ddlist_themeTheme1 { get; } = "Claro";
         public static string ddlist_themeTheme2 { get; } = "Oscuro";
+        public static string lbl_changesDB { get; } = "Base de Datos de cambios";
+        public static string lbl_valuesDB { get; } = "Base de Datos de valores";
+        public static string btn_back { get; } = "Volver";
+        public static string btn_StartStop { get; } = "Parar Auto-Actualizar";
+        public static string btn_StartStop2 { get; } = "Auto-Actualizar";
 
         // Exceptions && Errors
         public static string lbl_err_ConStringEx1 { get; } = "Error, por favor introduce un connection string válido";
