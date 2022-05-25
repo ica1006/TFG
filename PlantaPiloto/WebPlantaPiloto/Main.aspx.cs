@@ -30,10 +30,43 @@ namespace WebPlantaPiloto
             {
                 Timer1.Enabled = false;
 
+                string theme = null;
+                string language = null;
+
+                if (Session["theme"] != null)
+                    theme = (string)Session["theme"];
+
+                if (Session["language"] != null)
+                    language = (string)Session["language"];
+
+                div_ChangeData.Attributes["class"] = "rectanguloBlanco";
+                div_ChangeVariable.Attributes["class"] = "rectanguloBlanco";
+                div_Options.Attributes["class"] = "rectanguloBlanco";
+                div_Table.Attributes["class"] = "rectanguloBlanco";
+                div_Chart.Attributes["class"] = "rectanguloBlanco";
+
                 if (Session["connectionString"] != null)
                 {
                     txtIn_ConnString.Text = (string)Session["connectionString"];
                     this.btn_ConnString_Click(sender, e);
+                }
+
+                if (theme != null)
+                {
+                    if (theme.Equals("Light"))
+                        ddlist_theme.SelectedIndex = 0;
+                    else if (theme.Equals("Dark"))
+                        ddlist_theme.SelectedIndex = 1;
+                    this.ddlist_theme_SelectedIndexChanged(sender, e);
+                }
+
+                if (language != null)
+                {
+                    if (language.Equals("English"))
+                        ddlist_lang.SelectedIndex = 1;
+                    else if (language.Equals("Spanish"))
+                        ddlist_lang.SelectedIndex = 0;
+                    this.ddlist_lang_SelectedIndexChanged(sender, e);
                 }
             }
         }
@@ -313,6 +346,7 @@ namespace WebPlantaPiloto
                 {
                     _sqlData.Add(_db.GetVarValue(_proyect, v, _chartAmount));
                     chart_Var.Legends.Add(v.Name);
+                    chart_Var.Legends[chart_Var.Legends.Count - 1].Font = new System.Drawing.Font("Helvetica", 10);
                 }
 
                 //Se obtienen los valores de tiempo
@@ -330,6 +364,33 @@ namespace WebPlantaPiloto
                     chart_Var.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _proyect.Cul);
                     chart_Var.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
                     chart_Var.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
+
+                    chart_Var.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Helvetica", 20);
+                    chart_Var.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Helvetica", 20);
+
+                    chart_Var.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
+                    chart_Var.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
+
+
+                    if (Session["theme"] != null)
+                    {
+                        string theme = (string)Session["theme"];
+
+                        if (theme.Equals("Light"))
+                        {
+                            chart_Var.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart_Var.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart_Var.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart_Var.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                        }
+                        else if (theme.Equals("Dark"))
+                        {
+                            chart_Var.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart_Var.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart_Var.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart_Var.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                        }
+                    }
                 }
                 updateGridView(sender, e);
                 lbl_err_Chart.Visible = false;
@@ -537,6 +598,8 @@ namespace WebPlantaPiloto
                 bodyTag.Attributes.Clear();
                 bodyTag.Attributes.Add("bgcolor", "white");
 
+                chart_Var.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+
                 gview1.ForeColor = System.Drawing.Color.Black;
                 Session["theme"] = "Light";
             }
@@ -552,8 +615,10 @@ namespace WebPlantaPiloto
                 bodyTag.Attributes.Clear();
                 bodyTag.Attributes.Add("bgcolor", "#2C2C2C");
 
+                chart_Var.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+
                 gview1.ForeColor = System.Drawing.Color.Black;
-                Session["them"] = "Dark";
+                Session["theme"] = "Dark";
             }
         }
     }

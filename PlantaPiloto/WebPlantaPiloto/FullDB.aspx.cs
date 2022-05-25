@@ -72,9 +72,17 @@ namespace WebPlantaPiloto
             bodyTag.Attributes.Clear();
 
             if (theme.Equals("Light"))
+            {
                 bodyTag.Attributes.Add("bgcolor", "white");
+                lbl_changesDB.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                lbl_valuesDB.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+            }
             else if (theme.Equals("Dark"))
+            {
                 bodyTag.Attributes.Add("bgcolor", "#2C2C2C");
+                lbl_changesDB.ForeColor = System.Drawing.Color.FromArgb(196,194,194);
+                lbl_valuesDB.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+            }
         }
 
         protected void btn_back_Click(object sender, EventArgs e)
