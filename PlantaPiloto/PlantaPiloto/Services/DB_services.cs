@@ -115,7 +115,7 @@ namespace PlantaPiloto
                             command.ExecuteNonQuery();
 
                     // Create table string
-                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE Web" + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Variable] [nvarchar](20), [NuevoValor] [nvarchar](20) NOT NULL)");
+                    StringBuilder sqlStr = new StringBuilder("CREATE TABLE Web" + proyect.Name + "([Id] [int] IDENTITY(1,1) NOT NULL, [Time] [nvarchar](20) NOT NULL, [Variable] [nvarchar](20), [NuevoValor] [nvarchar](20) NOT NULL)");
 
                     // The following code uses an SqlCommand based on the SqlConnection.
                     using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
@@ -220,7 +220,7 @@ namespace PlantaPiloto
             }
         }
 
-        public void InsertModifyValue(Proyect proyect, string variable, string value)
+        public void InsertModifyValue(Proyect proyect, string variable, string value, string time)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
@@ -232,7 +232,7 @@ namespace PlantaPiloto
                     if (CheckWebDBExists(proyect))
                     {
                         // Cadena para insertar una nueva fila
-                        StringBuilder insertCmd = new StringBuilder("INSERT INTO Web" + proyect.Name + "([Variable],[NuevoValor]) VALUES ('" + variable + "', '" + value + "')");
+                        StringBuilder insertCmd = new StringBuilder("INSERT INTO Web" + proyect.Name + "([Time],[Variable],[NuevoValor]) VALUES ('" + time + "', '" + variable + "', '" + value + "')");
 
                         using (SqlCommand command = new SqlCommand(insertCmd.ToString(), con))
                             command.ExecuteNonQuery();

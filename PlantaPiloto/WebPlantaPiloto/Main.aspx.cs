@@ -505,7 +505,12 @@ namespace WebPlantaPiloto
                         illegalChar = true;
 
                 if (!illegalChar)
-                    _db.InsertModifyValue(_proyect, variable, value);
+                {
+                    string[] values = _db.GetLastRowValue(_proyect, _varNameList).Split(';');
+                    string time = values[0];
+
+                    _db.InsertModifyValue(_proyect, variable, value, time);
+                }
                 else
                 {
                     if (this.getLanugage().Equals("Spanish"))
