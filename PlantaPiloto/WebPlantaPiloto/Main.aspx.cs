@@ -99,7 +99,8 @@ namespace WebPlantaPiloto
                     this.loadOptions();
                     this.setTagsVisible();
                     this.loadGridView();
-                    this.LoadChart(sender, e);
+                    //this.LoadChart(sender, e);
+                    this.loadExtraCharts(sender, e);
                     this.ddlist_lang_SelectedIndexChanged(sender, e);
                     this.ddlist_theme_SelectedIndexChanged(sender, e);
                     Timer1.Enabled = true;
@@ -168,6 +169,8 @@ namespace WebPlantaPiloto
             lbl_ChangeData.Visible = true;
             txtIn_ChangeData.Visible = true;
             btn_ChangeData.Visible = true;
+            lbl_ChartAmount.Visible = true;
+            ddList_ChartAmount.Visible = true;
 
             //options
             lbl_Options.Visible = true;
@@ -551,6 +554,7 @@ namespace WebPlantaPiloto
                 ddlist_lang.Items[1].Text = SpanishText.ddlist_langLang2;
                 ddlist_theme.Items[0].Text = SpanishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = SpanishText.ddlist_themeTheme2;
+                lbl_ChartAmount.Text = SpanishText.lbl_ChartAmount;
 
                 Session["language"] = "Spanish";
             }
@@ -574,6 +578,7 @@ namespace WebPlantaPiloto
                 ddlist_lang.Items[1].Text = EnglishText.ddlist_langLang2;
                 ddlist_theme.Items[0].Text = EnglishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = EnglishText.ddlist_themeTheme2;
+                lbl_ChartAmount.Text = EnglishText.lbl_ChartAmount;
 
                 Session["language"] = "English";
             }
@@ -624,6 +629,87 @@ namespace WebPlantaPiloto
 
                 gview1.ForeColor = System.Drawing.Color.Black;
                 Session["theme"] = "Dark";
+            }
+        }
+
+        protected void loadExtraCharts(object sender, EventArgs e)
+        {
+            try
+            {
+                lbl_err_ChangeData.Visible = false;
+
+                chart_T1.Visible = false;
+                chart_T2.Visible = false;
+                chart_T3.Visible = false;
+                chart_T4.Visible = false;
+                chart_T5.Visible = false;
+                chart_T6.Visible = false;
+
+                cblist_Chart1.Visible = false;
+                cblist_Chart2.Visible = false;
+                cblist_Chart3.Visible = false;
+                cblist_Chart4.Visible = false;
+                cblist_Chart5.Visible = false;
+                cblist_Chart6.Visible = false;
+
+                if (cblist_Chart1.Items.Count == 0 && cblist_Chart2.Items.Count == 0 && cblist_Chart3.Items.Count == 0 && cblist_Chart4.Items.Count == 0 && cblist_Chart5.Items.Count == 0 && cblist_Chart6.Items.Count == 0)
+                {
+                    foreach (String name in _varNameList)
+                    {
+                        ListItem item = new ListItem(name);
+                        cblist_Chart1.Items.Add(item);
+                        cblist_Chart2.Items.Add(item);
+                        cblist_Chart3.Items.Add(item);
+                        cblist_Chart4.Items.Add(item);
+                        cblist_Chart5.Items.Add(item);
+                        cblist_Chart6.Items.Add(item);
+                    }
+                }
+
+                int chartAmount = int.Parse(ddList_ChartAmount.SelectedValue);
+
+                this.LoadChart(sender, e);
+
+                if (chartAmount >= 2)
+                {
+                    chart_T1.Visible = true;
+                    cblist_Chart1.Visible = true;
+                }
+                if (chartAmount >= 3)
+                {
+                    chart_T2.Visible = true;
+                    cblist_Chart2.Visible = true;
+                }
+                if (chartAmount >= 4)
+                {
+                    chart_T3.Visible = true;
+                    cblist_Chart3.Visible = true;
+                }
+                if (chartAmount >= 5)
+                {
+                    chart_T4.Visible = true;
+                    cblist_Chart4.Visible = true;
+                }
+                if (chartAmount >= 6)
+                {
+                    chart_T5.Visible = true;
+                    cblist_Chart5.Visible = true;
+                }
+                if (chartAmount >= 7)
+                {
+                    chart_T6.Visible = true;
+                    cblist_Chart6.Visible = true;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                if (this.getLanugage().Equals("Spanish"))
+                    lbl_err_ChangeData.Text = SpanishText.lbl_err_ChangeDataEx2 + ex.Message + " " + ex.StackTrace;
+                else if (this.getLanugage().Equals("English"))
+                    lbl_err_ChangeData.Text = EnglishText.lbl_err_ChangeDataEx2 + ex.Message + " " + ex.StackTrace;
+                lbl_err_table.Visible = true;
             }
         }
     }

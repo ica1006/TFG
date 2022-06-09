@@ -31,6 +31,7 @@ namespace WebPlantaPiloto
         public static string btn_back { get; } = "Volver";
         public static string btn_StartStop { get; } = "Parar Auto-Actualizar";
         public static string btn_StartStop2 { get; } = "Auto-Actualizar";
+        public static string lbl_ChartAmount { get; } = "Cantidad de gráficos";
 
         // Exceptions && Errors
         public static string lbl_err_ConStringEx1 { get; } = "Error, por favor introduce un connection string válido";
@@ -40,6 +41,7 @@ namespace WebPlantaPiloto
         public static string lbl_err_ChartEx1 { get; } = "Error cargando el gráfico ";
         public static string lbl_err_ChartEx2 { get; } = "Error intentando obtener las casillas marcadas ";
         public static string lbl_err_ChangeDataEx1 { get; } = "Error, por favor introduce un número natural válido";
+        public static string lbl_err_ChangeDataEx2 { get; } = "Error cargando los gráficos extra";
         public static string lbl_err_ChangeVarEx1 { get; } = "Error, please enter only natural or decimal numbers";
         public static string lbl_err_ChangeVarEx2 { get; } = "Error cambiando la variable ";
     }
