@@ -429,6 +429,15 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
 
         /// <summary>
+        /// Control div_ExtraCharts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_ExtraCharts;
+
+        /// <summary>
         /// Control chart_T1.
         /// </summary>
         /// <remarks>

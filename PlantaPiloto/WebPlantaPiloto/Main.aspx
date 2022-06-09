@@ -246,6 +246,7 @@
         </div>
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
+                <div id="div_ExtraCharts" class="rectanguloRedondeado" runat="server">
         <table style="width:100%;">
             <tr>
                 <td>
@@ -259,23 +260,27 @@
                                             </asp:ChartArea>
                                         </ChartAreas>
                                     </asp:Chart>
-                                    <asp:CheckBoxList ID="cblist_Chart1" runat="server" Visible="False">
+                                    </td>
+                <td>
+                                    <asp:CheckBoxList ID="cblist_Chart1" runat="server" Visible="False" Font-Names="helvetica" Font-Size="14pt">
                                     </asp:CheckBoxList>
                                     </td>
                 <td>
-                                    <asp:Chart ID="chart_T2" runat="server" BackColor="Transparent" Height="472px" Width="750px" Visible="False">
-                                        <Series>
-                                            <asp:Series Name="Series1" ChartArea="ChartArea1">
-                                            </asp:Series>
-                                        </Series>
-                                        <ChartAreas>
-                                            <asp:ChartArea Name="ChartArea1">
-                                            </asp:ChartArea>
-                                        </ChartAreas>
-                                    </asp:Chart>
-                                    <asp:CheckBoxList ID="cblist_Chart2" runat="server" Visible="False">
-                                    </asp:CheckBoxList>
-                                    </td>
+                    <asp:Chart ID="chart_T2" runat="server" BackColor="Transparent" Height="472px" Visible="False" Width="750px">
+                        <Series>
+                            <asp:Series ChartArea="ChartArea1" Name="Series1">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                </td>
+                <td>
+                    <asp:CheckBoxList ID="cblist_Chart2" runat="server" Visible="False" Font-Names="helvetica" Font-Size="14pt">
+                    </asp:CheckBoxList>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -289,25 +294,30 @@
                                             </asp:ChartArea>
                                         </ChartAreas>
                                     </asp:Chart>
-                                    <asp:CheckBoxList ID="cblist_Chart3" runat="server" Visible="False">
+                                    </td>
+                <td>
+                                    <asp:CheckBoxList ID="cblist_Chart3" runat="server" Visible="False" Font-Names="helvetica" Font-Size="14pt">
                                     </asp:CheckBoxList>
                                     </td>
                 <td>
-                                    <asp:Chart ID="chart_T4" runat="server" BackColor="Transparent" Height="472px" Width="750px" Visible="False">
-                                        <Series>
-                                            <asp:Series Name="Series1" ChartArea="ChartArea1">
-                                            </asp:Series>
-                                        </Series>
-                                        <ChartAreas>
-                                            <asp:ChartArea Name="ChartArea1">
-                                            </asp:ChartArea>
-                                        </ChartAreas>
-                                    </asp:Chart>
-                                    <asp:CheckBoxList ID="cblist_Chart4" runat="server" Visible="False">
-                                    </asp:CheckBoxList>
-                                    </td>
+                    <asp:Chart ID="chart_T4" runat="server" BackColor="Transparent" Height="472px" Visible="False" Width="750px">
+                        <Series>
+                            <asp:Series ChartArea="ChartArea1" Name="Series1">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                </td>
+                <td>
+                    <asp:CheckBoxList ID="cblist_Chart4" runat="server" Visible="False" Font-Names="helvetica" Font-Size="14pt">
+                    </asp:CheckBoxList>
+                </td>
             </tr>
         </table>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
     </form>

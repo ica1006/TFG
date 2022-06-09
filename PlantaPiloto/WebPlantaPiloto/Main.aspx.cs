@@ -44,6 +44,7 @@ namespace WebPlantaPiloto
                 div_Options.Attributes["class"] = "rectanguloBlanco";
                 div_Table.Attributes["class"] = "rectanguloBlanco";
                 div_Chart.Attributes["class"] = "rectanguloBlanco";
+                div_ExtraCharts.Attributes["class"] = "rectanguloBlanco";
 
                 if (Session["connectionString"] != null)
                 {
@@ -340,7 +341,6 @@ namespace WebPlantaPiloto
                 int _chartAmount = (int) Session["dataAmount"];
                 List<float> _sqlTime = new List<float>();
                 ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-
                 chart.Series.Clear();
                 chart.Legends.Clear();
                 //Se recogen los valores de las variables seleccionadas
@@ -394,7 +394,6 @@ namespace WebPlantaPiloto
                         }
                     }
                 }
-                updateGridView(sender, e);
                 lbl_err_Chart.Visible = false;
             }
             catch (Exception ex) {
@@ -603,6 +602,7 @@ namespace WebPlantaPiloto
                 div_ChangeData.Attributes["class"] = "rectanguloRedondeado";
                 div_Options.Attributes["class"] = "rectanguloRedondeado";
                 div_Chart.Attributes["class"] = "rectanguloRedondeado";
+                div_ExtraCharts.Attributes["class"] = "rectanguloRedondeado";
 
                 bodyTag.Attributes.Clear();
                 bodyTag.Attributes.Add("bgcolor", "white");
@@ -620,6 +620,7 @@ namespace WebPlantaPiloto
                 div_ChangeData.Attributes["class"] = "rectanguloRedondeadoOscuro";
                 div_Options.Attributes["class"] = "rectanguloRedondeadoOscuro";
                 div_Chart.Attributes["class"] = "rectanguloRedondeadoOscuro";
+                div_ExtraCharts.Attributes["class"] = "rectanguloRedondeadoOscuro";
 
                 bodyTag.Attributes.Clear();
                 bodyTag.Attributes.Add("bgcolor", "#2C2C2C");
@@ -663,6 +664,7 @@ namespace WebPlantaPiloto
                 int chartAmount = int.Parse(ddList_ChartAmount.SelectedValue);
 
                 this.LoadChart(sender, e, chart_Var, checkedVariables());
+                updateGridView(sender, e);
 
                 List<Variable> selectedVariables = new List<Variable>();
 
