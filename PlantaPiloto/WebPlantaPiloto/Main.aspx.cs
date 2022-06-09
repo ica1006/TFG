@@ -331,25 +331,24 @@ namespace WebPlantaPiloto
             }
         }
 
-        protected void LoadChart(object sender, EventArgs e)
+        protected void LoadChart(object sender, EventArgs e, Chart chart, List<Variable> variableList)
         {
             try
             {
                 List<List<Variable>> _sqlData = new List<List<Variable>>();
-                List<Variable> _variables = checkedVariables();
 
                 int _chartAmount = (int) Session["dataAmount"];
                 List<float> _sqlTime = new List<float>();
                 ResourceManager _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
 
-                chart_Var.Series.Clear();
-                chart_Var.Legends.Clear();
+                chart.Series.Clear();
+                chart.Legends.Clear();
                 //Se recogen los valores de las variables seleccionadas
-                foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
+                foreach (Variable v in variableList.Where(p => p.Type != EnumVarType.String))
                 {
                     _sqlData.Add(_db.GetVarValue(_proyect, v, _chartAmount));
-                    chart_Var.Legends.Add(v.Name);
-                    chart_Var.Legends[chart_Var.Legends.Count - 1].Font = new System.Drawing.Font("Helvetica", 10);
+                    chart.Legends.Add(v.Name);
+                    chart.Legends[chart.Legends.Count - 1].Font = new System.Drawing.Font("Helvetica", 10);
                 }
 
                 //Se obtienen los valores de tiempo
@@ -362,17 +361,17 @@ namespace WebPlantaPiloto
                     series.Points.DataBindXY(_sqlTime, "Time", _sqlData[i].Select(p => Double.Parse(p.Value)).ToList(), "Value");
                     series.ChartType = SeriesChartType.Line;
                     series.BorderWidth = 3;
-                    chart_Var.Series.Add(series);
-                    chart_Var.ChartAreas[0].AxisX.Interval = 10;
-                    chart_Var.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _proyect.Cul);
-                    chart_Var.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
-                    chart_Var.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
+                    chart.Series.Add(series);
+                    chart.ChartAreas[0].AxisX.Interval = 10;
+                    chart.ChartAreas[0].AxisX.Title = _res_man.GetString("chartXAxisLabel", _proyect.Cul);
+                    chart.ChartAreas[0].AxisY.Title = _res_man.GetString("chartYAxisLabel", _proyect.Cul);
+                    chart.ChartAreas[0].AxisX.LabelStyle.Format = "#.##";
 
-                    chart_Var.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Helvetica", 20);
-                    chart_Var.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Helvetica", 20);
+                    chart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Helvetica", 20);
+                    chart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Helvetica", 20);
 
-                    chart_Var.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
-                    chart_Var.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
+                    chart.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
+                    chart.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Helvetica", 10);
 
 
                     if (Session["theme"] != null)
@@ -381,17 +380,17 @@ namespace WebPlantaPiloto
 
                         if (theme.Equals("Light"))
                         {
-                            chart_Var.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
-                            chart_Var.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
-                            chart_Var.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
-                            chart_Var.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                            chart.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
                         }
                         else if (theme.Equals("Dark"))
                         {
-                            chart_Var.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
-                            chart_Var.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
-                            chart_Var.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
-                            chart_Var.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
+                            chart.ChartAreas[0].AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(196, 194, 194);
                         }
                     }
                 }
@@ -642,63 +641,74 @@ namespace WebPlantaPiloto
                 chart_T2.Visible = false;
                 chart_T3.Visible = false;
                 chart_T4.Visible = false;
-                chart_T5.Visible = false;
-                chart_T6.Visible = false;
 
                 cblist_Chart1.Visible = false;
                 cblist_Chart2.Visible = false;
                 cblist_Chart3.Visible = false;
                 cblist_Chart4.Visible = false;
-                cblist_Chart5.Visible = false;
-                cblist_Chart6.Visible = false;
 
-                if (cblist_Chart1.Items.Count == 0 && cblist_Chart2.Items.Count == 0 && cblist_Chart3.Items.Count == 0 && cblist_Chart4.Items.Count == 0 && cblist_Chart5.Items.Count == 0 && cblist_Chart6.Items.Count == 0)
+                if (cblist_Chart1.Items.Count == 0 && cblist_Chart2.Items.Count == 0 && cblist_Chart3.Items.Count == 0 && cblist_Chart4.Items.Count == 0)
                 {
                     foreach (String name in _varNameList)
                     {
                         ListItem item = new ListItem(name);
+                        item.Selected = true;
                         cblist_Chart1.Items.Add(item);
                         cblist_Chart2.Items.Add(item);
                         cblist_Chart3.Items.Add(item);
                         cblist_Chart4.Items.Add(item);
-                        cblist_Chart5.Items.Add(item);
-                        cblist_Chart6.Items.Add(item);
                     }
                 }
 
                 int chartAmount = int.Parse(ddList_ChartAmount.SelectedValue);
 
-                this.LoadChart(sender, e);
+                this.LoadChart(sender, e, chart_Var, checkedVariables());
+
+                List<Variable> selectedVariables = new List<Variable>();
 
                 if (chartAmount >= 2)
                 {
                     chart_T1.Visible = true;
                     cblist_Chart1.Visible = true;
+                    selectedVariables.Clear();
+
+                    for (int i = 0; i < cblist_Chart1.Items.Count; i++)
+                        if (cblist_Chart1.Items[i].Selected)
+                            selectedVariables.Add(_varList[i]);
+                    this.LoadChart(sender, e, chart_T1, selectedVariables);
                 }
                 if (chartAmount >= 3)
                 {
                     chart_T2.Visible = true;
                     cblist_Chart2.Visible = true;
+                    selectedVariables.Clear();
+
+                    for (int i = 0; i < cblist_Chart2.Items.Count; i++)
+                        if (cblist_Chart2.Items[i].Selected)
+                            selectedVariables.Add(_varList[i]);
+                    this.LoadChart(sender, e, chart_T2, selectedVariables);
                 }
                 if (chartAmount >= 4)
                 {
                     chart_T3.Visible = true;
                     cblist_Chart3.Visible = true;
+                    selectedVariables.Clear();
+
+                    for (int i = 0; i < cblist_Chart3.Items.Count; i++)
+                        if (cblist_Chart3.Items[i].Selected)
+                            selectedVariables.Add(_varList[i]);
+                    this.LoadChart(sender, e, chart_T3, selectedVariables);
                 }
                 if (chartAmount >= 5)
                 {
                     chart_T4.Visible = true;
                     cblist_Chart4.Visible = true;
-                }
-                if (chartAmount >= 6)
-                {
-                    chart_T5.Visible = true;
-                    cblist_Chart5.Visible = true;
-                }
-                if (chartAmount >= 7)
-                {
-                    chart_T6.Visible = true;
-                    cblist_Chart6.Visible = true;
+                    selectedVariables.Clear();
+
+                    for (int i = 0; i < cblist_Chart4.Items.Count; i++)
+                        if (cblist_Chart4.Items[i].Selected)
+                            selectedVariables.Add(_varList[i]);
+                    this.LoadChart(sender, e, chart_T4, selectedVariables);
                 }
 
 
