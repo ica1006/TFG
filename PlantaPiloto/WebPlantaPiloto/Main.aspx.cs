@@ -23,11 +23,18 @@ namespace WebPlantaPiloto
         private static List<String> _onlyWritableVarNameList;
         private static List<Variable> _varList;
         private static List<CheckBox> cboxGviewList;
+        private static Logger log;
+        private static Logger errorLog;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                log = new Logger("Log");
+                errorLog = new Logger("Error Log");
+                log.NewEntry("App started");
+                errorLog.NewEntry("App started");
+
                 Timer1.Enabled = false;
 
                 string theme = null;
@@ -79,8 +86,11 @@ namespace WebPlantaPiloto
                 conString = txtIn_ConnString.Text;
                 loadInitialValues();
 
+                log.NewEntry("Trying to connect to data base with connection string " + conString);
+
                 if (_db.CheckDBExists(_proyect))
                 {
+                    log.NewEntry("Data base connection successful");
                     lbl_ConnectionStatus.Text = "true";
                     lbl_ConnectionStatus.ForeColor = System.Drawing.Color.FromArgb(52, 178, 60);
                     ddList_ChangeVar.DataSource = _onlyWritableVarNameList;
@@ -109,6 +119,7 @@ namespace WebPlantaPiloto
                 }
                 else
                 {
+                    log.NewEntry("Can't connect with data base");
                     lbl_ConnectionStatus.Text = "false";
                     lbl_ConnectionStatus.ForeColor = System.Drawing.Color.Red;
                 }
@@ -120,6 +131,8 @@ namespace WebPlantaPiloto
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx1;
                 lbl_err_ConString.Visible = true;
+                errorLog.NewEntry("Exception trying to make data base connection. Connection String: " + txtIn_ConnString.Text + "\n" + ex.Message + "\n" + ex.StackTrace);
+                log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
             }
         }
 
@@ -130,6 +143,7 @@ namespace WebPlantaPiloto
 
             if (db.CheckDBExists(proyect))
             {
+                log.NewEntry("Loading initial values from project " + proyect.Name);
                 _proyect = proyect;
                 _db = db;
 
@@ -207,6 +221,7 @@ namespace WebPlantaPiloto
 
             try
             {
+                log.NewEntry("Trying to load project");
                 StreamReader sr = new StreamReader("motor_caudal_tfg.txt");
                 _proyect = new Proyect();
                 sr.ReadLine();
@@ -240,6 +255,7 @@ namespace WebPlantaPiloto
                 } while (true);
                 sr.Close();
                 lbl_err_ConString.Visible = false;
+                log.NewEntry("Project " + _proyect + " loaded successfully");
             }
             catch (Exception ex)
             {
@@ -248,6 +264,9 @@ namespace WebPlantaPiloto
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_ConString.Visible = true;
+
+                errorLog.NewEntry("Exception loading the project:\n" + ex.Message + "\n" + ex.StackTrace);
+                log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
             }
 
             return _proyect;
@@ -289,6 +308,7 @@ namespace WebPlantaPiloto
                 }
                 gridViewAesthetics();
                 lbl_err_table.Visible = false;
+                log.NewEntry("Project data loaded into table successfully");
             }catch(Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
@@ -296,6 +316,9 @@ namespace WebPlantaPiloto
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_table.Text = EnglishText.lbl_err_tableEx1 + ex.Message + " " + ex.StackTrace;
                 lbl_err_table.Visible = true;
+
+                errorLog.NewEntry("Exception trying to load the variable table:\n" + ex.Message + "\n" + ex.StackTrace);
+                log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
             }
         }
 
@@ -434,6 +457,7 @@ namespace WebPlantaPiloto
             GridViewRow grow = (GridViewRow)cbox.NamingContainer;
             int rIndex = grow.RowIndex;
             cboxGviewList[rIndex].Checked = cbox.Checked;
+            log.NewEntry("User has changed the variables he wants to show in the main chart. " + cboxGviewList[rIndex].Text + " " + cboxGviewList[rIndex].Checked.ToString());
         }
 
         protected void updateGridView(object sender, EventArgs e)
@@ -479,6 +503,7 @@ namespace WebPlantaPiloto
             {
                 lbl_err_ChangeData.Visible = false;
                 Session["dataAmount"] = dataAmount;
+                log.NewEntry("User has changed the amount of data he wants to display in the charts to " + dataAmount);
             }
 
         }
@@ -486,6 +511,7 @@ namespace WebPlantaPiloto
         protected void hlink_fulldb_DataBinding(object sender, EventArgs e)
         {
             //Server.Transfer("FullDB.aspx");
+            log.NewEntry("Trying to redirected user to FullDB.aspx");
             Response.Redirect("FullDB.aspx");
         }
 
@@ -511,6 +537,7 @@ namespace WebPlantaPiloto
                     string time = values[0];
 
                     _db.InsertModifyValue(_proyect, variable, value, time);
+                    log.NewEntry("New entry inserted sucessfully in Web" + _proyect.Name + " table. Variable " + variable + " changed to " + value);
                 }
                 else
                 {
@@ -527,6 +554,9 @@ namespace WebPlantaPiloto
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_ChangeVar.Text = EnglishText.lbl_err_ChangeVarEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_table.Visible = true;
+
+                errorLog.NewEntry("Exception trying to change variable " + ddList_ChangeVar.SelectedValue + ":\n" + ex.Message + "\n" + ex.StackTrace);
+                log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
             }
         }
 
@@ -555,6 +585,7 @@ namespace WebPlantaPiloto
                 lbl_ChartAmount.Text = SpanishText.lbl_ChartAmount;
 
                 Session["language"] = "Spanish";
+                log.NewEntry("Language changed to Spanish");
             }
             else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
             {
@@ -579,6 +610,7 @@ namespace WebPlantaPiloto
                 lbl_ChartAmount.Text = EnglishText.lbl_ChartAmount;
 
                 Session["language"] = "English";
+                log.NewEntry("Language changed to English");
             }
         }
 
@@ -611,6 +643,7 @@ namespace WebPlantaPiloto
 
                 gview1.ForeColor = System.Drawing.Color.Black;
                 Session["theme"] = "Light";
+                log.NewEntry("Theme changed to Light");
             }
             else if (ddlist_theme.SelectedValue.Equals("Dark") || ddlist_theme.SelectedValue.Equals("Oscuro"))
             {
@@ -629,6 +662,7 @@ namespace WebPlantaPiloto
 
                 gview1.ForeColor = System.Drawing.Color.Black;
                 Session["theme"] = "Dark";
+                log.NewEntry("Theme changed to Dark");
             }
         }
 

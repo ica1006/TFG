@@ -81,7 +81,7 @@
 
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <asp:Timer ID="Timer1" runat="server" OnTick="loadExtraCharts" Interval="1000" />
+                                    <asp:Timer ID="Timer1" runat="server" OnTick="loadExtraCharts" Interval="2007" />
                                     <asp:Chart ID="chart_Var" runat="server" BackColor="Transparent" Height="630px" Width="1000px">
                                         <Series>
                                             <asp:Series Name="Series1">
