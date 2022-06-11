@@ -182,7 +182,6 @@
     <Compile Include="Grafico.aspx.designer.cs">
       <DependentUpon>Grafico.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Logger.cs" />
     <Compile Include="Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
