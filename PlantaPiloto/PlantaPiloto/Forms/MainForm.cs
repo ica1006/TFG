@@ -829,6 +829,7 @@ namespace PlantaPiloto
                             _sp_services.SerialPort.WriteLine(webValue);
                         }
                     }
+                    Thread.Sleep(1000);
                 }
             }catch(Exception ex)
             {
