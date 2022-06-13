@@ -163,6 +163,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception pressing the accept button in variable selection window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -181,6 +182,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception pressing the cancel button in variable selection window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -198,6 +200,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 

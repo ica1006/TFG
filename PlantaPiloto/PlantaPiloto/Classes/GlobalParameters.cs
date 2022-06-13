@@ -13,5 +13,7 @@ namespace PlantaPiloto.Classes
         //public static string DBCreationUser{ get; } = @"NT Service\SQLTELEMETRY$SQLEXPRESS";
         public static string DBCreationUser{ get; } = "MSSQL$SQLEXPRESS";
         public static float DefaultTs { get; } = 0.2F;
+        public static Logger log = new Logger("Log");
+        public static Logger errorLog = new Logger("Error Log");
     }
 }

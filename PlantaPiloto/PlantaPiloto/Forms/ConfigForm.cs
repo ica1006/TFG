@@ -217,6 +217,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception updating variable properties.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -265,6 +266,7 @@ namespace PlantaPiloto
             catch (FormatException ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception changing the save variable button color.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -303,6 +305,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception validating a variable.\n" + ex.Message + "\n" + ex.StackTrace);
                 return false;
             }
         }
@@ -351,6 +354,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception checking that only number or . are been press.\n" + ex.Message + "\n" + ex.StackTrace);
                 throw;
             }
         }
@@ -393,6 +397,7 @@ namespace PlantaPiloto
             catch (FormatException ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception closing the window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -456,6 +461,7 @@ namespace PlantaPiloto
             {
                 MessageBox.Show(_res_man.GetString("ErrorImage", _cul), _res_man.GetString("ErrorImgTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception saving the config file.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -492,6 +498,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception closing the config window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -554,6 +561,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception changing the check box of a variable.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -571,6 +579,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 

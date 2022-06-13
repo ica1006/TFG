@@ -135,6 +135,7 @@ namespace PlantaPiloto.Forms
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception filling the data grid view.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -164,6 +165,7 @@ namespace PlantaPiloto.Forms
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception opening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
     }

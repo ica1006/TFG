@@ -93,6 +93,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método CreateTableDB()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception crating the project table in the data base.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
                 finally
                 {
@@ -125,6 +126,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método CreateWebTableDB()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception creating the project web table in the data base.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
                 finally
                 {
@@ -168,6 +170,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método GetLastRowValue()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception getting the last row of the project table.\n" + ex.Message + "\n" + ex.StackTrace);
                     return row.ToString();
                 }
                 finally
@@ -212,6 +215,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método SaveRow()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception saving a row in the project table.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
                 finally
                 {
@@ -242,6 +246,7 @@ namespace PlantaPiloto
                 {
                     //_exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método InsertModifyValue()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception inserting new row in the project web table.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
                 finally
                 {
@@ -278,7 +283,8 @@ namespace PlantaPiloto
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
-                    MessageBox.Show("Excepcion en el método GetLastRowValue()" + ex.Message + ex.StackTrace);
+                    MessageBox.Show("Excepcion en el método GetLastRowValueWeb()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception getting las row in the project web table.\n" + ex.Message + "\n" + ex.StackTrace);
                     return row.ToString();
                 }
                 finally
@@ -330,6 +336,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método GetVarValue()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception getting variable list from project table.\n" + ex.Message + "\n" + ex.StackTrace);
                     return result;
                 }
                 finally
@@ -371,6 +378,7 @@ namespace PlantaPiloto
                 {
                     _exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método GetTime()" + ex.Message + ex.StackTrace);
+                    GlobalParameters.errorLog.NewEntry("Exception getting the time from the project table.\n" + ex.Message + "\n" + ex.StackTrace);
                     return result;
                 }
                 finally
@@ -414,6 +422,7 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
                 MessageBox.Show("Excepcion en el método CheckDBExists()" + ex.Message + ex.StackTrace + ex.GetType().FullName);
+                GlobalParameters.errorLog.NewEntry("Exception checking if the project data base table exist.\n" + ex.Message + "\n" + ex.StackTrace);
                 return false;
             }
         }
@@ -443,6 +452,7 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
                 MessageBox.Show("Excepcion en el método CheckDBExists()" + ex.Message + ex.StackTrace + ex.GetType().FullName);
+                GlobalParameters.errorLog.NewEntry("Exception checking if the project web data base table exist.\n" + ex.Message + "\n" + ex.StackTrace);
                 return false;
             }
         }

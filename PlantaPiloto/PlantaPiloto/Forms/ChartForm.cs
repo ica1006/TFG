@@ -92,6 +92,7 @@ namespace PlantaPiloto
 
             //Iniciamos el timer
             this._timer.Enabled = true;
+            GlobalParameters.log.NewEntry("Chart loaded successfully.");
         }
 
         /// <summary>
@@ -102,6 +103,7 @@ namespace PlantaPiloto
         private void ChartForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _timer.Enabled = false;
+            GlobalParameters.log.NewEntry("Chart closed.");
         }
 
         /// <summary>
@@ -136,6 +138,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception loading the chart.\n" + ex.Message + "\n" + ex.StackTrace);
             }
 
         }
@@ -184,6 +187,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception updating the chart.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -224,6 +228,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception closing the window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -245,6 +250,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception checking that only numbers are press.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -258,10 +264,12 @@ namespace PlantaPiloto
             try
             {
                 _chartAmount = Int32.Parse(txtChartAmount.Text);
+                GlobalParameters.log.NewEntry("Chart data amount changed to " + _chartAmount.ToString());
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception updating chart data amount.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -279,6 +287,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 

@@ -211,10 +211,12 @@ namespace PlantaPiloto
                         }
                     }
                 }
+                GlobalParameters.log.NewEntry("Serial port opened successfully");
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception openning the serial port connection.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -225,6 +227,7 @@ namespace PlantaPiloto
         {
             if (_serialPort.IsOpen)
                 _serialPort.Close();
+            GlobalParameters.log.NewEntry("Serial port connection closed");
         }
 
         #endregion
@@ -277,6 +280,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception getting the opened serial port.\n" + ex.Message + "\n" + ex.StackTrace);
                 return null;
             }
             

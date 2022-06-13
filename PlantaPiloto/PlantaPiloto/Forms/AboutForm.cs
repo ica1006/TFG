@@ -95,10 +95,12 @@ namespace PlantaPiloto
             try
             {
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Acerca de");
+                GlobalParameters.log.NewEntry("Help window oppened.");
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 

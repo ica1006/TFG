@@ -98,6 +98,8 @@ namespace PlantaPiloto
             _sp_services = new SP_services();
             this.LoadPorts();
             this.ViewNoProyect();
+            GlobalParameters.log.NewEntry("App started");
+            GlobalParameters.errorLog.NewEntry("App started");
         }
 
         /// <summary>
@@ -110,6 +112,8 @@ namespace PlantaPiloto
             if (_sp_services.SerialPort.IsOpen)
                 _sp_services.CloseConnection();
             this.Dispose();
+            GlobalParameters.log.NewEntry("App closed");
+            GlobalParameters.errorLog.NewEntry("App closed");
         }
 
         #endregion
@@ -191,6 +195,7 @@ namespace PlantaPiloto
         {
             try
             {
+                GlobalParameters.log.NewEntry("Project loading");
                 if (_proyect.Name != null)
                 {
                     //Creamos la BD y la tabla en la BD para el proyecto
@@ -215,11 +220,13 @@ namespace PlantaPiloto
                     }
 
                     this.ViewConnectionClose();
+                    GlobalParameters.log.NewEntry("Project loaded successfully");
                 }
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception loading the proyect.\n" + ex.Message + "\n" + ex.StackTrace);
             }
 
         }
@@ -257,6 +264,8 @@ namespace PlantaPiloto
                 else
                     this.ViewNoProyect();
             }
+
+            GlobalParameters.log.NewEntry("Ports loaded");
         }
 
         /// <summary>
@@ -277,6 +286,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception filling the data grid view with the new variables.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -318,6 +328,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception saving data in the save file.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -347,6 +358,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception filling the data grid view.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -367,6 +379,7 @@ namespace PlantaPiloto
                 _sp_services.SaveFile = false;
                 LoadProyect();
                 this.ViewConnectionClose();
+                GlobalParameters.log.NewEntry("Serial Port connection closed");
             }
         }
 
@@ -390,10 +403,12 @@ namespace PlantaPiloto
                 else
                     _sp_services.SerialPort.WriteLine(dgvProVars[0, cell.RowIndex].Value.ToString() + ";"
                                     + dgvProVars[cell.ColumnIndex, cell.RowIndex].Value.ToString());
+                GlobalParameters.log.NewEntry("New variable value sent through the Serial Port");
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception sending the variable to the Serial Port.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -425,11 +440,13 @@ namespace PlantaPiloto
                         this.btnFile.Text = _res_man.GetString("btnFileStop_txt", _cul);
                         _timerSaveFile.Enabled = true;
                     }
+                    GlobalParameters.log.NewEntry("Save file created succesfully");
                 }
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception creating the save file.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -447,6 +464,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception displaying the chart.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -463,6 +481,7 @@ namespace PlantaPiloto
                 _createConfig = new ConfigForm(_cul);
             _createConfig.LoadProyect += LoadProyect;
             _createConfig.ShowDialog();
+            GlobalParameters.log.NewEntry("Config Form shown");
         }
 
         #region Métodos modificadores del estado de los elementos de la vista
@@ -532,6 +551,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception setting the visibility of elements when having a project loaded.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -582,6 +602,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void toolStripMenuItemLoadConfig_Click(object sender, EventArgs e)
         {
+            GlobalParameters.log.NewEntry("Reading project from file");
             CloseSP_services();
             if (!Directory.Exists(_configsPath))
                 Directory.CreateDirectory(_configsPath);
@@ -625,11 +646,13 @@ namespace PlantaPiloto
                         }
                     } while (true);
                     sr.Close();
+                    GlobalParameters.log.NewEntry("Project read from file successfully");
                     this.LoadProyect();
                 }
                 catch (Exception ex)
                 {
                     _exMg.HandleException(ex);
+                    GlobalParameters.errorLog.NewEntry("Exception reading a project from file.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
             }
         }
@@ -652,6 +675,7 @@ namespace PlantaPiloto
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception loading the config form.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -665,6 +689,7 @@ namespace PlantaPiloto
             toolStripMenuItemSpanish.Checked = false;
             toolStripMenuItemEnglish.Checked = true;
             Switch_language();
+            GlobalParameters.log.NewEntry("Language changed to English");
         }
 
         /// <summary>
@@ -677,6 +702,7 @@ namespace PlantaPiloto
             toolStripMenuItemSpanish.Checked = true;
             toolStripMenuItemEnglish.Checked = false;
             Switch_language();
+            GlobalParameters.log.NewEntry("Language changed to Spanish");
         }
 
         /// <summary>
@@ -688,11 +714,13 @@ namespace PlantaPiloto
         {
             try
             {
+                GlobalParameters.log.NewEntry("PDF manual opened");
                 Process.Start(_pdfPath);
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the PDF manual.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -705,11 +733,13 @@ namespace PlantaPiloto
         {
             try
             {
+                GlobalParameters.log.NewEntry("Help window shown");
                 Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Formulario Principal");
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception showing the help window.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -720,6 +750,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
+            GlobalParameters.log.NewEntry("About form shown");
             AboutForm _aboutForm = new AboutForm(_cul);
             _aboutForm.Show();
         }
@@ -731,6 +762,7 @@ namespace PlantaPiloto
         /// <param name="e"></param>
         private void btnChart_Click(object sender, EventArgs e)
         {
+            GlobalParameters.log.NewEntry("VarSelection window shown");
             _proyect.Variables.ToList().ForEach(p => p.Value = _lastRowSP.Variables.FirstOrDefault(q => q.Name == p.Name).Value);
             VarSelection _varSelection = new VarSelection(_proyect, EnumVarSelection.Chart, this.getCulture());
             _varSelection.ShowChart += ShowChart;
@@ -773,6 +805,7 @@ namespace PlantaPiloto
                 _varSelection.MdiParent = this.MdiParent;
                 _varSelection.ShowDialog();
             }
+            GlobalParameters.log.NewEntry("Variables displayed");
         }
 
         /// <summary>
@@ -794,6 +827,7 @@ namespace PlantaPiloto
         {
             try
             {
+                GlobalParameters.log.NewEntry("Start button press. Selected port " + cboPort.Text);
                 _sp_services = new SP_services(_proyect, _cul);
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
@@ -808,12 +842,14 @@ namespace PlantaPiloto
             {
                 this.ViewConnectionClose();
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the connection throught the Serial Port.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
         public void checkNewWebVariables()
         {
             string lastValue = "";
+            GlobalParameters.log.NewEntry("Starting to look for changes in the Web data base table");
 
             try
             {
@@ -824,6 +860,7 @@ namespace PlantaPiloto
                         string webValue = _db_services.GetLastRowValueWeb(_proyect);
                         if (lastValue != webValue)
                         {
+                            GlobalParameters.log.NewEntry("New change detected in the Web data base. " + webValue);
                             lastValue = webValue;
                             webValue.Replace('.', ',');
                             _sp_services.SerialPort.WriteLine(webValue);
@@ -835,6 +872,7 @@ namespace PlantaPiloto
             {
                 _exMg.HandleException(ex);
                 MessageBox.Show("Excepción en el metodo checkNewWebVariables " + ex.Message + ex.StackTrace);
+                GlobalParameters.errorLog.NewEntry("Exception while checking for new variables in the Web data base table.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -849,10 +887,12 @@ namespace PlantaPiloto
             {
                 CloseSP_services();
                 this.btnSearchPort.Enabled = true;
+                GlobalParameters.log.NewEntry("Finished connection");
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception finnishing the connection with the Serial Port.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -868,11 +908,13 @@ namespace PlantaPiloto
                 if (e.ColumnIndex == 2 && dgvProVars[e.ColumnIndex, e.RowIndex].Value.ToString() != "")
                 {
                     this.SendVarSP(e);
+                    GlobalParameters.log.NewEntry("Data grid view changed. " + e.ToString());
                 }
             }
             catch (Exception ex)
             {
                 _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception changing variable of the data grid view.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -880,6 +922,7 @@ namespace PlantaPiloto
 
         private void btnSearchPort_Click(object sender, EventArgs e)
         {
+            GlobalParameters.log.NewEntry("Search Port press");
             this.btnRefreshPorts_Click(sender, e);
             _sp_services = new SP_services(_proyect, _cul);
             List<SerialPort> ports = new List<SerialPort>();
@@ -899,11 +942,13 @@ namespace PlantaPiloto
             if (port == null)
             {
                 MessageBox.Show("No se ha encontrado ningun puerto abierto");
+                GlobalParameters.log.NewEntry("There is no open port");
             }
             else
             {
                 cboPort.Text = port.PortName;
                 MessageBox.Show("El puerto abierto es el " + port.PortName);
+                GlobalParameters.log.NewEntry("Port open: " + port.PortName);
             }
 
             this.btnSearchPort.Text = "Buscar Puerto";
@@ -923,6 +968,7 @@ namespace PlantaPiloto
         private void btnConStrin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(_db_services.getConnectionString());
+            GlobalParameters.log.NewEntry("Connection string copied.");
             MessageBox.Show("Contenido compiado al portapapeles");
         }
     }
