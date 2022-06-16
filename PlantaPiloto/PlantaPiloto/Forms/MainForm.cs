@@ -26,6 +26,7 @@ namespace PlantaPiloto
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         private CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
+        private string _proyectPath;
         private Variable _variable;
         readonly DB_services _db_services;
         private SP_services _sp_services;
@@ -483,6 +484,12 @@ namespace PlantaPiloto
             _createConfig.ShowDialog();
             GlobalParameters.log.NewEntry("Config Form shown");
         }
+        public void CreateWebAppForm()
+        {
+            WebAppForm _webApp = new WebAppForm(_db_services.getConnectionString(), _proyectPath, this._cul);
+            _webApp.ShowDialog();
+            GlobalParameters.log.NewEntry("WebApp Form shown");
+        }
 
         #region Métodos modificadores del estado de los elementos de la vista
 
@@ -647,6 +654,7 @@ namespace PlantaPiloto
                     } while (true);
                     sr.Close();
                     GlobalParameters.log.NewEntry("Project read from file successfully");
+                    this._proyectPath = openFileDialog1.FileName;
                     this.LoadProyect();
                 }
                 catch (Exception ex)
@@ -957,7 +965,18 @@ namespace PlantaPiloto
 
         private void webServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         
+            try
+            {
+                if (_proyect != null)
+                {
+                    CreateWebAppForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception loading the WebApp form.\n" + ex.Message + "\n" + ex.StackTrace);
+            }
         }
 
         public Proyect getProyect()

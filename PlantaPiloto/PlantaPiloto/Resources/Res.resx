@@ -405,4 +405,28 @@
   <data name="btnAddVarModify_txt" xml:space="preserve">
     <value>Guardar cambios en la variable</value>
   </data>
+  <data name="btnLaunchWebApp_txt" xml:space="preserve">
+    <value>Lanzar aplicación</value>
+  </data>
+  <data name="gbWebApp_txt" xml:space="preserve">
+    <value>Aplicación Web</value>
+  </data>
+  <data name="lblConnectionString_txt" xml:space="preserve">
+    <value>String de conexión de la base de datos</value>
+  </data>
+  <data name="lblIISlocation_txt" xml:space="preserve">
+    <value>Ruta IISExpress</value>
+  </data>
+  <data name="lblIP_txt" xml:space="preserve">
+    <value>Dirección IP</value>
+  </data>
+  <data name="lblPort_txt" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="lblProjectPath_txt" xml:space="preserve">
+    <value>Ruta del archivo de proyecto</value>
+  </data>
+  <data name="lblWebAppPath_txt" xml:space="preserve">
+    <value>Ruta Aplicación Web</value>
+  </data>
 </root>

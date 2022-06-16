@@ -1,0 +1,4 @@
+<parametters>
+  <connectionString>Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\PlantaPiloto\bin\Debug\Services\TFG-PlantaPiloto.mdf;Integrated Security=True</connectionString>
+  <webAppPath>C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\PlantaPiloto\bin\Debug\WebAppRelease</webAppPath>
+</parametters>

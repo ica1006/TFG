@@ -405,4 +405,28 @@
   <data name="btnAddVarModify_txt" xml:space="preserve">
     <value>Save variable´s changes</value>
   </data>
+  <data name="btnLaunchWebApp_txt" xml:space="preserve">
+    <value>Launch Application</value>
+  </data>
+  <data name="gbWebApp_txt" xml:space="preserve">
+    <value>Web Application</value>
+  </data>
+  <data name="lblConnectionString_txt" xml:space="preserve">
+    <value>Data base connection string</value>
+  </data>
+  <data name="lblIISlocation_txt" xml:space="preserve">
+    <value>IISExpress path</value>
+  </data>
+  <data name="lblIP_txt" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="lblPort_txt" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblProjectPath_txt" xml:space="preserve">
+    <value>Project file path</value>
+  </data>
+  <data name="lblWebAppPath_txt" xml:space="preserve">
+    <value>Web Application path</value>
+  </data>
 </root>

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
+using System.Xml;
 using PlantaPiloto;
 using PlantaPiloto.Enums;
 
@@ -25,13 +26,25 @@ namespace WebPlantaPiloto
         private static List<CheckBox> cboxGviewList;
         private static Logger log;
         private static Logger errorLog;
+        private string webAppPath = AppContext.BaseDirectory;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                log = new Logger("Log");
-                errorLog = new Logger("Error Log");
+                try
+                {
+                    XmlDocument webParametters = new XmlDocument();
+                    webParametters.Load(AppContext.BaseDirectory + "\\webParametters.xml");
+                    XmlNode connectionStringXml = webParametters.SelectSingleNode("parametters/connectionString");
+                    Session["connectionString"] = connectionStringXml.InnerText;
+                    XmlNode webAppPathXml = webParametters.SelectSingleNode("parametters/webAppPath");
+                    webAppPath = webAppPathXml.InnerText;
+                }
+                catch (Exception) { }
+
+                log = new Logger("Log", webAppPath);
+                errorLog = new Logger("Error Log", webAppPath);
                 log.NewEntry("App started");
                 errorLog.NewEntry("App started");
 
@@ -222,7 +235,7 @@ namespace WebPlantaPiloto
             try
             {
                 log.NewEntry("Trying to load project");
-                StreamReader sr = new StreamReader("motor_caudal_tfg.txt");
+                StreamReader sr = new StreamReader(webAppPath + "\\project.txt");
                 _proyect = new Proyect();
                 sr.ReadLine();
                 _proyect.Name = sr.ReadLine();

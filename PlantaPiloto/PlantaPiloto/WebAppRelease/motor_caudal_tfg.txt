@@ -1,0 +1,66 @@
+08/03/2019 11:29:51
+motor_caudal_tfg
+Configuracion para el proeyecto de Kinetis caudal_motor_tfg
+
+****************************************
+Ts
+Float
+Periodo de muestreo
+Escritura
+s
+s
+1
+0
+0.1
+1
+Serie
+****************************************
+sp
+Float
+Referencia caudal
+Escritura
+v
+v
+1
+0
+0
+3.3
+Serie
+****************************************
+y
+Float
+Variable controlada caudal
+Lectura
+v
+v
+1
+0
+0
+3.3
+Serie
+****************************************
+u
+Float
+Variable manipulada caudal
+Escritura
+v
+v
+1
+0
+0
+3.3
+Serie
+****************************************
+autoReg
+Integer
+Activar regulador caudal
+Escritura
+na
+na
+1
+0
+0
+1
+Serie
+****************************************
+****************************************

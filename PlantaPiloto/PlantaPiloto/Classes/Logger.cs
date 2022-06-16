@@ -13,15 +13,15 @@ namespace PlantaPiloto
         public Logger(string name)
         {
             string fileName = name + " " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ".txt";
-            string directory = Directory.GetCurrentDirectory() + "/Logs/";
-            Directory.CreateDirectory(directory);
+            string fullDirectory = AppContext.BaseDirectory + "/Logs/";
+            Directory.CreateDirectory(fullDirectory);
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            DirectoryInfo directoryInfo = new DirectoryInfo(fullDirectory);
             FileInfo[] files = directoryInfo.GetFiles();
 
             foreach (FileInfo file in files.OrderBy(f => f.LastWriteTime))
             {
-                int filesAmount = Directory.GetFiles(directory).Length;
+                int filesAmount = Directory.GetFiles(fullDirectory).Length;
                 if (filesAmount > 10)
                     file.Delete();
                 else
@@ -29,7 +29,29 @@ namespace PlantaPiloto
             }
             
 
-            this.fileDirectory = Directory.GetCurrentDirectory() + "/Logs/" + fileName;
+            this.fileDirectory = fullDirectory + fileName;
+        }
+
+        public Logger(string name, string directory)
+        {
+            string fileName = name + " " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ".txt";
+            string fullDirectory = directory + "/Logs/";
+            Directory.CreateDirectory(fullDirectory);
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(fullDirectory);
+            FileInfo[] files = directoryInfo.GetFiles();
+
+            foreach (FileInfo file in files.OrderBy(f => f.LastWriteTime))
+            {
+                int filesAmount = Directory.GetFiles(fullDirectory).Length;
+                if (filesAmount > 10)
+                    file.Delete();
+                else
+                    break;
+            }
+
+
+            this.fileDirectory = fullDirectory + fileName;
         }
 
         public void NewEntry(string logEntry)
