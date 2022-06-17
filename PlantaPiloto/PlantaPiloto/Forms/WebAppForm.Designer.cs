@@ -56,6 +56,7 @@ namespace PlantaPiloto.Forms
             this.txtIISlocation.Size = new System.Drawing.Size(788, 20);
             this.txtIISlocation.TabIndex = 0;
             this.txtIISlocation.Text = "";
+            this.txtIISlocation.TextChanged += new System.EventHandler(this.checkIfItCanLaunch);
             // 
             // lblIISlocation
             // 
@@ -97,6 +98,8 @@ namespace PlantaPiloto.Forms
             this.txtPort.Size = new System.Drawing.Size(147, 20);
             this.txtPort.TabIndex = 4;
             this.txtPort.Text = "";
+            this.txtPort.TextChanged += new System.EventHandler(this.txtPort_TextChanged);
+            this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPort_KeyPress);
             // 
             // lblIP
             // 
@@ -114,6 +117,7 @@ namespace PlantaPiloto.Forms
             this.txtIP.Size = new System.Drawing.Size(147, 20);
             this.txtIP.TabIndex = 2;
             this.txtIP.Text = "";
+            this.txtIP.TextChanged += new System.EventHandler(this.checkIfItCanLaunch);
             // 
             // gbWebApp
             // 
@@ -164,6 +168,7 @@ namespace PlantaPiloto.Forms
             this.txtConnectionString.Size = new System.Drawing.Size(788, 20);
             this.txtConnectionString.TabIndex = 8;
             this.txtConnectionString.Text = "";
+            this.txtConnectionString.TextChanged += new System.EventHandler(this.checkIfItCanLaunch);
             // 
             // txtProjectPath
             // 
@@ -172,6 +177,7 @@ namespace PlantaPiloto.Forms
             this.txtProjectPath.Size = new System.Drawing.Size(788, 20);
             this.txtProjectPath.TabIndex = 7;
             this.txtProjectPath.Text = "";
+            this.txtProjectPath.TextChanged += new System.EventHandler(this.checkIfItCanLaunch);
             // 
             // txtWebAppPath
             // 
@@ -180,6 +186,7 @@ namespace PlantaPiloto.Forms
             this.txtWebAppPath.Size = new System.Drawing.Size(788, 20);
             this.txtWebAppPath.TabIndex = 6;
             this.txtWebAppPath.Text = "";
+            this.txtWebAppPath.TextChanged += new System.EventHandler(this.checkIfItCanLaunch);
             // 
             // btnLaunchWebApp
             // 
@@ -202,6 +209,7 @@ namespace PlantaPiloto.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WebAppForm";
             this.Text = "WebApp";
+            this.Load += new System.EventHandler(this.checkIfItCanLaunch);
             this.gbIISExpress.ResumeLayout(false);
             this.gbIISExpress.PerformLayout();
             this.gbWebApp.ResumeLayout(false);

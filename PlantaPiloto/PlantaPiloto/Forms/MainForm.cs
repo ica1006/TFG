@@ -500,6 +500,7 @@ namespace PlantaPiloto
         private void ViewNoProyect()
         {
             btnStart.Enabled = false;
+            webServerToolStripMenuItem.Enabled = false;
             btnFinish.Enabled = false;
             btnChart.Enabled = false;
             btnVar.Enabled = false;
@@ -530,6 +531,7 @@ namespace PlantaPiloto
                 else
                 {
                     btnStart.Enabled = false;
+                    webServerToolStripMenuItem.Enabled = true;
                     btnFinish.Enabled = true;
                     if (_lastRowSP != null 
                         && _lastRowSP.Variables.Count() == _proyect.Variables.Count()
@@ -573,6 +575,7 @@ namespace PlantaPiloto
             else
                 btnStart.Enabled = false;
             btnFinish.Enabled = false;
+            webServerToolStripMenuItem.Enabled = false;
             btnChart.Enabled = false;
             btnVar.Enabled = false;
             btnFile.Enabled = false;
@@ -845,6 +848,7 @@ namespace PlantaPiloto
                 this.ViewConnectionOpen();
                 this._timerRefreshDataGrid.Enabled = true;
                 this.btnSearchPort.Enabled = false;
+                this.webServerToolStripMenuItem.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -895,6 +899,7 @@ namespace PlantaPiloto
             {
                 CloseSP_services();
                 this.btnSearchPort.Enabled = true;
+                this.webServerToolStripMenuItem.Enabled = false;
                 GlobalParameters.log.NewEntry("Finished connection");
             }
             catch (Exception ex)

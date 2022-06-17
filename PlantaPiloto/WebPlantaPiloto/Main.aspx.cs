@@ -101,7 +101,7 @@ namespace WebPlantaPiloto
 
                 log.NewEntry("Trying to connect to data base with connection string " + conString);
 
-                if (_db.CheckDBExists(_proyect))
+                if (_proyect != null && _db.CheckDBExists(_proyect))
                 {
                     log.NewEntry("Data base connection successful");
                     lbl_ConnectionStatus.Text = "true";

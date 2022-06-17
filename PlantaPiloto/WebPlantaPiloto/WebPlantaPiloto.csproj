@@ -130,7 +130,7 @@
     <Content Include="webParametters.xml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Main.aspx" />
-    <Content Include="motor_caudal_tfg.txt" />
+    <Content Include="project.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

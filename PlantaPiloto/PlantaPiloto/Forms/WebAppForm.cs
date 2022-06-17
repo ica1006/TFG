@@ -112,5 +112,29 @@ namespace PlantaPiloto.Forms
             projectFilePath = this.txtProjectPath.Text;
             webAppPath = this.txtWebAppPath.Text;
         }
+
+        private void txtPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void txtPort_TextChanged(object sender, EventArgs e)
+        {
+            int number = -1;
+            if (!int.TryParse(txtPort.Text, out number) && txtPort.Text != "")
+                txtPort.Text = "1337";
+            if ((number > 65535 || number < 1) && txtPort.Text != "")
+                txtPort.Text = "1337";
+            checkIfItCanLaunch(sender, e);
+        }
+
+        private void checkIfItCanLaunch(object sender, EventArgs e)
+        {
+            if (txtPort.Text != "" && txtIP.Text != "" && txtIISlocation.Text != "" && txtWebAppPath.Text != "" && txtProjectPath.Text != "" && txtConnectionString.Text != "")
+                btnLaunchWebApp.Enabled = true;
+            else
+                btnLaunchWebApp.Enabled = false;
+        }
     }
 }
