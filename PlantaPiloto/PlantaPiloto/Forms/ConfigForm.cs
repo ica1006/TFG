@@ -23,7 +23,6 @@ namespace PlantaPiloto
         readonly CultureInfo _cul;            // declare culture info
         private Proyect _proyect;
         private Variable _variable;
-        readonly DB_services _db_services;
         readonly int _eagerLoading;
         private string _lastVariable;
         readonly HelpProvider _helpProvider;
@@ -40,7 +39,6 @@ namespace PlantaPiloto
             InitializeComponent();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
-            _db_services = new DB_services(_cul);
             _eagerLoading = 0;
             _helpProvider = new HelpProvider();
             _filesPath = GlobalParameters.FilesPath;
@@ -57,7 +55,6 @@ namespace PlantaPiloto
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = proyect;
             _cul = cul;
-            _db_services = new DB_services(_cul);
             _exMg = new ExceptionManagement(_cul);
             _eagerLoading = 1;
             _lastVariable = "";
@@ -208,7 +205,7 @@ namespace PlantaPiloto
         {
             try
             {
-                varOldName = _variable.Name;
+                //varOldName = _variable.Name;
                 _proyect.Variables.Add(_variable);
                 this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
                 this.cbSelectVar.SelectedIndex = _proyect.Variables.Count - 1;
@@ -541,18 +538,6 @@ namespace PlantaPiloto
         {
             try
             {
-                //if (!_secondLap)
-                //{
-                //    if (_lastVariable != "")
-                //        this.UpdateVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
-                //    _lastVariable = (sender as ComboBox).SelectedValue.ToString();
-                //    this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
-                //}
-                //_secondLap = true;
-                //this.cbSelectVar.DataSource = _proyect.Variables.Select(p => p.Name).ToList();
-                //_secondLap = false;
-                //this.cbSelectVar.Refresh();
-
                 _lastVariable = (sender as ComboBox).SelectedValue.ToString();
                 this.LoadVar(_proyect.Variables.FirstOrDefault(p => p.Name == _lastVariable));
 

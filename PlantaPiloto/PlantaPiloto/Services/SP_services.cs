@@ -19,7 +19,6 @@ namespace PlantaPiloto
         #region Properties
 
         private SerialPort _serialPort;
-        private static SP_services instance;
 
         /// <summary>
         /// Conexión a puerto serie
@@ -116,7 +115,6 @@ namespace PlantaPiloto
             _exMg = new ExceptionManagement(_cul);
             _time = 0;
             _ts = GlobalParameters.DefaultTs;
-            instance = this;
         }
 
         public SP_services(Proyect pr, CultureInfo cul)
@@ -132,7 +130,6 @@ namespace PlantaPiloto
             _lastRow = new Proyect();
             _saveFile = false;
             _exMg = new ExceptionManagement(_cul);
-            instance = this;
         }
         #endregion
 
@@ -145,7 +142,6 @@ namespace PlantaPiloto
             try
             {
                 // Set the read/write timeouts
-                //_serialPort.ReadBufferSize = 8192;
                 _serialPort.Open();
                 int oldMoment = -1;
 
@@ -178,12 +174,12 @@ namespace PlantaPiloto
                                 _ts = float.Parse(spLine[2], CultureInfo.InvariantCulture);
 
                             //Asigno valor a las variables que son sólo de escritura para tener una referencia en la vista
-                            if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Count() != 0)
+                            if (spLine[1].EndsWith("_eco") && _proyect.Variables.Where(p => p.Name + "_eco" == spLine[1]).Any())
                             {
                                 _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).BoardMoment = Int32.Parse(spLine[0]);
                                 _proyect.Variables.FirstOrDefault(p => p.Name + "_eco" == spLine[1]).Value = spLine[2];
                             }
-                            if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Count() != 0)
+                            if (spLine[1].EndsWith("_x3_eco") && _proyect.Variables.Where(p => p.Name + "_x3_eco" == spLine[1]).Any())
                             {
                                 _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).BoardMoment = Int32.Parse(spLine[0]);
                                 _proyect.Variables.FirstOrDefault(p => p.Name + "_x3_eco" == spLine[1]).Value = spLine[2];
@@ -284,16 +280,6 @@ namespace PlantaPiloto
                 return null;
             }
             
-        }
-
-        public void setInstance (SP_services i)
-        {
-            instance = i;
-        }
-
-        public SP_services getInstance()
-        {
-            return instance;
         }
 
     }

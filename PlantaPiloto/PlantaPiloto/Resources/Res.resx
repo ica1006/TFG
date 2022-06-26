@@ -367,7 +367,7 @@
     <value>Interfaz para Planta Piloto</value>
   </data>
   <data name="lblAboutDesc_txt" xml:space="preserve">
-    <value>Proyecto de Fin de Grado realizado por Francisco Crespo Diez.</value>
+    <value>Proyecto de Fin de Grado realizado por Francisco Crespo Diez y actualizado por Iván Cortés Aliende.</value>
   </data>
   <data name="lblAboutDegree_txt" xml:space="preserve">
     <value>Grado en Ingeniería Informática.</value>
@@ -428,5 +428,17 @@
   </data>
   <data name="lblWebAppPath_txt" xml:space="preserve">
     <value>Ruta Aplicación Web</value>
+  </data>
+  <data name="btnCloseServer_txt" xml:space="preserve">
+    <value>Cerrar servidor</value>
+  </data>
+  <data name="btnSearchPort_txt" xml:space="preserve">
+    <value>Buscar Puerto</value>
+  </data>
+  <data name="btnSearchPort_txt-NoPort" xml:space="preserve">
+    <value>No se ha encontrado ningún puerto abierto</value>
+  </data>
+  <data name="btnSearchPort_txt-Searching" xml:space="preserve">
+    <value>Buscando...</value>
   </data>
 </root>

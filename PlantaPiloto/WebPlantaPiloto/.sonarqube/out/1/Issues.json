@@ -1,0 +1,989 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador de Microsoft (R) Visual C#",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.21403.6 (ae1fff34)",
+        "semanticVersion": "3.11.0",
+        "language": "es-ES"
+      },
+      "results": [
+        {
+          "ruleId": "S1118",
+          "level": "warning",
+          "message": "Add a 'protected' constructor or the 'static' keyword to the class declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/App_Start/BundleConfig.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 18,
+                  "endLine": 10,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 126,
+                  "startColumn": 21,
+                  "endLine": 126,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1144",
+          "level": "warning",
+          "message": "Remove the unused private method 'Application_Start'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Global.asax.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 9,
+                  "endLine": 19,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1186",
+          "level": "warning",
+          "message": "Add a nested comment explaining why this method is empty, throw a 'NotSupportedException' or complete the implementation.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Site.Master.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 24,
+                  "endLine": 12,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1186",
+          "level": "warning",
+          "message": "Add a nested comment explaining why this method is empty, throw a 'NotSupportedException' or complete the implementation.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Site.Mobile.Master.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 24,
+                  "endLine": 12,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 99,
+                  "startColumn": 17,
+                  "endLine": 99,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 31,
+                  "endLine": 22,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 24,
+                  "endLine": 31,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 13,
+                  "endLine": 33,
+                  "endColumn": 15
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 17,
+                  "endLine": 44,
+                  "endColumn": 22
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 17,
+                  "endLine": 56,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 17,
+                  "endLine": 59,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 17,
+                  "endLine": 69,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 75,
+                  "startColumn": 17,
+                  "endLine": 75,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 21,
+                  "endLine": 77,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 79,
+                  "startColumn": 21,
+                  "endLine": 79,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 84,
+                  "startColumn": 17,
+                  "endLine": 84,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 86,
+                  "startColumn": 21,
+                  "endLine": 86,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 21,
+                  "endLine": 88,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "10": "+1",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+2 (incl 1 for nesting)",
+              "4": "+2 (incl 1 for nesting)",
+              "5": "+2 (incl 1 for nesting)",
+              "6": "+3 (incl 2 for nesting)",
+              "7": "+1",
+              "8": "+2 (incl 1 for nesting)",
+              "9": "+3 (incl 2 for nesting)"
+            }
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/FullDB.aspx.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 30,
+                  "endLine": 34,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/FullDB.aspx.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 31,
+                  "endLine": 41,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 312,
+                  "startColumn": 17,
+                  "endLine": 312,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 39,
+                  "endLine": 26,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 681,
+                  "startColumn": 24,
+                  "endLine": 681,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 697,
+                  "startColumn": 17,
+                  "endLine": 697,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 697,
+                  "startColumn": 52,
+                  "endLine": 697,
+                  "endColumn": 54
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 699,
+                  "startColumn": 21,
+                  "endLine": 699,
+                  "endColumn": 28
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 717,
+                  "startColumn": 17,
+                  "endLine": 717,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 723,
+                  "startColumn": 21,
+                  "endLine": 723,
+                  "endColumn": 24
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 724,
+                  "startColumn": 25,
+                  "endLine": 724,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 728,
+                  "startColumn": 17,
+                  "endLine": 728,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 734,
+                  "startColumn": 21,
+                  "endLine": 734,
+                  "endColumn": 24
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 735,
+                  "startColumn": 25,
+                  "endLine": 735,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 739,
+                  "startColumn": 17,
+                  "endLine": 739,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 745,
+                  "startColumn": 21,
+                  "endLine": 745,
+                  "endColumn": 24
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 746,
+                  "startColumn": 25,
+                  "endLine": 746,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 750,
+                  "startColumn": 17,
+                  "endLine": 750,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 756,
+                  "startColumn": 21,
+                  "endLine": 756,
+                  "endColumn": 24
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 757,
+                  "startColumn": 25,
+                  "endLine": 757,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 764,
+                  "startColumn": 13,
+                  "endLine": 764,
+                  "endColumn": 18
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 766,
+                  "startColumn": 17,
+                  "endLine": 766,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 768,
+                  "startColumn": 17,
+                  "endLine": 768,
+                  "endColumn": 21
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+1",
+              "10": "+2 (incl 1 for nesting)",
+              "11": "+3 (incl 2 for nesting)",
+              "12": "+1",
+              "13": "+2 (incl 1 for nesting)",
+              "14": "+3 (incl 2 for nesting)",
+              "15": "+1",
+              "16": "+2 (incl 1 for nesting)",
+              "17": "+1",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+1",
+              "4": "+2 (incl 1 for nesting)",
+              "5": "+3 (incl 2 for nesting)",
+              "6": "+1",
+              "7": "+2 (incl 1 for nesting)",
+              "8": "+3 (incl 2 for nesting)",
+              "9": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 160,
+                  "startColumn": 17,
+                  "endLine": 160,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 32,
+                  "endLine": 20,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 17,
+                  "endLine": 161,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 36,
+                  "endLine": 21,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 163,
+                  "startColumn": 17,
+                  "endLine": 163,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 37,
+                  "endLine": 23,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 164,
+                  "startColumn": 17,
+                  "endLine": 164,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 37,
+                  "endLine": 24,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 165,
+                  "startColumn": 17,
+                  "endLine": 165,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 39,
+                  "endLine": 25,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 17,
+                  "endLine": 46,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 31,
+                  "endLine": 27,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2696",
+          "level": "warning",
+          "message": "Make the enclosing instance method 'static' or remove this set on the 'static' field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 17,
+                  "endLine": 47,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/WebPlantaPiloto/Main.aspx.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 31,
+                  "endLine": 28,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S1118": {
+          "id": "S1118",
+          "shortDescription": "Utility classes should not have public constructors",
+          "fullDescription": "Utility classes, which are collections of static members, are not meant to be instantiated.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1118",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1144": {
+          "id": "S1144",
+          "shortDescription": "Unused private types or members should be removed",
+          "fullDescription": "private or internal types or private members that are never executed or referenced are dead code: unnecessary, inoperative code that should be removed. Cleaning out dead code decreases the size of the maintained codebase, making it easier to understand the program and preventing bugs from being introduced.",
+          "defaultLevel": "note",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1144",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope",
+              "Unnecessary"
+            ]
+          }
+        },
+        "S1186": {
+          "id": "S1186",
+          "shortDescription": "Methods should not be empty",
+          "fullDescription": "There are several reasons for a method not to have a method body:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1186",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S125": {
+          "id": "S125",
+          "shortDescription": "Sections of code should not be commented out",
+          "fullDescription": "Programmers should not comment out code as it bloats programs and reduces readability.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-125",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S2077": {
+          "id": "S2077",
+          "shortDescription": "Formatting SQL queries is security-sensitive",
+          "fullDescription": "Formatted SQL queries can be difficult to maintain, debug and can increase the risk of SQL injection when concatenating untrusted values into the query. However, this rule doesn’t detect SQL injections (unlike rule {rule:csharpsquid:S3649}), the goal is only to highlight complex/formatted queries.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2077",
+          "properties": {
+            "category": "Major Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "S2696": {
+          "id": "S2696",
+          "shortDescription": "Instance members should not write to \"static\" fields",
+          "fullDescription": "Correctly updating a static field from a non-static method is tricky to get right and could easily lead to bugs if there are multiple class instances and/or multiple threads in play.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2696",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S3776": {
+          "id": "S3776",
+          "shortDescription": "Cognitive Complexity of methods should not be too high",
+          "fullDescription": "Cognitive Complexity is a measure of how hard the control flow of a method is to understand. Methods with high Cognitive Complexity will be difficult to maintain.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

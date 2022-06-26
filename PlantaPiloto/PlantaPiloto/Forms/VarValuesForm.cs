@@ -110,7 +110,7 @@ namespace PlantaPiloto.Forms
         {
             try
             {
-                if (_varsSelected.Count() > 0)
+                if (_varsSelected.Any())
                 {
                     if (dgvVarValues.Rows.Count == 0)
                     {

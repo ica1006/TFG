@@ -1,0 +1,1376 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador de Microsoft (R) Visual C#",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.21403.6 (ae1fff34)",
+        "semanticVersion": "3.11.0",
+        "language": "es-ES"
+      },
+      "results": [
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 208,
+                  "startColumn": 17,
+                  "endLine": 208,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'DB_services' to match pascal case naming rules, consider using 'Dbservices'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 18,
+                  "endLine": 19,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'SP_services' to match pascal case naming rules, consider using 'Spservices'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 18,
+                  "endLine": 17,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1104",
+          "level": "warning",
+          "message": "Make this field 'private' and encapsulate it in a 'public' property.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Classes/GlobalParameters.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 30,
+                  "endLine": 15,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1104",
+          "level": "warning",
+          "message": "Make this field 'private' and encapsulate it in a 'public' property.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Classes/GlobalParameters.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 30,
+                  "endLine": 14,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2223",
+          "level": "warning",
+          "message": "Change the visibility of 'log' or make it 'const' or 'readonly'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Classes/GlobalParameters.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 30,
+                  "endLine": 14,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2223",
+          "level": "warning",
+          "message": "Change the visibility of 'errorLog' or make it 'const' or 'readonly'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Classes/GlobalParameters.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 30,
+                  "endLine": 15,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 53,
+                  "endLine": 60,
+                  "endColumn": 102
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 103,
+                  "startColumn": 53,
+                  "endLine": 103,
+                  "endColumn": 105
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 22,
+                  "endLine": 109,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 17,
+                  "endLine": 113,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 21,
+                  "endLine": 115,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 117,
+                  "startColumn": 25,
+                  "endLine": 117,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 123,
+                  "startColumn": 21,
+                  "endLine": 123,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 125,
+                  "startColumn": 25,
+                  "endLine": 125,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 128,
+                  "startColumn": 29,
+                  "endLine": 128,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 129,
+                  "startColumn": 33,
+                  "endLine": 129,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarValuesForm.cs",
+                "region": {
+                  "startLine": 135,
+                  "startColumn": 13,
+                  "endLine": 135,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+1",
+              "4": "+3 (incl 2 for nesting)",
+              "5": "+4 (incl 3 for nesting)",
+              "6": "+5 (incl 4 for nesting)",
+              "7": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S3267",
+          "level": "warning",
+          "message": "Loops should be simplified with \"LINQ\" expressions",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarSelection.cs",
+                "region": {
+                  "startLine": 130,
+                  "startColumn": 49,
+                  "endLine": 130,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/VarSelection.cs",
+                "region": {
+                  "startLine": 132,
+                  "startColumn": 25,
+                  "endLine": 132,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 213,
+                  "startColumn": 92,
+                  "endLine": 213,
+                  "endColumn": 97
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Count'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 213,
+                  "startColumn": 44,
+                  "endLine": 213,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Count'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 215,
+                  "startColumn": 69,
+                  "endLine": 215,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Count'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 216,
+                  "startColumn": 64,
+                  "endLine": 216,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 277,
+                  "startColumn": 73,
+                  "endLine": 277,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Count'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 277,
+                  "startColumn": 45,
+                  "endLine": 277,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 140,
+                  "startColumn": 21,
+                  "endLine": 140,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 148,
+                  "startColumn": 17,
+                  "endLine": 148,
+                  "endColumn": 22
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 152,
+                  "startColumn": 21,
+                  "endLine": 152,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 154,
+                  "startColumn": 25,
+                  "endLine": 154,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 159,
+                  "startColumn": 25,
+                  "endLine": 159,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 25,
+                  "endLine": 167,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 29,
+                  "endLine": 173,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 29,
+                  "endLine": 177,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 60,
+                  "endLine": 177,
+                  "endColumn": 62
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 29,
+                  "endLine": 182,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 63,
+                  "endLine": 182,
+                  "endColumn": 65
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 190,
+                  "startColumn": 25,
+                  "endLine": 190,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 195,
+                  "startColumn": 29,
+                  "endLine": 195,
+                  "endColumn": 36
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 212,
+                  "startColumn": 13,
+                  "endLine": 212,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "10": "+3 (incl 2 for nesting)",
+              "11": "+4 (incl 3 for nesting)",
+              "12": "+1",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+3 (incl 2 for nesting)",
+              "4": "+3 (incl 2 for nesting)",
+              "5": "+4 (incl 3 for nesting)",
+              "6": "+4 (incl 3 for nesting)",
+              "7": "+1",
+              "8": "+4 (incl 3 for nesting)",
+              "9": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 48,
+                  "endLine": 167,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 190,
+                  "startColumn": 48,
+                  "endLine": 190,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Any'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 82,
+                  "endLine": 177,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Any'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/SP_services.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 85,
+                  "endLine": 182,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1643",
+          "level": "warning",
+          "message": "Use a StringBuilder instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ChartForm.cs",
+                "region": {
+                  "startLine": 200,
+                  "startColumn": 17,
+                  "endLine": 200,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 301,
+                  "startColumn": 53,
+                  "endLine": 302,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S107",
+          "level": "warning",
+          "message": "Constructor has 14 parameters, which is greater than the 7 authorized.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Classes/Variable.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 24,
+                  "endLine": 181,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 53,
+                  "endLine": 354,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 391,
+                  "startColumn": 38,
+                  "endLine": 391,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 389,
+                  "startColumn": 28,
+                  "endLine": 389,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "SQL Query is dynamically formatted and assigned to sCmd."
+            }
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 420,
+                  "startColumn": 38,
+                  "endLine": 420,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Services/DB_services.cs",
+                "region": {
+                  "startLine": 418,
+                  "startColumn": 28,
+                  "endLine": 418,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "SQL Query is dynamically formatted and assigned to sCmd."
+            }
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 406,
+                  "startColumn": 22,
+                  "endLine": 406,
+                  "endColumn": 42
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 410,
+                  "startColumn": 17,
+                  "endLine": 410,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 416,
+                  "startColumn": 21,
+                  "endLine": 416,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 421,
+                  "startColumn": 21,
+                  "endLine": 421,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 423,
+                  "startColumn": 25,
+                  "endLine": 423,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 428,
+                  "startColumn": 29,
+                  "endLine": 428,
+                  "endColumn": 36
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 435,
+                  "startColumn": 33,
+                  "endLine": 435,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/ConfigForm.cs",
+                "region": {
+                  "startLine": 457,
+                  "startColumn": 13,
+                  "endLine": 457,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+3 (incl 2 for nesting)",
+              "4": "+3 (incl 2 for nesting)",
+              "5": "+4 (incl 3 for nesting)",
+              "6": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 534,
+                  "startColumn": 77,
+                  "endLine": 534,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop 'Where' and move the condition into the 'Count'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 534,
+                  "startColumn": 49,
+                  "endLine": 534,
+                  "endColumn": 54
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 609,
+                  "startColumn": 22,
+                  "endLine": 609,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 613,
+                  "startColumn": 13,
+                  "endLine": 613,
+                  "endColumn": 15
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 619,
+                  "startColumn": 13,
+                  "endLine": 619,
+                  "endColumn": 15
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 629,
+                  "startColumn": 21,
+                  "endLine": 629,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 631,
+                  "startColumn": 25,
+                  "endLine": 631,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 635,
+                  "startColumn": 29,
+                  "endLine": 635,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 641,
+                  "startColumn": 29,
+                  "endLine": 641,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 659,
+                  "startColumn": 17,
+                  "endLine": 659,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+1",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+3 (incl 2 for nesting)",
+              "4": "+4 (incl 3 for nesting)",
+              "5": "+4 (incl 3 for nesting)",
+              "6": "+2 (incl 1 for nesting)"
+            }
+          }
+        },
+        {
+          "ruleId": "S1155",
+          "level": "warning",
+          "message": "Use '.Any()' to test whether this 'IEnumerable<PlantaPiloto.Variable>' is empty or not.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Iv%C3%A1n/OneDrive%20-%20Universidad%20de%20Burgos/4o%20A%C3%B1o/tfg/TFG-master/PlantaPiloto/PlantaPiloto/Forms/MainForm.cs",
+                "region": {
+                  "startLine": 809,
+                  "startColumn": 36,
+                  "endLine": 809,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S101": {
+          "id": "S101",
+          "shortDescription": "Types should be named in PascalCase",
+          "fullDescription": "Shared naming conventions allow teams to collaborate efficiently. This rule checks whether or not type names are using PascalCase. To reduce noise, two consecutive upper case characters are allowed unless they form the whole type name. So, MyXClass is compliant, but XC on its own is not.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-101",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S107": {
+          "id": "S107",
+          "shortDescription": "Methods should not have too many parameters",
+          "fullDescription": "A long parameter list can indicate that a new structure should be created to wrap the numerous parameters or that the function is doing too many things.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-107",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1104": {
+          "id": "S1104",
+          "shortDescription": "Fields should not have public accessibility",
+          "fullDescription": "Public fields in public classes do not respect the encapsulation principle and has three main disadvantages:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1104",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S1155": {
+          "id": "S1155",
+          "shortDescription": "\"Any()\" should be used to test for emptiness",
+          "fullDescription": "Using .Count() to test for emptiness works, but using .Any() makes the intent clearer, and the code more readable. However, there are some cases where special attention should be paid:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1155",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S125": {
+          "id": "S125",
+          "shortDescription": "Sections of code should not be commented out",
+          "fullDescription": "Programmers should not comment out code as it bloats programs and reduces readability.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-125",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1643": {
+          "id": "S1643",
+          "shortDescription": "Strings should not be concatenated using '+' in a loop",
+          "fullDescription": "StringBuilder is more efficient than string concatenation, especially when the operator is repeated over and over as in loops.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1643",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S2077": {
+          "id": "S2077",
+          "shortDescription": "Formatting SQL queries is security-sensitive",
+          "fullDescription": "Formatted SQL queries can be difficult to maintain, debug and can increase the risk of SQL injection when concatenating untrusted values into the query. However, this rule doesn’t detect SQL injections (unlike rule {rule:csharpsquid:S3649}), the goal is only to highlight complex/formatted queries.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2077",
+          "properties": {
+            "category": "Major Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "S2223": {
+          "id": "S2223",
+          "shortDescription": "Non-constant static fields should not be visible",
+          "fullDescription": "A static field that is neither constant nor read-only is not thread-safe. Correctly accessing these fields from different threads needs synchronization with locks. Improper synchronization may lead to unexpected results, thus publicly visible static fields are best suited for storing non-changing data shared by many consumers. To enforce this intent, these fields should be marked readonly or converted to constants.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2223",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S2971": {
+          "id": "S2971",
+          "shortDescription": "\"IEnumerable\" LINQs should be simplified",
+          "fullDescription": "In the interests of readability, code that can be simplified should be simplified. To that end, there are several ways IEnumerable language integrated queries (LINQ) can be simplified",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2971",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S3267": {
+          "id": "S3267",
+          "shortDescription": "Loops should be simplified with \"LINQ\" expressions",
+          "fullDescription": "When a loop is filtering, selecting or aggregating, those functions can be handled with a clearer, more concise LINQ expression instead.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3267",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S3776": {
+          "id": "S3776",
+          "shortDescription": "Cognitive Complexity of methods should not be too high",
+          "fullDescription": "Cognitive Complexity is a measure of how hard the control flow of a method is to understand. Methods with high Cognitive Complexity will be difficult to maintain.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -151,6 +151,15 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cerrar servidor.
+        /// </summary>
+        public static string btnCloseServer_txt {
+            get {
+                return ResourceManager.GetString("btnCloseServer_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancelar.
         /// </summary>
         public static string btnExit_txt {
@@ -237,6 +246,33 @@ namespace PlantaPiloto.Language {
         public static string btnSaveConfig_txt {
             get {
                 return ResourceManager.GetString("btnSaveConfig_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscar Puerto.
+        /// </summary>
+        public static string btnSearchPort_txt {
+            get {
+                return ResourceManager.GetString("btnSearchPort_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se ha encontrado ningún puerto abierto.
+        /// </summary>
+        public static string btnSearchPort_txt_NoPort {
+            get {
+                return ResourceManager.GetString("btnSearchPort_txt-NoPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscando....
+        /// </summary>
+        public static string btnSearchPort_txt_Searching {
+            get {
+                return ResourceManager.GetString("btnSearchPort_txt-Searching", resourceCulture);
             }
         }
         
@@ -538,7 +574,7 @@ namespace PlantaPiloto.Language {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Proyecto de Fin de Grado realizado por Francisco Crespo Diez..
+        ///   Busca una cadena traducida similar a Proyecto de Fin de Grado realizado por Francisco Crespo Diez y actualizado por Iván Cortés Aliende..
         /// </summary>
         public static string lblAboutDesc_txt {
             get {

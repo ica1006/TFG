@@ -87,7 +87,6 @@ namespace WebPlantaPiloto
 
         protected void btn_back_Click(object sender, EventArgs e)
         {
-            //Server.Transfer("Main.aspx");
             Response.Redirect("Main.aspx");
         }
 

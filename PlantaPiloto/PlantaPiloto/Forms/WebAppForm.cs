@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlantaPiloto.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -26,6 +28,9 @@ namespace PlantaPiloto.Forms
         private string webAppPath;
         private string connectionString;
         private string projectFilePath;
+        private int processId = -1;
+        private HelpProvider _helpProvider;
+        private ExceptionManagement _exMg;
 
         public WebAppForm(string connectionString, string projectFilePath, CultureInfo _cul)
         {
@@ -38,6 +43,9 @@ namespace PlantaPiloto.Forms
             this.connectionString = connectionString;
             this.projectFilePath = projectFilePath;
             this.webAppPath = Directory.GetCurrentDirectory() + "\\WebAppRelease";
+            _helpProvider = new HelpProvider();
+            _helpProvider.HelpNamespace = Path.Combine(GlobalParameters.FilesPath, "helpProyect.chm");
+            _exMg = new ExceptionManagement(_cul);
 
             this.Switch_language();
             this.InitializeTextBoxesText();
@@ -63,6 +71,7 @@ namespace PlantaPiloto.Forms
             this.lblProjectPath.Text = _res_man.GetString("lblProjectPath_txt", _cul);
             this.lblConnectionString.Text = _res_man.GetString("lblConnectionString_txt", _cul);
             this.btnLaunchWebApp.Text = _res_man.GetString("btnLaunchWebApp_txt", _cul);
+            this.btnCloseServer.Text = _res_man.GetString("btnCloseServer_txt", _cul);
         }
 
         private void btnLaunchWebApp_Click(object sender, EventArgs e)
@@ -95,11 +104,50 @@ namespace PlantaPiloto.Forms
                 File.WriteAllText(this.webAppPath + "\\launch.bat", "chcp 65001\ncd \"" + this.IISExpressPath + "\" \niiiisexpress /config:\"" + webAppPath + "\\iisexpress.config\"" + "\npause");
                 Process process = new Process();
                 process.StartInfo.FileName = this.webAppPath + "\\launch.bat";
+                process.StartInfo.CreateNoWindow = true;
                 process.Start();
+                processId = process.Id;
 
-            }catch(Exception ex)
+                Thread.Sleep(1000);
+                Process.Start("http://" + ipAdress + ":" + port + "/Main");
+                changeButtons();
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private bool isProcessStarted()
+        {
+            Process requestedProcess = null;
+            if (!processId.Equals(-1))
+                try {
+                    requestedProcess = Process.GetProcessById(processId); 
+                }
+                catch (Exception) { /* It can be ignored because the exception means that there is no process started */ }
+
+            if (requestedProcess != null)
+                return true;
+            else
+                return false;
+        }
+
+        private void changeButtons()
+        {
+            int i = 0;
+            while (true)
+            {
+                i++;
+                if (isProcessStarted())
+                {
+                    btnLaunchWebApp.Enabled = false;
+                }
+                else
+                {
+                    btnLaunchWebApp.Enabled = true;
+                    break;
+                }
             }
         }
 
@@ -135,6 +183,20 @@ namespace PlantaPiloto.Forms
                 btnLaunchWebApp.Enabled = true;
             else
                 btnLaunchWebApp.Enabled = false;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Acerca de");
+                GlobalParameters.log.NewEntry("Help window oppened.");
+            }
+            catch (Exception ex)
+            {
+                _exMg.HandleException(ex);
+                GlobalParameters.errorLog.NewEntry("Exception oppening the help window.\n" + ex.Message + "\n" + ex.StackTrace);
+            }
         }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>WebPlantaPiloto</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>2016faea-c621-4790-aa1d-ea2625618360</ProjectGuid>
+  <FullPath>C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\WebPlantaPiloto\WebPlantaPiloto.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\WebPlantaPiloto\.sonarqube\conf\1\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\WebPlantaPiloto\.sonarqube\out\1\Issues.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\WebPlantaPiloto\.sonarqube\out\1</Property>
+  </AnalysisSettings>
+  <Configuration>Debug</Configuration>
+  <Platform>AnyCPU</Platform>
+</ProjectInfo>

@@ -1,0 +1,6 @@
+projectKey=TFG-WebApp
+serverUrl=http://localhost:9000
+serverVersion=9.5.0.56709
+dashboardUrl=http://localhost:9000/dashboard?id=TFG-WebApp
+ceTaskId=AYGfkQRXVjJiUwW4LcJB
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYGfkQRXVjJiUwW4LcJB

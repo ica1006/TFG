@@ -2,10 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>WebApp Planta Piloto</title>
     <style type="text/css">
         
         .rectanguloRedondeado {
@@ -40,7 +40,11 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div style="height:100vh;">
-            <table style="width: 95%; height: 100vh; margin:0 auto;">
+            <table style="width: 95%; height: 100vh; margin:0 auto;" aria-describedby="Main table">
+                <tr>
+                            <th scope="col"></th>
+                </tr>
+
                 <tr>
                     <td class="blankCell" colspan="5">
                         <asp:Label ID="lbl_err_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ConString" Visible="False"></asp:Label>
@@ -51,7 +55,11 @@
                         <div id="div_ConnString" class="rectanguloRedondeado" runat="server" >
                             <asp:Panel ID="panelConnectionString" runat="server" DefaultButton="btn_ConnString" Width="530px">
                                 <asp:Label ID="lbl_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Data Base - Connection String"></asp:Label>
-                                <table>
+                                <table aria-describedby="DB Con String table">
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
+
                                     <tr>
                                         <td style="width:440px;" >
                                             <asp:TextBox ID="txtIn_ConnString" runat="server" Font-Names="helvetica" Font-Size="14pt" Height="28px" Width="424px"></asp:TextBox>
@@ -61,7 +69,11 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <table >
+                                <table aria-describedby="DB Status">
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
+
                                     <tr>
                                         <td style="width: 440px; height:26px;" >
                                             <asp:Label ID="lbl_Connection" runat="server" Font-Names="helvetica" Font-Size="10pt" Text="Data Base connected: " Font-Bold="True"></asp:Label>
@@ -107,7 +119,10 @@
                                 <ContentTemplate>
                                     <asp:Label ID="lbl_Project" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Project: " Visible="False"></asp:Label>
                                     <asp:Label ID="lbl_ProjectName" runat="server" Font-Names="helvetica" Font-Size="24pt" Text="ProjectName" Visible="False"></asp:Label>
-                                    <table style="width: 80%; height: 100%; margin: 0 auto;" >
+                                    <table style="width: 80%; height: 100%; margin: 0 auto;" aria-describedby="Project table">
+                                        <tr>
+                                            <th scope="col"></th>
+                                        </tr>
                                         <tr>
                                             <td style="height: 23px; width: 533px;" >
                                                 <asp:Label ID="lbl_err_table" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_table" Visible="False"></asp:Label>
@@ -148,7 +163,10 @@
                         <div id="div_ChangeVariable" class="rectanguloRedondeado" runat="server">
                             <asp:Panel ID="panelChangeVariable" runat="server" DefaultButton="btn_ChangeVar">
                                 <asp:Label ID="lbl_ChangeVariable" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Variable Value" Visible="False"></asp:Label>
-                                <table style="width: 75%">
+                                <table style="width: 75%" aria-describedby="ChangeVar table">
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
                                     <tr>
                                         <td colspan="3" style="height:23px;" >
                                             <asp:Label ID="lbl_err_ChangeVar" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeVar" Visible="False"></asp:Label>
@@ -175,7 +193,10 @@
                         <div id="div_ChangeData" class="rectanguloRedondeado" runat="server">
                             <asp:Panel ID="panelChangeAmount" runat="server" DefaultButton="btn_ChangeData" Width="400px">
                                 <asp:Label ID="lbl_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Data Amount" Visible="False"></asp:Label>
-                                <table style="width:454px;">
+                                <table style="width:454px;" aria-describedby="Change Data table">
+                                    <tr>
+                                        <th scope="col"></th>
+                                    </tr>
                                     <tr>
                                         <td colspan="2" style="height:23px;">
                                             <asp:Label ID="lbl_err_ChangeData" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ChangeData" Visible="False"></asp:Label>
@@ -212,7 +233,10 @@
                         <div id="div_Options" class="rectanguloRedondeado" runat="server">
 
                             <asp:Label ID="lbl_Options" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Options" Visible="False"></asp:Label>
-                            <table style="width:400px;">
+                            <table style="width:400px;" aria-describedby="Options table">
+                                <tr>
+                                    <th scope="col"></th>
+                                </tr>
                                 <tr>
                                     <td style="width:400px; height:23px;" colspan="4">
                                         <asp:Label ID="lbl_err_Options" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_Options" Visible="False"></asp:Label>
@@ -247,7 +271,10 @@
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
                 <div id="div_ExtraCharts" class="rectanguloRedondeado" runat="server">
-        <table style="width:100%;">
+        <table style="width:100%;" aria-describedby="Extra chart table">
+            <tr>
+                <th scope="col"></th>
+            </tr>
             <tr>
                 <td>
                                     <asp:Chart ID="chart_T1" runat="server" BackColor="Transparent" Height="472px" Width="750px" Visible="False">

@@ -49,8 +49,6 @@ namespace PlantaPiloto
         private bool _readWebDB;
         private Thread _threadWebDB;
 
-        public static MainForm instance;
-
         #endregion
 
         #region Constructor
@@ -81,7 +79,6 @@ namespace PlantaPiloto
             _pdfPath = Path.Combine(_filesPath, "Manual_Usuario.pdf");
             _exMg = new ExceptionManagement(_cul);
             _fileSaver = new FileSaver();
-            instance = this;
             _readWebDB = true;
         }
 
@@ -126,7 +123,7 @@ namespace PlantaPiloto
         /// </summary>
         public void Switch_language()
         {
-            if (toolStripMenuItemSpanish.Checked == true)
+            if (toolStripMenuItemSpanish.Checked)
             {
                 _cul = CultureInfo.CreateSpecificCulture("es");    //create culture for spanish
             }
@@ -162,6 +159,7 @@ namespace PlantaPiloto
                 this.lblProDesc.Text += " " + _proyect.Description;
             }
             this.lblRWVariables.Text = _res_man.GetString("lblRWVariables_txt", _cul);
+            this.btnSearchPort.Text = _res_man.GetString("btnSearchPort_txt", _cul);
             this.btnStart.Text = _res_man.GetString("btnStart_txt", _cul);
             this.btnFinish.Text = _res_man.GetString("btnFinish_txt", _cul);
             this.btnChart.Text = _res_man.GetString("btnChart_txt", _cul);
@@ -200,7 +198,6 @@ namespace PlantaPiloto
                 if (_proyect.Name != null)
                 {
                     //Creamos la BD y la tabla en la BD para el proyecto
-                    //_db_services.CreateDB();
                     _db_services.CreateTableDB(_proyect);
 
                     //Mostramos datos
@@ -248,7 +245,6 @@ namespace PlantaPiloto
         public void LoadPorts()
         {
             _sp_services = new SP_services();
-            //_sp_services.setInstance(_sp_services);
             string[] ports = _sp_services.Ports;
             cboPort.Items.Clear();
             cboPort.Items.AddRange(ports);
@@ -422,7 +418,7 @@ namespace PlantaPiloto
         {
             try
             {
-                if (vars.Count() > 0)
+                if (vars.Any())
                 {
                     SaveFileDialog saveFileDialog1;
                     saveFileDialog1 = new SaveFileDialog();
@@ -874,7 +870,6 @@ namespace PlantaPiloto
                         {
                             GlobalParameters.log.NewEntry("New change detected in the Web data base. " + webValue);
                             lastValue = webValue;
-                            webValue.Replace('.', ',');
                             _sp_services.SerialPort.WriteLine(webValue);
                         }
                     }
@@ -940,7 +935,7 @@ namespace PlantaPiloto
             _sp_services = new SP_services(_proyect, _cul);
             List<SerialPort> ports = new List<SerialPort>();
             SerialPort port;
-            this.btnSearchPort.Text = "Buscando...";
+            this.btnSearchPort.Text = _res_man.GetString("btnSearchPort_txt-Searching", _cul);
             this.btnSearchPort.Enabled = false;
 
             foreach(string s in _sp_services.Ports)
@@ -954,17 +949,17 @@ namespace PlantaPiloto
 
             if (port == null)
             {
-                MessageBox.Show("No se ha encontrado ningun puerto abierto");
+                MessageBox.Show(_res_man.GetString("btnSearchPort_txt-NoPort", _cul));
                 GlobalParameters.log.NewEntry("There is no open port");
             }
             else
             {
                 cboPort.Text = port.PortName;
-                MessageBox.Show("El puerto abierto es el " + port.PortName);
-                GlobalParameters.log.NewEntry("Port open: " + port.PortName);
+                MessageBox.Show(port.PortName);
+                GlobalParameters.log.NewEntry("Open port: " + port.PortName);
             }
 
-            this.btnSearchPort.Text = "Buscar Puerto";
+            this.btnSearchPort.Text = _res_man.GetString("btnSearchPort_txt", _cul);
             this.btnSearchPort.Enabled = true;
         }
 

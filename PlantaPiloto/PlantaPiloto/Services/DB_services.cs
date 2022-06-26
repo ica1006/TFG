@@ -22,32 +22,21 @@ namespace PlantaPiloto
         
         readonly ExceptionManagement _exMg;
 
-        private CultureInfo _cul;
+        readonly String _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True";
 
-        private String _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True";
-
-        public CultureInfo Cul
-        {
-            get { return _cul; }
-            set
-            {
-                _cul = value;
-            }
-        }
+        public CultureInfo Cul { get; set; }
 
         #endregion
 
         #region Constructor
         public DB_services(CultureInfo cul)
         {
-            _cul = cul;
-            _exMg = new ExceptionManagement(_cul);
+            _exMg = new ExceptionManagement(cul);
         }
 
         public DB_services(CultureInfo cul, String connectionString)
         {
-            _cul = cul;
-            _exMg = new ExceptionManagement(_cul);
+            _exMg = new ExceptionManagement(cul);
             _connectionString = connectionString;
         }
         #endregion
@@ -65,7 +54,6 @@ namespace PlantaPiloto
                 try
                 {
                     // Open the SqlConnection.
-                    //con.Close();
                     con.Open();
 
                     if (CheckDBExists(proyect))
@@ -152,7 +140,6 @@ namespace PlantaPiloto
                     con.Open();
                     StringBuilder sqlStr = new StringBuilder("SELECT TOP 1 [Time]");
                     vars.ForEach(f => sqlStr.Append(",[" + f + "]"));
-                    //sqlStr.Append(" FROM [" + GlobalParameters.DBName + "].[dbo].[" + proyect.Name + "] ORDER BY ID DESC ");
                     sqlStr.Append(" FROM " + proyect.Name + " ORDER BY [Id] DESC ");
                     if (CheckDBExists(proyect))
                         using (SqlCommand command = new SqlCommand(sqlStr.ToString(), con))
@@ -186,7 +173,6 @@ namespace PlantaPiloto
         /// <param name="proyect">Proyecto del que obtiene los datos para crear la consulta</param>
         public void SaveRow(Proyect proyect, float time)
         {
-            //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
                 try
@@ -244,7 +230,6 @@ namespace PlantaPiloto
                 }
                 catch (Exception ex)
                 {
-                    //_exMg.HandleException(ex);
                     MessageBox.Show("Excepcion en el método InsertModifyValue()" + ex.Message + ex.StackTrace);
                     GlobalParameters.errorLog.NewEntry("Exception inserting new row in the project web table.\n" + ex.Message + "\n" + ex.StackTrace);
                 }
@@ -397,20 +382,15 @@ namespace PlantaPiloto
         {
             try
             {
-                //using (SqlConnection con = new SqlConnection(@"Server = localhost\sqlexpress; Database=" + GlobalParameters.DBName + ";Integrated Security = True;"))
                 using (SqlConnection con = new SqlConnection(_connectionString))
                 {
                     con.Open();
-
-                    /* string sCmd = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG = '" + GlobalParameters.DBName + "'" +
-                            " AND TABLE_NAME = '" + proyect.Name + "'";*/
 
                     string sCmd = "SELECT [Id] FROM " + proyect.Name;
 
                     SqlCommand cmd = new SqlCommand(sCmd, con);
                     cmd.ExecuteScalar();
                     return true;
-                    //return ((int)cmd.ExecuteScalar() == 1);
                 }
             }
             catch (SqlException)
@@ -440,7 +420,6 @@ namespace PlantaPiloto
                     SqlCommand cmd = new SqlCommand(sCmd, con);
                     cmd.ExecuteScalar();
                     return true;
-                    //return ((int)cmd.ExecuteScalar() == 1);
                 }
             }
             catch (SqlException)

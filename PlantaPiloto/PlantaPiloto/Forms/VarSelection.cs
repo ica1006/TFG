@@ -15,12 +15,10 @@ namespace PlantaPiloto
 {
     public partial class VarSelection : Form
     {
-        readonly MainForm _mainForm;
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
         readonly EnumVarSelection _purpose;
-        readonly DB_services _db_services;
         readonly HelpProvider _helpProvider;
         public event SaveFileDelegate Save_file;
         public event ShowChartDelegate ShowChart;
@@ -32,10 +30,8 @@ namespace PlantaPiloto
         public VarSelection()
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _proyect = new Proyect();
-            _db_services = new DB_services(_cul);
             _helpProvider = new HelpProvider();
             _filesPath = GlobalParameters.FilesPath;
             _helpProvider.HelpNamespace = Path.Combine(_filesPath, "helpProyect.chm");
@@ -45,9 +41,7 @@ namespace PlantaPiloto
         public VarSelection(Proyect proyect, EnumVarSelection purpose, CultureInfo cultureInfo)
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
-            _db_services = new DB_services(_cul);
             _proyect = proyect;
             _purpose = purpose;
             _cul = cultureInfo;

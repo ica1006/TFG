@@ -45,8 +45,11 @@ namespace PlantaPiloto.Forms
             this.txtProjectPath = new System.Windows.Forms.RichTextBox();
             this.txtWebAppPath = new System.Windows.Forms.RichTextBox();
             this.btnLaunchWebApp = new System.Windows.Forms.Button();
+            this.btnCloseServer = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.gbIISExpress.SuspendLayout();
             this.gbWebApp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIISlocation
@@ -198,11 +201,35 @@ namespace PlantaPiloto.Forms
             this.btnLaunchWebApp.UseVisualStyleBackColor = true;
             this.btnLaunchWebApp.Click += new System.EventHandler(this.btnLaunchWebApp_Click);
             // 
+            // btnCloseServer
+            // 
+            this.btnCloseServer.Location = new System.Drawing.Point(866, 281);
+            this.btnCloseServer.Name = "btnCloseServer";
+            this.btnCloseServer.Size = new System.Drawing.Size(75, 23);
+            this.btnCloseServer.TabIndex = 5;
+            this.btnCloseServer.Text = "button1";
+            this.btnCloseServer.UseVisualStyleBackColor = true;
+            this.btnCloseServer.Visible = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = global::PlantaPiloto.Properties.Resources.help;
+            this.pictureBox3.Location = new System.Drawing.Point(812, 281);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 23);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 40;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
             // WebAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 322);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.btnCloseServer);
             this.Controls.Add(this.btnLaunchWebApp);
             this.Controls.Add(this.gbWebApp);
             this.Controls.Add(this.gbIISExpress);
@@ -214,6 +241,7 @@ namespace PlantaPiloto.Forms
             this.gbIISExpress.PerformLayout();
             this.gbWebApp.ResumeLayout(false);
             this.gbWebApp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,5 +263,7 @@ namespace PlantaPiloto.Forms
         private System.Windows.Forms.RichTextBox txtProjectPath;
         private System.Windows.Forms.RichTextBox txtWebAppPath;
         private System.Windows.Forms.Button btnLaunchWebApp;
+        private System.Windows.Forms.Button btnCloseServer;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

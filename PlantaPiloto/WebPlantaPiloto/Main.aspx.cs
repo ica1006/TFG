@@ -41,7 +41,7 @@ namespace WebPlantaPiloto
                     XmlNode webAppPathXml = webParametters.SelectSingleNode("parametters/webAppPath");
                     webAppPath = webAppPathXml.InnerText;
                 }
-                catch (Exception) { }
+                catch (Exception) { /* Exception here means that couldn`t read xml, but it is contempled.*/ }
 
                 log = new Logger("Log", webAppPath);
                 errorLog = new Logger("Error Log", webAppPath);
@@ -229,18 +229,18 @@ namespace WebPlantaPiloto
 
         private Proyect loadProyect()
         {
-            Proyect _proyect = new Proyect();
+            Proyect _pr = new Proyect();
             Variable _variable;
 
             try
             {
                 log.NewEntry("Trying to load project");
                 StreamReader sr = new StreamReader(webAppPath + "\\project.txt");
-                _proyect = new Proyect();
+                _pr = new Proyect();
                 sr.ReadLine();
-                _proyect.Name = sr.ReadLine();
-                _proyect.Description = sr.ReadLine();
-                _proyect.ImagePath = sr.ReadLine();
+                _pr.Name = sr.ReadLine();
+                _pr.Description = sr.ReadLine();
+                _pr.ImagePath = sr.ReadLine();
                 do
                 {
                     if (sr.ReadLine() == "****************************************")
@@ -263,12 +263,12 @@ namespace WebPlantaPiloto
                             _variable.RangeHigh = float.Parse(sr.ReadLine());
                         }
                         _variable.CommunicationType = (EnumVarCommunicationType)Enum.Parse(typeof(EnumVarCommunicationType), sr.ReadLine());
-                        _proyect.Variables.Add(_variable);
+                        _pr.Variables.Add(_variable);
                     }
                 } while (true);
                 sr.Close();
                 lbl_err_ConString.Visible = false;
-                log.NewEntry("Project " + _proyect + " loaded successfully");
+                log.NewEntry("Project " + _pr + " loaded successfully");
             }
             catch (Exception ex)
             {
@@ -282,7 +282,7 @@ namespace WebPlantaPiloto
                 log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
             }
 
-            return _proyect;
+            return _pr;
         }
 
         private void loadGridView()
@@ -391,7 +391,7 @@ namespace WebPlantaPiloto
                 _sqlTime.Clear();
                 _sqlTime = _db.GetTime(_proyect, _chartAmount);
 
-                for (int i = 0; i < _sqlData.Count(); i++)
+                for (int i = 0; i < _sqlData.Count; i++)
                 {
                     Series series = new Series(_sqlData[i].First().Name);
                     series.Points.DataBindXY(_sqlTime, "Time", _sqlData[i].Select(p => Double.Parse(p.Value)).ToList(), "Value");
@@ -523,7 +523,6 @@ namespace WebPlantaPiloto
 
         protected void hlink_fulldb_DataBinding(object sender, EventArgs e)
         {
-            //Server.Transfer("FullDB.aspx");
             log.NewEntry("Trying to redirected user to FullDB.aspx");
             Response.Redirect("FullDB.aspx");
         }

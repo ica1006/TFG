@@ -37,6 +37,12 @@
 		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Formulario WebApp">
+		<param name="Local" value="helpWebAppForm.html">
+		<param name="WindowName" value="Formulario WebApp">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Acerca de">
 		<param name="Local" value="helpAboutForm.html">
 		<param name="ImageNumber" value="1">

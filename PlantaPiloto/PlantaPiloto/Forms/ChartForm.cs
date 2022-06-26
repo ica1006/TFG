@@ -15,7 +15,6 @@ namespace PlantaPiloto
 {
     public partial class ChartForm : Form
     {
-        readonly MainForm _mainForm;
         readonly ResourceManager _res_man;    // declare Resource manager to access to specific cultureinfo
         readonly CultureInfo _cul;            // declare culture info
         readonly Proyect _proyect;
@@ -35,7 +34,6 @@ namespace PlantaPiloto
         public ChartForm()
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _variables = new List<Variable>();
             _db_services = new DB_services(_cul);
@@ -55,7 +53,6 @@ namespace PlantaPiloto
         public ChartForm(Proyect proyect, List<Variable> variables, CultureInfo cultureInfo)
         {
             InitializeComponent();
-            _mainForm = new MainForm();
             _res_man = new ResourceManager("PlantaPiloto.Resources.Res", typeof(MainForm).Assembly);
             _db_services = new DB_services(_cul);
             _sqlData = new List<List<Variable>>();
@@ -122,7 +119,7 @@ namespace PlantaPiloto
                 _sqlTime.Clear();
                 _sqlTime = _db_services.GetTime(_proyect, _chartAmount);
 
-                for (int i = 0; i < _sqlData.Count(); i++)
+                for (int i = 0; i < _sqlData.Count; i++)
                 {
                     Series series = new Series(_sqlData[i].First().Name);
                     series.Points.DataBindXY(_sqlTime, "Time", _sqlData[i].Select(p => Double.Parse(p.Value)).ToList(), "Value");
@@ -174,7 +171,7 @@ namespace PlantaPiloto
                     foreach (Variable v in _variables.Where(p => p.Type != EnumVarType.String))
                     {
                         _sqlData.Add(_db_services.GetVarValue(_proyect, v, _chartAmount));
-                        if (_sqlTime.Count() == _sqlData.Last().Select(p => p.Value).ToList().Count())
+                        if (_sqlTime.Count == _sqlData.Last().Select(p => p.Value).ToList().Count)
                         {
                             chartVar.Series[v.Name].Points.Clear();
                             chartVar.Series[v.Name].Points.DataBindXY(_sqlTime, _sqlData.Last().Select(p => Double.Parse(p.Value)).ToList());

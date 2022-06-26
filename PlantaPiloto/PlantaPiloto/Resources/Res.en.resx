@@ -367,7 +367,7 @@
     <value>Pilot Plant Interface</value>
   </data>
   <data name="lblAboutDesc_txt" xml:space="preserve">
-    <value>Degree Thesis by Francisco Crespo Diez.</value>
+    <value>Degree Thesis by Francisco Crespo Diez and updated by Iván Cortés Aliende.</value>
   </data>
   <data name="lblAboutDegree_txt" xml:space="preserve">
     <value>Computer Science Degree.</value>
@@ -428,5 +428,17 @@
   </data>
   <data name="lblWebAppPath_txt" xml:space="preserve">
     <value>Web Application path</value>
+  </data>
+  <data name="btnCloseServer_txt" xml:space="preserve">
+    <value>Close server</value>
+  </data>
+  <data name="btnSearchPort_txt" xml:space="preserve">
+    <value>Search Port</value>
+  </data>
+  <data name="btnSearchPort_txt-NoPort" xml:space="preserve">
+    <value>There is no open port</value>
+  </data>
+  <data name="btnSearchPort_txt-Searching" xml:space="preserve">
+    <value>Searching...</value>
   </data>
 </root>

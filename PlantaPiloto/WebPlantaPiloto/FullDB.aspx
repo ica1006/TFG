@@ -2,10 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>WebApp Planta Piloto</title>
 </head>
 <body id="bodyTag" runat="server">
     <form id="form1" runat="server">
@@ -16,7 +16,11 @@
                 <ContentTemplate>
                     <asp:Timer ID="Timer1" runat="server" Interval="500" OnTick="updateTable">
                     </asp:Timer>
-                    <table style="width: 80%; margin: 0 auto;">
+                    <table style="width: 80%; margin: 0 auto;" aria-describedby="Data table">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
                         <tr style="text-align: center; width: 50%;">
                             <td>
                                 <asp:Button ID="btn_back" runat="server" OnClick="btn_back_Click" Text="Back" Font-Names="helvetica" Font-Size="14pt" />

@@ -1,0 +1,66 @@
+25/06/2022 13:07:50
+motor_caudal_tfg
+Configuracion para el proeyecto de Kinetis caudal_motor_tfg
+C:\Users\Iván\OneDrive - Universidad de Burgos\4o Año\tfg\TFG-master\PlantaPiloto\PlantaPiloto\bin\Debug\Configuraciones\images\motor_caudal_tfg3\el-teclado-de-la-computadora-portatil-no-funciona-4-consejos-para-solucionarlo_60be854793ce2 (1).jpg
+****************************************
+Ts
+Float
+Periodo de muestreo
+Escritura
+s
+s
+1
+0
+1
+1
+Serie
+****************************************
+sp
+Float
+Referencia caudal
+Escritura
+v
+v
+1
+0
+0
+33
+Serie
+****************************************
+y
+Float
+Variable controlada caudal
+Lectura
+v
+v
+1
+0
+0
+33
+Serie
+****************************************
+u
+Float
+Variable manipulada caudal
+Escritura
+v
+v
+1
+0
+0
+33
+Serie
+****************************************
+autoReg
+Integer
+Activar regulador caudal
+Escritura
+na
+na
+1
+0
+0
+1
+Serie
+****************************************
+****************************************
