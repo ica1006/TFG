@@ -222,6 +222,24 @@ namespace WebPlantaPiloto
         protected global::System.Web.UI.WebControls.GridView gview1;
 
         /// <summary>
+        /// Control linkButtonAbout.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkButtonAbout;
+
+        /// <summary>
+        /// Control HelpImageButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton HelpImageButton;
+
+        /// <summary>
         /// Control div_ChangeVariable.
         /// </summary>
         /// <remarks>

@@ -10,3 +10,4 @@
 [10]
 [11] https://www.ibm.com/docs/es/aix/7.1?topic=communications-serial-communication
 [12] https://si.ua.es/es/documentacion/asp-net-mvc-3/1-dia/modelo-vista-controlador-mvc.html
+[13] https://es.wikipedia.org/wiki/OPC

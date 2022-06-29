@@ -112,5 +112,13 @@ namespace WebPlantaPiloto
                 Timer1.Enabled = true;
             }
         }
+
+        protected void HelpImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Session["language"].Equals("English"))
+                Response.Redirect("helpFullDBEN.html");
+            else if (Session["language"].Equals("Spanish"))
+                Response.Redirect("helpFullDBES.html");
+        }
     }
 }

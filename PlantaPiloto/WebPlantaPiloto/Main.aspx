@@ -41,17 +41,17 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div style="height:100vh;">
             <table style="width: 95%; height: 100vh; margin:0 auto;" aria-describedby="Main table">
-                <tr>
-                            <th scope="col"></th>
+                <tr style="height: 1px;">
+                            <th scope="col" colspan="2"></th>
                 </tr>
 
                 <tr>
-                    <td class="blankCell" colspan="5">
+                    <td class="blankCell" colspan="6">
                         <asp:Label ID="lbl_err_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" ForeColor="Red" Text="lbl_err_ConString" Visible="False"></asp:Label>
                     </td>
                 </tr>
                 <tr style="vertical-align:central;">
-                    <td style="width:530px;">
+                    <td style="width:530px;" colspan="2">
                         <div id="div_ConnString" class="rectanguloRedondeado" runat="server" >
                             <asp:Panel ID="panelConnectionString" runat="server" DefaultButton="btn_ConnString" Width="530px">
                                 <asp:Label ID="lbl_ConString" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Data Base - Connection String"></asp:Label>
@@ -113,7 +113,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:530px; vertical-align: central;" >
+                    <td style="width:530px; vertical-align: central;" colspan="2" >
                         <div id="div_Table" class="rectanguloRedondeado" runat="server">
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
@@ -149,8 +149,12 @@
                     <td class="blankCell"></td>
                 </tr>
                 <tr style="vertical-align:bottom;">
+                    <td class="blankCell" style="width: auto;">
+                                            <asp:LinkButton ID="linkButtonAbout" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" OnClick="linkButtonAbout_Click" Visible="False" ForeColor="#009FFF">About</asp:LinkButton>
+                                        </td>
                     <td class="blankCell" style="width: 530px;">
-                        &nbsp;</td>
+                        <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/images/help.png" OnClick="HelpImageButton_Click" Visible="False" Width="4%" />
+                    </td>
                     <td class="blankCell">&nbsp;</td>
                     <td class="blankCell" style="width: 554px;">
                         &nbsp;</td>
@@ -159,7 +163,7 @@
                         &nbsp;</td>
                 </tr>
                 <tr style="vertical-align:bottom;">
-                    <td style="width: 530px;">
+                    <td style="width: 530px;" colspan="2">
                         <div id="div_ChangeVariable" class="rectanguloRedondeado" runat="server">
                             <asp:Panel ID="panelChangeVariable" runat="server" DefaultButton="btn_ChangeVar">
                                 <asp:Label ID="lbl_ChangeVariable" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="24pt" Text="Change Variable Value" Visible="False"></asp:Label>
@@ -263,7 +267,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="blankCell" colspan="5">
+                    <td class="blankCell" colspan="6">
                         &nbsp;</td>
                 </tr>
                 </table>

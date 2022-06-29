@@ -110,6 +110,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aboutEN.html" />
+    <Content Include="aboutES.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -127,6 +129,14 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="helpFullDBEN.html" />
+    <Content Include="helpFullDBES.html" />
+    <Content Include="helpMainEN.html" />
+    <Content Include="helpMainES.html" />
+    <Content Include="images\escudo_ubu_eps.png" />
+    <Content Include="images\help.png" />
+    <Content Include="images\helpFullDB.png" />
+    <Content Include="images\helpMain.png" />
     <Content Include="webParametters.xml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Main.aspx" />

@@ -32,6 +32,7 @@ namespace WebPlantaPiloto
         public static string btn_StartStop { get; } = "Stop Auto-Refresh";
         public static string btn_StartStop2 { get; } = "Auto-Refresh";
         public static string lbl_ChartAmount { get; } = "Chart Amount";
+        public static string linkButtonAbout { get; } = "About";
 
         // Exceptions && Errors
         public static string lbl_err_ConStringEx1 { get; } = "Error, use a valid connection string please";

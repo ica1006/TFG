@@ -19,7 +19,9 @@
                     <table style="width: 80%; margin: 0 auto;" aria-describedby="Data table">
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col">
+                                <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/images/help.png" OnClick="HelpImageButton_Click" Width="3%" />
+                            </th>
                         </tr>
                         <tr style="text-align: center; width: 50%;">
                             <td>

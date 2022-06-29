@@ -209,6 +209,10 @@ namespace WebPlantaPiloto
 
             //Chart
             chart_Var.Visible = true;
+
+            //About and help
+            linkButtonAbout.Visible = true;
+            HelpImageButton.Visible = true;
         }
 
         private void loadOptions()
@@ -595,6 +599,7 @@ namespace WebPlantaPiloto
                 ddlist_theme.Items[0].Text = SpanishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = SpanishText.ddlist_themeTheme2;
                 lbl_ChartAmount.Text = SpanishText.lbl_ChartAmount;
+                linkButtonAbout.Text = SpanishText.linkButtonAbout;
 
                 Session["language"] = "Spanish";
                 log.NewEntry("Language changed to Spanish");
@@ -620,6 +625,7 @@ namespace WebPlantaPiloto
                 ddlist_theme.Items[0].Text = EnglishText.ddlist_themeTheme1;
                 ddlist_theme.Items[1].Text = EnglishText.ddlist_themeTheme2;
                 lbl_ChartAmount.Text = EnglishText.lbl_ChartAmount;
+                linkButtonAbout.Text = EnglishText.linkButtonAbout;
 
                 Session["language"] = "English";
                 log.NewEntry("Language changed to English");
@@ -769,6 +775,22 @@ namespace WebPlantaPiloto
                     lbl_err_ChangeData.Text = EnglishText.lbl_err_ChangeDataEx2 + ex.Message + " " + ex.StackTrace;
                 lbl_err_table.Visible = true;
             }
+        }
+
+        protected void linkButtonAbout_Click(object sender, EventArgs e)
+        {
+            if (getLanugage().Equals("English"))
+                Response.Redirect("aboutEN.html");
+            else if (getLanugage().Equals("Spanish"))
+                Response.Redirect("aboutES.html");
+        }
+
+        protected void HelpImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+            if (getLanugage().Equals("English"))
+                Response.Redirect("helpMainEN.html");
+            else if (getLanugage().Equals("Spanish"))
+                Response.Redirect("helpMainES.html");
         }
     }
 }
