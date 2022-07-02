@@ -480,6 +480,10 @@ namespace PlantaPiloto
             _createConfig.ShowDialog();
             GlobalParameters.log.NewEntry("Config Form shown");
         }
+
+        /// <summary>
+        /// Método que abre la ventana de lanzamiento de la aplicación web
+        /// </summary>
         public void CreateWebAppForm()
         {
             WebAppForm _webApp = new WebAppForm(_db_services.getConnectionString(), _proyectPath, this._cul);
@@ -854,6 +858,10 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que comprueba en bucle si hay una nueva entrada en la tabla de la aplicación web,
+        /// para mandar el cambio de variable a la planta piloto por el puerto en serie.
+        /// </summary>
         public void checkNewWebVariables()
         {
             string lastValue = "";
@@ -928,6 +936,11 @@ namespace PlantaPiloto
 
         #endregion
 
+        /// <summary>
+        /// Evento lanzado al dar click al botón de buscar puerto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearchPort_Click(object sender, EventArgs e)
         {
             GlobalParameters.log.NewEntry("Search Port press");
@@ -963,6 +976,11 @@ namespace PlantaPiloto
             this.btnSearchPort.Enabled = true;
         }
 
+        /// <summary>
+        /// Evento que actúa al dar click a la opción de la aplicación web en el apartado comunicaciones
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void webServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -979,16 +997,13 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que devuelve el proyecto cargado
+        /// </summary>
         public Proyect getProyect()
         {
             return this._proyect;
         }
 
-        private void btnConStrin_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(_db_services.getConnectionString());
-            GlobalParameters.log.NewEntry("Connection string copied.");
-            MessageBox.Show("Contenido compiado al portapapeles");
-        }
     }
 }

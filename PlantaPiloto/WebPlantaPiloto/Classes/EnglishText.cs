@@ -43,7 +43,7 @@ namespace WebPlantaPiloto
         public static string lbl_err_ChartEx2 { get; } = "Error trying to get the checked boxes ";
         public static string lbl_err_ChangeDataEx1 { get; } = "Error, please enter a valid positive numeric value";
         public static string lbl_err_ChangeDataEx2 { get; } = "Error loading extra charts";
-        public static string lbl_err_ChangeVarEx1 { get; } = "Error, please enter only natural or decimal numbers";
+        public static string lbl_err_ChangeVarEx1 { get; } = "Error, please enter only natural or positive decimal numbers";
         public static string lbl_err_ChangeVarEx2 { get; } = "Error changing the variable ";
     }
 }

@@ -143,6 +143,7 @@ namespace PlantaPiloto
             {
                 // Set the read/write timeouts
                 _serialPort.Open();
+                _serialPort.ReadExisting();
                 int oldMoment = -1;
 
                 while (_serialPort.IsOpen)
@@ -242,6 +243,11 @@ namespace PlantaPiloto
 
         #endregion
 
+        /// <summary>
+        /// Método que devuelve el puerto en serie en uso
+        /// </summary>
+        /// <param name="candidates">Lista con los puertos candidatos</param>
+        /// <param name="time">Tiempo máximo a esperar en caso de no recibir respuesta</param>
         public SerialPort getOpened(List<SerialPort> candidates, float time)
         {
             try

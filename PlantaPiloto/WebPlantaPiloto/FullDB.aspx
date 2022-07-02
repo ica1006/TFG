@@ -20,7 +20,7 @@
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">
-                                <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/images/help.png" OnClick="HelpImageButton_Click" Width="3%" />
+                                <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/html/images/help.png" OnClick="HelpImageButton_Click" Width="3%" />
                             </th>
                         </tr>
                         <tr style="text-align: center; width: 50%;">

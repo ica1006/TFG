@@ -28,6 +28,11 @@ namespace WebPlantaPiloto
         private static Logger errorLog;
         private string webAppPath = AppContext.BaseDirectory;
 
+        /// <summary>
+        /// Evento que actúa al cargar la página.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -92,6 +97,11 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón de conexión.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_ConnString_Click(object sender, EventArgs e)
         {
             try
@@ -149,6 +159,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método encargado de cargar los valores iniciales.
+        /// </summary>
         private void loadInitialValues()
         {
             Proyect proyect = loadProyect();
@@ -177,6 +190,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que establece los items principales visibles.
+        /// </summary>
         private void setTagsVisible()
         {
             //hlink full db
@@ -215,6 +231,9 @@ namespace WebPlantaPiloto
             HelpImageButton.Visible = true;
         }
 
+        /// <summary>
+        /// Método que carga las opcones en los desplegables.
+        /// </summary>
         private void loadOptions()
         {
             List<String> languages = new List<string>();
@@ -231,6 +250,9 @@ namespace WebPlantaPiloto
             ddlist_theme.DataBind();
         }
 
+        /// <summary>
+        /// Método que carga el proyecto.
+        /// </summary>
         private Proyect loadProyect()
         {
             Proyect _pr = new Proyect();
@@ -289,6 +311,9 @@ namespace WebPlantaPiloto
             return _pr;
         }
 
+        /// <summary>
+        /// Método que carga la tabla de valores.
+        /// </summary>
         private void loadGridView()
         {
             try
@@ -339,6 +364,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que carga las propiedades estéticas de la tabla.
+        /// </summary>
         private void gridViewAesthetics()
         {
             gview1.HeaderRow.Cells[1].BackColor = System.Drawing.Color.FromArgb(227, 227, 227);
@@ -372,6 +400,13 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que carga o actualiza un determinado gráfico.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="chart">Gráfico en cuestión</param>
+        /// <param name="variableList">Lista con las variables que figurarán en el gráfico</param>
         protected void LoadChart(object sender, EventArgs e, Chart chart, List<Variable> variableList)
         {
             try
@@ -445,6 +480,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que devuelve las variables de la tabla que están marcadas.
+        /// </summary>
         private List<Variable> checkedVariables()
         {
             List<Variable> checkedList = new List<Variable>();
@@ -468,6 +506,11 @@ namespace WebPlantaPiloto
             return checkedList;
         }
 
+        /// <summary>
+        /// Evento que actúa al cambiar una check box de la tabla.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void cboxGV_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox cbox = (CheckBox)sender;
@@ -477,6 +520,11 @@ namespace WebPlantaPiloto
             log.NewEntry("User has changed the variables he wants to show in the main chart. " + cboxGviewList[rIndex].Text + " " + cboxGviewList[rIndex].Checked.ToString());
         }
 
+        /// <summary>
+        /// Método que actualiza los valores de la tabla de variables.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void updateGridView(object sender, EventArgs e)
         {
             try
@@ -503,6 +551,11 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón de cambiar cantidad de datos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_ChangeData_Click(object sender, EventArgs e)
         {
             int dataAmount = -1;
@@ -525,12 +578,22 @@ namespace WebPlantaPiloto
 
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón Volver.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void hlink_fulldb_DataBinding(object sender, EventArgs e)
         {
             log.NewEntry("Trying to redirected user to FullDB.aspx");
             Response.Redirect("FullDB.aspx");
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón de cambiar valor de variable.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_ChangeVar_Click(object sender, EventArgs e)
         {
             try
@@ -540,12 +603,23 @@ namespace WebPlantaPiloto
                 value = value.Replace(',', '.');
                 value = value.Trim();
                 bool illegalChar = false;
+                bool hasNumbersBefore = false;
 
                 lbl_err_ChangeVar.Visible = false;
 
                 foreach (Char c in value)
+                {
                     if (!char.IsDigit(c) && !c.Equals('.'))
+                    {
                         illegalChar = true;
+                    }
+                    if (char.IsDigit(c))
+                        hasNumbersBefore = true;
+                    if (!hasNumbersBefore && c.Equals('.'))
+                        illegalChar = true;
+                    if (illegalChar)
+                        break;
+                }
 
                 if (!illegalChar)
                 {
@@ -576,6 +650,11 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al cambiar el valor seleccionado en el desplegable de idiomas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlist_lang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlist_lang.SelectedValue.Equals("Español") || ddlist_lang.SelectedValue.Equals("Spanish"))
@@ -632,6 +711,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que devuelve el idioma seleccionado
+        /// </summary>
         private string getLanugage()
         {
             if (ddlist_lang.SelectedValue.Equals("Español") || ddlist_lang.SelectedValue.Equals("Spanish"))
@@ -642,6 +724,11 @@ namespace WebPlantaPiloto
             return "";
         }
 
+        /// <summary>
+        /// Evento que actúa al cambiar el valor seleccionado en el desplegable de temas visuales.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddlist_theme_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlist_theme.SelectedValue.Equals("Light") || ddlist_theme.SelectedValue.Equals("Claro"))
@@ -684,6 +771,11 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que carga los gráficos extra.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void loadExtraCharts(object sender, EventArgs e)
         {
             try
@@ -777,20 +869,30 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón Acerca de.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void linkButtonAbout_Click(object sender, EventArgs e)
         {
             if (getLanugage().Equals("English"))
-                Response.Redirect("aboutEN.html");
+                Response.Redirect("html/aboutEN.html");
             else if (getLanugage().Equals("Spanish"))
-                Response.Redirect("aboutES.html");
+                Response.Redirect("html/aboutES.html");
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el icono de ayuda.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void HelpImageButton_Click(object sender, ImageClickEventArgs e)
         {
             if (getLanugage().Equals("English"))
-                Response.Redirect("helpMainEN.html");
+                Response.Redirect("html/helpMainEN.html");
             else if (getLanugage().Equals("Spanish"))
-                Response.Redirect("helpMainES.html");
+                Response.Redirect("html/helpMainES.html");
         }
     }
 }

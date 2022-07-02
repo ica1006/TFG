@@ -210,6 +210,13 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que inserta un nuevo valor en la tabla de cambios de la aplicación web
+        /// </summary>
+        /// <param name="proyect">Proyecto</param>
+        /// <param name="variable">Variable a cambiar</param>
+        /// <param name="value">Nuevo valor a tomar por la variable</param>
+        /// <param name="time">Tiempo de la comunicación</param>
         public void InsertModifyValue(Proyect proyect, string variable, string value, string time)
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -374,7 +381,7 @@ namespace PlantaPiloto
         }
 
         /// <summary>
-        /// Método que evalúa si la BD existe
+        /// Método que evalúa si la tabla principal existe
         /// </summary>
         /// <param name="proyect">Proyecto que se utiliza para saber el nombre de la BD</param>
         /// <returns></returns>
@@ -407,6 +414,10 @@ namespace PlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que evalúa si la tabla web existe
+        /// </summary>
+        /// <param name="proyect">Proyecto relacionado con la BD</param>
         public bool CheckWebDBExists(Proyect proyect)
         {
             try
@@ -446,6 +457,9 @@ namespace PlantaPiloto
             con.Dispose();
         }
 
+        /// <summary>
+        /// Método que devuelve el Connection String de la base de datos
+        /// </summary>
         public String getConnectionString()
         {
             return _connectionString;

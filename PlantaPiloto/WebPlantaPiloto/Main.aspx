@@ -153,7 +153,7 @@
                                             <asp:LinkButton ID="linkButtonAbout" runat="server" Font-Bold="True" Font-Names="helvetica" Font-Size="10pt" OnClick="linkButtonAbout_Click" Visible="False" ForeColor="#009FFF">About</asp:LinkButton>
                                         </td>
                     <td class="blankCell" style="width: 530px;">
-                        <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/images/help.png" OnClick="HelpImageButton_Click" Visible="False" Width="4%" />
+                        <asp:ImageButton ID="HelpImageButton" runat="server" ImageUrl="~/html/images/help.png" OnClick="HelpImageButton_Click" Visible="False" Width="4%" />
                     </td>
                     <td class="blankCell">&nbsp;</td>
                     <td class="blankCell" style="width: 554px;">

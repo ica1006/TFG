@@ -43,7 +43,7 @@ namespace WebPlantaPiloto
         public static string lbl_err_ChartEx2 { get; } = "Error intentando obtener las casillas marcadas ";
         public static string lbl_err_ChangeDataEx1 { get; } = "Error, por favor introduce un número natural válido";
         public static string lbl_err_ChangeDataEx2 { get; } = "Error cargando los gráficos extra";
-        public static string lbl_err_ChangeVarEx1 { get; } = "Error, please enter only natural or decimal numbers";
+        public static string lbl_err_ChangeVarEx1 { get; } = "Error, porfavor introduzca únicamente números naturales o decimales positivos.";
         public static string lbl_err_ChangeVarEx2 { get; } = "Error cambiando la variable ";
     }
 }

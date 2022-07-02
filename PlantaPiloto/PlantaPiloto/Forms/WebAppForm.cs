@@ -51,6 +51,9 @@ namespace PlantaPiloto.Forms
             this.InitializeTextBoxesText();
         }
 
+        /// <summary>
+        /// Método que carga los valores por defecto en los recuadros de texto.
+        /// </summary>
         private void InitializeTextBoxesText()
         {
             this.txtConnectionString.Text = connectionString;
@@ -61,6 +64,9 @@ namespace PlantaPiloto.Forms
             this.txtWebAppPath.Text = webAppPath;
         }
 
+        /// <summary>
+        /// Método encargado de gestionar el cambio de idioma.
+        /// </summary>
         public void Switch_language()
         {
             this.lblIISlocation.Text = _res_man.GetString("lblIISlocation_txt", _cul);
@@ -74,6 +80,11 @@ namespace PlantaPiloto.Forms
             this.btnCloseServer.Text = _res_man.GetString("btnCloseServer_txt", _cul);
         }
 
+        /// <summary>
+        /// Evento que actúa cuando el usuario da click en el botón Lanzar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLaunchWebApp_Click(object sender, EventArgs e)
         {
             try
@@ -118,6 +129,9 @@ namespace PlantaPiloto.Forms
             }
         }
 
+        /// <summary>
+        /// Método que devuelve si el script de lanzamiento está en ejecución
+        /// </summary>
         private bool isProcessStarted()
         {
             Process requestedProcess = null;
@@ -133,6 +147,9 @@ namespace PlantaPiloto.Forms
                 return false;
         }
 
+        /// <summary>
+        /// Método que deshabilita el botón Lanzar cuando el script ya ha sido lanzado
+        /// </summary>
         private void changeButtons()
         {
             int i = 0;
@@ -151,6 +168,9 @@ namespace PlantaPiloto.Forms
             }
         }
 
+        /// <summary>
+        /// Método que lee los parámetros indicados por el usuario en los boxes de texto.
+        /// </summary>
         private void readTextValues()
         {
             connectionString = this.txtConnectionString.Text;
@@ -161,12 +181,22 @@ namespace PlantaPiloto.Forms
             webAppPath = this.txtWebAppPath.Text;
         }
 
+        /// <summary>
+        /// Evento que actúa cuando el usuario escribe en el box del puerto, para asegurarse de introducir un formato válido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPort_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Evento que actúa cuando el usuario termina de escribir en el box del puerto, para asegurarse de introducir un formato válido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPort_TextChanged(object sender, EventArgs e)
         {
             int number = -1;
@@ -177,6 +207,10 @@ namespace PlantaPiloto.Forms
             checkIfItCanLaunch(sender, e);
         }
 
+        /// <summary>
+        /// Método que verifica que ningún campo esté en blanco, para permitir lanzar la aplicación web
+        /// </summary>
+        /// <param name="sender"></param>
         private void checkIfItCanLaunch(object sender, EventArgs e)
         {
             if (txtPort.Text != "" && txtIP.Text != "" && txtIISlocation.Text != "" && txtWebAppPath.Text != "" && txtProjectPath.Text != "" && txtConnectionString.Text != "")
@@ -185,6 +219,11 @@ namespace PlantaPiloto.Forms
                 btnLaunchWebApp.Enabled = false;
         }
 
+        /// <summary>
+        /// Evento que actúa cuando el usuario presiona el botón de ayuda
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             try

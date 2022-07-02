@@ -12,6 +12,11 @@ namespace WebPlantaPiloto
 {
     public partial class FullDB : System.Web.UI.Page
     {
+        /// <summary>
+        /// Evento que actúa al cargar la página.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,6 +29,11 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa por el timer, y actualiza las tablas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void updateTable(object sender, EventArgs e)
         {
             string connectionString = (string)Session["connectionString"];
@@ -47,6 +57,9 @@ namespace WebPlantaPiloto
             con.Close();
         }
 
+        /// <summary>
+        /// Método que establece el idioma.
+        /// </summary>
         private void setLanguage()
         {
             string language = (string)Session["language"];
@@ -66,6 +79,9 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Método que establece el tema
+        /// </summary>
         private void setTheme()
         {
             string theme = (string)Session["theme"];
@@ -85,11 +101,21 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón Volver.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_back_Click(object sender, EventArgs e)
         {
             Response.Redirect("Main.aspx");
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el botón de para o resumir la actualización automática.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_StartStop_Click(object sender, EventArgs e)
         {
             if (btn_StartStop.Text.Equals(EnglishText.btn_StartStop))
@@ -113,12 +139,17 @@ namespace WebPlantaPiloto
             }
         }
 
+        /// <summary>
+        /// Evento que actúa al hacer click en el icono de ayuda.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void HelpImageButton_Click(object sender, ImageClickEventArgs e)
         {
             if (Session["language"].Equals("English"))
-                Response.Redirect("helpFullDBEN.html");
+                Response.Redirect("html/helpFullDBEN.html");
             else if (Session["language"].Equals("Spanish"))
-                Response.Redirect("helpFullDBES.html");
+                Response.Redirect("html/helpFullDBES.html");
         }
     }
 }

@@ -54,6 +54,10 @@ namespace PlantaPiloto
             this.fileDirectory = fullDirectory + fileName;
         }
 
+        /// <summary>
+        /// Método que registra una nueva entrada en el log
+        /// </summary>
+        /// <param name="logEntry">Entrada a registrar</param>
         public void NewEntry(string logEntry)
         {
             Console.WriteLine("New log entry: " + logEntry);

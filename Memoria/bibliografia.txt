@@ -11,3 +11,13 @@
 [11] https://www.ibm.com/docs/es/aix/7.1?topic=communications-serial-communication
 [12] https://si.ua.es/es/documentacion/asp-net-mvc-3/1-dia/modelo-vista-controlador-mvc.html
 [13] https://es.wikipedia.org/wiki/OPC
+
+
+
+
+Anexos
+[1]
+[2] https://www.jobted.es/salario/ingeniero-informático
+[3] https://cincodias.elpais.com/herramientas/calculadora-irpf/
+[4]
+[5] https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es_ES
