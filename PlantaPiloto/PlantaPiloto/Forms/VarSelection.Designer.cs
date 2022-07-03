@@ -42,11 +42,9 @@
             // gbVarSelection
             // 
             this.gbVarSelection.Controls.Add(this.dgvVarSelection);
-            this.gbVarSelection.Location = new System.Drawing.Point(18, 18);
-            this.gbVarSelection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbVarSelection.Location = new System.Drawing.Point(12, 12);
             this.gbVarSelection.Name = "gbVarSelection";
-            this.gbVarSelection.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbVarSelection.Size = new System.Drawing.Size(396, 595);
+            this.gbVarSelection.Size = new System.Drawing.Size(264, 387);
             this.gbVarSelection.TabIndex = 0;
             this.gbVarSelection.TabStop = false;
             this.gbVarSelection.Text = "VarSelection";
@@ -57,18 +55,16 @@
             this.dgvVarSelection.AllowUserToDeleteRows = false;
             this.dgvVarSelection.AllowUserToOrderColumns = true;
             this.dgvVarSelection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVarSelection.Location = new System.Drawing.Point(10, 31);
-            this.dgvVarSelection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvVarSelection.Location = new System.Drawing.Point(7, 20);
             this.dgvVarSelection.Name = "dgvVarSelection";
-            this.dgvVarSelection.Size = new System.Drawing.Size(370, 542);
+            this.dgvVarSelection.Size = new System.Drawing.Size(247, 352);
             this.dgvVarSelection.TabIndex = 0;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(302, 623);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(201, 405);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 35);
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -76,10 +72,9 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(74, 623);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAccept.Location = new System.Drawing.Point(49, 405);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(219, 35);
+            this.btnAccept.Size = new System.Drawing.Size(146, 23);
             this.btnAccept.TabIndex = 2;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
@@ -89,10 +84,9 @@
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::PlantaPiloto.Properties.Resources.help;
-            this.pictureBox1.Location = new System.Drawing.Point(18, 623);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 405);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 35);
+            this.pictureBox1.Size = new System.Drawing.Size(31, 23);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 38;
             this.pictureBox1.TabStop = false;
@@ -100,16 +94,16 @@
             // 
             // VarSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(432, 677);
+            this.ClientSize = new System.Drawing.Size(288, 440);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbVarSelection);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "VarSelection";
             this.Text = "VarSelection";

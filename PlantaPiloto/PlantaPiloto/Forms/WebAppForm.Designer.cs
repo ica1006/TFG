@@ -233,7 +233,9 @@ namespace PlantaPiloto.Forms
             this.Controls.Add(this.btnLaunchWebApp);
             this.Controls.Add(this.gbWebApp);
             this.Controls.Add(this.gbIISExpress);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "WebAppForm";
             this.Text = "WebApp";
             this.Load += new System.EventHandler(this.checkIfItCanLaunch);

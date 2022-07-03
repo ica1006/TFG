@@ -112,9 +112,9 @@ namespace PlantaPiloto.Forms
 
                 File.Copy(projectFilePath, webAppPath + "\\project.txt", true);
 
-                File.WriteAllText(this.webAppPath + "\\launch.bat", "chcp 65001\ncd \"" + this.IISExpressPath + "\" \niiiisexpress /config:\"" + webAppPath + "\\iisexpress.config\"" + "\npause");
                 Process process = new Process();
-                process.StartInfo.FileName = this.webAppPath + "\\launch.bat";
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.Arguments = "/c cd ^\"" + this.IISExpressPath + "^\" & iisexpress /config:^\"" + webAppPath + "\\iisexpress.config^\" & pause";
                 process.StartInfo.CreateNoWindow = true;
                 process.Start();
                 processId = process.Id;
@@ -228,7 +228,7 @@ namespace PlantaPiloto.Forms
         {
             try
             {
-                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "Acerca de");
+                Help.ShowHelp(this, _helpProvider.HelpNamespace, HelpNavigator.KeywordIndex, "WebApp");
                 GlobalParameters.log.NewEntry("Help window oppened.");
             }
             catch (Exception ex)

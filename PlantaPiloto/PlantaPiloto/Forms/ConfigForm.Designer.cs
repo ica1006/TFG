@@ -84,9 +84,9 @@ namespace PlantaPiloto
             this.gbProyectDetails.Controls.Add(this.lblConfigProDesc);
             this.gbProyectDetails.Controls.Add(this.lblConfigProName);
             this.gbProyectDetails.Location = new System.Drawing.Point(8, 8);
-            this.gbProyectDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbProyectDetails.Margin = new System.Windows.Forms.Padding(2);
             this.gbProyectDetails.Name = "gbProyectDetails";
-            this.gbProyectDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbProyectDetails.Padding = new System.Windows.Forms.Padding(2);
             this.gbProyectDetails.Size = new System.Drawing.Size(677, 57);
             this.gbProyectDetails.TabIndex = 6;
             this.gbProyectDetails.TabStop = false;
@@ -95,7 +95,7 @@ namespace PlantaPiloto
             // btnLoadImage
             // 
             this.btnLoadImage.Location = new System.Drawing.Point(559, 25);
-            this.btnLoadImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoadImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoadImage.Name = "btnLoadImage";
             this.btnLoadImage.Size = new System.Drawing.Size(106, 24);
             this.btnLoadImage.TabIndex = 22;
@@ -116,7 +116,7 @@ namespace PlantaPiloto
             // txtProDesc
             // 
             this.txtProDesc.Location = new System.Drawing.Point(326, 29);
-            this.txtProDesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtProDesc.Multiline = false;
             this.txtProDesc.Name = "txtProDesc";
             this.txtProDesc.Size = new System.Drawing.Size(121, 20);
@@ -126,7 +126,7 @@ namespace PlantaPiloto
             // txtProName
             // 
             this.txtProName.Location = new System.Drawing.Point(127, 29);
-            this.txtProName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProName.Margin = new System.Windows.Forms.Padding(2);
             this.txtProName.Multiline = false;
             this.txtProName.Name = "txtProName";
             this.txtProName.Size = new System.Drawing.Size(121, 20);
@@ -156,7 +156,7 @@ namespace PlantaPiloto
             // btnSaveConfig
             // 
             this.btnSaveConfig.Location = new System.Drawing.Point(522, 303);
-            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(83, 23);
             this.btnSaveConfig.TabIndex = 22;
@@ -191,9 +191,9 @@ namespace PlantaPiloto
             this.gbNewVar.Controls.Add(this.lblVarName);
             this.gbNewVar.Controls.Add(this.btnAddVar);
             this.gbNewVar.Location = new System.Drawing.Point(8, 69);
-            this.gbNewVar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewVar.Margin = new System.Windows.Forms.Padding(2);
             this.gbNewVar.Name = "gbNewVar";
-            this.gbNewVar.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbNewVar.Padding = new System.Windows.Forms.Padding(2);
             this.gbNewVar.Size = new System.Drawing.Size(677, 216);
             this.gbNewVar.TabIndex = 16;
             this.gbNewVar.TabStop = false;
@@ -236,7 +236,7 @@ namespace PlantaPiloto
             this.cbVarCommunicationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarCommunicationType.FormattingEnabled = true;
             this.cbVarCommunicationType.Location = new System.Drawing.Point(174, 179);
-            this.cbVarCommunicationType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbVarCommunicationType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarCommunicationType.Name = "cbVarCommunicationType";
             this.cbVarCommunicationType.Size = new System.Drawing.Size(121, 21);
             this.cbVarCommunicationType.TabIndex = 20;
@@ -245,7 +245,7 @@ namespace PlantaPiloto
             // txtVarRangeHigh
             // 
             this.txtVarRangeHigh.Location = new System.Drawing.Point(532, 138);
-            this.txtVarRangeHigh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarRangeHigh.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarRangeHigh.Multiline = false;
             this.txtVarRangeHigh.Name = "txtVarRangeHigh";
             this.txtVarRangeHigh.Size = new System.Drawing.Size(45, 20);
@@ -257,7 +257,7 @@ namespace PlantaPiloto
             // txtVarRangeLow
             // 
             this.txtVarRangeLow.Location = new System.Drawing.Point(456, 138);
-            this.txtVarRangeLow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarRangeLow.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarRangeLow.Multiline = false;
             this.txtVarRangeLow.Name = "txtVarRangeLow";
             this.txtVarRangeLow.Size = new System.Drawing.Size(45, 20);
@@ -269,7 +269,7 @@ namespace PlantaPiloto
             // txtVarLinearAdjB
             // 
             this.txtVarLinearAdjB.Location = new System.Drawing.Point(250, 138);
-            this.txtVarLinearAdjB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarLinearAdjB.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarLinearAdjB.Multiline = false;
             this.txtVarLinearAdjB.Name = "txtVarLinearAdjB";
             this.txtVarLinearAdjB.Size = new System.Drawing.Size(45, 20);
@@ -281,7 +281,7 @@ namespace PlantaPiloto
             // txtVarLinearAdjA
             // 
             this.txtVarLinearAdjA.Location = new System.Drawing.Point(174, 138);
-            this.txtVarLinearAdjA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarLinearAdjA.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarLinearAdjA.Multiline = false;
             this.txtVarLinearAdjA.Name = "txtVarLinearAdjA";
             this.txtVarLinearAdjA.Size = new System.Drawing.Size(45, 20);
@@ -293,7 +293,7 @@ namespace PlantaPiloto
             // txtVarInterfaceUnits
             // 
             this.txtVarInterfaceUnits.Location = new System.Drawing.Point(456, 100);
-            this.txtVarInterfaceUnits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarInterfaceUnits.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarInterfaceUnits.Multiline = false;
             this.txtVarInterfaceUnits.Name = "txtVarInterfaceUnits";
             this.txtVarInterfaceUnits.Size = new System.Drawing.Size(121, 20);
@@ -304,7 +304,7 @@ namespace PlantaPiloto
             // txtVarBoardUnits
             // 
             this.txtVarBoardUnits.Location = new System.Drawing.Point(174, 100);
-            this.txtVarBoardUnits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarBoardUnits.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarBoardUnits.Multiline = false;
             this.txtVarBoardUnits.Name = "txtVarBoardUnits";
             this.txtVarBoardUnits.Size = new System.Drawing.Size(121, 20);
@@ -317,7 +317,7 @@ namespace PlantaPiloto
             this.cbVarAccess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarAccess.FormattingEnabled = true;
             this.cbVarAccess.Location = new System.Drawing.Point(456, 59);
-            this.cbVarAccess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbVarAccess.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarAccess.Name = "cbVarAccess";
             this.cbVarAccess.Size = new System.Drawing.Size(121, 21);
             this.cbVarAccess.TabIndex = 13;
@@ -328,7 +328,7 @@ namespace PlantaPiloto
             this.cbVarType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVarType.FormattingEnabled = true;
             this.cbVarType.Location = new System.Drawing.Point(455, 22);
-            this.cbVarType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbVarType.Margin = new System.Windows.Forms.Padding(2);
             this.cbVarType.Name = "cbVarType";
             this.cbVarType.Size = new System.Drawing.Size(121, 21);
             this.cbVarType.TabIndex = 11;
@@ -337,7 +337,7 @@ namespace PlantaPiloto
             // txtVarName
             // 
             this.txtVarName.Location = new System.Drawing.Point(174, 19);
-            this.txtVarName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarName.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarName.Multiline = false;
             this.txtVarName.Name = "txtVarName";
             this.txtVarName.Size = new System.Drawing.Size(121, 20);
@@ -348,7 +348,7 @@ namespace PlantaPiloto
             // txtVarDesc
             // 
             this.txtVarDesc.Location = new System.Drawing.Point(174, 59);
-            this.txtVarDesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVarDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtVarDesc.Multiline = false;
             this.txtVarDesc.Name = "txtVarDesc";
             this.txtVarDesc.Size = new System.Drawing.Size(121, 20);
@@ -450,7 +450,7 @@ namespace PlantaPiloto
             // 
             this.btnAddVar.BackColor = System.Drawing.Color.Gainsboro;
             this.btnAddVar.Location = new System.Drawing.Point(474, 179);
-            this.btnAddVar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddVar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddVar.Name = "btnAddVar";
             this.btnAddVar.Size = new System.Drawing.Size(191, 24);
             this.btnAddVar.TabIndex = 21;
@@ -487,7 +487,7 @@ namespace PlantaPiloto
             this.cbSelectVar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSelectVar.FormattingEnabled = true;
             this.cbSelectVar.Location = new System.Drawing.Point(135, 305);
-            this.cbSelectVar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbSelectVar.Margin = new System.Windows.Forms.Padding(2);
             this.cbSelectVar.Name = "cbSelectVar";
             this.cbSelectVar.Size = new System.Drawing.Size(121, 21);
             this.cbSelectVar.TabIndex = 37;
@@ -505,8 +505,9 @@ namespace PlantaPiloto
             this.Controls.Add(this.gbNewVar);
             this.Controls.Add(this.btnSaveConfig);
             this.Controls.Add(this.gbProyectDetails);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "ConfigForm";
             this.Text = "MakeConfig";

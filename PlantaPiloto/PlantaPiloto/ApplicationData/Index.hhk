@@ -26,6 +26,11 @@
 		<param name="Local" value="helpVarSelectionForm.html">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="WebApp">
+		<param name="Name" value="WebApp">
+		<param name="Local" value="helpWebAppForm.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Formulario Valores de variables">
 		<param name="Local" value="helpVarValuesForm.html">
 		</OBJECT>

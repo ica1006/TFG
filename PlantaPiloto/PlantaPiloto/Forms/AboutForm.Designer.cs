@@ -143,6 +143,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.gbAbout);
             this.Controls.Add(this.btnAboutAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AboutForm";
             this.Text = "About";

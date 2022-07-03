@@ -843,6 +843,7 @@ namespace PlantaPiloto
                 _sp_services.SerialPort.PortName = cboPort.Text;
                 _threadSaveRow = new Thread(() => _sp_services.OpenConnection());
                 _threadSaveRow.Start();
+                _readWebDB = true;
                 _threadWebDB = new Thread(() => this.checkNewWebVariables());
                 _threadWebDB.Start();
                 this.ViewConnectionOpen();
@@ -903,6 +904,7 @@ namespace PlantaPiloto
                 CloseSP_services();
                 this.btnSearchPort.Enabled = true;
                 this.webServerToolStripMenuItem.Enabled = false;
+                _readWebDB = false;
                 GlobalParameters.log.NewEntry("Finished connection");
             }
             catch (Exception ex)

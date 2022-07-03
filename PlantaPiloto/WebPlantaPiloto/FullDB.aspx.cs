@@ -26,6 +26,8 @@ namespace WebPlantaPiloto
                     this.setLanguage();
                 if (Session["theme"] != null)
                     this.setTheme();
+                if (Session["connectionString"] == null)
+                    Response.Redirect("Main.aspx");
             }
         }
 

@@ -23,6 +23,7 @@ namespace PlantaPiloto
         readonly ExceptionManagement _exMg;
 
         readonly String _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf;Integrated Security=True";
+        //readonly String _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\Services\TFG-PlantaPiloto.mdf";
 
         public CultureInfo Cul { get; set; }
 
