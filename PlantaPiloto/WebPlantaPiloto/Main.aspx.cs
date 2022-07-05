@@ -131,7 +131,6 @@ namespace WebPlantaPiloto
                     }
 
                     this.loadOptions();
-                    this.setTagsVisible();
                     this.loadGridView();
                     //this.LoadChart(sender, e);
                     this.loadExtraCharts(sender, e);
@@ -139,6 +138,7 @@ namespace WebPlantaPiloto
                     this.ddlist_theme_SelectedIndexChanged(sender, e);
                     Timer1.Enabled = true;
                     lbl_err_ConString.Visible = false;
+                    this.setTagsVisible();
                 }
                 else
                 {
@@ -150,9 +150,11 @@ namespace WebPlantaPiloto
             }catch (Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx1 + ex.Message + ex.StackTrace;
+                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx1;
                 else if (this.getLanugage().Equals("English"))
                     lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx1;
+                lbl_ConnectionStatus.Text = "false";
+                lbl_ConnectionStatus.ForeColor = System.Drawing.Color.Red;
                 lbl_err_ConString.Visible = true;
                 errorLog.NewEntry("Exception trying to make data base connection. Connection String: " + txtIn_ConnString.Text + "\n" + ex.Message + "\n" + ex.StackTrace);
                 log.NewEntry("ERROR DETECTED. Please read " + errorLog.fileDirectory + " for more details");
@@ -299,9 +301,9 @@ namespace WebPlantaPiloto
             catch (Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_ConString.Text = SpanishText.lbl_err_ConStringEx2;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_ConString.Text = EnglishText.lbl_err_ConStringEx2;
                 lbl_err_ConString.Visible = true;
 
                 errorLog.NewEntry("Exception loading the project:\n" + ex.Message + "\n" + ex.StackTrace);
@@ -354,9 +356,9 @@ namespace WebPlantaPiloto
             }catch(Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_table.Text = SpanishText.lbl_err_tableEx1 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_table.Text = SpanishText.lbl_err_tableEx1;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_table.Text = EnglishText.lbl_err_tableEx1 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_table.Text = EnglishText.lbl_err_tableEx1;
                 lbl_err_table.Visible = true;
 
                 errorLog.NewEntry("Exception trying to load the variable table:\n" + ex.Message + "\n" + ex.StackTrace);
@@ -473,9 +475,9 @@ namespace WebPlantaPiloto
             }
             catch (Exception ex) {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx1;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx1 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx1;
                 lbl_err_Chart.Visible = false;
             }
         }
@@ -498,9 +500,9 @@ namespace WebPlantaPiloto
             catch (Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_Chart.Text = SpanishText.lbl_err_ChartEx2;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_Chart.Text = EnglishText.lbl_err_ChartEx2;
                 lbl_err_Chart.Visible = true;
             }
             return checkedList;
@@ -544,9 +546,9 @@ namespace WebPlantaPiloto
             catch (Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_table.Text = SpanishText.lbl_err_tableEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_table.Text = SpanishText.lbl_err_tableEx2;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_table.Text = EnglishText.lbl_err_tableEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_table.Text = EnglishText.lbl_err_tableEx2;
                 lbl_err_table.Visible = true;
             }
         }
@@ -640,9 +642,9 @@ namespace WebPlantaPiloto
             }catch(Exception ex)
             {
                 if (this.getLanugage().Equals("Spanish"))
-                    lbl_err_ChangeVar.Text = SpanishText.lbl_err_ChangeVarEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_ChangeVar.Text = SpanishText.lbl_err_ChangeVarEx2;
                 else if (this.getLanugage().Equals("English"))
-                    lbl_err_ChangeVar.Text = EnglishText.lbl_err_ChangeVarEx2 + ex.Message + " " + ex.StackTrace;
+                    lbl_err_ChangeVar.Text = EnglishText.lbl_err_ChangeVarEx2;
                 lbl_err_table.Visible = true;
 
                 errorLog.NewEntry("Exception trying to change variable " + ddList_ChangeVar.SelectedValue + ":\n" + ex.Message + "\n" + ex.StackTrace);
@@ -681,6 +683,8 @@ namespace WebPlantaPiloto
                 linkButtonAbout.Text = SpanishText.linkButtonAbout;
 
                 Session["language"] = "Spanish";
+                if (_proyect != null)
+                    _proyect.Cul = CultureInfo.CreateSpecificCulture("es");
                 log.NewEntry("Language changed to Spanish");
             }
             else if (ddlist_lang.SelectedValue.Equals("Inglés") || ddlist_lang.SelectedValue.Equals("English"))
@@ -707,6 +711,8 @@ namespace WebPlantaPiloto
                 linkButtonAbout.Text = EnglishText.linkButtonAbout;
 
                 Session["language"] = "English";
+                if (_proyect != null)
+                    _proyect.Cul = CultureInfo.CreateSpecificCulture("en");
                 log.NewEntry("Language changed to English");
             }
         }

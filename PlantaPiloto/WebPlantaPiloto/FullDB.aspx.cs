@@ -26,7 +26,7 @@ namespace WebPlantaPiloto
                     this.setLanguage();
                 if (Session["theme"] != null)
                     this.setTheme();
-                if (Session["connectionString"] == null)
+                if (Session["connectionString"] == null || Session["proyect"] == null)
                     Response.Redirect("Main.aspx");
             }
         }
@@ -57,6 +57,9 @@ namespace WebPlantaPiloto
             GridView2.DataSource = ds2;
             GridView2.DataBind();
             con.Close();
+
+            if (GridView1.Rows.Count == 0)
+                Response.Redirect("Main.aspx");
         }
 
         /// <summary>

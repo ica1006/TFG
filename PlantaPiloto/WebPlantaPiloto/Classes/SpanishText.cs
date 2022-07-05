@@ -35,7 +35,7 @@ namespace WebPlantaPiloto
         public static string linkButtonAbout { get; } = "Acerca de";
 
         // Exceptions && Errors
-        public static string lbl_err_ConStringEx1 { get; } = "Error, por favor introduce un connection string válido";
+        public static string lbl_err_ConStringEx1 { get; } = "Error, base de datos no localizada o no inicializada";
         public static string lbl_err_ConStringEx2 { get; } = "Error cargando el proyecto ";
         public static string lbl_err_tableEx1 { get; } = "Error cargando la tabla ";
         public static string lbl_err_tableEx2 { get; } = "Error actualizando la tabla ";
