@@ -887,7 +887,7 @@ namespace PlantaPiloto
             }catch(Exception ex)
             {
                 _exMg.HandleException(ex);
-                MessageBox.Show("Excepción en el metodo checkNewWebVariables " + ex.Message + ex.StackTrace);
+                //MessageBox.Show("Excepción en el metodo checkNewWebVariables " + ex.Message + ex.StackTrace);
                 GlobalParameters.errorLog.NewEntry("Exception while checking for new variables in the Web data base table.\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }

@@ -24,8 +24,14 @@ Enlaces relativos a las entradas bibliográficas de la memoria y los anexos:
 	Anexos
 		[1] Sin enlace (Libro)
 		[2] https://www.jobted.es/salario/ingeniero-informático
-		[3] https://cincodias.elpais.com/herramientas/calculadora-irpf/
+		[3] https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/36537
 		[4] Sin enlace (TFG)
 		[5] https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es_ES
 		[6] Sin enlace (Libro)
 		[7] https://docs.microsoft.com/es-es/aspnet/overview
+
+Requisitos software
+	- .NET Framework		https://www.microsoft.com/es-es/download/details.aspx?id=49982
+	- IIS Express		https://www.microsoft.com/es-es/download/details.aspx?id=48264
+	- P&E Driver		https://www.pemicro.com/opensda/
+	- SqlLocalBD.msi		https://download.microsoft.com/download/9/0/7/907AD35F-9F9C-43A5-9789-52470555DB90/ENU/SqlLocalDB.msi
